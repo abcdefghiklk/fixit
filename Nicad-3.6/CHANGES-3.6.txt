@@ -1,0 +1,27 @@
+Changes from NiCad 3.5 in 3.6
+
+1. Updated and corrected Python grammar to handle some newer Python 3 features.
+
+2. Fixed bugs in build and code of tools/clonepairs and tools/crossclones
+        that were causing "Clone detection failed" crashes.
+
+3. Updated and enhanced "fixspaces" script to fix $, ( ), { }, [ ], and other
+        special characters in file and folder names.
+
+4. Fixed type error in tools/main.c that caused “make" to fail on some platforms.
+
+5. Fixed bug in NiCad scripts that prevented thresholds with two or more digits
+        (e.g., 0.25)
+
+6. Fixed bug in Extract script that failed when directories were named as source
+        files (e.g., xxx/yyy.java/zzz.java)
+
+7. Fixed bug in NICadPair and NiCadCross scripts that created strange result
+        file names when system was given with a trailing  slash 
+        (e.g., examples/JHotDraw/ )
+
+8. Added support for two-digit thresholds (e.g., threshold=0.25)
+
+9. Retired Mandriva version of NiCad scripts.
+
+10. Changed tool build Makefile to use platform default machine size.

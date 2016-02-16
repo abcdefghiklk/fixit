@@ -1,0 +1,605 @@
+2 ZOOKEEPER-1861
+ConcurrentHashMap isn&apos t used properly in QuorumCnxManager &lt p&gt queueSendMap is a ConcurrentHashMap.&lt br/&gt At line 210:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt              &lt span class=&quot code-keyword&quot &gt if&lt /span&gt  (!queueSendMap.containsKey(sid)) {                 queueSendMap.put(sid, &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  ArrayBlockingQueue&amp lt ByteBuffer&amp gt (                         SEND_CAPACITY))  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt By the time control enters if block, there may be another concurrent put with same sid to the ConcurrentHashMap.&lt br/&gt putIfAbsent() should be used.&lt /p&gt &lt p&gt Similar issue occurs at line 307 as well.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.quorum.QuorumCnxManager
+
+3 ZOOKEEPER-1860
+Async versions of reconfig don&apos t actually throw KeeperException nor InterruptedException &lt p&gt This was caught by &lt a href=&quot https://issues.apache.org/jira/secure/ViewProfile.jspa?name=fournc&quot  class=&quot user-hover&quot  rel=&quot fournc&quot &gt Camille Fournier&lt /a&gt , the async versions of reconfig in the Java client don&apos t actually throw KeeperException nor InterruptedException. Since this is unreleased code (i.e.: for 3.5.0) I don&apos t think there are issues with changing the API (that is, considering what exceptions are thrown part of the API). &lt /p&gt
+1
+src.java.main.org.apache.zookeeper.ZooKeeper
+
+4 ZOOKEEPER-1815
+Tolerate incorrectly set system hostname in tests &lt p&gt A bunch of tests will fail with UnknownHostException errors when the hostname is incorrectly set on the system that you are running tests on.&lt /p&gt
+10
+src.java.test.org.apache.zookeeper.ClientReconnectTest
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+src.java.test.org.apache.zookeeper.test.CnxManagerTest
+src.java.test.org.apache.zookeeper.test.FLEBackwardElectionRoundTest
+src.java.test.org.apache.zookeeper.test.FLELostMessageTest
+src.java.test.org.apache.zookeeper.test.FLENewEpochTest
+src.java.test.org.apache.zookeeper.test.FLEPredicateTest
+src.java.test.org.apache.zookeeper.test.FLERestartTest
+src.java.test.org.apache.zookeeper.test.FLETest
+src.java.test.org.apache.zookeeper.test.JMXEnv
+
+5 ZOOKEEPER-1783
+Distinguish initial configuration from first established configuration &lt p&gt We need a way to distinguish an initial config of a server and an initial config of a running ensemble (before any reconfigs happen). Currently both have version 0. &lt /p&gt &lt p&gt The version of a config increases with each reconfiguration, so the problem is just with the initial config.&lt /p&gt
+4
+src.java.main.org.apache.zookeeper.server.quorum.FastLeaderElection
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+
+6 ZOOKEEPER-1778
+Use static final Logger objects &lt p&gt Logger is not declared as &apos private static final&apos  in few classes&lt /p&gt
+8
+src.java.main.org.apache.zookeeper.Login
+src.java.main.org.apache.zookeeper.Shell
+src.java.main.org.apache.zookeeper.server.NIOServerCnxn
+src.java.main.org.apache.zookeeper.server.NettyServerCnxn
+src.java.main.org.apache.zookeeper.server.NettyServerCnxnFactory
+src.java.main.org.apache.zookeeper.server.ServerCnxnFactory
+src.java.main.org.apache.zookeeper.server.ZooKeeperSaslServer
+src.java.main.org.apache.zookeeper.server.ZooTrace
+
+7 ZOOKEEPER-1769
+ZooInspector can&apos t display node data/metadata/ACLs &lt p&gt There seem to be a few bugs in the trunk that prevent ZooInspector to load the node viewers ( the 3 tabs in the main windows when you select a ZK node in the tree don&apos t show up any more ).&lt br/&gt Apparently it has been introduced 2 years ago after a refactoring about icons and another about partially fixing a typo (&quot veiwer&quot  -&amp gt  &quot viewer&quot ).&lt /p&gt &lt p&gt Note: the bug is only in trunk, 3.4 is fine.&lt /p&gt
+3
+src.contrib.zooinspector.src.java.org.apache.zookeeper.inspector.ZooInspector
+src.contrib.zooinspector.src.java.org.apache.zookeeper.inspector.gui.nodeviewer.NodeViewerData
+src.contrib.zooinspector.src.java.org.apache.zookeeper.inspector.manager.ZooInspectorManagerImpl
+
+8 ZOOKEEPER-1766
+Consistent log severity level guards and statements &lt p&gt A log statement should be guarded by its matching severity level. A log statement like&lt /p&gt &lt p&gt          if (LOG.isTraceEnabled()) {&lt br/&gt             LOG.info(&quot Session closing: 0x&quot  + Long.toHexString(sessionId)) &lt /p&gt &lt p&gt doesn&apos t make much sense because the log message is only printed out when TRACE-level is enabled. This inconsistency was possibly introduced when developers demoted the original log statement from INFO but forgot to change its corresponding log severity level.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.SessionTrackerImpl
+src.java.systest.org.apache.zookeeper.test.system.QuorumPeerInstance
+
+9 ZOOKEEPER-1759
+Adding ability to allow READ operations for authenticated users,  versus keeping ACLs wide open for READ &lt p&gt Today when using SASLAuthenticationProvider to authenticate Zookeeper Clients access to the data based on ACLS set on znodes there is no other choice but to set READ ACLs to be &quot world&quot , &quot anyone&quot  with the way how &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  &lt span class=&quot code-object&quot &gt boolean&lt /span&gt  matches(&lt span class=&quot code-object&quot &gt String&lt /span&gt  id,&lt span class=&quot code-object&quot &gt String&lt /span&gt  aclExpr) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt is currently implemented. It means that any unauthenticated user can read the data when application needs to make sure that not only creator of a znode can read the content.&lt br/&gt Proposal is to introduce new property: &quot zookeeper.readUser&quot  that if incoming id matches to the value of that property it will be allowed to proceed in &quot match&quot  method. &lt br/&gt So creator of a znode instead of &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  ACL acl1 = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  ACL(Perms.ADMIN | Perms.CREATE | Perms.WRITE | Perms.DELETE, Ids.AUTH_IDS)  ACL acl2 = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  ACL(Perms.READ, Ids.ANYONE_ID_UNSAFE)  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt will need to do&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  ACL acl1 = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  ACL(Perms.ADMIN | Perms.CREATE | Perms.WRITE | Perms.DELETE, Ids.AUTH_IDS)  ACL acl2 = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  ACL(Perms.READ, &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Id(&lt span class=&quot code-quote&quot &gt &quot sasl&quot &lt /span&gt , &lt span class=&quot code-quote&quot &gt &quot anyone&quot &lt /span&gt ))  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Assuming that value of &quot zookeeper.readUser&quot  property was &quot anyone&quot .&lt br/&gt This way at least READ access on corresponding znode has to be authenticated.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+src.java.test.org.apache.zookeeper.test.SaslAuthDesignatedClientTest
+
+10 ZOOKEEPER-1718
+Support JLine 2 &lt p&gt not fixed&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.JLineZNodeCompletor
+src.java.main.org.apache.zookeeper.ZooKeeperMain
+
+11 ZOOKEEPER-1700
+FLETest consistently failing - setLastSeenQuorumVerifier seems to be hanging &lt p&gt I&apos m consistently seeing a failure on my laptop when running the FLETest &quot testJoin&quot  test. What seems to be happening is that the call to setLastSeenQuorumVerifier is hanging.&lt /p&gt &lt p&gt See the following log from the test, notice 17:35:57 for the period in question. Note that I turned on debug logging and added a few log messages around the call to setLastSeenQuorumVerifier (you can see the code enter but never leave)&lt /p&gt &lt p&gt Note: I&apos ve applied &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1324&quot  title=&quot Remove Duplicate NEWLEADER packets from the Leader to the Follower.&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1324&quot &gt &lt del&gt ZOOKEEPER-1324&lt /del&gt &lt /a&gt  to trunk code and then run this test but that doesn&apos t seem to help. Also note that this test is passing consistently when run against branch-3.4.&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt 2013-05-07 17:35:57,859 [myid:] - INFO  [QuorumPeer[myid=0]/0:0:0:0:0:0:0:0:11221:Follower@65] - FOLLOWING - LEADER ELECTION TOOK - 16 2013-05-07 17:35:57,859 [myid:] - INFO  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:Leader@436] - LEADING - LEADER ELECTION TOOK - 17 2013-05-07 17:35:57,863 [myid:] - INFO  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:FileTxnSnapLog@270] - Snapshotting: 0x0 to /home/phunt/dev/zookeeper-trunk/build/test/tmp/test3690487600947307322.junit.dir/version-2/snapshot.0 2013-05-07 17:35:57,873 [myid:] - INFO  [LearnerHandler-/127.0.0.1:34262:LearnerHandler@269] - Follower sid: 0 : info : 0.0.0.0:11222:11223:participant 0.0.0.0:11221 2013-05-07 17:35:57,878 [myid:] - INFO  [LearnerHandler-/127.0.0.1:34262:LearnerHandler@328] - Synchronizing with Follower sid: 0 maxCommittedLog=0x0 minCommittedLog=0x0 peerLastZxid=0x0 2013-05-07 17:35:57,878 [myid:] - DEBUG [LearnerHandler-/127.0.0.1:34262:LearnerHandler@395] - committedLog is empty but leader and follower are in sync, zxid=0x0 2013-05-07 17:35:57,878 [myid:] - INFO  [LearnerHandler-/127.0.0.1:34262:LearnerHandler@404] - Sending DIFF 2013-05-07 17:35:57,879 [myid:] - DEBUG [LearnerHandler-/127.0.0.1:34262:LearnerHandler@411] - Sending NEWLEADER message to 0 2013-05-07 17:35:57,880 [myid:] - INFO  [QuorumPeer[myid=0]/0:0:0:0:0:0:0:0:11221:Learner@331] - Getting a diff from the leader 0x0 2013-05-07 17:35:57,885 [myid:] - INFO  [QuorumPeer[myid=0]/0:0:0:0:0:0:0:0:11221:Learner@457] - Learner received NEWLEADER message 2013-05-07 17:35:57,885 [myid:] - INFO  [QuorumPeer[myid=0]/0:0:0:0:0:0:0:0:11221:Learner@460] - NEWLEADER calling configfromstring 2013-05-07 17:35:57,885 [myid:] - INFO  [QuorumPeer[myid=0]/0:0:0:0:0:0:0:0:11221:Learner@462] - NEWLEADER setting quorum verifier 2013-05-07 17:35:57,886 [myid:] - WARN  [QuorumPeer[myid=0]/0:0:0:0:0:0:0:0:11221:QuorumPeer@1218] - setLastSeenQuorumVerifier called with stale config 0. Current version: 0 2013-05-07 17:36:01,880 [myid:] - INFO  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:Leader@585] - Shutting down 2013-05-07 17:36:01,881 [myid:] - INFO  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:Leader@591] - Shutdown called java.lang.Exception: shutdown Leader! reason: Waiting for a quorum of followers, only synced with sids: [ [1] ]  at org.apache.zookeeper.server.quorum.Leader.shutdown(Leader.java:591)  at org.apache.zookeeper.server.quorum.Leader.lead(Leader.java:487)  at org.apache.zookeeper.server.quorum.QuorumPeer.run(QuorumPeer.java:949) 2013-05-07 17:36:01,881 [myid:] - INFO  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:ZooKeeperServer@398] - shutting down 2013-05-07 17:36:01,881 [myid:] - INFO  [LearnerCnxAcceptor-0.0.0.0/0.0.0.0:11225:Leader$LearnerCnxAcceptor@398] - exception while shutting down acceptor: java.net.SocketException: Socket closed 2013-05-07 17:36:01,882 [myid:] - WARN  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:QuorumPeer@979] - PeerState set to LOOKING 2013-05-07 17:36:01,882 [myid:] - INFO  [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:QuorumPeer@863] - LOOKING 2013-05-07 17:36:01,883 [myid:] - DEBUG [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:11224:QuorumPeer@792] - Initializing leader election protocol... &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.test.org.apache.zookeeper.test.FLETest
+
+12 ZOOKEEPER-1691
+Add a flag to disable standalone mode &lt p&gt Currently you cannot use dynamic reconfiguration to bootstrap zookeeper cluster because the server goes into standalone mode when there is only one server in the cluster.&lt /p&gt &lt p&gt --Michi&lt /p&gt
+8
+src.java.main.org.apache.zookeeper.server.PrepRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.FastLeaderElection
+src.java.main.org.apache.zookeeper.server.quorum.FollowerZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.LeaderZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerConfig
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerTestBase
+src.java.test.org.apache.zookeeper.test.StandaloneTest
+
+14 ZOOKEEPER-1664
+Kerberos auth doesn&apos t work with native platform GSS integration &lt p&gt Java on Linux/Solaris can be set up to use the native (via C library)&lt br/&gt GSS implementation. This is configured by setting the system property&lt br/&gt    sun.security.jgss.native=true&lt br/&gt When using this feature, ZooKeeper Sasl/JGSS authentication doesn&apos t work.&lt br/&gt The reason is explained in&lt br/&gt &lt a href=&quot http://docs.oracle.com/javase/6/docs/technotes/guides/security/jgss/jgss-features.html&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://docs.oracle.com/javase/6/docs/technotes/guides/security/jgss/jgss-features.html&lt /a&gt &lt /p&gt &lt p&gt &quot &quot &quot &lt br/&gt &lt span class=&quot error&quot &gt &amp #91 when using native GSS...&amp #93 &lt /span&gt &lt br/&gt In addition, when performing operations as a particular Subject, e.g. &lt br/&gt Subject.doAs(...) or Subject.doAsPrivileged(...), the to-be-used &lt br/&gt GSSCredential should be added to Subject&apos s private credential set. &lt br/&gt Otherwise, the GSS operations will fail since no credential is found.&lt br/&gt &quot &quot &quot &lt /p&gt
+2
+src.java.main.org.apache.zookeeper.client.ZooKeeperSaslClient
+src.java.main.org.apache.zookeeper.server.ZooKeeperSaslServer
+
+15 ZOOKEEPER-1628
+Documented list of allowable characters in ZK doc not in line with code &lt p&gt The documented set of allowable characters in ZooKeeper node names in the Programmer&apos s Guide is not entirely in line with the code.&lt /p&gt &lt p&gt The range of non-printable ASCII characters in the doc ends too early (i.e. 0x19 instead of 0x1F).&lt /p&gt &lt p&gt The range checking code in PathUtils also includes off-by-one errors, so that characters that are on the border of being unallowable are actually allowed by the code.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.common.PathUtils
+
+16 ZOOKEEPER-1620
+NIOServerCnxnFactory (new code introduced in ZK-1504) opens selectors but never closes them &lt p&gt New code (committed in ZK-1504) opens selectors but doesn&apos t close them.&lt br/&gt Specifically AbstractSelectThread in its constructor does &lt /p&gt &lt p&gt this.selector = Selector.open() &lt /p&gt &lt p&gt But possibly also elsewhere. Tests fail for me with the following message:&lt /p&gt &lt p&gt java.io.IOException: Too many open files&lt br/&gt  at sun.nio.ch.EPollArrayWrapper.epollCreate(Native Method)&lt br/&gt  at sun.nio.ch.EPollArrayWrapper.&amp lt init&amp gt (EPollArrayWrapper.java:69)&lt br/&gt  at sun.nio.ch.EPollSelectorImpl.&amp lt init&amp gt (EPollSelectorImpl.java:52)&lt br/&gt  at sun.nio.ch.EPollSelectorProvider.openSelector(EPollSelectorProvider.java:18)&lt br/&gt  at java.nio.channels.Selector.open(Selector.java:209)&lt br/&gt  at org.apache.zookeeper.server.NIOServerCnxnFactory$AbstractSelectThread.&amp lt init&amp gt (NIOServerCnxnFactory.java:128)&lt br/&gt  at org.apache.zookeeper.server.NIOServerCnxnFactory$AcceptThread.&amp lt init&amp gt (NIOServerCnxnFactory.java:177)&lt br/&gt  at org.apache.zookeeper.server.NIOServerCnxnFactory.configure(NIOServerCnxnFactory.java:663)&lt br/&gt  at org.apache.zookeeper.server.ServerCnxnFactory.createFactory(ServerCnxnFactory.java:127)&lt br/&gt  at org.apache.zookeeper.server.quorum.QuorumPeer.&amp lt init&amp gt (QuorumPeer.java:709)&lt br/&gt  at org.apache.zookeeper.test.QuorumBase.startServers(QuorumBase.java:177)&lt br/&gt  at org.apache.zookeeper.test.QuorumBase.setUp(QuorumBase.java:113)&lt br/&gt  at org.apache.zookeeper.test.QuorumBase.setUp(QuorumBase.java:71)&lt br/&gt  at org.apache.zookeeper.test.ReconfigTest.setUp(ReconfigTest.java:56)&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.NIOServerCnxnFactory
+
+17 ZOOKEEPER-1619
+Allow spaces in URL &lt p&gt Currently, spaces are not allowed in the url.  This format will work.&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  10.10.1.1:2181,10.10.1.2:2181/usergrid &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt This format will not (notice the spaces around the comma)&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  10.10.1.1:2181 , 10.10.1.2:2181/usergrid &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Please add a trim to both the port and the hostname parsing.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.client.ConnectStringParser
+
+18 ZOOKEEPER-1602
+a change to QuorumPeerConfig&apos s API broke compatibility with HBase &lt p&gt The following patch broke an API that&apos s in use by HBase. Otherwise current trunk compiles fine when used by hbase:&lt /p&gt &lt blockquote&gt &lt p&gt &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1411&quot  title=&quot Consolidate membership management, distinguish between static and dynamic configuration parameters&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1411&quot &gt &lt del&gt ZOOKEEPER-1411&lt /del&gt &lt /a&gt . Consolidate membership management, distinguish between static and dynamic configuration parameters (Alex Shraer via breed)&lt /p&gt &lt /blockquote&gt &lt p&gt Considering it a blocker even though it&apos s not really a &quot public&quot  API. If possible we should add back &quot getServers&quot  method on QuorumPeerConfig to reduce friction for the hbase team.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerConfig
+
+19 ZOOKEEPER-1572
+Add an async interface for multi request &lt p&gt Currently there is no async interface for multi request in ZooKeeper java client.&lt /p&gt
+6
+src.java.main.org.apache.zookeeper.AsyncCallback
+src.java.main.org.apache.zookeeper.AsyncCallback.VoidCallback
+src.java.main.org.apache.zookeeper.ClientCnxn
+src.java.main.org.apache.zookeeper.Transaction
+src.java.main.org.apache.zookeeper.ZooKeeper
+src.java.test.org.apache.zookeeper.test.MultiTransactionTest
+
+20 ZOOKEEPER-1505
+Multi-thread CommitProcessor &lt p&gt CommitProcessor has a single thread that both pulls requests off its queues and runs all downstream processors. This is noticeably inefficient for read-intensive workloads, which could be run concurrently. The trick is handling write transactions. I propose multi-threading this code according to the following two constraints&lt /p&gt &lt ul class=&quot alternate&quot  type=&quot square&quot &gt  &lt li&gt each session must see its requests responded to in order&lt /li&gt  &lt li&gt all committed transactions must be handled in zxid order, across all sessions&lt /li&gt &lt /ul&gt &lt p&gt I believe these cover the only constraints we need to honor. In particular, I believe we can relax the following:&lt /p&gt &lt ul class=&quot alternate&quot  type=&quot square&quot &gt  &lt li&gt it does not matter if the read request in one session happens before or after the write request in another session&lt /li&gt &lt /ul&gt &lt p&gt With these constraints, I propose the following threads&lt /p&gt &lt ul class=&quot alternate&quot  type=&quot square&quot &gt  &lt li&gt 1    primary queue servicing/work dispatching thread&lt /li&gt  &lt li&gt 0-N  assignable worker threads, where a given session is always assigned to the same worker thread&lt /li&gt &lt /ul&gt &lt p&gt By assigning sessions always to the same worker thread (using a simple sessionId mod number of worker threads), we guarantee the first constraint-- requests we push onto the thread queue are processed in order. The way we guarantee the second constraint is we only allow a single commit transaction to be in flight at a time--the queue servicing thread blocks while a commit transaction is in flight, and when the transaction completes it clears the flag.&lt /p&gt &lt p&gt On a 32 core machine running Linux 2.6.38, achieved best performance with 32 worker threads for a 56% +/- 5% improvement in throughput (this improvement was measured on top of that for &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1504&quot  title=&quot Multi-thread NIOServerCnxn&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1504&quot &gt ZOOKEEPER-1504&lt /a&gt , not in isolation).&lt /p&gt &lt p&gt New classes introduced in this patch are:&lt /p&gt &lt p&gt     WorkerService (also in &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1504&quot  title=&quot Multi-thread NIOServerCnxn&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1504&quot &gt ZOOKEEPER-1504&lt /a&gt ): ExecutorService wrapper that makes worker threads daemon threads and names then in an easily debuggable manner. Supports assignable threads (as used here) and non-assignable threads (as used by NIOServerCnxnFactory).&lt /p&gt
+6
+src.java.main.org.apache.zookeeper.server.FinalRequestProcessor
+src.java.main.org.apache.zookeeper.server.PrepRequestProcessor
+src.java.main.org.apache.zookeeper.server.ServerCnxnFactory
+src.java.main.org.apache.zookeeper.server.quorum.CommitProcessor
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.Leader.XidRolloverException
+
+21 ZOOKEEPER-1499
+clientPort config changes not backwards-compatible &lt p&gt With the new reconfig logic, clientPort=2181 in the zoo.cfg file no longer gets read, and clients can&apos t connect without adding  2181 to the end of their server lines. &lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+
+22 ZOOKEEPER-1413
+Use on-disk transaction log for learner sync up &lt p&gt Motivation:&lt br/&gt The learner syncs up with leader by retrieving committed log from the leader. Currently, the leader only keeps 500 entries of recently committed log in memory. If the learner falls behind more than 500 updates, the leader will send the entire snapshot to the learner. &lt /p&gt &lt p&gt With the size of the snapshot for some of our Zookeeper deployments (~10G), it is prohibitively expensive to send the entire snapshot over network. Additionally, our Zookeeper may serve more than 4K updates per seconds. As a result, a network hiccups for less than a second will cause the learner to use snapshot transfer.&lt /p&gt &lt p&gt Design:&lt br/&gt Instead of looking only at committed log in memory, the leader will also look at transaction log on disk. The amount of transaction log kept on disk is configurable and the current default is 100k. This will allow Zookeeper to tolerate longer temporal network failure before initiating the snapshot transfer.  &lt /p&gt &lt p&gt Implementation:&lt br/&gt We plan to add interface to the persistence layer will can be use to retrieve proposals from on-disk transaction log. These proposals can then be used to send to the learner using existing protocol. &lt /p&gt
+8
+src.java.main.org.apache.zookeeper.server.ZKDatabase
+src.java.main.org.apache.zookeeper.server.persistence.FileTxnLog
+src.java.main.org.apache.zookeeper.server.persistence.FileTxnSnapLog
+src.java.main.org.apache.zookeeper.server.persistence.TxnLog
+src.java.main.org.apache.zookeeper.server.quorum.LearnerHandler
+src.java.test.org.apache.zookeeper.test.FollowerResyncConcurrencyTest
+src.java.test.org.apache.zookeeper.test.FollowerResyncConcurrencyTest.MyWatcher
+src.java.test.org.apache.zookeeper.test.LoadFromLogTest
+
+23 ZOOKEEPER-1411
+Consolidate membership management, distinguish between static and dynamic configuration parameters &lt p&gt Currently every server has a different static configuration file. This patch distinguishes between dynamic parameters, which are now in a separate &quot dynamic configuration file&quot , and static parameters which are in the usual file. The config file points to the dynamic config file by specifying &quot dynamicConfigFile=...&quot . In the first stage (this patch), all cluster membership definitions are in the dynamic config file, but in the future additional parameters may be moved to the dynamic file.&lt /p&gt &lt p&gt Backward compatibility makes sure that you can still use a single config file if you&apos d like. Only when the config is changed (once ZK-107 is in) a dynamic file is automatically created and the necessary parameters are moved to it. &lt /p&gt &lt p&gt This patch also moves all membership parsing and management into the QuorumVerifier classes, and removes QuorumPeer.quorumPeers.&lt br/&gt The cluster membership is contained in QuorumPeer.quorumVerifier. QuorumVerifier was expanded and now has methods such as getAllMembers(), getVotingMembers(), getObservingMembers(). &lt /p&gt
+25
+src.java.main.org.apache.zookeeper.server.quorum.FastLeaderElection
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.LearnerHandler
+src.java.main.org.apache.zookeeper.server.quorum.QuorumCnxManager
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer.QuorumServer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerConfig
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerMain
+src.java.main.org.apache.zookeeper.server.quorum.QuorumZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.flexible.QuorumHierarchical
+src.java.main.org.apache.zookeeper.server.quorum.flexible.QuorumMaj
+src.java.main.org.apache.zookeeper.server.quorum.flexible.QuorumVerifier
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerMainTest
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerTestBase
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerTestBase.MainThread
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+src.java.test.org.apache.zookeeper.test.CnxManagerTest
+src.java.test.org.apache.zookeeper.test.FLETest
+src.java.test.org.apache.zookeeper.test.FLEZeroWeightTest
+src.java.test.org.apache.zookeeper.test.HierarchicalQuorumTest
+src.java.test.org.apache.zookeeper.test.LENonTerminateTest
+src.java.test.org.apache.zookeeper.test.ObserverTest
+src.java.test.org.apache.zookeeper.test.QuorumBase
+src.java.test.org.apache.zookeeper.test.QuorumUtil
+src.java.test.org.apache.zookeeper.test.StandaloneTest
+
+24 ZOOKEEPER-1147
+Add support for local sessions &lt p&gt This improvement is in the bucket of making ZooKeeper work at a large scale. We are planning on having about a 1 million clients connect to a ZooKeeper ensemble through a set of 50-100 observers. Majority of these clients are read only - ie they do not do any updates or create ephemeral nodes.&lt /p&gt &lt p&gt In ZooKeeper today, the client creates a session and the session creation is handled like any other update. In the above use case, the session create/drop workload can easily overwhelm an ensemble. The following is a proposal for a &quot local session&quot , to support a larger number of connections.&lt /p&gt &lt p&gt 1.       The idea is to introduce a new type of session - &quot local&quot  session. A &quot local&quot  session doesn&apos t have a full functionality of a normal session.&lt br/&gt 2.       Local sessions cannot create ephemeral nodes.&lt br/&gt 3.       Once a local session is lost, you cannot re-establish it using the session-id/password. The session and its watches are gone for good.&lt br/&gt 4.       When a local session connects, the session info is only maintained on the zookeeper server (in this case, an observer) that it is connected to. The leader is not aware of the creation of such a session and there is no state written to disk.&lt br/&gt 5.       The pings and expiration is handled by the server that the session is connected to.&lt /p&gt &lt p&gt With the above changes, we can make ZooKeeper scale to a much larger number of clients without making the core ensemble a bottleneck.&lt /p&gt &lt p&gt In terms of API, there are two options that are being considered&lt br/&gt 1. Let the client specify at the connect time which kind of session do they want.&lt br/&gt 2. All sessions connect as local sessions and automatically get promoted to global sessions when they do an operation that requires a global session (e.g. creating an ephemeral node)&lt /p&gt &lt p&gt Chubby took the approach of lazily promoting all sessions to global, but I don&apos t think that would work in our case, where we want to keep sessions which never create ephemeral nodes as always local. Option 2 would make it more broadly usable but option 1 would be easier to implement.&lt /p&gt &lt p&gt We are thinking of implementing option 1 as the first cut. There would be a client flag, IsLocalSession (much like the current readOnly flag) that would be used to determine whether to create a local session or a global session.&lt /p&gt
+31
+src.java.main.org.apache.zookeeper.KeeperException
+src.java.main.org.apache.zookeeper.server.FinalRequestProcessor
+src.java.main.org.apache.zookeeper.server.PrepRequestProcessor
+src.java.main.org.apache.zookeeper.server.Request
+src.java.main.org.apache.zookeeper.server.SessionTracker
+src.java.main.org.apache.zookeeper.server.SessionTrackerImpl
+src.java.main.org.apache.zookeeper.server.SessionTrackerImpl.SessionImpl
+src.java.main.org.apache.zookeeper.server.TraceFormatter
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.CommitProcessor
+src.java.main.org.apache.zookeeper.server.quorum.FollowerRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.LeaderZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.Learner
+src.java.main.org.apache.zookeeper.server.quorum.LearnerHandler
+src.java.main.org.apache.zookeeper.server.quorum.LearnerSessionTracker
+src.java.main.org.apache.zookeeper.server.quorum.LearnerZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.ObserverRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.ProposalRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerConfig
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerMain
+src.java.main.org.apache.zookeeper.server.quorum.QuorumZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.ReadOnlyZooKeeperServer
+src.java.test.org.apache.zookeeper.server.PrepRequestProcessorTest
+src.java.test.org.apache.zookeeper.server.PrepRequestProcessorTest.MySessionTracker
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerMainTest
+src.java.test.org.apache.zookeeper.test.QuorumBase
+src.java.test.org.apache.zookeeper.test.QuorumTest
+src.java.test.org.apache.zookeeper.test.QuorumUtil
+src.java.test.org.apache.zookeeper.test.ReadOnlyModeTest
+src.java.test.org.apache.zookeeper.test.WatcherTest
+
+25 ZOOKEEPER-876
+Unnecessary snapshot transfers between new leader and followers &lt p&gt When starting a new leadership, unnecessary snapshot transfers happen between new leader and followers. This is so because of multiple small bugs. &lt /p&gt &lt p&gt 1) the comparison of zxids is done based on a new proposal, instead of the last logged zxid. (LearnerHandler.java ~ 297)&lt br/&gt 2) if follower is one zxid behind, the check of the interval of committed logs excludes the follower. (LearnerHandler.java ~ 277)&lt br/&gt 3) the bug reported in &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-874&quot  title=&quot FileTxnSnapLog.restore does not call listener&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-874&quot &gt &lt del&gt ZOOKEEPER-874&lt /del&gt &lt /a&gt  (commitLogs are empty after recover).&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+
+26 ZOOKEEPER-442
+need a way to remove watches that are no longer of interest &lt p&gt currently the only way a watch cleared is to trigger it. we need a way to enumerate the outstanding watch objects, find watch events the objects are watching for, and remove interests in an event.&lt /p&gt
+12
+src.java.main.org.apache.zookeeper.ClientCnxn
+src.java.main.org.apache.zookeeper.KeeperException
+src.java.main.org.apache.zookeeper.Watcher
+src.java.main.org.apache.zookeeper.ZooDefs
+src.java.main.org.apache.zookeeper.ZooKeeper
+src.java.main.org.apache.zookeeper.ZooKeeper.ZKWatchManager
+src.java.main.org.apache.zookeeper.server.DataTree
+src.java.main.org.apache.zookeeper.server.FinalRequestProcessor
+src.java.main.org.apache.zookeeper.server.PrepRequestProcessor
+src.java.main.org.apache.zookeeper.server.Request
+src.java.main.org.apache.zookeeper.server.WatchManager
+src.java.main.org.apache.zookeeper.server.ZKDatabase
+
+27 ZOOKEEPER-1873
+Unnecessarily InstanceNotFoundException is coming when unregister failed jmxbeans &lt p&gt MBeanRegistry#register is keeping the beans which are failed to complete the registration. During unregistration time, these failed beans will results in following exception.&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt      [junit] 2014-01-29 08:34:56,667 [myid:] - WARN  [main:MBeanRegistry@134] - Error during unregister     [junit] javax.management.InstanceNotFoundException: org.apache.ZooKeeperService:name0=StandaloneServer_port-1     [junit]  at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getMBean(DefaultMBeanServerInterceptor.java:1095)     [junit]  at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.exclusiveUnregisterMBean(DefaultMBeanServerInterceptor.java:427)     [junit]  at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.unregisterMBean(DefaultMBeanServerInterceptor.java:415)     [junit]  at com.sun.jmx.mbeanserver.JmxMBeanServer.unregisterMBean(JmxMBeanServer.java:536)     [junit]  at org.apache.zookeeper.jmx.MBeanRegistry.unregister(MBeanRegistry.java:115) &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.main.org.apache.zookeeper.jmx.MBeanRegistry
+
+28 ZOOKEEPER-1867
+Bug in ZkDatabaseCorruptionTest &lt p&gt If I&apos m reading the test case testCorruption right, it seems to depend on server 5 being elected, but if it is not the case, then it fails waiting for a server to be up.&lt /p&gt
+1
+src.java.test.org.apache.zookeeper.test.ZkDatabaseCorruptionTest
+
+29 ZOOKEEPER-1858
+JMX checks - potential race conditions while stopping and starting server &lt p&gt I&apos ve noticed one potential case, where previously created zkclient session immediately reconnected and publishing those beans while starting back the zkserver and affecting zk#startup jmx checks.&lt /p&gt &lt p&gt Say, before stopping the server, there is a zk client session 0x143576544c50000 exists. While starting back the server, there could be possibility of seeing the client sessions in jmx. Following is one such case. Please see below logs which has taken from build &lt a href=&quot https://builds.apache.org/job/ZooKeeper-trunk-WinVS2008_java/642/&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://builds.apache.org/job/ZooKeeper-trunk-WinVS2008_java/642/&lt /a&gt &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt     [junit] 2014-01-03 09:18:12,809 [myid:] - INFO  [main-SendThread(127.0.0.1:11222):ClientCnxn$SendThread@1228] - Session establishment complete on server 127.0.0.1/127.0.0.1:11222, sessionid = 0x143576544c50000, negotiated timeout = 30000     [junit] 2014-01-03 09:18:12,809 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:11222:ZooKeeperServer@617] - Established session 0x143576544c50000 with negotiated timeout 30000 &lt span class=&quot code-keyword&quot &gt for&lt /span&gt  client /127.0.0.1:55377&lt /pre&gt &lt /div&gt &lt /div&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  [junit] 2014-01-03 09:18:12,391 [myid:] - INFO  [main:JMXEnv@135] - ensureOnly:[]     [junit] 2014-01-03 09:18:12,395 [myid:] - INFO  [main:ClientBase@438] - STARTING server     [junit] 2014-01-03 09:18:12,395 [myid:] - INFO  [main:ClientBase@359] - CREATING server instance 127.0.0.1:11222     [junit] 2014-01-03 09:18:12,395 [myid:] - INFO  [main:NIOServerCnxnFactory@94] - binding to port 0.0.0.0/0.0.0.0:11222     [junit] 2014-01-03 09:18:12,395 [myid:] - INFO  [main:ClientBase@334] - STARTING server instance 127.0.0.1:11222      [junit] 2014-01-03 09:18:19,030 [myid:] - INFO  [main:JMXEnv@142] - unexpected:org.apache.ZooKeeperService:name0=StandaloneServer_port-1,name1=Connections,name2=127.0.0.1,name3=0x143576544c50000     [junit] 2014-01-03 09:18:19,030 [myid:] - INFO  [main:JMXEnv@142] - unexpected:org.apache.ZooKeeperService:name0=StandaloneServer_port-1     [junit] 2014-01-03 09:18:19,030 [myid:] - INFO  [main:JUnit4ZKTestRunner$LoggedInvokeMethod@62] - TEST METHOD FAILED testDefaultWatcherAutoResetWithChroot     [junit] junit.framework.AssertionFailedError: expected:&amp lt 0&amp gt  but was:&amp lt 2&amp gt      [junit]  at junit.framework.Assert.fail(Assert.java:47)     [junit]  at junit.framework.Assert.failNotEquals(Assert.java:283)     [junit]  at junit.framework.Assert.assertEquals(Assert.java:64)     [junit]  at junit.framework.Assert.assertEquals(Assert.java:195)     [junit]  at junit.framework.Assert.assertEquals(Assert.java:201)     [junit]  at org.apache.zookeeper.test.JMXEnv.ensureOnly(JMXEnv.java:144)     [junit]  at org.apache.zookeeper.test.ClientBase.startServer(ClientBase.java:443)     [junit]  at org.apache.zookeeper.test.DisconnectedWatcherTest.testDefaultWatcherAutoResetWithChroot(DisconnectedWatcherTest.java:123)     [junit]  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) &lt /pre&gt &lt /div&gt &lt /div&gt
+10
+src.java.test.org.apache.zookeeper.test.ClientBase
+src.java.test.org.apache.zookeeper.test.DisconnectedWatcherTest
+src.java.test.org.apache.zookeeper.test.FourLetterWordsQuorumTest
+src.java.test.org.apache.zookeeper.test.FourLetterWordsTest
+src.java.test.org.apache.zookeeper.test.HierarchicalQuorumTest
+src.java.test.org.apache.zookeeper.test.JMXEnv
+src.java.test.org.apache.zookeeper.test.QuorumBase
+src.java.test.org.apache.zookeeper.test.QuorumUtil
+src.java.test.org.apache.zookeeper.test.WatcherTest
+src.java.test.org.apache.zookeeper.test.ZooKeeperQuotaTest
+
+30 ZOOKEEPER-1852
+ServerCnxnFactory instance is not properly cleanedup &lt p&gt ClientBase#createNewServerInstance() - Say the startup of the server fails, this will not initialize &apos serverFactory&apos  and will be null. When the flow comes to teardown/shutdown, it will bypass stopping of this server instance due to the following check. This will affect other test case verifications like, jmx check &apos JMXEnv#ensureOnly&apos .  &lt /p&gt &lt p&gt ClientBase#shutdownServerInstance&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt      &lt span class=&quot code-keyword&quot &gt static&lt /span&gt  void shutdownServerInstance(ServerCnxnFactory factory,             &lt span class=&quot code-object&quot &gt String&lt /span&gt  hostPort)     {         &lt span class=&quot code-keyword&quot &gt if&lt /span&gt  (factory != &lt span class=&quot code-keyword&quot &gt null&lt /span&gt ) {            &lt span class=&quot code-comment&quot &gt //...shutdown logic &lt /span&gt         } &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+src.java.test.org.apache.zookeeper.test.ClientBase
+src.java.test.org.apache.zookeeper.test.TruncateTest
+
+31 ZOOKEEPER-1844
+TruncateTest fails on windows &lt p&gt TruncateTest has been failing consistently on windows:&lt /p&gt &lt p&gt &lt a href=&quot https://builds.apache.org/job/ZooKeeper-trunk-WinVS2008_java/627/testReport/junit/org.apache.zookeeper.test/TruncateTest/testTruncate/&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://builds.apache.org/job/ZooKeeper-trunk-WinVS2008_java/627/testReport/junit/org.apache.zookeeper.test/TruncateTest/testTruncate/&lt /a&gt &lt /p&gt
+5
+src.java.main.org.apache.zookeeper.server.ZKDatabase
+src.java.main.org.apache.zookeeper.server.persistence.FileTxnLog
+src.java.main.org.apache.zookeeper.server.persistence.FileTxnSnapLog
+src.java.main.org.apache.zookeeper.server.quorum.LearnerHandler
+src.java.test.org.apache.zookeeper.test.TruncateTest
+
+32 ZOOKEEPER-1841
+problem in QuorumTest &lt p&gt QuorumTest.testNoLogBeforeLeaderEstablishment fails with Assertion: &quot NOt following&quot &lt /p&gt
+1
+src.java.test.org.apache.zookeeper.test.QuorumTest
+
+33 ZOOKEEPER-1839
+Deadlock in NettyServerCnxn &lt p&gt Deadlock found during NettyServerCnxn closure. Please see the attached threaddump.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.NettyServerCnxn
+src.java.main.org.apache.zookeeper.server.NettyServerCnxnFactory
+
+34 ZOOKEEPER-1837
+Fix JMXEnv checks (potential race conditions) &lt p&gt The following failures in ZooKeeper-3.4-WinVS2008_java and ZooKeeper-trunk-WinVS2008_java require fixing:&lt br/&gt &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt  junit.framework.AssertionFailedError: expected:&amp lt 0&amp gt  but was:&amp lt 1&amp gt &lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.fail(Assert.java:47)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.failNotEquals(Assert.java:283)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.assertEquals(Assert.java:64)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.assertEquals(Assert.java:195)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.assertEquals(Assert.java:201)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.test.JMXEnv.ensureOnly(JMXEnv.java:138)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.test.ClientBase.startServer(ClientBase.java:417)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.test.ZooKeeperQuotaTest.testQuota(ZooKeeperQuotaTest.java:80)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at java.lang.reflect.Method.invoke(Method.java:597)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)&lt /p&gt &lt p&gt &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt  junit.framework.AssertionFailedError: expected:&amp lt 0&amp gt  but was:&amp lt 1&amp gt &lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.fail(Assert.java:47)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.failNotEquals(Assert.java:283)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.assertEquals(Assert.java:64)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.assertEquals(Assert.java:195)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at junit.framework.Assert.assertEquals(Assert.java:201)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.test.JMXEnv.ensureOnly(JMXEnv.java:138)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.test.ClientBase.startServer(ClientBase.java:417)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.test.ZooKeeperQuotaTest.testQuota(ZooKeeperQuotaTest.java:80)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at java.lang.reflect.Method.invoke(Method.java:597)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt   at org.apache.zookeeper.JUnit4ZKTestRunner$LoggedInvokeMethod.evaluate(JUnit4ZKTestRunner.java:52)&lt br/&gt     [&lt /p&gt &lt p&gt junit.framework.AssertionFailedError: expected &lt span class=&quot error&quot &gt &amp #91 0x142e5f027b50001&amp #93 &lt /span&gt  expected:&amp lt 1&amp gt  but was:&amp lt 0&amp gt &lt br/&gt  at org.apache.zookeeper.test.JMXEnv.ensureAll(JMXEnv.java:115)&lt br/&gt  at org.apache.zookeeper.test.ClientBase.createClient(ClientBase.java:197)&lt br/&gt  at org.apache.zookeeper.test.ClientBase.createClient(ClientBase.java:171)&lt br/&gt  at org.apache.zookeeper.test.ClientBase.createClient(ClientBase.java:156)&lt br/&gt  at org.apache.zookeeper.test.ClientBase.createClient(ClientBase.java:149)&lt br/&gt  at org.apache.zookeeper.ZooKeeperTest.testDeleteRecursive(ZooKeeperTest.java:45)&lt br/&gt  at org.apache.zookeeper.JUnit4ZKTestRunner$LoggedInvokeMethod.evaluate(JUnit4ZKTestRunner.java:52)&lt /p&gt
+3
+src.java.test.org.apache.zookeeper.test.ClientBase
+src.java.test.org.apache.zookeeper.test.JMXEnv
+src.java.test.org.apache.zookeeper.test.QuorumUtil
+
+35 ZOOKEEPER-1834
+Catch IOException in FileTxnLog &lt p&gt Upon an IOException in FileTxnLog#next(), the log file open remains open, which causes test cases at least in BufferSizeTest to fail. We need to add a catch block.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.persistence.FileTxnLog
+
+36 ZOOKEEPER-1817
+Fix don&apos t care for b3.4 &lt p&gt See umbrella jira.&lt /p&gt
+4
+src.java.main.org.apache.zookeeper.server.quorum.FastLeaderElection
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.main.org.apache.zookeeper.server.quorum.Vote
+src.java.main.org.apache.zookeeper.server.quorum.flexible.QuorumMaj
+
+37 ZOOKEEPER-1812
+ZooInspector reconnection always fails if first connection fails &lt p&gt Steps to reproduce:&lt /p&gt &lt ul class=&quot alternate&quot  type=&quot square&quot &gt  &lt li&gt Connect to localhost:2181 when ZooKeeper server is down. After a few seconds, ZooInspector warns that the connection has failed&lt /li&gt  &lt li&gt start the ZooKeeper server&lt /li&gt  &lt li&gt Reconnect to localhost:2181, ZooInspector will still not be able to connect to the server.&lt /li&gt &lt /ul&gt &lt p&gt The workaround is to relaunch ZooInspector.&lt /p&gt
+1
+src.contrib.zooinspector.src.java.org.apache.zookeeper.inspector.manager.ZooInspectorManagerImpl
+
+39 ZOOKEEPER-1798
+Fix race condition in testNormalObserverRun &lt p&gt This is the output messges:&lt /p&gt &lt p&gt &amp lt noformat&amp gt &lt br/&gt Testcase: testNormalObserverRun took 4.221 sec&lt br/&gt         FAILED&lt br/&gt expected:&amp lt data&lt span class=&quot error&quot &gt &amp #91 2&amp #93 &lt /span&gt &amp gt  but was:&amp lt data&lt span class=&quot error&quot &gt &amp #91 1&amp #93 &lt /span&gt &amp gt &lt br/&gt junit.framework.AssertionFailedError: expected:&amp lt data&lt span class=&quot error&quot &gt &amp #91 2&amp #93 &lt /span&gt &amp gt  but was:&amp lt data&lt span class=&quot error&quot &gt &amp #91 1&amp #93 &lt /span&gt &amp gt &lt br/&gt         at org.apache.zookeeper.server.quorum.Zab1_0Test$8.converseWithObserver(Zab1_0Test.java:1118)&lt br/&gt         at org.apache.zookeeper.server.quorum.Zab1_0Test.testObserverConversation(Zab1_0Test.java:546)&lt br/&gt         at org.apache.zookeeper.server.quorum.Zab1_0Test.testNormalObserverRun(Zab1_0Test.java:994)&lt br/&gt &amp lt noformat&amp gt &lt /p&gt
+4
+src.java.main.org.apache.zookeeper.server.FinalRequestProcessor
+src.java.main.org.apache.zookeeper.server.SyncRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.ObserverZooKeeperServer
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+
+40 ZOOKEEPER-1781
+ZooKeeper Server fails if snapCount is set to 1 &lt p&gt If snapCount is set to 1, ZooKeeper Server can start but it fails with the below error:&lt /p&gt &lt p&gt 2013-10-02 18:09:07,600 &lt span class=&quot error&quot &gt &amp #91 myid:1&amp #93 &lt /span&gt  - ERROR &lt span class=&quot error&quot &gt &amp #91 SyncThread:1:SyncRequestProcessor@151&amp #93 &lt /span&gt  - Severe unrecoverable error, exiting&lt br/&gt java.lang.IllegalArgumentException: n must be positive&lt br/&gt         at java.util.Random.nextInt(Random.java:300)&lt br/&gt         at org.apache.zookeeper.server.SyncRequestProcessor.run(SyncRequestProcessor.java:93)&lt /p&gt &lt p&gt In source code,  it maybe be supposed that snapCount must be 2 or more:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-style: solid border-width: 1px &quot &gt &lt div class=&quot codeHeader panelHeader&quot  style=&quot border-bottom-width: 1px border-bottom-style: solid &quot &gt &lt b&gt org.apache.zookeeper.server.SyncRequestProcessor.java&lt /b&gt &lt /div&gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt       91             &lt span class=&quot code-comment&quot &gt // we &lt span class=&quot code-keyword&quot &gt do&lt /span&gt  &lt span class=&quot code-keyword&quot &gt this&lt /span&gt  in an attempt to ensure that not all ofthe servers &lt /span&gt      92             &lt span class=&quot code-comment&quot &gt // in the ensemble take a snapshot at the same time &lt /span&gt      93             &lt span class=&quot code-object&quot &gt int&lt /span&gt  randRoll = r.nextInt(snapCount/2)  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt I think this supposition is not bad because snapCount = 1 is not realistic setting...&lt br/&gt But, it may be better to mention this restriction in documentation or add a validation in the source code.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+
+41 ZOOKEEPER-1774
+QuorumPeerMainTest fails consistently with &quot complains about host&quot  assertion failure &lt p&gt QuorumPeerMainTest fails consistently with &quot complains about host&quot  assertion failure.&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt 2013-10-01 16:09:17,962 [myid:] - INFO  [main:JUnit4ZKTestRunner$LoggedInvokeMethod@54] - TEST METHOD FAILED testBadPeerAddressInQuorum java.lang.AssertionError: complains about host  at org.junit.Assert.fail(Assert.java:91)  at org.junit.Assert.assertTrue(Assert.java:43)  at org.apache.zookeeper.server.quorum.QuorumPeerMainTest.testBadPeerAddressInQuorum(QuorumPeerMainTest.java:434)  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)  at java.lang.reflect.Method.invoke(Method.java:597)  at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)  at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)  at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)  at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)  at org.apache.zookeeper.JUnit4ZKTestRunner$LoggedInvokeMethod.evaluate(JUnit4ZKTestRunner.java:52)  at org.junit.rules.TestWatchman$1.evaluate(TestWatchman.java:48)  at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)  at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)  at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)  at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)  at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)  at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)  at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)  at org.junit.runners.ParentRunner.run(ParentRunner.java:236)  at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)  at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)  at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)  at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906) 2013-10-01 16:09:17,963 [myid:] - INFO  [main:ZKTestCase$1@65] - FAILED testBadPeerAddressInQuorum java.lang.AssertionError: complains about host  at org.junit.Assert.fail(Assert.java:91)  at org.junit.Assert.assertTrue(Assert.java:43)  at org.apache.zookeeper.server.quorum.QuorumPeerMainTest.testBadPeerAddressInQuorum(QuorumPeerMainTest.java:434)  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)  at java.lang.reflect.Method.invoke(Method.java:597)  at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)  at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)  at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)  at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)  at org.apache.zookeeper.JUnit4ZKTestRunner$LoggedInvokeMethod.evaluate(JUnit4ZKTestRunner.java:52)  at org.junit.rules.TestWatchman$1.evaluate(TestWatchman.java:48)  at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)  at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)  at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)  at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)  at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)  at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)  at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)  at org.junit.runners.ParentRunner.run(ParentRunner.java:236)  at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)  at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)  at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)  at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906) &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerMainTest
+
+42 ZOOKEEPER-1771
+ZooInspector authentication &lt p&gt ZooInspector doesn&apos t support authentication, so it always connects as anonymous to the ensemble.&lt br/&gt It would be nice to be able to configure the authentication scheme+data in order to browse the nodes that have ACLs set.&lt /p&gt
+1
+src.contrib.zooinspector.src.java.org.apache.zookeeper.inspector.manager.ZooInspectorManagerImpl
+
+43 ZOOKEEPER-1770
+NullPointerException in SnapshotFormatter &lt p&gt SnapshotFormatter fails with a NullPointerException when parsing one snapshot (with &quot null&quot  data in one Znode):&lt br/&gt Exception in thread &quot main&quot  java.lang.NullPointerException&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.printZnode(SnapshotFormatter.java:90)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.printZnode(SnapshotFormatter.java:95)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.printZnode(SnapshotFormatter.java:95)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.printZnode(SnapshotFormatter.java:95)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.printZnodeDetails(SnapshotFormatter.java:79)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.printDetails(SnapshotFormatter.java:71)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.run(SnapshotFormatter.java:67)&lt br/&gt         at org.apache.zookeeper.server.SnapshotFormatter.main(SnapshotFormatter.java:51)&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.SnapshotFormatter
+
+44 ZOOKEEPER-1755
+Concurrent operations of four letter &apos dump&apos  ephemeral command and killSession causing NPE &lt p&gt Potential problem occurs, when executing four letter &apos dump&apos  command and at the meantime zkserver has triggered session closure and removing the related information from the DataTree.&lt /p&gt &lt p&gt Please see the exception:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  java.lang.NullPointerException  at org.apache.zookeeper.server.DataTree.dumpEphemerals(DataTree.java:1278)  at org.apache.zookeeper.server.DataTreeTest$1.run(DataTreeTest.java:82) &lt /pre&gt &lt /div&gt &lt /div&gt
+3
+src.java.main.org.apache.zookeeper.server.DataTree
+src.java.test.org.apache.zookeeper.server.DataTreeUnitTest
+src.java.test.org.apache.zookeeper.test.DataTreeTest
+
+45 ZOOKEEPER-1753
+ClientCnxn is not properly releasing the resources, which are used to ping RwServer &lt p&gt While pinging to the RwServer, ClientCnxn is opening a socket and using BufferedReader. These are not properly closed in finally block and could cause leaks on exceptional cases.&lt /p&gt &lt p&gt ClientCnxn#pingRwServer()&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt              &lt span class=&quot code-keyword&quot &gt try&lt /span&gt  {                 Socket sock = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Socket(addr.getHostName(), addr.getPort())                  BufferedReader br = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  BufferedReader(                         &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  InputStreamReader(sock.getInputStream()))                  ......                 sock.close()                  br.close()              } &lt span class=&quot code-keyword&quot &gt catch&lt /span&gt  (ConnectException e) {                 &lt span class=&quot code-comment&quot &gt // ignore, &lt span class=&quot code-keyword&quot &gt this&lt /span&gt  just means server is not up &lt /span&gt             } &lt span class=&quot code-keyword&quot &gt catch&lt /span&gt  (IOException e) {                 &lt span class=&quot code-comment&quot &gt // some unexpected error, warn about it &lt /span&gt                 LOG.warn(&lt span class=&quot code-quote&quot &gt &quot Exception &lt span class=&quot code-keyword&quot &gt while&lt /span&gt  seeking &lt span class=&quot code-keyword&quot &gt for&lt /span&gt  r/w server &quot &lt /span&gt  +                         e.getMessage(), e)              } &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.main.org.apache.zookeeper.ClientCnxn
+
+46 ZOOKEEPER-1751
+ClientCnxn#run could miss the second ping or connection get dropped before a ping &lt p&gt We could throw SessionTimeoutException exception even when timeToNextPing may also be negative depending on the time when the following line is executed by the thread because we check time out before sending a ping.&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt    to = readTimeout - clientCnxnSocket.getIdleRecv()  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt In addition, we only ping twice no matter how long the session time out value is. For example, we set session time out = 60mins then we only try ping twice in 40mins window. Therefore, the connection could be dropped by OS after idle time out.&lt /p&gt &lt p&gt The issue is causing randomly &quot connection loss&quot  or &quot session expired&quot  issues in client side which is bad for applications like HBase.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.ClientCnxn
+
+47 ZOOKEEPER-1750
+Race condition producing NPE in NIOServerCnxn.toString &lt p&gt  The socket is closed and the variable &quot sock&quot  is set to null for normal reasons, but the toString method is called before &quot sock&quot  can be set again, producing a NullPointerException.&lt /p&gt &lt p&gt Stack trace: &lt /p&gt &lt p&gt 2013-08-29 01:49:19,991 6277 &lt span class=&quot error&quot &gt &amp #91 CommitProcWorkThread-3&amp #93 &lt /span&gt  WARN org.apache.zookeeper.server.WorkerService  - Unexpected exception&lt br/&gt java.lang.NullPointerException&lt br/&gt     at org.apach.zookeeper.server.NIOServerCnxn.toString(NIOServerCnxn.java:961)&lt br/&gt     at java.lang.String.valueOf(String.java:2854)&lt br/&gt     at java.lang.StringBuilder.append(StringBuilder.java:128)&lt br/&gt     at org.apache.zookeeper.server.NIOServerCnxn.process(NIOServerCnxn.java:1104)&lt br/&gt     at org.apache.zookeeper.server.WatchManager.triggerWatch(WatchManager.java:120)&lt br/&gt     at org.apache.zookeeper.server.WatchManager.triggerWatch(WatchManager.java:92)&lt br/&gt     at org.apache.zookeeper.server.DataTree.createNode(DataTree.java:544)&lt br/&gt     at org.apache.zookeeper.server.DataTree.processTxn(DataTree.java:805)&lt br/&gt     at org.apache.zookeeper.server.ZKDatabase.processTxn(ZKDatabase.java:319)&lt br/&gt     at org.apache.zookeeper.server.ZooKeeperServer.processTxn(ZooKeeperServer.java:967)&lt br/&gt     at org.apache.zookeeper.server.FinalRequestProcessor.processRequest(FinalRequestProcessor.java:115)&lt br/&gt     at org.apache.zookeeper.server.quorum.Leader$ToBeAppliedRequestProcessor.processRequest(Leader.java:859)&lt br/&gt     at org.apache.zookeeper.server.quorum.CommitProcessor$CommitWorkRequest.doWork(CommitProcessor.java:271)&lt br/&gt     at org.apache.zookeeper.server.WorkerService$ScheduledWorkRequest.run(WorkerService.java:152)&lt br/&gt     at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)&lt br/&gt     at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)&lt br/&gt     at java.lang.Thread.run(Thread.java:722)&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.NIOServerCnxn
+
+48 ZOOKEEPER-1733
+FLETest#testLE is flaky on windows boxes &lt p&gt FLETest#testLE fail intermittently on windows boxes. The reason is that in LEThread#run() we have:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt                                  &lt span class=&quot code-keyword&quot &gt if&lt /span&gt (leader == i){                                     &lt span class=&quot code-keyword&quot &gt synchronized&lt /span&gt (finalObj){                                         successCount++                                          &lt span class=&quot code-keyword&quot &gt if&lt /span&gt (successCount &amp gt  (count/2)) finalObj.notify()                                      }                                      &lt span class=&quot code-keyword&quot &gt break&lt /span&gt                                   } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Basically once we have a confirmed leader, the leader thread dies due to the &quot break&quot  of while loop. &lt /p&gt &lt p&gt While in the verification step, we check if the leader thread alive or not as following:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt         &lt span class=&quot code-keyword&quot &gt if&lt /span&gt (threads.get((&lt span class=&quot code-object&quot &gt int&lt /span&gt ) leader).isAlive()){            Assert.fail(&lt span class=&quot code-quote&quot &gt &quot Leader hasn&apos t joined: &quot &lt /span&gt  + leader)         } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt On windows boxes, the above verification step fails frequently because leader thread most likely already exits.&lt /p&gt &lt p&gt Do we know why we have the leader alive verification step only lead thread can bump up successCount &amp gt = count/2?&lt /p&gt
+2
+src.java.test.org.apache.zookeeper.test.FLETest
+src.java.test.org.apache.zookeeper.test.FLETest.TestVote
+
+49 ZOOKEEPER-1732
+ZooKeeper server unable to join established ensemble &lt p&gt I have a test in which I do a rolling restart of three ZooKeeper servers and it was failing from time to time.&lt br/&gt I ran the tests in a loop until the failure came out and it seems that at some point one of the servers is unable to join the enssemble formed by the other two.&lt /p&gt
+5
+src.java.main.org.apache.zookeeper.server.quorum.FastLeaderElection
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.Learner
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.test.org.apache.zookeeper.test.FLETest
+
+50 ZOOKEEPER-1715
+Upgrade netty version &lt p&gt Upgrade netty version&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.NIOServerCnxn
+src.java.main.org.apache.zookeeper.server.NettyServerCnxn
+
+51 ZOOKEEPER-1696
+Fail to run zookeeper client on Weblogic application server &lt p&gt The problem in details is described here: &lt a href=&quot http://comments.gmane.org/gmane.comp.java.zookeeper.user/2897&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://comments.gmane.org/gmane.comp.java.zookeeper.user/2897&lt /a&gt &lt br/&gt The provided link also contains a reference to fix implementation.&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt ####&amp lt Apr 24, 2013 1:03:28 PM MSK&amp gt  &amp lt Warning&amp gt  &amp lt org.apache.zookeeper.ClientCnxn&amp gt  &amp lt devapp090&amp gt  &amp lt clust2&amp gt  &amp lt [ACTIVE] ExecuteThread: &apos 2&apos  for queue: &apos weblogic.kernel.Default (devapp090:2182)&amp gt  &amp lt internal&amp gt  &amp lt &amp gt  &amp lt &amp gt  &amp lt 1366794208810&amp gt  &amp lt BEA-000000&amp gt  &amp lt WARN  org.apache.zookeeper.ClientCnxn - Session 0x0 for server null, unexpected error, closing socket connection and attempting reconnect java.lang.IllegalArgumentException: No Configuration was registered that can handle the configuration named Client                 at com.bea.common.security.jdkutils.JAASConfiguration.getAppConfigurationEntry(JAASConfiguration.java:130)                 at org.apache.zookeeper.client.ZooKeeperSaslClient.&amp lt init&amp gt (ZooKeeperSaslClient.java:97)                 at org.apache.zookeeper.ClientCnxn$SendThread.startConnect(ClientCnxn.java:943)                 at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:993) &amp gt   &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.main.org.apache.zookeeper.client.ZooKeeperSaslClient
+
+52 ZOOKEEPER-1667
+Watch event isn&apos t handled correctly when a client reestablish to a server &lt p&gt When a client reestablish to a server, it will send the watches which have not been triggered. But the code in DataTree does not handle it correctly.&lt /p&gt &lt p&gt It is obvious, we just do not notice it &lt img class=&quot emoticon&quot  src=&quot https://issues.apache.org/jira/images/icons/emoticons/smile.gif&quot  height=&quot 16&quot  width=&quot 16&quot  align=&quot absmiddle&quot  alt=&quot &quot  border=&quot 0&quot /&gt &lt /p&gt &lt p&gt scenario:&lt br/&gt 1) Client a set a data watch on /d, then disconnect, client b delete /d and create it again. When client a reestablish to zk, it will receive a NodeCreated rather than a NodeDataChanged.&lt br/&gt 2) Client a set a exists watch on /e(not exist), then disconnect, client b create /e. When client a reestablish to zk, it will receive a NodeDataChanged rather than a NodeCreated.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.DataTree
+
+53 ZOOKEEPER-1666
+Avoid Reverse DNS lookup if the hostname in connection string is literal IP address. &lt p&gt In our ENV, if the InetSocketAddress.getHostName() is called and the host name in the connection string are literal IP address, then the call will trigger a reverse DNS lookup which is very slow.&lt br/&gt And in this situation, the host name can simply set as the IP without causing any problem. &lt /p&gt
+2
+src.java.main.org.apache.zookeeper.client.StaticHostProvider
+src.java.test.org.apache.zookeeper.test.StaticHostProviderTest
+
+54 ZOOKEEPER-1657
+Increased CPU usage by unnecessary SASL checks &lt p&gt I did some profiling in one of our Java environments and found an interesting footprint in ZooKeeper. The SASL support seems to trigger a lot times on the client although it&apos s not even in use.&lt /p&gt &lt p&gt Is there a switch to disable SASL completely?&lt /p&gt &lt p&gt The attached screenshot shows a 10-minute profiling session on one of our production Jetty servers. The Jetty server handles ~1k web requests per minute. The average response time per web request is a few milli seconds. The profiling was performed on a machine running for &amp gt 24h. &lt /p&gt &lt p&gt We noticed a significant CPU increase on our servers when deploying an update from ZooKeeper 3.3.2 to ZooKeeper 3.4.5. Thus, we started investigating. The screenshot shows that only 32% CPU time are spent in Jetty. In contrast, 65% are spend in ZooKeeper. &lt /p&gt &lt p&gt A few notes/thoughts:&lt /p&gt &lt ul&gt  &lt li&gt &lt tt&gt ClientCnxn$SendThread.clientTunneledAuthenticationInProgress&lt /tt&gt  seems to be the culprit&lt /li&gt  &lt li&gt &lt tt&gt javax.security.auth.login.Configuration.getConfiguration&lt /tt&gt  seems to be called very often?&lt /li&gt  &lt li&gt There is quite a bit reflection involved in &lt tt&gt java.security.AccessController.doPrivileged&lt /tt&gt &lt /li&gt  &lt li&gt No security manager is active in the JVM: I tend to place an if-check in the code before calling &lt tt&gt AccessController.doPrivileged&lt /tt&gt . When no SM is installed, the runnable can be called directly which safes cycles.&lt /li&gt &lt /ul&gt
+2
+src.java.main.org.apache.zookeeper.ClientCnxn
+src.java.main.org.apache.zookeeper.client.ZooKeeperSaslClient
+
+55 ZOOKEEPER-1648
+Fix WatcherTest in JDK7 &lt p&gt JDK7 run unit tests in random order causing intermittent WatcherTest failure. The fix is to clean up static variable that interfere with other tests. &lt /p&gt
+1
+src.java.test.org.apache.zookeeper.test.WatcherTest
+
+56 ZOOKEEPER-1642
+Leader loading database twice &lt p&gt The leader server currently loads the database before running leader election when trying to figure out the zxid it needs to use for the election and again when it starts leading. This is problematic for larger databases so we should remove the redundant load if possible. &lt /p&gt &lt p&gt The code references are:&lt /p&gt &lt ol&gt  &lt li&gt getLastLoggedZxid() in QuorumPeer &lt /li&gt  &lt li&gt loadData() in ZooKeeperServer.&lt /li&gt &lt /ol&gt
+1
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+
+57 ZOOKEEPER-1633
+Introduce a protocol version to connection initiation message &lt p&gt Currently the first message a server sends to another server includes just one field - the server&apos s id (long). This is in QuorumCnxManager.java. This makes changes to the information passed during this initial connection very difficult. This patch will change the first field of the message to be a protocol version (a negative number that can&apos t be a server id). The second field will be the server id. The third field is number of bytes in the remainder of the message. A 3.4 server will read the first field as before, but if this is a negative number it will read the second field to find the server id, and then remove the remainder of the message from the stream. This will not affect 3.4 since 3.4 and earlier servers send just the server id (so the code in the patch will not run unless there is a server &amp gt  3.4 trying to connect). This will, however, provide the necessary flexibility for future releases as well as an upgrade path from 3.4&lt /p&gt
+3
+src.java.main.org.apache.zookeeper.server.quorum.QuorumCnxManager
+src.java.test.org.apache.zookeeper.test.CnxManagerTest
+src.java.test.org.apache.zookeeper.test.CnxManagerTest.CnxManagerThread
+
+58 ZOOKEEPER-1629
+testTransactionLogCorruption occasionally fails &lt p&gt It seems that testTransactionLogCorruption is very flaky,for example fails here:&lt /p&gt &lt p&gt &lt a href=&quot https://builds.apache.org/job/ZooKeeper-trunk-jdk7/500/&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://builds.apache.org/job/ZooKeeper-trunk-jdk7/500/&lt /a&gt &lt br/&gt &lt a href=&quot https://builds.apache.org/job/ZooKeeper-trunk-jdk7/502/&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://builds.apache.org/job/ZooKeeper-trunk-jdk7/502/&lt /a&gt &lt br/&gt &lt a href=&quot https://builds.apache.org/job/ZooKeeper-trunk-jdk7/503/#showFailuresLink&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://builds.apache.org/job/ZooKeeper-trunk-jdk7/503/#showFailuresLink&lt /a&gt &lt /p&gt &lt p&gt also fails for older builds (no longer on the website), for example all builds from 381 to 399.&lt /p&gt
+6
+src.java.test.org.apache.zookeeper.server.TruncateCorruptionTest
+src.java.test.org.apache.zookeeper.server.TruncateCorruptionTest.Check
+src.java.test.org.apache.zookeeper.server.TruncateCorruptionTest.Check.ZkWatcher
+src.java.test.org.apache.zookeeper.server.TruncateCorruptionTest.Check.ZkWatcher.ZookeeperServerWrapper
+src.java.test.org.apache.zookeeper.server.util.PortForwarder
+src.java.test.org.apache.zookeeper.test.TruncateTest
+
+59 ZOOKEEPER-1624
+PrepRequestProcessor abort multi-operation incorrectly &lt p&gt We found this issue when trying to issue multiple instances of the following multi-op concurrently&lt /p&gt &lt p&gt multi &lt /p&gt { 1. create sequential node /a-  2. create node /b }&lt p&gt The expected result is that only the first multi-op request should success and the rest of request should fail because /b is already exist&lt /p&gt &lt p&gt However, the reported result is that the subsequence multi-op failed because of sequential node creation failed which is not possible.&lt /p&gt &lt p&gt Below is the return code for each sub-op when issuing 3 instances of the above multi-op asynchronously&lt /p&gt &lt p&gt 1. ZOK, ZOK&lt br/&gt 2. ZOK, ZNODEEXISTS,&lt br/&gt 3. ZNODEEXISTS, ZRUNTIMEINCONSISTENCY,&lt /p&gt &lt p&gt When I added more debug log. The cause is that PrepRequestProcessor rollback outstandingChanges of the second multi-op incorrectly causing sequential node name generation to be incorrect. Below is the sequential node name generated by PrepRequestProcessor&lt /p&gt &lt p&gt 1. create /a-0001&lt br/&gt 2. create /a-0003&lt br/&gt 3. create /a-0001&lt /p&gt &lt p&gt The bug is getPendingChanges() method. In failed to copied ChangeRecord for the parent node (&quot /&quot ).  So rollbackPendingChanges() cannot restore the right previous change record of the parent node when aborting the second multi-op&lt /p&gt &lt p&gt The impact of this bug is that sequential node creation on the same parent node may fail until the previous one is committed. I am not sure if there is other implication or not.  &lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.PrepRequestProcessor
+
+60 ZOOKEEPER-1622
+session ids will be negative in the year 2022 &lt p&gt Someone decided to use a large number for their myid file.  This cause session ids to go negative, and our software (Apache Accumulo) did not handle this very well.  While diagnosing the problem, I noticed this in SessionImpl:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt    public static long initializeNextSession(long id) {         long nextSid = 0          nextSid = (System.currentTimeMillis() &amp lt &amp lt  24) &amp gt &amp gt  8          nextSid =  nextSid | (id &amp lt &amp lt 56)          return nextSid      } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt When the 40th bit in System.currentTimeMillis() is a one, sign extension will fill the upper 8 bytes of nextSid, and id will not make the session id unique.  I recommend changing the right shift to the logical shift:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt    public static long initializeNextSession(long id) {         long nextSid = 0          nextSid = (System.currentTimeMillis() &amp lt &amp lt  24) &amp gt &amp gt &amp gt  8          nextSid =  nextSid | (id &amp lt &amp lt 56)          return nextSid      } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt But, we have until the year 2022 before we have to worry about it.&lt /p&gt
+1
+src.java.main.org.apache.zookeeper.server.SessionTrackerImpl
+
+61 ZOOKEEPER-1610
+Some classes are using == or != to compare Long/String objects instead of .equals() &lt p&gt The classes org.apache.zookeeper.client.ZooKeeperSaslClient.java and &lt br/&gt org.apache.zookeeper.server.quorum.flexible.QuorumHierarchical.java compare Strings and/or Longs using referential equality.&lt /p&gt &lt p&gt Usually, this is not a problem because the Longs are cached and Strings are interned, but I myself  had problems with those kind of comparisons in the past because one production JVM didn&apos t reused the objects.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.client.ZooKeeperSaslClient
+src.java.main.org.apache.zookeeper.server.quorum.flexible.QuorumHierarchical
+
+62 ZOOKEEPER-1606
+intermittent failures in ZkDatabaseCorruptionTest on jenkins &lt p&gt ZkDatabaseCorruptionTest is failing intermittently on jenkins with:&lt /p&gt &lt p&gt &quot Error Message: the last server is not the leader&quot &lt /p&gt &lt p&gt Seeing this on jdk7/openjdk7/solaris - 3 times in the last month.&lt /p&gt &lt p&gt &lt a href=&quot https://builds.apache.org/view/S-Z/view/ZooKeeper/job/ZooKeeper-trunk-openjdk7/2/testReport/junit/org.apache.zookeeper.test/ZkDatabaseCorruptionTest/testCorruption/&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://builds.apache.org/view/S-Z/view/ZooKeeper/job/ZooKeeper-trunk-openjdk7/2/testReport/junit/org.apache.zookeeper.test/ZkDatabaseCorruptionTest/testCorruption/&lt /a&gt &lt /p&gt
+1
+src.java.test.org.apache.zookeeper.test.ZkDatabaseCorruptionTest
+
+63 ZOOKEEPER-1603
+StaticHostProviderTest testUpdateClientMigrateOrNot hangs &lt p&gt StaticHostProviderTest method testUpdateClientMigrateOrNot hangs forever.&lt /p&gt &lt p&gt On my laptop getHostName for 10.10.10.* takes 5+ seconds per call. As a result this method effectively runs forever.&lt /p&gt &lt p&gt Every time I run this test it hangs. Consistent.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.client.StaticHostProvider
+src.java.test.org.apache.zookeeper.test.StaticHostProviderTest
+
+64 ZOOKEEPER-1578
+org.apache.zookeeper.server.quorum.Zab1_0Test failed due to hard code with 33556 port &lt p&gt org.apache.zookeeper.server.quorum.Zab1_0Test was failed both with SUN JDK and open JDK.&lt /p&gt &lt p&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt  Running org.apache.zookeeper.server.quorum.Zab1_0Test&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt  Tests run: 8, Failures: 0, Errors: 1, Time elapsed: 18.334 sec&lt br/&gt     &lt span class=&quot error&quot &gt &amp #91 junit&amp #93 &lt /span&gt  Test org.apache.zookeeper.server.quorum.Zab1_0Test FAILED &lt /p&gt &lt p&gt Zab1_0Test log:&lt br/&gt Zab1_0Test log:&lt br/&gt 2012-07-11 23:17:15,579 &lt span class=&quot error&quot &gt &amp #91 myid:&amp #93 &lt /span&gt  - INFO  &lt span class=&quot error&quot &gt &amp #91 main:Leader@427&amp #93 &lt /span&gt  - Shutdown called&lt br/&gt java.lang.Exception: shutdown Leader! reason: end of test&lt br/&gt         at org.apache.zookeeper.server.quorum.Leader.shutdown(Leader.java:427)&lt br/&gt         at org.apache.zookeeper.server.quorum.Zab1_0Test.testLastAcceptedEpoch(Zab1_0Test.java:211)&lt br/&gt         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&lt br/&gt         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:48)&lt /p&gt &lt p&gt 2012-07-11 23:17:15,584 &lt span class=&quot error&quot &gt &amp #91 myid:&amp #93 &lt /span&gt  - ERROR &lt span class=&quot error&quot &gt &amp #91 main:Leader@139&amp #93 &lt /span&gt  - Couldn&apos t bind to port 33556&lt br/&gt java.net.BindException: Address already in use&lt br/&gt         at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:402)&lt br/&gt         at java.net.ServerSocket.bind(ServerSocket.java:328)&lt br/&gt         at java.net.ServerSocket.bind(ServerSocket.java:286)&lt br/&gt         at org.apache.zookeeper.server.quorum.Leader.&amp lt init&amp gt (Leader.java:137)&lt br/&gt         at org.apache.zookeeper.server.quorum.Zab1_0Test.createLeader(Zab1_0Test.java:810)&lt br/&gt         at org.apache.zookeeper.server.quorum.Zab1_0Test.testLeaderInElectingFollowers(Zab1_0Test.java:224)&lt br/&gt         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&lt /p&gt &lt p&gt 2012-07-11 23:17:20,202 &lt span class=&quot error&quot &gt &amp #91 myid:&amp #93 &lt /span&gt  - ERROR &lt span class=&quot error&quot &gt &amp #91 LearnerHandler-bdvm039.svl.ibm.com/9.30.122.48:40153:LearnerHandler@559&amp #93 &lt /span&gt  - Unex&lt br/&gt pected exception causing shutdown while sock still open&lt br/&gt java.net.SocketTimeoutException: Read timed out&lt br/&gt         at java.net.SocketInputStream.read(SocketInputStream.java:129)&lt br/&gt         at java.io.BufferedInputStream.fill(BufferedInputStream.java:218)&lt br/&gt         at java.io.BufferedInputStream.read(BufferedInputStream.java:237)&lt br/&gt         at java.io.DataInputStream.readInt(DataInputStream.java:370)&lt br/&gt         at org.apache.jute.BinaryInputArchive.readInt(BinaryInputArchive.java:63)&lt br/&gt         at org.apache.zookeeper.server.quorum.QuorumPacket.deserialize(QuorumPacket.java:83)&lt br/&gt         at org.apache.jute.BinaryInputArchive.readRecord(BinaryInputArchive.java:108)&lt br/&gt         at org.apache.zookeeper.server.quorum.LearnerHandler.run(LearnerHandler.java:291)&lt br/&gt 2012-07-11 23:17:20,203 &lt span class=&quot error&quot &gt &amp #91 myid:&amp #93 &lt /span&gt  - WARN  &lt span class=&quot error&quot &gt &amp #91 LearnerHandler-bdvm039.svl.ibm.com/9.30.122.48:40153:LearnerHandler@569&amp #93 &lt /span&gt  - ****&lt /p&gt &lt ul&gt  &lt li&gt  &lt ul&gt   &lt li&gt   &lt ul&gt    &lt li&gt GOODBYE bdvm039.svl.ibm.com/9.30.122.48:40153 ********&lt br/&gt 2012-07-11 23:17:20,204 &lt span class=&quot error&quot &gt &amp #91 myid:&amp #93 &lt /span&gt  - INFO  &lt span class=&quot error&quot &gt &amp #91 Thread-20:Leader@421&amp #93 &lt /span&gt  - Shutting down&lt br/&gt 2012-07-11 23:17:20,204 &lt span class=&quot error&quot &gt &amp #91 myid:&amp #93 &lt /span&gt  - INFO  &lt span class=&quot error&quot &gt &amp #91 Thread-20:Leader@427&amp #93 &lt /span&gt  - Shutdown called&lt br/&gt java.lang.Exception: shutdown Leader! reason: lead ended&lt /li&gt   &lt /ul&gt   &lt /li&gt  &lt /ul&gt  &lt /li&gt &lt /ul&gt &lt p&gt this failure seems 33556 port is already used, but it is not in use with command check in fact. There is a hard code in unit test, we can improve it with code patch.&lt /p&gt
+1
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+
+65 ZOOKEEPER-1573
+Unable to load database due to missing parent node &lt p&gt While replaying txnlog on data tree, the server has a code to detect missing parent node. This code block was last modified as part of &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1333&quot  title=&quot NPE in FileTxnSnapLog when restarting a cluster&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1333&quot &gt &lt del&gt ZOOKEEPER-1333&lt /del&gt &lt /a&gt . In our production, we found a case where this check is return false positive.&lt /p&gt &lt p&gt The sequence of txns is as follows:&lt /p&gt &lt p&gt zxid 1:  create /prefix/a&lt br/&gt zxid 2:  create /prefix/a/b&lt br/&gt zxid 3:  delete /prefix/a/b&lt br/&gt zxid 4:  delete /prefix/a&lt /p&gt &lt p&gt The server start capturing snapshot at zxid 1. However, by the time it traversing the data tree down to /prefix, txn 4 is already applied and /prefix have no children. &lt /p&gt &lt p&gt When the server restore from snapshot, it process txnlog starting from zxid 2. This txn generate missing parent error and the server refuse to start up.&lt /p&gt &lt p&gt The same check allow me to discover bug in &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1551&quot  title=&quot Observers ignore txns that come after snapshot and UPTODATE &quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1551&quot &gt &lt del&gt ZOOKEEPER-1551&lt /del&gt &lt /a&gt , but I don&apos t know if we have any option beside removing this check to solve this issue.  &lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.persistence.FileTxnSnapLog
+src.java.test.org.apache.zookeeper.test.LoadFromLogTest
+
+66 ZOOKEEPER-1564
+Allow JUnit test build with IBM Java &lt p&gt The org.apache.zookeeper.test.ClientBase, org.apache.zookeeper.test.ClientTest, org.apache.zookeeper.test.QuorumBase and org.apache.zookeeper.test.QuorumUtil classes import the com.sun.management.UnixOperatingSystemMXBean class, that fail to build when using IBM Java 6 SR 11. This issue is resolved by new class OSMXBean class proposed in JIRA&apos s &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1474&quot  title=&quot Cannot build Zookeeper with IBM Java: use of Sun MXBean classes&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1474&quot &gt &lt del&gt ZOOKEEPER-1474&lt /del&gt &lt /a&gt .&lt /p&gt &lt p&gt The class OSMXBean (org.apache.zookeeper.server.util.OSMXBean) is a wrapper for the implementation of com.sun.management.UnixOperatingSystemMXBean, and decides to use the SUN API or its own implementation depending on the runtime (vendor) used.&lt /p&gt
+4
+src.java.test.org.apache.zookeeper.test.ClientBase
+src.java.test.org.apache.zookeeper.test.ClientTest
+src.java.test.org.apache.zookeeper.test.QuorumBase
+src.java.test.org.apache.zookeeper.test.QuorumUtil
+
+67 ZOOKEEPER-1558
+Leader should not snapshot uncommitted state &lt p&gt Leader currently takes a snapshot when it calls loadData in the beginning of the lead() method. The loaded data, however, may contain uncommitted state.&lt /p&gt
+4
+src.java.main.org.apache.zookeeper.server.SyncRequestProcessor
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+
+68 ZOOKEEPER-1552
+Enable sync request processor in Observer &lt p&gt Observer doesn&apos t forward its txns to SyncRequestProcessor. So it never persists the txns onto disk or periodically creates snapshots. This increases the start-up time since it will get the entire snapshot if the observer has be running for a long time. &lt /p&gt
+5
+src.java.main.org.apache.zookeeper.server.SyncRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.ObserverZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerConfig
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerMain
+
+69 ZOOKEEPER-1551
+Observers ignore txns that come after snapshot and UPTODATE &lt p&gt In Learner.java, txns which comes after the learner has taken the snapshot (after NEWLEADER packet) are stored in packetsNotCommitted. The follower has special logic to apply these txns at the end of syncWithLeader() method. However, the observer will ignore these txns completely, causing data inconsistency. &lt /p&gt
+4
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.Learner
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+
+70 ZOOKEEPER-1535
+ZK Shell/Cli re-executes last command on exit &lt p&gt In the ZK 3.4.3 release&apos s version of zkCli.sh, the last command that was executed is &lt b&gt re&lt /b&gt -executed when you &lt tt&gt ctrl+d&lt /tt&gt  out of the shell. In the snippet below, &lt tt&gt ls&lt /tt&gt  is executed, and then &lt tt&gt ctrl+d&lt /tt&gt  is triggered (inserted below to illustrate), the output from &lt tt&gt ls&lt /tt&gt  appears again, due to the command being re-run. &lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt [zk: zookeeper.example.com:2181(CONNECTED) 0] ls /blah [foo] [zk: zookeeper.example.com:2181(CONNECTED) 1] &amp lt ctrl+d&amp gt  [foo] $ &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.main.org.apache.zookeeper.ZooKeeperMain
+
+71 ZOOKEEPER-1495
+ZK client hangs when using a function not available on the server. &lt p&gt This happens for example when using zk#multi with a 3.4 client but a 3.3 server.&lt /p&gt &lt p&gt The issue seems to be on the server side: the servers drops the packets with an unknown OpCode in ZooKeeperServer#submitRequest&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt public void submitRequest(Request si) {     // snip     try {         touch(si.cnxn)          boolean validpacket = Request.isValid(si.type)  // ===&amp gt  Check on case OpCode.*         if (validpacket) {             // snip         } else {             LOG.warn(&quot Dropping packet at server of type &quot  + si.type)              // if invalid packet drop the packet.         }     } catch (MissingSessionException e) {         if (LOG.isDebugEnabled()) {             LOG.debug(&quot Dropping request: &quot  + e.getMessage())          }     } } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The solution discussed in &lt a href=&quot https://issues.apache.org/jira/browse/ZOOKEEPER-1381&quot  title=&quot Add a method to get the zookeeper server version from the client&quot  class=&quot issue-link&quot  data-issue-key=&quot ZOOKEEPER-1381&quot &gt ZOOKEEPER-1381&lt /a&gt  would be to get an exception on the client side then &amp amp  close the session.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+src.java.test.org.apache.zookeeper.test.ClientTest
+
+72 ZOOKEEPER-1478
+Small bug in QuorumTest.testFollowersStartAfterLeader( ) &lt p&gt The following code appears in QuorumTest.testFollowersStartAfterLeader( ):&lt /p&gt &lt p&gt for (int i = 0  i &amp lt  30  i++) {&lt br/&gt     try &lt /p&gt {        zk.create(&quot /test&quot , &quot test&quot .getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,                  CreateMode.PERSISTENT)         break       }&lt p&gt  catch(KeeperException.ConnectionLossException e) &lt /p&gt {        Thread.sleep(1000)       }&lt p&gt     // test fails if we still can&apos t connect to the quorum after 30 seconds.&lt br/&gt     Assert.fail(&quot client could not connect to reestablished quorum: giving up after 30+ seconds.&quot ) &lt br/&gt }&lt /p&gt &lt p&gt From the comment it looks like the intention was to try to reconnect 30 times and only then trigger the Assert, but that&apos s not what this does.&lt br/&gt After we fail to connect once and Thread.sleep is executed, Assert.fail will be executed without retrying create. &lt /p&gt
+1
+src.java.test.org.apache.zookeeper.test.QuorumTest
+
+73 ZOOKEEPER-1474
+Cannot build Zookeeper with IBM Java: use of Sun MXBean classes &lt p&gt zookeeper.server.NIOServerCnxn and zookeeper.server.NettyServerCnxn imports com.sun.management.UnixOperatingSystemMXBean . This OperatingSystemMXBean class is not implemented by IBM or open java. &lt /p&gt &lt p&gt In my case, I need IBM Java so I can run zookeeper in Power ppc64 servers.&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.NIOServerCnxn
+src.java.main.org.apache.zookeeper.server.NettyServerCnxn
+
+74 ZOOKEEPER-1459
+Standalone ZooKeeperServer is not closing the transaction log files on shutdown &lt p&gt When shutdown the standalone ZK server, its only clearing the zkdatabase and not closing the transaction log streams. When tries to delete the temporary files in unit tests on windows, its failing.&lt br/&gt ZooKeeperServer.java&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt         if (zkDb != null) {             zkDb.clear()          } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Suggestion to close the zkDb as follows, this inturn will take care transaction logs:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt         if (zkDb != null) {             zkDb.clear()              try {                 zkDb.close()              } catch (IOException ie) {                 LOG.warn(&quot Error closing logs &quot , ie)              }         } &lt /pre&gt &lt /div&gt &lt /div&gt
+4
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+src.java.main.org.apache.zookeeper.server.ZooKeeperServerMain
+src.java.test.org.apache.zookeeper.server.ZooKeeperServerMainTest
+src.java.test.org.apache.zookeeper.server.ZooKeeperServerMainTest.MainThread
+
+75 ZOOKEEPER-1448
+Node+Quota creation in transaction log can crash leader startup &lt p&gt Hi,&lt /p&gt &lt p&gt I&apos ve found a bug in zookeeper related to quota creation which can shutdown zookeeper leader on startup.&lt /p&gt &lt p&gt Steps to reproduce:&lt br/&gt 1. create /quota_bug&lt br/&gt 2. setquota -n 10000 /quota_bug&lt br/&gt 3. stop the whole ensemble (the previous operations should be in the transaction log)&lt br/&gt 4. start all the servers&lt br/&gt 5. the elected leader will shutdown with an exception (Missing stat node for count /zookeeper/quota/quota_bug/zookeeper_&lt br/&gt stats)&lt /p&gt &lt p&gt I&apos ve debugged a bit what happening and I found the following problem:&lt br/&gt On startup each server loads the last snapshot and replays the last transaction log. While doing this it fills up the pTrie variable of the DataTree with the path of the nodes which have quota.&lt br/&gt After the leader is elected the leader servers loads the snapshot and last transaction log but it doesn&apos t clean up the pTrie variable. This means it still contains the &quot /quota_bug&quot  path. Now when the &quot create /quota_bug&quot  is processed from the transaction log the DataTree already thinks that the quota nodes (&quot /zookeeper/quota/quota_bug/zookeeper_limits&quot  and &quot /zookeeper/quota/quota_bug/zookeeper_stats&quot ) are created but those node creation actually comes later in the transaction log. This leads to the missing stat node exception.&lt /p&gt &lt p&gt I think clearing the pTrie should solve this problem.&lt /p&gt
+3
+src.java.main.org.apache.zookeeper.common.PathTrie
+src.java.main.org.apache.zookeeper.server.DataTree
+src.java.test.org.apache.zookeeper.test.DataTreeTest
+
+76 ZOOKEEPER-1414
+QuorumPeerMainTest.testQuorum, testBadPackets are failing intermittently &lt p&gt The QuorumPeerMainTest.testQuorum, testBadPackets testcases are failing intermittently due to the wrong ZKClient usage pattern.&lt /p&gt &lt p&gt Saw the following ConnectionLoss on 3.4 version:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt KeeperErrorCode = ConnectionLoss for /foo_q1 org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss for /foo_q1 at org.apache.zookeeper.KeeperException.create(KeeperException.java:90) at org.apache.zookeeper.KeeperException.create(KeeperException.java:42) at org.apache.zookeeper.ZooKeeper.create(ZooKeeper.java:657) at org.apache.zookeeper.server.quorum.QuorumPeerMainTest.testBadPackets(QuorumPeerMainTest.java:212) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Since the ZooKeeper connection is happening in async way through ClientCnxn, the client should wait for the &apos KeeperState.SyncConnected&apos  event before start using. But these test cases are not waiting for the connection like:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt ZooKeeper zk = new ZooKeeper(&quot 127.0.0.1:&quot  + CLIENT_PORT_QP1,       ClientBase.CONNECTION_TIMEOUT, this)  zk.create(&quot /foo_q1&quot , &quot foobar1&quot .getBytes(), Ids.OPEN_ACL_UNSAFE,       CreateMode.PERSISTENT)  &lt /pre&gt &lt /div&gt &lt /div&gt
+1
+src.java.test.org.apache.zookeeper.server.quorum.QuorumPeerMainTest
+
+77 ZOOKEEPER-1388
+Client side &apos PathValidation&apos  is missing for the multi-transaction api. &lt p&gt Multi ops: Op.create(path,..), Op.delete(path, ..), Op.setData(path, ..), &lt br/&gt Op.check(path, ...) apis are not performing the client side path validation and the call will go to the server side and is throwing exception back to the client. &lt /p&gt &lt p&gt It would be good to provide ZooKeeper client side path validation for the multi transaction apis. Presently its getting err codes from the server, which is also not properly conveying the cause.&lt /p&gt &lt p&gt For example: When specified invalid znode path in Op.create, it giving the following exception. This will not be useful to know the actual cause.&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  org.apache.zookeeper.KeeperException$NoNodeException: KeeperErrorCode = NoNode  at org.apache.zookeeper.KeeperException.create(KeeperException.java:115)  at org.apache.zookeeper.ZooKeeper.multiInternal(ZooKeeper.java:1174)  at org.apache.zookeeper.ZooKeeper.multi(ZooKeeper.java:1115) &lt /pre&gt &lt /div&gt &lt /div&gt
+4
+src.java.main.org.apache.zookeeper.Op
+src.java.main.org.apache.zookeeper.Op.Delete
+src.java.main.org.apache.zookeeper.ZooKeeper
+src.java.test.org.apache.zookeeper.test.MultiTransactionTest
+
+78 ZOOKEEPER-1387
+Wrong epoch file created &lt p&gt It looks like line 443 in QuorumPeer &lt span class=&quot error&quot &gt &amp #91 1&amp #93 &lt /span&gt  may need to change from:&lt /p&gt &lt p&gt writeLongToFile(CURRENT_EPOCH_FILENAME, acceptedEpoch) &lt /p&gt &lt p&gt to&lt /p&gt &lt p&gt writeLongToFile(ACCEPTED_EPOCH_FILENAME, acceptedEpoch) &lt /p&gt &lt p&gt I only noticed this reading the code, so I may be wrong and I don&apos t know yet if/how this affects the runtime.&lt /p&gt &lt p&gt &lt span class=&quot error&quot &gt &amp #91 1&amp #93 &lt /span&gt  &lt a href=&quot https://github.com/apache/zookeeper/blob/trunk/src/java/main/org/apache/zookeeper/server/quorum/QuorumPeer.java#L443&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://github.com/apache/zookeeper/blob/trunk/src/java/main/org/apache/zookeeper/server/quorum/QuorumPeer.java#L443&lt /a&gt &lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+
+79 ZOOKEEPER-1382
+Zookeeper server holds onto dead/expired session ids in the watch data structures &lt p&gt I&apos ve observed that zookeeper server holds onto expired session ids in the watcher data structures. The result is the wchp command reports session ids that cannot be found through cons/dump and those expired session ids sit there maybe until the server is restarted. Here are snippets from the client and the server logs that lead to this state, for one particular session id 0x134485fd7bcb26f -&lt /p&gt &lt p&gt There are 4 servers in the zookeeper cluster - 223, 224, 225 (leader), 226 and I&apos m using ZkClient to connect to the cluster&lt /p&gt &lt p&gt From the application log -&lt /p&gt &lt p&gt application.log.2012-01-26-325.gz:2012/01/26 04:56:36.177 INFO &lt span class=&quot error&quot &gt &amp #91 ClientCnxn&amp #93 &lt /span&gt  &lt span class=&quot error&quot &gt &amp #91 main-SendThread(223.prod:12913)&amp #93 &lt /span&gt  [application Session establishment complete on server 223.prod/172.17.135.38:12913, sessionid = 0x134485fd7bcb26f, negotiated timeout = 6000&lt br/&gt application.log.2012-01-27.gz:2012/01/27 09:52:37.714 INFO &lt span class=&quot error&quot &gt &amp #91 ClientCnxn&amp #93 &lt /span&gt  &lt span class=&quot error&quot &gt &amp #91 main-SendThread(223.prod:12913)&amp #93 &lt /span&gt  &lt span class=&quot error&quot &gt &amp #91 application&amp #93 &lt /span&gt  Client session timed out, have not heard from server in 9827ms for sessionid 0x134485fd7bcb26f, closing socket connection and attempting reconnect&lt br/&gt application.log.2012-01-27.gz:2012/01/27 09:52:38.191 INFO &lt span class=&quot error&quot &gt &amp #91 ClientCnxn&amp #93 &lt /span&gt  &lt span class=&quot error&quot &gt &amp #91 main-SendThread(226.prod:12913)&amp #93 &lt /span&gt  &lt span class=&quot error&quot &gt &amp #91 application&amp #93 &lt /span&gt  Unable to reconnect to ZooKeeper service, session 0x134485fd7bcb26f has expired, closing socket connection&lt /p&gt &lt p&gt On the leader zk, 225 -&lt /p&gt &lt p&gt zookeeper.log.2012-01-27-leader-225.gz:2012-01-27 09:52:34,010 - INFO  &lt span class=&quot error&quot &gt &amp #91 SessionTracker:ZooKeeperServer@314&amp #93 &lt /span&gt  - Expiring session 0x134485fd7bcb26f, timeout of 6000ms exceeded&lt br/&gt zookeeper.log.2012-01-27-leader-225.gz:2012-01-27 09:52:34,010 - INFO  &lt span class=&quot error&quot &gt &amp #91 ProcessThread:-1:PrepRequestProcessor@391&amp #93 &lt /span&gt  - Processed session termination for sessionid: 0x134485fd7bcb26f&lt /p&gt &lt p&gt On the server, the client was initially connected to, 223 -&lt /p&gt &lt p&gt zookeeper.log.2012-01-26-223.gz:2012-01-26 04:56:36,173 - INFO  &lt span class=&quot error&quot &gt &amp #91 CommitProcessor:1:NIOServerCnxn@1580&amp #93 &lt /span&gt  - Established session 0x134485fd7bcb26f with negotiated timeout 6000 for client /172.17.136.82:45020&lt br/&gt zookeeper.log.2012-01-27-223.gz:2012-01-27 09:52:34,018 - INFO  &lt span class=&quot error&quot &gt &amp #91 CommitProcessor:1:NIOServerCnxn@1435&amp #93 &lt /span&gt  - Closed socket connection for client /172.17.136.82:45020 which had sessionid 0x134485fd7bcb26f&lt /p&gt &lt p&gt Here are the log snippets from 226, which is the server, the client reconnected to, before getting session expired event -&lt /p&gt &lt p&gt 2012-01-27 09:52:38,190 - INFO  &lt span class=&quot error&quot &gt &amp #91 NIOServerCxn.Factory:0.0.0.0/0.0.0.0:12913:NIOServerCnxn@770&amp #93 &lt /span&gt  - Client attempting to renew session 0x134485fd7bcb26f at /172.17.136.82:49367&lt br/&gt 2012-01-27 09:52:38,191 - INFO  &lt span class=&quot error&quot &gt &amp #91 QuorumPeer:/0.0.0.0:12913:NIOServerCnxn@1573&amp #93 &lt /span&gt  - Invalid session 0x134485fd7bcb26f for client /172.17.136.82:49367, probably expired&lt br/&gt 2012-01-27 09:52:38,191 - INFO  &lt span class=&quot error&quot &gt &amp #91 NIOServerCxn.Factory:0.0.0.0/0.0.0.0:12913:NIOServerCnxn@1435&amp #93 &lt /span&gt  - Closed socket connection for client /172.17.136.82:49367 which had sessionid 0x134485fd7bcb26f&lt /p&gt &lt p&gt wchp output from 226, taken on 01/30 -&lt /p&gt &lt p&gt nnarkhed-ld:zk-cons-wchp-2012013000 nnarkhed$ grep 0x134485fd7bcb26f &lt b&gt 226.*wchp&lt /b&gt  | wc -l&lt br/&gt 3&lt /p&gt &lt p&gt wchp output from 223, taken on 01/30 -&lt /p&gt &lt p&gt nnarkhed-ld:zk-cons-wchp-2012013000 nnarkhed$ grep 0x134485fd7bcb26f &lt b&gt 223.*wchp&lt /b&gt  | wc -l&lt br/&gt 0&lt /p&gt &lt p&gt cons output from 223 and 226, taken on 01/30 -&lt /p&gt &lt p&gt nnarkhed-ld:zk-cons-wchp-2012013000 nnarkhed$ grep 0x134485fd7bcb26f &lt b&gt 226.*cons&lt /b&gt  | wc -l&lt br/&gt 0&lt /p&gt &lt p&gt nnarkhed-ld:zk-cons-wchp-2012013000 nnarkhed$ grep 0x134485fd7bcb26f &lt b&gt 223.*cons&lt /b&gt  | wc -l&lt br/&gt 0&lt /p&gt &lt p&gt So, what seems to have happened is that the client was able to re-register the watches on the new server (226), after it got disconnected from 223, inspite of having an expired session id. &lt /p&gt &lt p&gt In NIOServerCnxn, I saw that after suspecting that a session is expired, a server removes the cnxn and its watches from its internal data structures. But before that it allows more requests to be processed even if the session is expired -&lt /p&gt &lt p&gt             // Now that the session is ready we can start receiving packets&lt br/&gt             synchronized (this.factory) &lt /p&gt {                 sk.selector().wakeup()                  enableRecv()              }&lt p&gt         } catch (Exception e) &lt /p&gt {             LOG.warn(&quot Exception while establishing session, closing&quot , e)              close()          }&lt p&gt I wonder if the client somehow sneaked in the set watches, right after the server removed the connection through removeCnxn() API ?&lt /p&gt
+13
+src.java.main.org.apache.zookeeper.ClientCnxn
+src.java.main.org.apache.zookeeper.ClientCnxn.Packet
+src.java.main.org.apache.zookeeper.server.DataTree
+src.java.main.org.apache.zookeeper.server.FinalRequestProcessor
+src.java.main.org.apache.zookeeper.server.NIOServerCnxn
+src.java.main.org.apache.zookeeper.server.NIOServerCnxnFactory
+src.java.main.org.apache.zookeeper.server.WatchManager
+src.java.main.org.apache.zookeeper.server.ZKDatabase
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.ProposalRequestProcessor
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.test.org.apache.zookeeper.test.DisconnectedWatcherTest
+
+80 ZOOKEEPER-1379
+&apos printwatches, redo, history and connect &apos . client commands always print usage. This is not necessary &lt p&gt while executing the commands:&lt br/&gt &apos printwatches, redo, history and connect usage is getting print &lt br/&gt .basically we are printing usage if user has entered the command &lt br/&gt wrong but in these commands case every time usage is getting print.&lt br/&gt eg&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt [zk: localhost:2181(CONNECTED) 0] printwatches printwatches is on ZooKeeper -server host:port cmd args  connect host:port  get path [watch]  ls path [watch]  set path data [version]  delquota [-n|-b] path  quit   printwatches on|off  create [-s] [-e] path data acl  stat path [watch]  close   ls2 path [watch]  history   listquota path  setAcl path acl  getAcl path  sync path  redo cmdno  addauth scheme auth  delete path [version]  setquota -n|-b val path &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+src.java.main.org.apache.zookeeper.ZooKeeperMain
+src.java.test.org.apache.zookeeper.ZooKeeperTest
+
+81 ZOOKEEPER-1179
+NettyServerCnxn does not properly close socket on 4 letter word requests &lt p&gt When calling a 4-letter-word to a server configured to use NettyServerCnxnFactory, the factory will not properly cancel all the keys and close the socket after sending the response for the 4lw. The close request will throw this exception, and the thread will not shut down:&lt br/&gt 2011-09-13 12:14:17,546 - WARN  &lt span class=&quot error&quot &gt &amp #91 New I/O server worker #1-1:NettyServerCnxnFactory$CnxnChannelHandler@117&amp #93 &lt /span&gt  - Exception caught &lt span class=&quot error&quot &gt &amp #91 id: 0x009300cc, /1.1.1.1:38542 =&amp gt  /139.172.114.138:2181&amp #93 &lt /span&gt  EXCEPTION: java.io.IOException: A non-blocking socket operation could not be completed immediately&lt br/&gt java.io.IOException: A non-blocking socket operation could not be completed immediately&lt br/&gt  at sun.nio.ch.SocketDispatcher.close0(Native Method)&lt br/&gt  at sun.nio.ch.SocketDispatcher.preClose(SocketDispatcher.java:44)&lt br/&gt  at sun.nio.ch.SocketChannelImpl.implCloseSelectableChannel(SocketChannelImpl.java:684)&lt br/&gt  at java.nio.channels.spi.AbstractSelectableChannel.implCloseChannel(AbstractSelectableChannel.java:201)&lt br/&gt  at java.nio.channels.spi.AbstractInterruptibleChannel.close(AbstractInterruptibleChannel.java:97)&lt br/&gt  at org.jboss.netty.channel.socket.nio.NioWorker.close(NioWorker.java:593)&lt br/&gt  at org.jboss.netty.channel.socket.nio.NioServerSocketPipelineSink.handleAcceptedSocket(NioServerSocketPipelineSink.java:119)&lt br/&gt  at org.jboss.netty.channel.socket.nio.NioServerSocketPipelineSink.eventSunk(NioServerSocketPipelineSink.java:76)&lt br/&gt  at org.jboss.netty.channel.Channels.close(Channels.java:720)&lt br/&gt  at org.jboss.netty.channel.AbstractChannel.close(AbstractChannel.java:208)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn.close(NettyServerCnxn.java:116)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn.cleanupWriterSocket(NettyServerCnxn.java:241)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn.access$0(NettyServerCnxn.java:231)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn$CommandThread.run(NettyServerCnxn.java:314)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn$CommandThread.start(NettyServerCnxn.java:305)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn.checkFourLetterWord(NettyServerCnxn.java:674)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxn.receiveMessage(NettyServerCnxn.java:791)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxnFactory$CnxnChannelHandler.processMessage(NettyServerCnxnFactory.java:217)&lt br/&gt  at org.apache.zookeeper.server.NettyServerCnxnFactory$CnxnChannelHandler.messageReceived(NettyServerCnxnFactory.java:141)&lt br/&gt  at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:274)&lt br/&gt  at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:261)&lt br/&gt  at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:350)&lt br/&gt  at org.jboss.netty.channel.socket.nio.NioWorker.processSelectedKeys(NioWorker.java:281)&lt br/&gt  at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:201)&lt br/&gt  at org.jboss.netty.util.internal.IoWorkerRunnable.run(IoWorkerRunnable.java:46)&lt br/&gt  at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)&lt br/&gt  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)&lt br/&gt  at java.lang.Thread.run(Thread.java:619)&lt /p&gt
+2
+src.java.main.org.apache.zookeeper.server.NettyServerCnxn
+src.java.main.org.apache.zookeeper.server.NettyServerCnxnFactory
+
+82 ZOOKEEPER-1096
+Leader communication should listen on specified IP, not wildcard address &lt p&gt Server should specify the local address that is used for leader communication and leader election (and not use the default of listening on all interfaces).  This is similar to the clientPortAddress parameter that was added a year ago.  After reviewing the code, we can&apos t think of a reason why only the port would be used with the wildcard interface, when servers are already connecting specifically to that interface anyway.&lt /p&gt &lt p&gt I have submitted a patch, but it does not account for all leader election algorithms.&lt /p&gt &lt p&gt Probably should have an option to toggle this, for backwards compatibility, although it seems like it would be a bug if this change broke things.&lt /p&gt &lt p&gt There is some more information about making it an option here:&lt br/&gt &lt a href=&quot http://mail-archives.apache.org/mod_mbox/hadoop-zookeeper-dev/201008.mbox/%3CAANLkTikkT97Djqt3CU=H2+7Gnj_4p28hgCXjh345HiyN@mail.gmail.com%3E&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://mail-archives.apache.org/mod_mbox/hadoop-zookeeper-dev/201008.mbox/%3CAANLkTikkT97Djqt3CU=H2+7Gnj_4p28hgCXjh345HiyN@mail.gmail.com%3E&lt /a&gt &lt /p&gt
+7
+src.java.main.org.apache.zookeeper.server.ZooKeeperServer
+src.java.main.org.apache.zookeeper.server.quorum.Leader
+src.java.main.org.apache.zookeeper.server.quorum.QuorumCnxManager
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeer
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerConfig
+src.java.main.org.apache.zookeeper.server.quorum.QuorumPeerMain
+src.java.test.org.apache.zookeeper.test.LENonTerminateTest
+
+83 ZOOKEEPER-87
+Follower does not shut itself down if its too far behind the leader. &lt p&gt Currently, the follower if lagging behind keeps sending pings to the leader it will stay alive and will keep getting further and further behind the leader. The follower should shut itself down if it is not able to keep up to the leader within some limit so that gurantee of updates can be made to the clients connected to different servers.&lt /p&gt
+5
+src.java.main.org.apache.zookeeper.server.quorum.LearnerHandler
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test
+src.java.test.org.apache.zookeeper.server.quorum.Zab1_0Test.LeadThread
+src.java.test.org.apache.zookeeper.test.QuorumTest
+src.java.test.org.apache.zookeeper.test.QuorumUtil
+

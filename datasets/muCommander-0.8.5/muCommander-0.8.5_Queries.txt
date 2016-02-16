@@ -1,0 +1,671 @@
+1
+sftp transfer caus memori leak mac os 10 java mac os 10 tiger transfer file from sftp server caus jvm leak memori fast leak approxim amount memori data transfer memori recov even garbag collector call explicitli gc step reproduc launch mu command mucommand mac os 10 java copi file from sftp server local volum vice versa activ viewer app watch memori usag grow down transfer progress addit inform java java dp java bug reproduc newer mac os 10 leopard bug reproduc window xp transfer protocol sftp ftp smb caus problem
+1
+com.mucommander.file.impl.http.HTTPProtocolProvider
+
+7
+corrupt list unc path step reproduc enter valid unc path locat bar path point exist non empti directori expect behaviour content specifi directori properli list observ behaviour file displai symlink directori displai file symlink file don icon exampl mu command mucommand window setup file
+1
+com.mucommander.file.impl.local.LocalFile
+
+10
+password chang step reproduc creat bookmark authent file reproduc ftp sftp save work credenti bookmark updat remot account differ password restart mu command mucommand access bookmark enter password connect expect behaviour credenti us connect suce observ behaviour old credenti us connect fail
+1
+com.mucommander.ui.dialog.auth.AuthDialog
+
+11
+zeroconf server open wrong folder panel step reproduc set focu left folder panel open right drive button alt f2 select zeroconf server expect behaviour server open right folder panel observ behaviour server open left folder panel
+3
+com.mucommander.ui.main.DrivePopupButton
+com.mucommander.ui.main.DrivePopupButton.CustomOpenLocationAction
+com.mucommander.ui.main.menu.MainMenuBar
+
+13
+main menu mnemon work properli step reproduc press main menu mnemon alt open file menu mu command mucommand configur us english exampl expect behaviour correct menu open observ behaviour keypress us quicksearch item menu mnemon note press alt releas press kei open file menu kei time dispatch event wrong compon
+1
+com.mucommander.ui.main.table.FileTable.QuickSearch
+
+16
+owner group column displai local filesystem select view show hide column owner group column appear column narrow ad easi widen even complet blank
+14
+com.mucommander.bonjour.BonjourDirectory
+com.mucommander.bonjour.BonjourService
+com.mucommander.ui.action.impl.ToggleColumnAction
+com.mucommander.ui.action.impl.ToggleShowFoldersFirstAction
+com.mucommander.ui.main.MainFrame
+com.mucommander.ui.main.menu.MainMenuBar
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.table.FileTable.FolderChangeThread
+com.mucommander.ui.main.table.FileTableColumnModel
+com.mucommander.ui.main.table.FileTableConfiguration
+com.mucommander.ui.main.table.FileTableHeader
+com.mucommander.ui.main.table.FileTableHeaderRenderer
+com.mucommander.ui.main.table.FileTableModel
+com.mucommander.ui.main.table.SortInfo
+
+20
+viewer freez indefinit 100 cpu file intern viewer freez up consum 100 cpu time type file exampl 450 kb 450kb ex file window xp behavior linux ubuntu 10 wait min befor kill applic freez extend period time compar small file 450 kb 450kb accept user experi tycho
+9
+com.mucommander.file.impl.http.HTTPFile
+com.mucommander.ui.main.FolderPanel.ChangeFolderThread
+com.mucommander.ui.main.LocationHistory
+com.mucommander.ui.viewer.EditorFrame
+com.mucommander.ui.viewer.EditorRegistrar
+com.mucommander.ui.viewer.ViewerFrame
+com.mucommander.ui.viewer.ViewerRegistrar
+com.mucommander.ui.viewer.WarnUserException
+com.mucommander.ui.viewer.text.TextFactory
+
+21
+current nightli ha two issu swap folder function first on most critic on caus renam unwant file here step reproduc issu right panel swap order name extens column make name column appear befor extens on swap folder renam file right panel click name cell chang name valid press enter expect result file select right panel renam name enter actual result file left panel renam name enter right panel hide column name column remain swap folder expect result folder swap actual result mu command mucommand crash leav main window unpaint cf attach screenshot note issu group singl bug underli caus
+2
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.toolbar.ToolBar.HistoryPopupButton
+
+24
+symlink view edit step reproduc on panel select symlink link regular file directori exist read current user view f3 edit f4 symlink expect result symlink target open viewer editor window actual result
+3
+com.mucommander.ui.action.impl.AbstractViewerAction
+com.mucommander.ui.viewer.image.ImageFactory
+com.mucommander.ui.viewer.text.TextFactory
+
+30
+overwrit zip file result corrupt archiv step reproduc creat zip file test zip contain larg file mark small file pack file pack file menu item zip file test zip file collis dialog appear warn file exist destin choos overwrit expect result zip file contain small file archiv file smaller previou on actual result enter mu command mucommand zip file contain old larg file ha size previou on futhermor zip corrupt run unzip vt reveal error zip file note zip file larger exist on fine bug
+3
+com.mucommander.file.FileFactory
+com.mucommander.file.FileURL
+com.mucommander.file.archiver.Archiver
+
+31
+unabl us histori selector configur pane left local right ftp left side local after hour 7hour intens ftp ing select parent link histori selector doesn work anymor path doesn chang pane color dim chang manual path pane work select mous bug window button ctrl don work anymor last nightli build version
+1
+com.mucommander.auth.Credentials
+
+37
+mac os maco window menu miss minim zoom mac os maco window menu miss minim zoom menu option order mimic standard mac os maco applic
+3
+com.mucommander.ui.action.impl.MaximizeWindowAction
+com.mucommander.ui.action.impl.MinimizeWindowAction
+com.mucommander.ui.main.menu.MainMenuBar
+
+39
+illeg argument except illegalargumentexcept shell combo box shellcombobox hei element combobox after clear histori action exampl open popup combobox follow except java lang illeg argument except illegalargumentexcept set select index setselectedindex bound add check get item count getitemcount befor set select index setselectedindex made popup menu visibl popupmenuwillbecomevis function arik
+22
+com.mucommander.auth.CredentialsWriter
+com.mucommander.bonjour.BonjourService
+com.mucommander.bookmark.BookmarkParser
+com.mucommander.file.AbstractArchiveFile
+com.mucommander.file.AbstractFile
+com.mucommander.file.ArchiveEntry
+com.mucommander.file.FileFactory
+com.mucommander.file.FileURL
+com.mucommander.file.impl.ftp.FTPFile
+com.mucommander.file.impl.ftp.FTPFile.FTPConnectionHandler
+com.mucommander.file.impl.http.HTTPFile
+com.mucommander.file.impl.local.LocalFile
+com.mucommander.file.impl.sftp.SFTPFile
+com.mucommander.file.impl.smb.SMBFile
+com.mucommander.file.impl.zip.ZipArchiveFile
+com.mucommander.job.ArchiveJob
+com.mucommander.ui.dialog.server.ShowServerConnectionsDialog
+com.mucommander.ui.main.StatusBar
+com.mucommander.ui.main.WindowManager
+com.mucommander.ui.action.impl.CommandAction
+com.mucommander.ui.action.impl.OpenAction
+com.mucommander.ui.action.impl.OpenLocationAction
+
+43
+file get corrupt chang name window bug reproduc os step reproduc creat file name contain precis on upper charact first on exampl test txt renam file full lower test txt file suddenli detect shortcut mu command mucommand renam file name work file disapear delet move
+2
+com.mucommander.file.impl.local.LocalFile
+com.mucommander.file.impl.local.LocalFileTest
+
+45
+drag drop from mu command mucommand gnome doesn work drag file from gnome from nautilu mu command mucommand work perfectli mu command mucommand copi move file directori file drop revers doesn work step open directori nautilu explor gnome drag file foo txt directori path foo from mu command mucommand drop nautilu ctrl kei press expect nautilu file foo txt creat size name content origin on real nautilu file call file creat content path foo foo txt
+1
+com.mucommander.ui.main.FolderPanel
+
+48
+action click problem lastest build date 2008 05 05 click mous work expect chang directori click directori name launch program click execut addit inform click trigger renam select file function similar shift f6 chang folder launch applic right click open click select folder file problem happen previou build version inform mu command mucommand version build date 2008 05 05 java vm name java hot spot hotspot tm client vm version 10 b19 vendor sun microsystem os name linux version 22 2115 nptl architectur i386 local languag en countri encod utf
+2
+com.mucommander.file.FileFactory
+com.mucommander.file.FileURL
+
+52
+file copi chang file kind step reproduc adob illustr document cs3 version file ai extens happen time 90 case copi file folder finder get info dialog show file kind ha chang imag file doesn open illustr open file icon chang expect behaviour file kind stai ps great applic
+2
+com.mucommander.job.SendMailJob
+com.mucommander.job.TransferFileJob
+
+59
+main menu move check updat item from file help menu main menu move check updat item from file help menu unusu item better place help menu done firefox ultraedit propos updat help menu next make donat check updat mu command mucommand
+1
+com.mucommander.ui.main.menu.MainMenuBar
+
+60
+ui prefer appli button disabl chang made prefer dialog appli button enabl chang exist configur done configur chang appli button remain disabl state button disabl enabl
+15
+com.mucommander.ui.dialog.pref.PreferencesDialog
+com.mucommander.ui.dialog.pref.component.PrefCheckBox
+com.mucommander.ui.dialog.pref.component.PrefFilePathField
+com.mucommander.ui.dialog.pref.component.PrefRadioButton
+com.mucommander.ui.dialog.pref.component.PrefTextField
+com.mucommander.ui.dialog.pref.general.AppearancePanel
+com.mucommander.ui.dialog.pref.general.FoldersPanel
+com.mucommander.ui.dialog.pref.general.GeneralPanel
+com.mucommander.ui.dialog.pref.general.GeneralPreferencesDialog
+com.mucommander.ui.dialog.pref.general.MailPanel
+com.mucommander.ui.dialog.pref.general.MiscPanel
+com.mucommander.ui.dialog.pref.theme.ColorButton
+com.mucommander.ui.dialog.pref.theme.ThemeEditorDialog
+com.mucommander.ui.dialog.pref.theme.ThemeEditorPanel
+com.mucommander.ui.dialog.pref.theme.ThemeEditorPanel.ThemeFontChooserListener
+
+66
+splash checkbox prefer dialogu agaist design splash screen neat splash screen annoi gener hover window work show ye program symbol click start up found splash screen slow down start up mu command mucommand impress start up twice fast splash even dual core amd ghz gig ram found forum post told add splash start up paramet linux root mu command mucommand ha instal systemwid root startup script usr share mucommand hmmm window check mondai edit respect set userfriendli averag gui user great add show splash screen start up checkbox prefer dialogu german translat zeig startbild even better simpler check box start up screen don show best andrea
+2
+com.mucommander.Launcher
+com.mucommander.ui.dialog.pref.general.MiscPanel
+
+67
+scenario mu command mucommand get deadlock hei maxenc inform bug sent quit signal wrote discov deadlock scenario mu command mucommand start folder home arik enter folder home arik workspac mucommand popup mucommanderpopup bin statu bar status_bar from locat combo box locationcombobox enter parent folder home arik home arik workspac mucommand popup mucommanderpopup bin statu bar status_bar back action from locat combo box locationcombobox enter parent folder home program get stuck os ubuntu 04 sdk sun mucmmand version build date 2008 07 26
+2
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.FolderPanel.ChangeFolderThread
+
+77
+outcom enter broken bookmark locat text field locationtextfield hei maxenc type locat text field locationtextfield non exist malform path get error dialog text text field select text field get focu type locat text field locationtextfield name bookmark non exist malform locat differ outcom after error dialog appear text text field select focu file tabl outcom case case non exist locat malform enter locat text field locationtextfield first outcom desir on
+1
+com.mucommander.ui.main.LocationTextField
+
+78
+locat text field locationtextfield malform url handl hei maxenc enter malform path name bookmark point malform locat locat text field locationtextfield error dialog appear after close open action openact perform select file file tabl
+1
+com.mucommander.ui.main.LocationTextField
+
+85
+tree view caus deadlock startup step reproduc enabl tree view left panel quit mu command mucommand tree view set persist prefer file start mu command mucommand expect behavior mu command mucommand start actual behavior applic fail start properli left panel paint ui total unrespons addit inform startup folder local folder mean error caus stall network filesystem bug ha reproduc current svn trunk run mac os 10 java gener full stack trace confirm presenc deadlock show occur attach bug deadlock happen time idea frequenc 10 launch deadlock occur twice abl reproduc quickli determinist help valid fix
+1
+com.mucommander.Launcher
+
+86
+tree view folder icon spin endlessli abstract folder icon spin endlessli tree view fetch error step reproduc enabl tree view on panel from panel tree view enabl chang locat ftp ibiblio org pub doc book gutenberg ask credenti choos anonym user expect behavior tree view updat locat parent folder tree node expand actual behavior on parent folder pub expand spin dial icon spin endlessli attach screenshot addit inform debug output folder fail list except ftp file ftpfile ls follow ftp server error 530 maximum number client from host connect mean concurr thread access ftp server connect ls attempt made bug reproduc most time shouldn more attempt reproduc reproduc mac os 10 java don relev two separ issu address folder list fail gracefulli reason failur folder icon chang on symbol failur custom file icon provid customfileiconprovid access file not_accessible_fil good fit tree spawn thread more reduc number concurr thread serial oper made tree plai nice protocol ftp
+5
+com.mucommander.ShutdownHook
+com.mucommander.ui.main.tree.AbstractIOThreadManager
+com.mucommander.ui.main.tree.CachedDirectory
+com.mucommander.ui.main.tree.IOThread
+com.mucommander.ui.main.tree.TreeIOThreadManager
+
+87
+complet archiv file step reproduc locat field enter path archiv file support mu command mucommand path user maxenc test zip wait coupl second expect behavior complet suggest path complet actual behavior complet suggest popup appear suggest test zip select locat field content suggest test zip appear addit inform archiv folder fine archiv path end trail separ user maxenc test zip behavior complet popup suggest folder locat insid archiv
+4
+com.mucommander.ui.autocomplete.completers.ComboboxOptionsCompleter
+com.mucommander.ui.autocomplete.completers.Completer
+com.mucommander.ui.autocomplete.completers.LocationCompleter
+com.mucommander.ui.autocomplete.completers.PathCompleter
+
+89
+main menu activ alt tab press alt tab press alt press tab releas alt releas tab mu command mucommand main menu activ befor window switch mu command mucommand oper file pane find brows main menu prevent smooth workflow hope fix instal jre6 updat 10 vm version 11 b15 problem stai
+1
+com.mucommander.ui.main.WindowManager
+
+91
+icon size option chang detect incorrectli prefer appear icon size command bar file type set differ from toolbar set chang valu toolbar set appli button stai grei exampl initi state toolbar 125 command bar 150 file type 125 chang command bar 125 appli stai grei
+1
+com.mucommander.ui.dialog.pref.general.AppearancePanel
+
+94
+path check restrict path check ctrl place restrict accept path form dir window dir valid path valid path dir rel root current drive dir rel current directori expect variant work ctrl shell window
+2
+com.mucommander.file.DefaultSchemeParser
+com.mucommander.file.impl.local.LocalFileURLTest
+
+98
+mu command mucommand doesn recognis folder structur zip file zip file game twtpb mu command mucommand open mu command mucommand displai file archiv root archiv fact two directori archiv pick up result unpack mu command mucommand caus game abort oper befor even start up archiv util zip jzip folder recognis unpackag correctli mu command mucommand doesn zip file work get copi problemat archiv from twtpb project page http www spellofplai com game twtpb download let email copi interest meg 8meg archiv
+1
+com.mucommander.file.impl.zip.provider.ZipFile
+
+102
+wrong imag zoom titl open jpg imag viewer editor zoom 50 viewer editor window titl 50 us zoom zoom command chang displai imag size titl perman 50 matter current us zoom
+1
+com.mucommander.ui.viewer.image.ImageViewer
+
+103
+exclud mountpoint mountpoint boot usr portag var tmp ccach appear drive button list even list attach patch creat configur entri exclud mount point excludemountpoint usr portag boot var tmp ccach exclud mount point excludemountpoint mount point popul drive list
+3
+com.mucommander.ui.main.DrivePopupButton
+com.mucommander.ui.main.DrivePopupButton.CustomOpenLocationAction
+com.mucommander.ui.main.DrivePopupButton.ServerConnectAction
+
+107
+modifi date file archiv shown correctli archiv store archiv ear file modifi date file inner archiv shown correctli fix locali sourc zip entri zipentri java modifi constructor zip entri zipentri java util zip zip entri zipentri entri zip except zipexcept entri extra entri get extra getextra extra set extra field setextrafield extra field util extrafieldutil pars extra initi extra data empti arrai set extra setextra fix bui java util zip entri zipentri timestamp set get time gettim set time settim entri get time gettim extra arrai
+1
+com.mucommander.file.impl.zip.provider.ZipEntry
+
+108
+access sftp host command line fail start up mucommand mucommand sh sftp host first titl screen cover up login box move login box enter usernam password login fail even correct usernam password start up sftp host usernam password work great tool
+1
+com.mucommander.ui.main.WindowManager
+
+110
+muc creat duplic entri associ xml creat file associ xml describ forum after first launch muc wasn avail bugzilla list work fine check back file associ xml found autogener content associ command open ex openex filenam valu associ after more launch ident block begin associ xml small bug
+2
+com.mucommander.command.Command
+com.mucommander.command.CommandManager
+
+111
+extract from multipart rar archiv copi file from multipart rar file old r01 r02 style part01 part02 style get error read file xxx xxx name file extract from archiv
+1
+com.mucommander.file.impl.rar.provider.de.innosystec.unrar.Archive
+
+116
+jump up down file list find press control up control down move focu entri up down file list add featur faster quick search featur nice
+46
+com.mucommander.ui.action.ActionManager
+com.mucommander.ui.action.impl.MarkBackwardAction
+com.mucommander.ui.action.impl.MarkForwardAction
+com.mucommander.ui.action.impl.MarkNextBlockAction
+com.mucommander.ui.action.impl.MarkNextBlockAction.Descriptor
+com.mucommander.ui.action.impl.MarkNextBlockAction.Factory
+com.mucommander.ui.action.impl.MarkNextPageAction
+com.mucommander.ui.action.impl.MarkNextPageAction.Factory
+com.mucommander.ui.action.impl.MarkNextRowAction
+com.mucommander.ui.action.impl.MarkNextRowAction.Descriptor
+com.mucommander.ui.action.impl.MarkNextRowAction.Factory
+com.mucommander.ui.action.impl.MarkPreviousBlockAction
+com.mucommander.ui.action.impl.MarkPreviousBlockAction.Descriptor
+com.mucommander.ui.action.impl.MarkPreviousBlockAction.Factory
+com.mucommander.ui.action.impl.MarkPreviousPageAction
+com.mucommander.ui.action.impl.MarkPreviousPageAction.Factory
+com.mucommander.ui.action.impl.MarkPreviousRowAction
+com.mucommander.ui.action.impl.MarkPreviousRowAction.Descriptor
+com.mucommander.ui.action.impl.MarkPreviousRowAction.Factory
+com.mucommander.ui.action.impl.MarkToFirstRowAction
+com.mucommander.ui.action.impl.MarkToFirstRowAction.Factory
+com.mucommander.ui.action.impl.MarkToLastRowAction
+com.mucommander.ui.action.impl.MarkToLastRowAction.Factory
+com.mucommander.ui.action.impl.SelectBackwardAction
+com.mucommander.ui.action.impl.SelectForwardAction
+com.mucommander.ui.action.impl.SelectNextBlockAction
+com.mucommander.ui.action.impl.SelectNextBlockAction.Descriptor
+com.mucommander.ui.action.impl.SelectNextBlockAction.Factory
+com.mucommander.ui.action.impl.SelectNextPageAction
+com.mucommander.ui.action.impl.SelectNextPageAction.Descriptor
+com.mucommander.ui.action.impl.SelectNextPageAction.Factory
+com.mucommander.ui.action.impl.SelectNextRowAction
+com.mucommander.ui.action.impl.SelectNextRowAction.Descriptor
+com.mucommander.ui.action.impl.SelectNextRowAction.Factory
+com.mucommander.ui.action.impl.SelectPreviousBlockAction
+com.mucommander.ui.action.impl.SelectPreviousBlockAction.Descriptor
+com.mucommander.ui.action.impl.SelectPreviousBlockAction.Factory
+com.mucommander.ui.action.impl.SelectPreviousPageAction
+com.mucommander.ui.action.impl.SelectPreviousPageAction.Descriptor
+com.mucommander.ui.action.impl.SelectPreviousPageAction.Factory
+com.mucommander.ui.action.impl.SelectPreviousRowAction
+com.mucommander.ui.action.impl.SelectPreviousRowAction.Descriptor
+com.mucommander.ui.action.impl.SelectPreviousRowAction.Factory
+com.mucommander.ui.action.impl.UnpackAction.Descriptor
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.table.FileTable
+
+117
+hidden directori shown tree view matter hidden file file list directori tree view hidden dir start dot shown don show directori hidden file hidden file list on shortcut switch prefer time
+1
+com.mucommander.ui.main.tree.FoldersTreePanel
+
+137
+sftp connect fail password contain hello us intern linux server file transfer sftp win scp winscp give directori path option arriv home folder home project mu command mucommand enter sign land root directori don permiss list content permiss even enter correct path allow don permiss list content arriv home directori mu command mucommand don suc report url contain invalid port most list content problem present osx window problem don java runtim librari window librari version updat 11 mac java mac osx 10 updat situat v0 hope easili find bug enjoi cross platform file manag hope don us differ browser local sftp folder effort best ferenc
+1
+com.mucommander.file.util.PathUtils
+
+138
+duplic drive popup button drivepopupbutton fstab contain multipl mountpoint directori name drive popup button drivepopupbutton contain multipl entri name differ shortcut exampl mountpoint data storag data list contain data twice on shortcut on full path ad list name uniqu
+1
+com.mucommander.ui.main.DrivePopupButton
+
+139
+swap mountpoint exclud destin swap exclud log contain messag caught except java file factori filefactori get file getfil 341 caught except java net malform url except malformedurlexcept path absolut malform swap java file factori filefactori get file getfil 341 caught except java net malform url except malformedurlexcept path absolut malform swap
+8
+com.mucommander.file.AbstractArchiveEntryFile
+com.mucommander.file.AbstractFile
+com.mucommander.file.impl.ProxyFile
+com.mucommander.file.impl.local.LocalFile
+com.mucommander.file.impl.local.LocalFileTest
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.LocationTextField
+com.mucommander.ui.main.menu.MainMenuBar
+
+140
+alt hotkei broken nightli build us alt left drive select alt right drive select work ag doesn work latest nightli build download 15 minut ago ve notic action keymap action_keymap xml ha word press hotkei make differ remov ad didn chang left right drive selector don work
+2
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.RecordingKeyStrokeField
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.ShortcutsTableCellRenderer
+
+142
+npe refresh drive name icon refreshdrivenamesandicon open drive popup button drivepopupbutton java except thread refresh drive name icon refreshdrivenamesandicon java lang pointer except nullpointerexcept java java util hashtabl put hashtabl java 394 java com mucommand ui main drive popup button drivepopupbutton refresh drive name icon refreshdrivenamesandicon run drive popup button drivepopupbutton java 390
+2
+com.mucommander.ui.main.DrivePopupButton
+com.mucommander.ui.main.DrivePopupButton.RefreshDriveNamesAndIcons
+
+145
+creat attach id 53 ugli finder classfind patch recent move nightli build librari work copi librari mucommand dialog doesn work first error finder classfind find class insid jar file rel path name fix ugli patch browsabl zip archiv file ziparchivefil find browsabl find rel path relativepath replac browsabl get separ getsepar browsabl after error appear arrai index bound except arrayindexoutofboundsexcept relat combo box jcombobox index issu haven time closer
+2
+com.mucommander.extension.ClassFinder
+com.mucommander.ui.dialog.pref.general.AppearancePanel
+
+147
+open nativ remot directori download run file open nativ local directori open directori file manag remot directori samba ftp open nativ download directori content temporari pass file os open associ program behavior wrong
+4
+com.mucommander.job.CopyJob
+com.mucommander.job.TempCopyJob
+com.mucommander.job.TempExecJob
+com.mucommander.job.TempOpenWithJob
+
+151
+mark file numer leav first file unmark creat attach id 57 screenshot bug behaviour numer toggl mark file topmost list mark unmark topmost file keep mark stai unmark step reproduc enter numer keypad result file mark most expect result _all_ file mark toggl
+5
+com.mucommander.ui.action.impl.InvertSelectionAction
+com.mucommander.ui.action.impl.MarkAllAction
+com.mucommander.ui.action.impl.MarkExtensionAction
+com.mucommander.ui.action.impl.OpenInBothPanelsAction
+com.mucommander.ui.main.table.FileTableModel
+
+153
+mu command mucommand app ignor command line argument current specifi start locat start mu command mucommand from cli applescript shell command ad enabl drag drop function contextu menu function autom control from command line
+2
+com.mucommander.Launcher
+com.mucommander.ui.macosx.EAWTHandler
+
+163
+folder panel separ get mess up resiz step reproduc resiz main window make width small increas main window width expect behaviour folder panel separ stai posit initi 50 main window observ behaviour folder panel separ get push right window fix issu similar on ag ago resiz event handl posit separ calcul wrong time set symptom issu didn fix thought
+1
+com.mucommander.ui.layout.ProportionalSplitPane
+
+164
+illeg state except illegalstateexcept copi text hei copi sourc code mucommand run background illeg state except illegalstateexcept thrown except thread awt event queue eventqueu java lang illeg state except illegalstateexcept open clipboard sun awt window clipboard wclipboard open clipboard openclipboard method sun awt datatransf sun clipboard sunclipboard get clipboard format open close getclipboardformatsopenclos sun clipboard sunclipboard java 315 sun awt datatransf sun clipboard sunclipboard data flavor avail isdataflavoravail sun clipboard sunclipboard java 175 com mucommand ui dnd clipboard notifi clipboardnotifi toggl action state toggleactionst clipboard notifi clipboardnotifi java 59 com mucommand ui dnd clipboard notifi clipboardnotifi flavor chang flavorschang clipboard notifi clipboardnotifi java 67 sun awt datatransf sun clipboard sunclipboard sun flavor chang notifi 1sunflavorchangenotifi run sun clipboard sunclipboard java 427 java awt event invoc event invocationev dispatch invoc event invocationev java 209 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 597 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 273 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 183 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 173 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 168 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 160 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 121
+1
+com.mucommander.ui.dnd.ClipboardNotifier
+
+165
+toolbar element get hidden window small main window isn larg element toolbar aren displai isn terribl import incoher command bar behaviour resiz compon fit window clever solut wrap toolbar more on line on isn suffici displai
+2
+com.mucommander.ui.button.ToolbarMoreButton
+com.mucommander.ui.main.MainFrame
+
+166
+toolbar dispai separ last item toolbar displai separ last item us space mislead hint element after add separ toolbar last item
+4
+com.mucommander.ui.button.ToolbarMoreButton
+com.mucommander.ui.main.toolbar.ToolBarAttributes
+com.mucommander.ui.main.toolbar.ToolBarIO
+com.mucommander.ui.main.toolbar.ToolBarReader
+
+167
+odd select renam folder name contain period step reproduc creat folder name contain period test dir trigger renam function f6 expect behaviour name select observ behaviour select stop period behaviour perfect file make littl sens directori note keep behaviour special folder mu command mucommand app folder consid file 158 semi relat issu
+14
+com.mucommander.job.AbstractCopyJob
+com.mucommander.ui.action.impl.PackAction
+com.mucommander.ui.action.impl.UnpackAction
+com.mucommander.ui.dialog.file.AbstractCopyDialog
+com.mucommander.ui.dialog.file.CombineFilesDialog
+com.mucommander.ui.dialog.file.DownloadDialog
+com.mucommander.ui.dialog.file.FileCollisionRenameDialog
+com.mucommander.ui.dialog.file.LocalCopyDialog
+com.mucommander.ui.dialog.file.PackDialog
+com.mucommander.ui.dialog.file.PathFieldContent
+com.mucommander.ui.dialog.file.TransferDestinationDialog
+com.mucommander.ui.dialog.file.TransferDestinationDialog.InitialPathRetriever
+com.mucommander.ui.dialog.file.UnpackDialog
+com.mucommander.ui.main.table.FileTable.FilenameEditor
+
+173
+credenti store properli chang step reproduc store valid credenti remot account chang password account connect mu command mucommand make chang password leav store login password check expect behaviour connect success after restart mu command mucommand rememb credenti observ behaviour mu command mucommand connect forget overwrit expir credenti proper scenario trigger bug 100 identifi
+2
+com.mucommander.auth.CredentialsManager
+com.mucommander.ui.dialog.auth.AuthDialog
+
+176
+middl click select exhibit odd behaviour middl click select select more file expect ha reproduc consist panel contain larg number directori
+1
+com.mucommander.ui.main.table.FileTable
+
+177
+action keymap action_keymap xml pollut press action keymap action_keymap xml suddendli contain press keyword singl shortcut investig necessari get rid keyword
+2
+com.mucommander.ui.action.ActionKeymapWriter.Writer
+com.mucommander.ui.text.KeyStrokeUtils
+
+178
+custom color picker broken theme editor color picker us theme editor contain preview panel reflect color chang perform isn happen anymor preview panel updat
+1
+com.mucommander.ui.chooser.PreviewLabel
+
+179
+color quick list quicklist hard read color us quicklist header hard read white font doesn stand gradiant white black appar good idea us gradiant color better valu folder panel item displai kind inform
+1
+com.mucommander.ui.theme.ThemeData
+
+212
+run dialog rundialog crash frantic press enter step reproduc bug reproduc current nightli build invok run command dialog enter command pwd press enter repeatedli quickli shmup style after spin dial keep spin endlessli stack trace except thread awt event queue eventqueu java lang pointer except nullpointerexcept com mucommand ui autocomplet edit combobox complet editablecomboboxcomplet kei press keypress edit combobox complet editablecomboboxcomplet java 86 java awt compon process kei event processkeyev compon java 6084 javax swing compon jcompon process kei event processkeyev compon jcompon java 2799 java awt compon process event processev compon java 5903 java awt contain process event processev contain java 2102 java awt compon dispatch event impl dispatcheventimpl compon java 4497 java awt contain dispatch event impl dispatcheventimpl contain java 2160 java awt compon dispatch event dispatchev compon java 4327 java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev keyboard focu manag keyboardfocusmanag java 1848 java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev keyboard focu manag defaultkeyboardfocusmanag java 697 java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev keyboard focu manag defaultkeyboardfocusmanag java 962 java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert keyboard focu manag defaultkeyboardfocusmanag java 834 java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev keyboard focu manag defaultkeyboardfocusmanag java 661 java awt compon dispatch event impl dispatcheventimpl compon java 4369 java awt contain dispatch event impl dispatcheventimpl contain java 2160 java awt window dispatch event impl dispatcheventimpl window java 2440 java awt compon dispatch event dispatchev compon java 4327 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 599 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 300 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 210 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 204 java awt dialog run dialog java 1045 java awt dialog run dialog java 1097 java secur access control accesscontrol privileg doprivileg method java awt dialog show dialog java 1095 java awt compon show compon java 1422 java awt compon set visibl setvis compon java 1375 java awt window set visibl setvis window java 806 java awt dialog set visibl setvis dialog java 985 com mucommand ui dialog focu dialog focusdialog show dialog showdialog focu dialog focusdialog java 189 com mucommand ui action run command action runcommandact perform action performact run command action runcommandact java 38 com mucommand ui action mu action muaction action perform actionperform mu action muaction java 589 javax swing swing util swingutil notifi action notifyact swing util swingutil java 1641 javax swing compon jcompon process kei bind processkeybind compon jcompon java 2849 javax swing tabl jtabl process kei bind processkeybind tabl jtabl java 5197 com mucommand ui main tabl file tabl filet process kei bind processkeybind file tabl filet java 1069 javax swing compon jcompon process kei bind processkeybind compon jcompon java 2884 javax swing compon jcompon process kei event processkeyev compon jcompon java 2812 java awt compon process event processev compon java 5903 java awt contain process event processev contain java 2102 java awt compon dispatch event impl dispatcheventimpl compon java 4497 java awt contain dispatch event impl dispatcheventimpl contain java 2160 java awt compon dispatch event dispatchev compon java 4327 java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev keyboard focu manag keyboardfocusmanag java 1848 java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev keyboard focu manag defaultkeyboardfocusmanag java 697 java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev keyboard focu manag defaultkeyboardfocusmanag java 962 java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert keyboard focu manag defaultkeyboardfocusmanag java 834 java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev keyboard focu manag defaultkeyboardfocusmanag java 661 java awt compon dispatch event impl dispatcheventimpl compon java 4369 java awt contain dispatch event impl dispatcheventimpl contain java 2160 java awt window dispatch event impl dispatcheventimpl window java 2440 java awt compon dispatch event dispatchev compon java 4327 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 599 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 300 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 210 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 200 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 195 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 187 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 121
+1
+com.mucommander.ui.dialog.shell.RunDialog
+
+213
+onlin document action icon larg icon us onlin document os help mac help_mac png 19 x20 19x20 oppos icon 16 x16 16x16 big issu caus visual bug depend us exampl step reproduc assum shift us command bar modifi kei add onlin document displai shift press shift expect behaviour onlin document button appear chang command bar layout observ behaviour command bar statu bar shift up coupl pixel help mac help_mac png doesn fit button height
+1
+com.mucommander.ui.action.impl.GoToDocumentationAction
+
+214
+theme longer access theme stripe classic longer avail appear prefer panel window theme menu
+1
+com.mucommander.ui.theme.ThemeManager
+
+217
+pack file archiv stall forev step reproduc creat archiv test zip open test zip right panel folder contain plain file left panel pack creat archiv copi file from left panel right panel expect behaviour archiv correctli creat observ behaviour pack file dialog stall forev dialog manual close archiv properli creat
+1
+com.mucommander.job.ArchiveJob
+
+221
+click linux file tabl filet duplic issu 48 allow reopen ticket make on caus done perman fix us platform consid platform set
+1
+com.mucommander.ui.main.table.FileTable
+
+225
+fileicon displai set displai applic user home nethood target lnk resp ini icon displai set custom set npe patch file icon fileicon retriev icon from customerprovid
+2
+com.mucommander.ui.dialog.about.AboutDialog
+com.mucommander.ui.icon.FileIcons
+
+226
+contextu menu file tabl filet header current file tabl filet header contextu menu contain on item hide column improv replac menu contain size column toggl column visibl
+3
+com.mucommander.ui.main.menu.MainMenuBar
+com.mucommander.ui.main.table.Columns
+com.mucommander.ui.main.table.FileTableHeader
+
+227
+dynam drive drive popup menu dear suggest us proc mount fstab discov drive drive popup menu unix distro caus ad hoc drive usb drive cd rom show menu immedi after plug add patch right
+1
+com.mucommander.file.impl.local.LocalFile
+
+231
+skip error occur file transfer oper suggest http www mucommand com forum viewtop php 938 forum ad skip button error occur multipl file move copi oper nice featur
+8
+com.mucommander.job.FileJob
+com.mucommander.job.TransferFileJob
+com.mucommander.ui.dialog.file.CombineFilesDialog
+com.mucommander.ui.dialog.file.CopyDialog
+com.mucommander.ui.dialog.file.DownloadDialog
+com.mucommander.ui.dialog.file.MoveDialog
+com.mucommander.ui.dialog.file.TransferDestinationDialog
+com.mucommander.ui.dialog.file.UnpackDialog
+
+233
+possibl disabl refresh request http www mucommand com forum viewtop php 939 3152 forum nice let user disabl refresh mechan easili achiev accept valu pref refresh auto_refresh check period check_period
+1
+com.mucommander.ui.main.table.FolderChangeMonitor
+
+235
+intern text viewer open unicod encod file binari intern viewer recogn unicod file treat binari
+1
+com.mucommander.io.BinaryDetector
+
+237
+shortcut editor us differ color shortcut custom differ color shortcut chang from valu shortcut editor allow immedi spot action edit feel most peopl edit shortcut easili find chang restor button restor shortcut current select action current theme symbol link altern mark file foreground color us font color custom action
+4
+com.mucommander.ui.action.ActionKeymap
+com.mucommander.ui.dialog.pref.general.ShortcutsTable
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.KeymapTableModel
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.ShortcutsTableCellRenderer
+
+238
+tool bar mess up hidden step reproduc toggl toolbar visibl view hide toolbar restart mu command mucommand expect behaviour toolbar shouldn displai observ behaviour toolbar replac button displai toolbar action menu note bug occur startup toggl toolbar fix issu current session
+2
+com.mucommander.ui.action.impl.ToggleToolBarAction
+com.mucommander.ui.main.MainFrame
+
+243
+viewer editor menu don appear java mac os 10 updat java mac os 10 updat viewer editor menu don appear file on step reproduc view f3 edit f4 text file appli imag expect behavior file edit menu appear menu bar actual behavior file menu appear edit menu doesn addit note cmd tab applic back mu command mucommand refresh menu bar caus edit menu appear bug caus menu bar jmenubar refresh menu after ha first displai regress introduc java mac os 10 updat updat develop preview bug reproduc mu command mucommand nightli earlier version
+8
+com.mucommander.ui.viewer.EditorFrame
+com.mucommander.ui.viewer.FileEditor
+com.mucommander.ui.viewer.FileViewer
+com.mucommander.ui.viewer.ViewerFrame
+com.mucommander.ui.viewer.image.ImageViewer
+com.mucommander.ui.viewer.text.TextEditor
+com.mucommander.ui.viewer.text.TextEditorImpl
+com.mucommander.ui.viewer.text.TextViewer
+
+244
+encod detect work text viewer editor notic text editor impl texteditorimpl code duper encod detect us text viewer editor simpli ignor bogu statement matter detect encod file open utf
+1
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+245
+text editor unicod bom edit charact current unicod order mark bom receiv special treatment consid edit charact text editor file encod utf 16 32 lead order mark bom start invis charact editor evidenc caret right arrow press twice move past first real charact prevent artifact from occur unicod bom consid edit charact
+1
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+247
+keystrok conflict manag properli action keymap action_keymap xml step reproduc action keymap action_keymap xml file contain follow line xml action com mucommand ui action impl perman delet action permanentdeleteact keystrok f8 alt keystrok alt_keystrok delet start mu command mucommand app os delet file f8 expect behaviour perman delet action permanentdeleteact trigger observ behaviour delet action deleteact trigger addit note keyboard shortcut editor action map f8 backspac start mu command mucommand from command line java jar yield expect behaviour keyboard shortcut editor contain f8 backspac conflict
+6
+com.mucommander.ui.action.AcceleratorMap
+com.mucommander.ui.action.AcceleratorMap.ActionIdAndAcceleratorType
+com.mucommander.ui.action.ActionKeymap
+com.mucommander.ui.action.ActionProperties
+com.mucommander.ui.main.commandbar.CommandBarReader
+com.mucommander.ui.main.toolbar.ToolBarReader
+
+248
+end line separ intern editor edit window file file save unix line separ retain window style separ
+2
+com.mucommander.ui.viewer.text.TextEditor
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+250
+errat current file select refresh call repeatedli step reproduc select highlight file first on current folder let refresh action kei f9 press expect behavior current select file remain folder refresh actual behavior after current select file chang jump from on file issu reproduc current nightli
+3
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.table.FileTable.FolderChangeThread
+
+251
+intern text editor preserv unicod bom step reproduc creat utf 16 file edit intern text editor modifi save open expect behaviour content file displai correctli observ behaviour mu command mucommand print appear binari warn suggest fix implement bom writer bomwrit us save utf encod file
+1
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+254
+nightli build fail start nightli build fail start configur johann linux cud9 document mu command mucommand 0_8_4 mucommand sh load configur home johann mucommand prefer xml file directori valu load custom command home johann mucommand command xml file directori valu load custom associ home johann mucommand associ xml file directori valu load bookmark home johann mucommand bookmark xml file directori valu load shell histori home johann mucommand shell histori shell_histori xml file directori valu except thread main java lang except initi error exceptionininitializererror com mucommand ui main main frame mainfram init main frame mainfram java 280 com mucommand ui main window manag windowmanag creat main frame createnewmainfram window manag windowmanag java 345 com mucommand ui main window manag windowmanag creat main frame createnewmainfram window manag windowmanag java 312 com mucommand launcher main launcher java 553 caus java lang pointer except nullpointerexcept com mucommand ui action action properti actionproperti get action label getactionlabel action properti actionproperti java 92 com mucommand ui main quicklist recent locat ql recentlocationsql init recent locat ql recentlocationsql java 43 com mucommand ui main folder panel folderpanel clinit folder panel folderpanel java 129 more layer8 error
+2
+com.mucommander.Launcher
+com.mucommander.ui.action.ActionManager
+
+258
+refresh pick chang made file edit origin report http www mucommand com forum viewtop php 1019 3337 p3337 forum step reproduc choos file edit pai attent current file size date edit file chang save chang close editor back folder contain file edit expect behavior file size date updat reflect chang made actual behavior file size date updat
+1
+com.mucommander.ui.viewer.text.TextEditor
+
+261
+migrat issu step reproduc delet mu command mucommand prefer folder make backup copi first start mu command mucommand quit start mu command mucommand current nightli issu 101 log warn displai startup on action here first ten 2009 08 21 16 51 50 924 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok alt cancel map show parent folder ql showparentfoldersql 2009 08 21 16 51 50 925 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok alt cancel map show recent locat ql showrecentlocationsql 2009 08 21 16 51 50 926 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok alt cancel map show recent execut fil showrecentexecutedfil 2009 08 21 16 51 50 927 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok alt cancel map show bookmark ql showbookmarksql 2009 08 21 16 51 50 927 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok control cancel map add bookmark addbookmark 2009 08 21 16 51 50 927 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok control cancel map chang locat changeloc 2009 08 21 16 51 50 929 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok f10 cancel map close window closewindow 2009 08 21 16 51 50 929 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 117 action keymap file contain multipl associ keystrok meta cancel map close window closewindow 2009 08 21 16 51 50 929 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok control cancel map compar folder comparefold 2009 08 21 16 51 50 930 warn action keymap reader actionkeymapread process keystrok attribut processkeystrokeattribut 105 action keymap file contain multipl associ keystrok control cancel map connect server connecttoserv quit action keymap action_keymap xml ll notic on action open panel openinotherpanel even action custom xml version encod utf http trac mucommand com wiki action kei map actionkeymap inform custom file keymap version action id open panel openinotherpanel keystrok ctrl enter keymap command bar command_bar xml after quit ll notic action referenc action path action id xml version encod utf command bar command_bar modifi shift button action com mucommand ui action view action viewact button action com mucommand ui action edit action editact button action com mucommand ui action copi action copyact alt action alt_act com mucommand ui action local copi action localcopyact button action com mucommand ui action move action moveact alt action alt_act com mucommand ui action renam action renameact button action com mucommand ui action mkdir action mkdiract alt action alt_act com mucommand ui action mkfile action mkfileact button action com mucommand ui action delet action deleteact alt action alt_act com mucommand ui action perman delet action permanentdeleteact button action com mucommand ui action refresh action refreshact button action com mucommand ui action close window action closewindowact command bar command_bar guess file updat format chang made command bar command bar editor suggest toggl dirti flag after file written format applic exit toolbar xml
+14
+com.mucommander.ShutdownHook
+com.mucommander.ui.action.ActionKeymapIO
+com.mucommander.ui.action.ActionKeymapReader
+com.mucommander.ui.dialog.customization.CommandBarDialog
+com.mucommander.ui.main.commandbar.CommandBarAttributes
+com.mucommander.ui.main.commandbar.CommandBarIO
+com.mucommander.ui.main.commandbar.CommandBarReader
+com.mucommander.ui.main.commandbar.CommandBarWriter
+com.mucommander.ui.main.commandbar.CommandBarWriter.Writer
+com.mucommander.ui.main.toolbar.ToolBarAttributes
+com.mucommander.ui.main.toolbar.ToolBarIO
+com.mucommander.ui.main.toolbar.ToolBarReader
+com.mucommander.ui.main.toolbar.ToolBarWriter
+com.mucommander.ui.main.toolbar.ToolBarWriter.Writer
+
+274
+java version number dialog java version number displai dialog java vm version properti java version most vm meaning version number 07b latest appl vm ha 14 confus us java version java vm version us
+1
+com.mucommander.ui.dialog.about.AboutDialog
+
+277
+walk shortcut editor tabl keyboard arrow hei select mark action affect shortcut editor tabl check arik
+3
+com.mucommander.ui.layout.ProportionalSplitPane
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.table.FileTable
+
+309
+search type behaviour chang space bar select file anymor mu command mucommand search file space name after type letter cursor jump correct file hit enter open file folder second elaps search type mode switch back befor space select file hit enter right after search made brows file quickli
+3
+com.mucommander.ui.action.MuAction
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.table.FileTable.QuickSearch
+
+311
+free space indic flip free space indic turn compar normal bar amount space us drive fill up bar fill up drive cool bar gradual chang color more space us drive orang color 90 us red color more 95 us
+1
+com.mucommander.ui.main.StatusBar.VolumeSpaceLabel
+
+313
+network share drive button local network share label us drive popup button local
+1
+com.mucommander.ui.main.DrivePopupButton
+
+317
+miss text string pack dialog pack_dialog pack pack dialog bug caus submit button name pack dialog pack_dialog pack specifi sourc trunk sourc com mucommand ui dialog file pack dialog packdialog java l153
+1
+com.mucommander.ui.dialog.file.PackDialog
+
+321
+singl click treat click user click file file tabl click file second click treat click file launch open expect move select bar file open similarli item click parent folder singl click item treat click user parent folder lead unwant folder chang two click user up two level take up three level
+1
+com.mucommander.ui.main.table.FileTable
+
+327
+move error read file move renam file local drive error dialog pop up titl user choos skip skip move renam oper finish successfulli user choos retri dialog pop up
+1
+com.mucommander.file.impl.local.LocalFile
+
+328
+round displai file size toggl correctli toggl round displai file size checkbox folder section prefer behav correctli even checkbox mark file size displai round valu vice versa work correctli plai toggl checkbox watch folder view behaviour reproduc
+1
+com.mucommander.ui.main.table.FileTable
+
+330
+batch renam result wrong name follow directori file 01 txt 02 txt 03 txt follow pattern start format 01 result 04 txt 04 txt 04 txt expect result 02 txt 03 txt 04 txt
+1
+com.mucommander.ui.dialog.file.BatchRenameDialog
+
+331
+batch renam pattern replac part pattern select after select part pattern hit on pattern button text enter cursor posit replac select text step select from text hit button result expect
+2
+com.mucommander.ui.dialog.file.BatchRenameDialog
+com.mucommander.ui.dialog.file.BatchRenameDialog.AbstractToken
+
+334
+imposs delet 7z file after open zip 7zip file explor imposs delet on more file move trash us unlock program mu command mucommand lock file
+1
+com.mucommander.file.impl.sevenzip.SevenZipArchiveFile
+

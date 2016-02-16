@@ -1,0 +1,8 @@
+739,742c739,740
+<             var6.x = (int)(var3 & '\uffff');
+<             var8 = (short) var6.x;
+<             var6.y = (int)(var3 >> 16);
+<             var9 = (short) var6.y;
+---
+>             var8 = var6.x = (short)(var3 & '\uffff');
+>             var9 = var6.y = (short)(var3 >> 16);

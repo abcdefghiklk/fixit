@@ -1,0 +1,691 @@
+549
+enumer datatyp repres diagram enumer datatyp datatyp user creat abl place diagram high prioriti ad here record
+0
+
+1641
+explor option creat diagram from element lost diagram
+0
+
+1671
+extra lt searchpath gt ad time project save testcas start argouml 13 creat name apo apo creat attr apo attr newattr apo doubleclick attr compart creat oper doubleclick attr compart save project apo test zargo apo make copi test zargo make project import open test zargo save theoret two zargo file ident made chang follow analysi reveal differ file contain zip file test zargo differ fix affect file iter save load cycl test simpl ideal analysi done project ha diagram type case test argo line lt searchpath href quot project dir project_dir quot gt ad test todo ident test xmi ident test diagram1 test_classdiagram1 pgml strang empti fig group figgroup ad lt group name quot fig1 quot descript quot org tigri gef present fig group figgroup quot fill quot quot fillcolor quot quot stroke quot quot strokecolor quot 16777216 quot gt lt gt lt gt lt group gt test usecas diagram1 test_usecasediagram1 pgml ident cours empti
+0
+
+1884
+view todo item poster select item deselect argo view todo item poster open poster group select on todo item automat deselect after on second cross check v0 12 problem occur
+0
+
+1911
+implement file view fileview argo filechoos nice argo specif file zargo argo xmi file get specif icon select filechoos accomplish implement file iew fileview file chooser filechoos
+0
+
+1942
+enhanc argo uml argouml support model subsystem element elementimport enhanc argo uml argouml support model subsystem element elementimport creat relev fig improv add properti panel propertypanel possibl add defin remov element elementimport relat element make properti panel packag acknowledg generaliz element
+0
+
+2144
+us properti tab oper list oper list us properti tab possibl creat oper us case
+0
+
+2145
+us properti tab attribut list attribut list us properti tab possibl creat attribut us case
+0
+
+2225
+allow user creat diagram select classifi oper issu request follow enhanc allow user creat diagram select classifi oper first uml standard collabor diagram exist least quot classifi quot quot oper quot interpret standard user abl start argo uml argouml draw collabor diagram first defin appli statechart diagram mean formal user make mistak here wai handl quot user mistak quot vari degre user friendly on allow downlight toolbutton argo uml argouml excel allow mistak warn user critic non obstruct hime possibl correct error follow propos downlight collabor amp statechart diagram creation function more creat critic warn miss classifi oper modelel diagram allow user chang amp repres xxx collabor amp statemachin
+0
+
+2460
+java miss label radiobutton sourc gt java miss label radiobutton sourc gt java quot sourc quot dialog tab quot java quot nd 2nd radiobutton pair label conform st 1st on read quot arrai model quot button quot datatyp quot quot multipl quot
+0
+
+2472
+wrong keyboard focu set dialog after close amp reopen keyboard focu blue rectangl locat remain after close set dialog box close button window border reopen select menu edit gt set keyboard focu initi prefer tab click last checkmark keyboard focu blue rectangl item close dialog box close button right corner window border select menu edit gt set keyboard focu last checkbox wrong close dialog cancel button select menu edit gt set keyboard focu prefer tab
+0
+
+2500
+find find diagram quot find quot function menu toolbar design find diagram allow search model reproduc follow start argo uml argouml creat name quot test quot select find toolbar enter searchstr quot est quot start search work fine remov from diagram start search found fill quot diagram lt searchstr gt quot abl find obviou user diagram search chang ui ad function avail input welcom
+0
+
+2522
+initi valu combo initi valu field attribut panel us deprec defect combo box control simpl text entri field drop down combo real ad valu add need complic
+0
+
+2618
+edit associ rolenam add first creat associ on role click quot quot type role name quot foo quot quot foo quot role name properti record quot foo quot fix pars diagram user enter text process strip visibl charact
+0
+
+2712
+cd associ role associationrol name hidden show quot quot associ role associationrol name collabor diagram hidden show quot quot name empti base ha assign left empti clickabl don apo good thing
+0
+
+2732
+style tab respons incorrect content append garbag apo apo bound field style tab argo uml argouml doesn apo react show issu 2152
+0
+
+3100
+shown funni name explor after ad shown explor funni name quot anon quot quot anon quot guess stand quot anonym quot quot anonym quot after hour think wonder cryptic descript wha chosen write string apo plenti room
+0
+
+3145
+switch multipl ad diagram tool click add on more item switch multipl ad diagram tool click add on more item manual quot button click us tool bar tool add artifact select artifact ad multipl time draw area button click tool select tool chosen quot last part problem multipl ad mode singl click tool switch back singl ad mode remain ad mode more logicat de select tool
+0
+
+3164
+enter intern transit prop panel proppanel updat state design enter intern transit entri exit quot plain quot intern transit state diagram updat edit field state fig behav correctli updat model
+0
+
+3197
+implement call state callstat issu request implement call state callstat current call state callstat implement uml1 spec defin quot call state action state ha exactli on call action entri action quot special notat defin implement beter wait till uml notat specifi quot call state shown action state name oper call action put symbol name classifi host oper parenthes quot
+0
+
+3350
+click edg edit name click textual annot edg associ name place argo uml argouml edit mode text text current blank click click edg edit mode edg name annot associ edg includ edit associ end name click line end
+0
+
+3363
+complet object flow state objectflowst implement state dash line follow from user list describ problem marco kind creat object flow state objectflowst bound state work doesn apo implement object flow state objectflowst argo uml argouml on first java addit thing miss thing differ manual describ afaik let guid suppos us v0 18 creat name quot invoic quot creat statechart diagram state name quot paid quot quot unpaid quot creat activ diagram contain invoic draw object flow state objectflowst properti panel select dropdown label type select invoic diagram show name underlin click object flow state objectflowst diagram name white space empti edit box enter text quot paid quot press enter state exist name recogn text remain visibl diagram enter state refus properti panel show link state alter enter text diagram appar state name disappear from diagram after save load cycl dash transit from object flow state objectflowst turn full line us work time creat function improv dai michiel origin messag from quot marco lombardo quot lt user argouml tigri org gt sent wednesdai juli 27 2005 08 pm subject argouml user state object flow state objectflowst gt activ diagram on put activ object flow state objectflowst gt object flow state objectflowst specifi state exampl gt invoic state quot paid quot quot unpaid quot gt gt found put apo miss function gt gt gt gt mar gt compilo sub administr subadministr gt compilo sf net gt gt
+0
+
+3498
+diagram name remov from applic titl bar us select choos add us diagram us diagram child select us chang name us diagram click us diagram name us diagram correctli shown explor titl caption argo uml argouml haven apo check diagram type assum problem exist
+0
+
+3619
+self associ invis after add diagram ad associ diagram creat invis edg help critic note attach made more visibl doesn apo appear resiz move apo more on singl label overlap unread
+0
+
+3631
+perspect set includ set menu quot perspect quot set explor hidden includ gener set dialog minimum
+0
+
+3665
+activ diagram drop properli constrain creat us us diagram creat activ diagram us creat nd 2nd activ diagram us creat start state activ diagram select st 1st activ diagram from explor pane drag start node contain nd 2nd activ graph diagram pane contain st 1st activ graph argo uml argouml composit violat except compositionviolationexcept
+0
+
+3711
+strip diagram from poseidon xmi file load xmi format file creat poseidon uml receiv follow beauti java lang illeg argument except illegalargumentexcept org argouml kernel project add model addmodel project java 417 org argouml persist xmi parser xmipars read model readmodel xmi parser xmipars java 125 org argouml persist xmi file persist xmifilepersist load doload xmi file persist xmifilepersist java 174 org argouml uml ui action file oper actionfileoper load project loadproject action file oper actionfileoper java 163 org argouml uml ui action open project actionopenproject action perform actionperform action open project actionopenproject java 133 javax swing abstract button abstractbutton fire action perform fireactionperform abstract button abstractbutton java 1849 javax swing abstract button abstractbutton handler action perform actionperform abstract button abstractbutton java 2169 javax swing button model defaultbuttonmodel fire action perform fireactionperform button model defaultbuttonmodel java 420 javax swing button model defaultbuttonmodel set press setpress button model defaultbuttonmodel java 258 javax swing abstract button abstractbutton click doclick abstract button abstractbutton java 302 javax swing plaf basic basic menu item ui basicmenuitemui click doclick basic menu item ui basicmenuitemui java 1000 javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas basic menu item ui basicmenuitemui java 1041 java awt compon process mous event processmouseev compon java 5488 javax swing compon jcompon process mous event processmouseev compon jcompon java 3093 java awt compon process event processev compon java 5253 java awt contain process event processev contain java 1966 java awt compon dispatch event impl dispatcheventimpl compon java 3955 java awt contain dispatch event impl dispatcheventimpl contain java 2024 java awt compon dispatch event dispatchev compon java 3803 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4212 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3892 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3822 java awt contain dispatch event impl dispatcheventimpl contain java 2010 java awt window dispatch event impl dispatcheventimpl window java 1766 java awt compon dispatch event dispatchev compon java 3803 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 463 java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 234 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 163 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 157 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 149 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 110
+17
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicMenuItemUI
+javax.swing.plaf.basic.BasicMenuItemUI.Handler
+org.argouml.kernel.Project
+org.argouml.persistence.XMIParser
+org.argouml.persistence.XmiFilePersister
+org.argouml.uml.ui.ActionFileOperations
+org.argouml.uml.ui.ActionOpenProject
+
+3718
+model element modelel save contain model load attach model immedi save back comment miss ad comment diagram help least get save correctli apo apo fact diagram model chang manipul suspect
+0
+
+3773
+usabl tree close switch perspect annoi explor tree close after switch perspect nice root node reopen
+0
+
+3774
+set model ad diagram repeat start argouml drag creat defaultmodel diagram here backtrac echo execut argo uml argouml argouml log4j warn append found logger org argouml uml diagram structur static_structur diagram graph model classdiagramgraphmodel argouml log4j warn initi log4j properli argouml javax jmi reflect composit cycl except compositioncycleexcept argouml org netbean mdr storagemodel storabl object storableobject set composit setcomposit storabl object storableobject java 275 argouml org netbean mdr storagemodel assoc end index set assocendindexset add assoc end index set assocendindexset java 150 argouml org netbean mdr storagemodel storabl associ storableassoci add link addlink storabl associ storableassoci java 370 argouml org netbean mdr handler associ handler associationhandl handl local add _handlelocaladd associ handler associationhandl java 161 argouml org netbean mdr handler associ handler associationhandl handl add _handleadd associ handler associationhandl java 150 argouml org omg uml foundat core own element anamespaceownedel impl add unknown sourc argouml org omg uml foundat core own element anamespaceownedel impl add _add unknown sourc argouml org netbean mdr handler instanc handler instancehandl handl setr _handlesetr instanc handler instancehandl java 149 argouml org omg uml modelmanag model impl set setnamespac unknown sourc argouml org argouml model mdr core helper mdr impl corehelpermdrimpl add own element addownedel core helper mdr impl corehelpermdrimpl java 1972 argouml org argouml model abstract core helper decor abstractcorehelperdecor add own element addownedel abstract core helper decor abstractcorehelperdecor java 620 argouml org argouml uml diagram structur static_structur diagram graph model classdiagramgraphmodel add node addnod diagram graph model classdiagramgraphmodel java 355 argouml org tigri gef base mode place modeplac mous releas mode place mousereleasedmodeplac java 18 argouml org argouml uml diagram ui add exist node command addexistingnodecommand execut add exist node command addexistingnodecommand java 151 argouml org argouml uml diagram ui dn dj graph dndjgraph drop dn dj graph dndjgraph java 176 argouml java awt dnd drop target droptarget drop drop target droptarget java 398 argouml sun awt dnd sun drop target context peer sundroptargetcontextp process drop messag processdropmessag sun drop target context peer sundroptargetcontextp java 542 argouml sun awt dnd sun drop target context peer sundroptargetcontextp access 800 sun drop target context peer sundroptargetcontextp java 52 argouml sun awt dnd sun drop target context peer sundroptargetcontextp event dispatch eventdispatch dispatch drop event dispatchdropev sun drop target context peer sundroptargetcontextp java 805 argouml sun awt dnd sun drop target context peer sundroptargetcontextp event dispatch eventdispatch dispatch event dispatchev sun drop target context peer sundroptargetcontextp java 743 argouml sun awt dnd sun drop target event sundroptargetev dispatch sun drop target event sundroptargetev java 29 argouml java awt compon dispatch event impl dispatcheventimpl compon java 3494 argouml java awt contain dispatch event impl dispatcheventimpl contain java 1627 argouml java awt compon dispatch event dispatchev compon java 3477 argouml java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 3483 argouml java awt lightweight dispatch lightweightdispatch process drop target event processdroptargetev contain java 3269 argouml java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3123 argouml java awt contain dispatch event impl dispatcheventimpl contain java 1613 argouml java awt window dispatch event impl dispatcheventimpl window java 1606 argouml java awt compon dispatch event dispatchev compon java 3477 argouml java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 456 argouml java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 201 argouml java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 151 argouml java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 145 argouml java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 137 argouml java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 100
+22
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+java.awt.dnd.DropTarget
+org.argouml.model.AbstractCoreHelperDecorator
+org.argouml.model.mdr.CoreHelperMDRImpl
+org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel
+org.argouml.uml.diagram.ui.AddExistingNodeCommand
+org.argouml.uml.diagram.ui.DnDJGraph
+org.netbeans.mdr.handlers.AssociationHandler
+org.netbeans.mdr.handlers.InstanceHandler
+org.netbeans.mdr.storagemodel.AssocEndIndexSet
+org.netbeans.mdr.storagemodel.StorableAssociation
+org.netbeans.mdr.storagemodel.StorableObject
+org.omg.uml.foundation.core.ANamespaceOwnedElement.Impl
+org.omg.uml.modelmanagement.Model.Impl
+sun.awt.dnd.SunDropTargetContextPeer
+sun.awt.dnd.SunDropTargetContextPeer.EventDispatcher
+sun.awt.dnd.SunDropTargetEvent
+
+3790
+except save readonli directori reproduc error open zargo file open zargo file creat 20 alpha3 save after perform chang stacktrac java lang pointer except nullpointerexcept org argouml persist zargo file persist zargofilepersist save dosav zargo file persist zargofilepersist java 214 org argouml persist abstract file persist abstractfilepersist save abstract file persist abstractfilepersist java 197 org argouml ui project browser projectbrows save trysav project browser projectbrows java 980 org argouml ui project browser projectbrows save trysav project browser projectbrows java 946 org argouml uml ui action save project actionsaveproject action perform actionperform action save project actionsaveproject java 96 javax swing abstract button abstractbutton fire action perform fireactionperform abstract button abstractbutton java 1849 javax swing abstract button abstractbutton handler action perform actionperform abstract button abstractbutton java 2169 javax swing button model defaultbuttonmodel fire action perform fireactionperform button model defaultbuttonmodel java 420 javax swing button model defaultbuttonmodel set press setpress button model defaultbuttonmodel java 258 javax swing abstract button abstractbutton click doclick abstract button abstractbutton java 302 javax swing plaf basic basic menu item ui basicmenuitemui click doclick basic menu item ui basicmenuitemui java 1000 javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas basic menu item ui basicmenuitemui java 1041 java awt compon process mous event processmouseev compon java 5488 javax swing compon jcompon process mous event processmouseev compon jcompon java 3126 java awt compon process event processev compon java 5253 java awt contain process event processev contain java 1966 java awt compon dispatch event impl dispatcheventimpl compon java 3955 java awt contain dispatch event impl dispatcheventimpl contain java 2024 java awt compon dispatch event dispatchev compon java 3803 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4212 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3892 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3822 java awt contain dispatch event impl dispatcheventimpl contain java 2010 java awt window dispatch event impl dispatcheventimpl window java 1774 java awt compon dispatch event dispatchev compon java 3803 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 463 java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 242 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 163 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 157 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 149 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 110
+16
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicMenuItemUI
+javax.swing.plaf.basic.BasicMenuItemUI.Handler
+org.argouml.persistence.AbstractFilePersister
+org.argouml.persistence.ZargoFilePersister
+org.argouml.ui.ProjectBrowser
+org.argouml.uml.ui.ActionSaveProject
+
+3803
+direct entri text field draw result doubl first charact instanc statechart select previous unselect transit first charact type doubl text field annoi tiger 10 updat java vm web start
+0
+
+3812
+except open project fig comment port figcommentport found open recent project error org argouml persist open except openexcept org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 74 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 355 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 319 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1114 org argouml uml ui action reopen project actionreopenproject action perform actionperform action reopen project actionreopenproject java 86 javax swing abstract button abstractbutton fire action perform fireactionperform abstract button abstractbutton java 1849 javax swing abstract button abstractbutton handler action perform actionperform abstract button abstractbutton java 2169 javax swing button model defaultbuttonmodel fire action perform fireactionperform button model defaultbuttonmodel java 420 javax swing button model defaultbuttonmodel set press setpress button model defaultbuttonmodel java 258 javax swing abstract button abstractbutton click doclick abstract button abstractbutton java 302 javax swing plaf basic basic menu item ui basicmenuitemui click doclick basic menu item ui basicmenuitemui java 1000 javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas basic menu item ui basicmenuitemui java 1041 java awt awt event multicast awteventmulticast mous releas mousereleas awt event multicast awteventmulticast java 231 java awt compon process mous event processmouseev compon java 5488 javax swing compon jcompon process mous event processmouseev compon jcompon java 3126 java awt compon process event processev compon java 5253 java awt contain process event processev contain java 1966 java awt compon dispatch event impl dispatcheventimpl compon java 3955 java awt contain dispatch event impl dispatcheventimpl contain java 2024 java awt compon dispatch event dispatchev compon java 3803 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4212 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3892 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3822 java awt contain dispatch event impl dispatcheventimpl contain java 2010 java awt window dispatch event impl dispatcheventimpl window java 1774 java awt compon dispatch event dispatchev compon java 3803 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 463 java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 242 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 163 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 157 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 149 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 110 caus java lang index bound except indexoutofboundsexcept index size java util arrai list arraylist rang check rangecheck arrai list arraylist java 547 java util arrai list arraylist get arrai list arraylist java 322 org argouml persist fig edg handler figedgehandl add object addobject fig edg handler figedgehandl java 111 org tigri gef persist pgml handler privatehandl element gotel handler privatehandl java 61 org argouml persist handler privatehandl element gotel handler privatehandl java 109 org tigri gef persist pgml base handler basehandl end element endel base handler basehandl java 174 com sun org apach xerc intern parser abstract sax parser abstractsaxpars end element endel abstract sax parser abstractsaxpars java 633 com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan end element scanendel xml document fragment scanner impl xmldocumentfragmentscannerimpl java 1241 com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch xml document fragment scanner impl xmldocumentfragmentscannerimpl java 1685 com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu xml document fragment scanner impl xmldocumentfragmentscannerimpl java 368 com sun org apach xerc intern parser xml11 configur xml11configur pars xml11 configur xml11configur java 834 com sun org apach xerc intern parser xml11 configur xml11configur pars xml11 configur xml11configur java 764 com sun org apach xerc intern parser xml parser xmlparser pars xml parser xmlparser java 148 com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars abstract sax parser abstractsaxpars java 1242 javax xml parser sax parser saxpars pars sax parser saxpars java 375 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 149 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 118 org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 67 31 more caus java lang index bound except indexoutofboundsexcept index size java util arrai list arraylist rang check rangecheck arrai list arraylist java 547 java util arrai list arraylist get arrai list arraylist java 322 org argouml persist fig edg handler figedgehandl add object addobject fig edg handler figedgehandl java 111 org tigri gef persist pgml handler privatehandl element gotel handler privatehandl java 61 org argouml persist handler privatehandl element gotel handler privatehandl java 109 org tigri gef persist pgml base handler basehandl end element endel base handler basehandl java 174 com sun org apach xerc intern parser abstract sax parser abstractsaxpars end element endel abstract sax parser abstractsaxpars java 633 com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan end element scanendel xml document fragment scanner impl xmldocumentfragmentscannerimpl java 1241 com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch xml document fragment scanner impl xmldocumentfragmentscannerimpl java 1685 com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu xml document fragment scanner impl xmldocumentfragmentscannerimpl java 368 com sun org apach xerc intern parser xml11 configur xml11configur pars xml11 configur xml11configur java 834 com sun org apach xerc intern parser xml11 configur xml11configur pars xml11 configur xml11configur java 764 com sun org apach xerc intern parser xml parser xmlparser pars xml parser xmlparser java 148 com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars abstract sax parser abstractsaxpars java 1242 javax xml parser sax parser saxpars pars sax parser saxpars java 375 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 149 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 118 org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 67 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 355 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 319 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1114 org argouml uml ui action reopen project actionreopenproject action perform actionperform action reopen project actionreopenproject java 86 javax swing abstract button abstractbutton fire action perform fireactionperform abstract button abstractbutton java 1849 javax swing abstract button abstractbutton handler action perform actionperform abstract button abstractbutton java 2169 javax swing button model defaultbuttonmodel fire action perform fireactionperform button model defaultbuttonmodel java 420 javax swing button model defaultbuttonmodel set press setpress button model defaultbuttonmodel java 258 javax swing abstract button abstractbutton click doclick abstract button abstractbutton java 302 javax swing plaf basic basic menu item ui basicmenuitemui click doclick basic menu item ui basicmenuitemui java 1000 javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas basic menu item ui basicmenuitemui java 1041 java awt awt event multicast awteventmulticast mous releas mousereleas awt event multicast awteventmulticast java 231 java awt compon process mous event processmouseev compon java 5488 javax swing compon jcompon process mous event processmouseev compon jcompon java 3126 java awt compon process event processev compon java 5253 java awt contain process event processev contain java 1966 java awt compon dispatch event impl dispatcheventimpl compon java 3955 java awt contain dispatch event impl dispatcheventimpl contain java 2024 java awt compon dispatch event dispatchev compon java 3803 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4212 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3892 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3822 java awt contain dispatch event impl dispatcheventimpl contain java 2010 java awt window dispatch event impl dispatcheventimpl window java 1774 java awt compon dispatch event dispatchev compon java 3803 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 463 java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 242 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 163 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 157 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 149 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 110
+30
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.FragmentContentDispatcher
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration
+com.sun.org.apache.xerces.internal.parsers.XMLParser
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+java.util.ArrayList
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicMenuItemUI
+javax.swing.plaf.basic.BasicMenuItemUI.Handler
+javax.xml.parsers.SAXParser
+org.argouml.persistence.DiagramMemberFilePersister
+org.argouml.persistence.FigEdgeHandler
+org.argouml.persistence.PrivateHandler
+org.argouml.persistence.UmlFilePersister
+org.argouml.persistence.ZargoFilePersister
+org.argouml.ui.ProjectBrowser
+org.argouml.uml.ui.ActionReopenProject
+org.tigris.gef.persistence.pgml.BaseHandler
+org.tigris.gef.persistence.pgml.PGMLStackParser
+org.tigris.gef.persistence.pgml.PrivateHandler
+
+3814
+select base class from packag artificai restrict base classifi role select from packag down tree sequens associ us class from packag crtitic issu
+0
+
+3848
+allow gener datatyp diagram word roi feldman quot order us androm mda andrommda don apo abil modifi profil make signific extens custom andro mda andromda plug cartridg interest abil modifi extend profil includ gener data type datatyp quot implement allow data type datatyp drawn diagram notat defin uml spec
+0
+
+3882
+transit name refresh creat transit activ diagram doesn apo refresh name transit hierarch select tree program us defin trigger name
+0
+
+3911
+incorrect us quot remov quot popup menu action argument incorrect us quot remov quot popup menu action argument select action properti panel field argument rightclick quot quot quot remov quot wrong terminolog page argo uml argouml quot delet from model quot
+0
+
+3912
+delet argument action hide delet argument from action properti panel popup menu select quot remov quot remov argument from argument field chang target reveal delet happen correctli list updat
+0
+
+3918
+differ edit field properti transit guard express properti edit field apo transit guard express apo differ from us edit field type size bigger time actual height input field smaller render input unread first recogn version 18
+0
+
+3921
+reopen last save reopen last option automat load last save project startup argo uml argouml more reopen last project last open project last save project
+0
+
+3923
+problem import poseidon activ diagram from xmi bug beta prevent activ diagram andro mda andromda here apo ve done xmi from poseidon work andro mda andromda piggi bank piggybank exampl fine add activ diagram us diagram get activ graph activ graph alltogeth add activ diagram import activ graph screenshot attach http argouml tigri org servlet read msg readmsg list dev amp msg msgno 19267 screenshot http argouml tigri org servlet get attach getattach list dev amp msg id msgid 770688 amp attach id attachid code work poseidon won apo work argo uml argouml collect action state actionst get model getmodel get action state getallactionst iter iter action state iteractionst action state actionst iter iter action state iteractionst ha next hasnext action state facad actionstatefacad action state actionst action state facad actionstatefacad iter action state iteractionst next action state actionst quot quot import activ diagram from poseidon work result process andro mda andromda make activ diagram from begin argo uml argouml won apo work error nr argo uml argouml ha problem activ diagram lofi
+0
+
+3938
+toolbar button background wrong java amp button background button icon main tool bar diagram toolbar don apo match toolbar background toolbar background ha gradient button don apo highlight color rollov select button normal background flat grei gradient match feel shini metal java amp make toolbar wierd altern shini flat patch tool bar appear get creat gener argo menu genericargomenu bar turn call code from org tigri toolbar project entir project toolbar don apo copi project didn apo chase
+0
+
+3945
+except assign oper callev follow except assign operatioon callev follow start argo uml argouml draw creat oper select creat statechart diagram creat state transit rightclick trigger fiel transit creat callev creat paramet callev set type paramet initi valu name navig callev select quot oper newoper quot from dropdown bang argouml org netbean mdr logger inform except occur mon feb 13 13 03 31 cet 2006 argouml java lang illeg argument except illegalargumentexcept handl call event callev impl id 0000000000000786 mid 00000000000004 fe 00000000000004fe opckg 0000000000000622 oper argouml org argouml model mdr common behavior helper mdr impl commonbehaviorhelpermdrimpl set oper setoper common behavior helper mdr impl commonbehaviorhelpermdrimpl java 249 argouml org argouml model abstract common behavior helper decor abstractcommonbehaviorhelperdecor set oper setoper abstract common behavior helper decor abstractcommonbehaviorhelperdecor java 152 argouml org argouml uml ui behavior state machin state_machin uml call event oper combo box2 umlcalleventoperationcombobox2 actio perform nperform prop panel call event proppanelcallev java 91 argouml javax swing combo box jcombobox fire action event fireactionev combo box jcombobox java 1197 argouml javax swing combo box jcombobox content chang contentschang combo box jcombobox java 1268 argouml javax swing abstract list model abstractlistmodel fire content chang firecontentschang abstract list model abstractlistmodel java 100 argouml org argouml uml ui uml combo box model2 umlcomboboxmodel2 fire content chang firecontentschang uml combo box model2 umlcomboboxmodel2 java 501 argouml org argouml uml ui uml combo box model2 umlcomboboxmodel2 set select item setselecteditem uml combo box model2 umlcomboboxmodel2 java 391 argouml org argouml uml ui uml combo box model2 umlcomboboxmodel2 remov element removeel uml combo box model2 umlcomboboxmodel2 java 402 argouml org argouml uml ui uml combo box model2 umlcomboboxmodel2 properti chang propertychang uml combo box model2 umlcomboboxmodel2 java 168 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 437 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 356 argouml org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 argouml java lang thread run thread java 595
+8
+java.lang.Thread
+javax.swing.AbstractListModel
+javax.swing.JComboBox
+org.argouml.model.AbstractCommonBehaviorHelperDecorator
+org.argouml.model.mdr.CommonBehaviorHelperMDRImpl
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.uml.ui.UMLComboBoxModel2
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+
+3947
+bad behaviour sequenc diagram remov simpl state call action creat sequenc diagram us ad classifi role call return on return call apo activ apo doen apo finish point caus apo insert call lane reload seuqenc diagram check problem persist white rectangl durat call doesn apo appear lane call impos add call make diagram imposs us
+0
+
+3974
+method properti updat diagram chang name method properti diagram won apo updat reload diagram add paramet thing chang visibl modifi exampl method properti apo bug present last version apo ve us 20 alpha5
+0
+
+4005
+make activ graph context assign easier argouml andromda extens on thing requir andromda assign control context activ graph ad tag quot from andromda apo guid add tag valu control point us andromda present control usecas us usecas valu name us notic set tag export xmi file from argouml ha follow tag activ tag lt uml state machin statemachin context gt lt uml us usecas xmi idref apo 0000000000000 eb9 0000000000000eb9 apo gt lt uml state machin statemachin context gt refer us chang context point control wai yung
+0
+
+4007
+except delet diagram except occur delet diagram indirectli current on load attach zargo activ diagram explor select delet from model answer ye dialog caus follow except echo execut argo uml argouml argouml org netbean mdr logger inform except occur sun feb 26 20 40 03 cet 2006 argouml javax jmi reflect invalid object except invalidobjectexcept object mofid 00000000000007 dd 00000000000007dd longer exist argouml org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 argouml org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 argouml org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 argouml org omg uml behavioralel statemachin simpl state simplest impl get activ getdoact unknown sourc argouml org argouml model mdr facad mdr impl facademdrimpl get activ getdoact facad mdr impl facademdrimpl java 2765 argouml org argouml uml diagram state ui fig state figstat updat listen updatelisten fig state figstat java 150 argouml org argouml uml diagram ui fig node model element fignodemodelel set owner setown fig node model element fignodemodelel java 1236 argouml org argouml uml diagram state ui fig state figstat set owner setown fig state figstat java 110 argouml org tigri gef present fig remov from diagram removefromdiagram fig java 705 argouml org tigri gef present fig node fignod remov from diagram removefromdiagram fig node fignod java 230 argouml org argouml uml diagram ui fig node model element fignodemodelel remov from diagram removefromdiagram fig node model element fignodemodelel java 1569 argouml org argouml kernel project remov fig removefig project java 1055 argouml org argouml kernel project trash intern trashintern project java 969 argouml org argouml kernel project move trash movetotrash project java 947 argouml org argouml uml diagram ui fig node model element fignodemodelel properti chang propertychang fig node model element fignodemodelel java 910 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 437 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 356 argouml org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 argouml java lang thread run thread java 595 argouml log4j warn append found logger org argouml ui targetmanag target manag targetmanag argouml log4j warn initi log4j properli argouml java lang pointer except nullpointerexcept argouml javax swing swing util swingutil comput intersect computeintersect swing util swingutil java 417 argouml javax swing repaint manag repaintmanag paint dirti region paintdirtyregion repaint manag repaintmanag java 430 argouml org argouml uml diagram ui tab diagram tabdiagram set target settarget tab diagram tabdiagram java 195 argouml org argouml uml diagram ui tab diagram tabdiagram target set targetset tab diagram tabdiagram java 372 argouml org argouml ui targetmanag target manag targetmanag fire target set firetargetset target manag targetmanag java 783 argouml org argouml ui targetmanag target manag targetmanag intern set target internalonsettarget target manag targetmanag java 487 argouml org argouml ui targetmanag target manag targetmanag set target settarget target manag targetmanag java 467 argouml org argouml uml diagram ui uml diagram umldiagram properti chang propertychang uml diagram umldiagram java 484 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 437 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 356 argouml org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 argouml java lang thread run thread java 595 argouml org netbean mdr logger inform except occur sun feb 26 20 40 03 cet 2006 argouml javax jmi reflect invalid object except invalidobjectexcept object mofid 00000000000007 de 00000000000007de longer exist argouml org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 argouml org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 argouml org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 argouml org omg uml behavioralel statemachin simpl state simplest impl get exit getexit unknown sourc argouml org argouml model mdr facad mdr impl facademdrimpl get exit getexit facad mdr impl facademdrimpl java 1821 argouml org argouml uml notat uml state bodi notat uml statebodynotationuml string tostr state bodi notat uml statebodynotationuml java 85 argouml org argouml uml diagram state ui fig state figstat updat intern updateintern fig state figstat java 278 argouml org argouml uml diagram state ui fig state figstat model chang modelchang fig state figstat java 131 argouml org argouml uml diagram ui fig node model element fignodemodelel properti chang propertychang fig node model element fignodemodelel java 942 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 437 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 356 argouml org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 argouml java lang thread run thread java 595 argouml org netbean mdr logger inform except occur sun feb 26 20 40 03 cet 2006 argouml javax jmi reflect invalid object except invalidobjectexcept object mofid 00000000000007 de 00000000000007de longer exist argouml org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 argouml org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 argouml org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 argouml org omg uml behavioralel statemachin simpl state simplest impl get exit getexit unknown sourc argouml org argouml model mdr facad mdr impl facademdrimpl get exit getexit facad mdr impl facademdrimpl java 1821 argouml org argouml uml notat uml state bodi notat uml statebodynotationuml string tostr state bodi notat uml statebodynotationuml java 85 argouml org argouml uml diagram state ui fig state figstat updat intern updateintern fig state figstat java 278 argouml org argouml uml diagram state ui fig state figstat model chang modelchang fig state figstat java 131 argouml org argouml uml diagram ui fig node model element fignodemodelel properti chang propertychang fig node model element fignodemodelel java 942 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 437 argouml org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 356 argouml org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 argouml java lang thread run thread java 595
+18
+java.lang.Thread
+javax.swing.RepaintManager
+javax.swing.SwingUtilities
+org.argouml.kernel.Project
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.ui.targetmanager.TargetManager
+org.argouml.uml.diagram.state.ui.FigState
+org.argouml.uml.diagram.ui.FigNodeModelElement
+org.argouml.uml.diagram.ui.TabDiagram
+org.argouml.uml.diagram.ui.UMLDiagram
+org.argouml.uml.notation.uml.StateBodyNotationUml
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.handlers.InstanceHandler
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+org.omg.uml.behavioralelements.statemachines.SimpleState.Impl
+org.tigris.gef.presentation.Fig
+org.tigris.gef.presentation.FigNode
+
+4019
+save project dialog rememb load save project dialog assum save filenam last project save last project load
+0
+
+4031
+tag definit tagdefinit type enumer problem andro mda andromda profil open argo uml argouml compat singl file version andro mda andromda profil tag definit tagdefinit andromda hibern gener own stereotyp lt lt entiti gt gt type tag definit tagdefinit hibern gener hibernategeneratorclass show up intern xmi id grei
+0
+
+4037
+excess redraw diagram cv version regress from 20 argo uml argouml take upward 40 processor time diagram instanc on project two most complic diagram burn 50 processor time run quartz debug applic two diagram diagram repaint constantli diagram big screen 1920 x1200 1920x1200 take bit time back 20 releas version don apo behavior fact cpu load better even draw built cv version quot build sh quot copi jar file proper place insid copi applic work fine examin thing complex caus redraw presenc associ edg current diagram attach ca3 design ca3design zargo file quot hardwar resourc quot quot activ object quot diagram made simpl diagram on associ trigger behavior quot redraw problem demonstr quot diagram open context menu associ choos quot navig bidirect quot constant repaint stop
+0
+
+4043
+name state disappear project load make state chart name state save load state name longer displai build from cv head march 2006
+0
+
+4049
+updat role phrase associ diagram updat connect pane chang role phrase associ end chang connect panel chang tab back happen immedi
+0
+
+4078
+oper box call action callact proppanel small oper field pixel high jre5 metal
+0
+
+4085
+except ad deferr event action state illeg argument except illegalargumentexcept thrown select from deferr event pane action state properti panel choos select gt add from context popup menu java lang illeg argument except illegalargumentexcept unrecogn object action state actionst impl id 00000000000018 eb 00000000000018eb mid 00000000000005 e9 00000000000005e9 opckg 0000000000000622 org omg uml behavioralel activitygraph action state actionst impl org argouml model mdr facad mdr impl facademdrimpl illeg argument illegalargu facad mdr impl facademdrimpl java 4150 org argouml model mdr facad mdr impl facademdrimpl illeg argument object illegalargumentobject facad mdr impl facademdrimpl java 4125 org argouml model mdr facad mdr impl facademdrimpl get trigger gettrigg facad mdr impl facademdrimpl java 3416 org argouml uml ui behavior activ graph activity_graph action add event trigger actionaddeventastrigg get select getselect action add event trigger actionaddeventastrigg java 79 org argouml uml ui abstract action add model element abstractactionaddmodelel action perform actionperform abstract action add model element abstractactionaddmodelel java 79 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc
+4
+javax.swing.AbstractButton
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.uml.ui.AbstractActionAddModelElement
+org.argouml.uml.ui.behavior.activity_graphs.ActionAddEventAsTrigger
+
+4088
+except creat classifierrol spot stack trace after event creat creat collab diagram from creat classifi role diagram haven apo abl reproduc info factori creat org argouml uml ui foundat core prop panel proppanelclass org omg uml foundat core uml umlclass impl tab prop tabprop java 344 info target remov targetremov targetev org argouml ui targetmanag target event targetev sourc org argouml ui targetmanag target manag targetmanag 14 ba9 a2 14ba9a2 uml combo box model2 umlcomboboxmodel2 java 551 info get prop panel org omg uml foundat core uml umlclass impl found cach org argouml uml ui foundat core prop panel proppanelclass 801 x172 801x172 invalid layout org tigri swidget label layout labelledlayout alignmentx alignmenti border flag maximum size maximums minimum size minimums prefer size preferreds tab prop tabprop java 335 info ad diagram member project java 339 info member project java 352 info factori creat org argouml uml diagram ui prop panel uml collabor diagram proppanelumlcollaborationdiagram org argouml uml diagram collabor ui uml collabor diagram umlcollaborationdiagram tab prop tabprop java 344 info factori creat org argouml uml ui behavior collabor prop panel classifi role proppanelclassifierrol org omg uml behavioralel collabor classifi role classifierrol impl tab prop tabprop java 344 info target remov targetremov targetev org argouml ui targetmanag target event targetev sourc org argouml ui targetmanag target manag targetmanag 14 ba9 a2 14ba9a2 uml combo box model2 umlcomboboxmodel2 java 551 org netbean mdr logger inform except occur mon mar 13 22 01 12 gmt 2006 java lang illeg argument except illegalargumentexcept illeg rang bound org argouml model mdr data type factori mdr impl datatypesfactorymdrimpl s2b data type factori mdr impl datatypesfactorymdrimpl java 304 org argouml model mdr data type factori mdr impl datatypesfactorymdrimpl creat multipl rang createmultiplicityrang data type factori mdr impl datatypesfactorymdrimpl java 253 org argouml model mdr data type factori mdr impl datatypesfactorymdrimpl pars rang parserang data type factori mdr impl datatypesfactorymdrimpl java 236 org argouml model mdr data type factori mdr impl datatypesfactorymdrimpl creat multipl createmultipl data type factori mdr impl datatypesfactorymdrimpl java 223 org argouml uml ui behavior collabor action set classifi role multipl actionsetclassifierrolemultipl set select item setselecteditem action set classifi role multipl actionsetclassifierrolemultipl java 65 org argouml uml ui action set multipl actionsetmultipl action perform actionperform action set multipl actionsetmultipl java 57 javax swing combo box jcombobox fire action event fireactionev unknown sourc javax swing combo box jcombobox content chang contentschang unknown sourc javax swing abstract list model abstractlistmodel fire content chang firecontentschang unknown sourc org argouml uml ui uml combo box model2 umlcomboboxmodel2 fire content chang firecontentschang uml combo box model2 umlcomboboxmodel2 java 515 org argouml uml ui uml combo box model2 umlcomboboxmodel2 set select item setselecteditem uml combo box model2 umlcomboboxmodel2 java 403 org argouml uml ui uml multipl combo box model umlmultiplicitycomboboxmodel set select item setselecteditem uml multipl combo box model umlmultiplicitycomboboxmodel java 102 org argouml uml ui uml combo box model2 umlcomboboxmodel2 properti chang propertychang uml combo box model2 umlcomboboxmodel2 java 151 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 438 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 357 org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 java lang thread run unknown sourc info configur save document set bob argo user properti configur properti configurationproperti java 136
+11
+java.lang.Thread
+javax.swing.AbstractListModel
+javax.swing.JComboBox
+org.argouml.model.mdr.DataTypesFactoryMDRImpl
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.uml.diagram.collaboration.ui
+org.argouml.uml.ui.ActionSetMultiplicity
+org.argouml.uml.ui.UMLComboBoxModel2
+org.argouml.uml.ui.UMLMultiplicityComboBoxModel
+org.argouml.uml.ui.behavior.collaborations.ActionSetClassifierRoleMultiplicity
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+
+4100
+except uml model element list model2 umlmodelelementlistmodel2 delet except occur follow circumst draw class gener show proppanel gener delet from model parent org netbean mdr logger inform except occur sat mar 18 16 30 35 cet 2006 javax jmi reflect invalid object except invalidobjectexcept object mofid 000000000000077c longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler associ handler associationhandl handl queri _handlequeri associ handler associationhandl java 105 org omg uml foundat core parent special aparentspeci impl get special getspeci unknown sourc org argouml model mdr facad mdr impl facademdrimpl get special getspeci facad mdr impl facademdrimpl java 3223 org argouml uml ui foundat core uml generaliz element special list model umlgeneralizableelementspecializationlistmodel build model list buildmodellist uml generaliz element special list model umlgeneralizableelementspecializationlistmodel java 50 org argouml uml ui uml model element list model2 umlmodelelementlistmodel2 properti chang propertychang uml model element list model2 umlmodelelementlistmodel2 java 117 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 438 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 357 org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 java lang thread run unknown sourc
+9
+java.lang.Thread
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.uml.ui.UMLModelElementListModel2
+org.argouml.uml.ui.foundation.core.UMLGeneralizableElementSpecializationListModel
+org.netbeans.mdr.handlers.AssociationHandler
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+org.omg.uml.foundation.core.AParentSpecialization.Impl
+
+4101
+button uml combo box navig umlcomboboxnavig initi downlight button uml combo box navig umlcomboboxnavig combobox navig button right initi downlight properti panel statemachin amp context field select combo button activ select empti valu oper field callev proppanel button remain highlight wrong
+0
+
+4103
+except delet transit follow caus except creat statechart diagram state transit make transit visibl explor delet on state org netbean mdr logger inform except occur sun mar 19 17 39 53 cet 2006 javax jmi reflect invalid object except invalidobjectexcept object mofid 00000000000007 f7 00000000000007f7 longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 org omg uml behavioralel statemachin transit impl get trigger gettrigg unknown sourc org argouml model mdr facad mdr impl facademdrimpl get trigger gettrigg facad mdr impl facademdrimpl java 3413 org argouml uml notat uml transit notat uml transitionnotationuml string tostr transit notat uml transitionnotationuml java 430 org argouml ui explor explor tree explorertre convert valu text convertvaluetotext explor tree explorertre java 256 javax swing tree tree cell render defaulttreecellrender get tree cell render compon gettreecellrenderercompon tree cell render defaulttreecellrender java 331 org argouml uml ui uml tree cell render umltreecellrender get tree cell render compon gettreecellrenderercompon uml tree cell render umltreecellrender java 78 javax swing plaf basic basic tree ui basictreeui node dimens handler nodedimensionshandl get node dimens getnodedimens basic tree ui basictreeui java 2693 javax swing tree abstract layout cach abstractlayoutcach get node dimens getnodedimens abstract layout cach abstractlayoutcach java 475 javax swing tree variabl height layout cach variableheightlayoutcach tree state node treestatenod updat prefer size updatepreferreds variabl height layout cach variableheightlayoutcach java 1342 javax swing tree variabl height layout cach variableheightlayoutcach tree state node treestatenod updat prefer size updatepreferreds variabl height layout cach variableheightlayoutcach java 1333 javax swing tree variabl height layout cach variableheightlayoutcach tree node chang treenodeschang variabl height layout cach variableheightlayoutcach java 418 javax swing plaf basic basic tree ui basictreeui handler tree node chang treenodeschang basic tree ui basictreeui java 3667 javax swing tree tree model defaulttreemodel fire tree node chang firetreenodeschang tree model defaulttreemodel java 466 javax swing tree tree model defaulttreemodel node chang nodeschang tree model defaulttreemodel java 328 javax swing tree tree model defaulttreemodel node chang nodechang tree model defaulttreemodel java 261 org argouml ui explor explor tree node explorertreenod node modifi nodemodifi explor tree node explorertreenod java 102 org argouml ui explor explor tree model explorertreemodel travers modifi traversemodifi explor tree model explorertreemodel java 237 org argouml ui explor explor tree model explorertreemodel travers modifi traversemodifi explor tree model explorertreemodel java 233 org argouml ui explor explor tree model explorertreemodel travers modifi traversemodifi explor tree model explorertreemodel java 233 org argouml ui explor explor tree model explorertreemodel travers modifi traversemodifi explor tree model explorertreemodel java 233 org argouml ui explor explor tree model explorertreemodel travers modifi traversemodifi explor tree model explorertreemodel java 233 org argouml ui explor explor tree model explorertreemodel travers modifi traversemodifi explor tree model explorertreemodel java 233 org argouml ui explor explor tree model explorertreemodel model element chang modelelementchang explor tree model explorertreemodel java 213 org argouml ui explor explor event adaptor explorereventadaptor properti chang propertychang explor event adaptor explorereventadaptor java 196 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 438 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 357 org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 java lang thread run thread java 595
+20
+java.lang.Thread
+javax.swing.plaf.basic.BasicTreeUI.Handler
+javax.swing.plaf.basic.BasicTreeUI.NodeDimensionsHandler
+javax.swing.tree.AbstractLayoutCache
+javax.swing.tree.DefaultTreeCellRenderer
+javax.swing.tree.DefaultTreeModel
+javax.swing.tree.VariableHeightLayoutCache
+javax.swing.tree.VariableHeightLayoutCache.TreeStateNode
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.ui.explorer.ExplorerEventAdaptor
+org.argouml.ui.explorer.ExplorerTree
+org.argouml.ui.explorer.ExplorerTreeModel
+org.argouml.ui.explorer.ExplorerTreeNode
+org.argouml.uml.notation.uml.TransitionNotationUml
+org.argouml.uml.ui.UMLTreeCellRenderer
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.handlers.InstanceHandler
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+org.omg.uml.behavioralelements.statemachines.Transition.Impl
+
+4129
+action state actionst notat updat activ graph chang script bodi action state actionst apo entri action diagram isn apo updat chang action state actionst apo name isn apo displai diagram updat correct text from entri action
+0
+
+4130
+except startng project node select quot longer exist quot except hapen select quot quot attach project load attach project deploy diagram select node select quot quot answer org netbean mdr logger inform except occur sun mar 26 23 13 55 cest 2006 javax jmi reflect invalid object except invalidobjectexcept object mofid 10 3049 a8 a5 3049a8a5 10 a386296 b1 10a386296b1 8000 0000000000000 cbd 0000000000000cbd longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 org omg uml foundat core node impl get deploi compon getdeployedcompon unknown sourc org argouml model mdr facad mdr impl facademdrimpl get deploi compon getdeployedcompon facad mdr impl facademdrimpl java 2605 org argouml uml ui foundat core uml node deploi compon list model umlnodedeployedcomponentlistmodel build model list buildmodellist prop panel node proppanelnod java 107 org argouml uml ui uml model element list model2 umlmodelelementlistmodel2 properti chang propertychang uml model element list model2 umlmodelelementlistmodel2 java 117 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 438 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 357 org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 java lang thread run unknown sourc org netbean mdr logger inform except occur sun mar 26 23 13 55 cest 2006 javax jmi reflect invalid object except invalidobjectexcept object mofid 10 3049 a8 a5 3049a8a5 10 a386296 b1 10a386296b1 8000 0000000000000 cbd 0000000000000cbd longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 org omg uml foundat core node impl get deploi compon getdeployedcompon unknown sourc org argouml model mdr facad mdr impl facademdrimpl get deploi compon getdeployedcompon facad mdr impl facademdrimpl java 2605 org argouml uml ui foundat core uml node deploi compon list model umlnodedeployedcomponentlistmodel build model list buildmodellist prop panel node proppanelnod java 107 org argouml uml ui uml model element list model2 umlmodelelementlistmodel2 properti chang propertychang uml model element list model2 umlmodelelementlistmodel2 java 117 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 438 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 357 org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 java lang thread run unknown sourc
+9
+java.lang.Thread
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.uml.ui.UMLModelElementListModel2
+org.argouml.uml.ui.foundation.core.UMLNodeDeployedComponentListModel
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.handlers.InstanceHandler
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+org.omg.uml.foundation.core.Node.Impl
+
+4137
+stereotyp proppanel show field extend element extendedel stereotyp proppanel show field extend element extendedel from uml document extend element extendedel design model element affect stereotyp on model element kind specifi base baseclass attribut
+0
+
+4148
+specif miss from oper properti panel oper properti panel field displai modifi attribut apo specif apo type string mean inform effect lost hidden xmi file import attribut set
+0
+
+4155
+file save overwrit confirm creat project select file gt save specifi exist filenam file overwritten warn confirm file gt save oper ask confirm appar two differ code path
+0
+
+4162
+checklist us lt attribut gt us lt gt checklist attribut item quot lt attribut gt appli instanc lt attribut gt includ instanc subclass quot read quot lt attribut gt appli instanc lt attribut apo contain gt includ instanc subclass quot
+0
+
+4173
+delet element edit tag valu caus except after action involv tag valu properti tab empti reproduc creat diagram click quot tag valu quot tab select first tag valu empti press ctrl del gt delet creat diagram click properti tab gt empti consol show except log file attach
+0
+
+4178
+allow commented remov from proppanel allow commented remov from proppanel field quot annot element quot done popup menu field contain on entri quot remov quot
+0
+
+4180
+stereotyp fig deform after reload doubleclick stereotyp get edit box past stereotyp edit stereotyp shown ugli border save reload after creation
+0
+
+4181
+draw associationclass broken imposs draw associationclass diagram edg attach get follow except except thread quot awt event queue eventqueu quot java lang cast except classcastexcept org argouml uml diagram ui fig associ figassociationclass org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl model event registermodelev model event pump mdr impl modeleventpumpmdrimpl java 461 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl add model event listen addmodeleventlisten model event pump mdr impl modeleventpumpmdrimpl java 170 org argouml uml diagram ui fig node model element fignodemodelel add element listen addelementlisten fig node model element fignodemodelel java 1674 org argouml uml diagram structur static_structur ui fig figclass updat listen updatelisten fig figclass java 878 org argouml uml diagram ui fig node model element fignodemodelel set owner setown fig node model element fignodemodelel java 1208 org argouml uml diagram structur static_structur ui fig figclass lt init gt fig figclass java 152 org argouml uml diagram ui fig associ figclassassociationclass lt init gt fig associ figclassassociationclass java 56 org argouml uml diagram ui mode creat associ modecreateassociationclass end attach endattach mode creat associ modecreateassociationclass java 75 org tigri gef base mode creat poli edg modecreatepolyedg mous releas mousereleas mode creat poli edg modecreatepolyedg java 250 org tigri gef base mode manag modemanag mous releas mousereleas mode manag modemanag java 220 org tigri gef base editor mous releas mousereleas editor java 772 java awt awt event multicast awteventmulticast mous releas mousereleas awt event multicast awteventmulticast java 231 java awt compon process mous event processmouseev compon java 5488 javax swing compon jcompon process mous event processmouseev compon jcompon java 3126 org tigri gef graph present graph intern pane jgraphinternalpan process mous event processmouseev graph jgraph java 640 java awt compon process event processev compon java 5253 java awt contain process event processev contain java 1966 java awt compon dispatch event impl dispatcheventimpl compon java 3955 java awt contain dispatch event impl dispatcheventimpl contain java 2024 java awt compon dispatch event dispatchev compon java 3803 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4212 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3892 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3822 java awt contain dispatch event impl dispatcheventimpl contain java 2010 java awt window dispatch event impl dispatcheventimpl window java 1774 java awt compon dispatch event dispatchev compon java 3803 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 463 java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 242 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 163 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 157 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 149 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 110
+16
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.JComponent
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.uml.diagram.static_structure.ui.FigClass
+org.argouml.uml.diagram.ui.FigNodeModelElement
+org.argouml.uml.diagram.ui.ModeCreateAssociationClass
+org.tigris.gef.base.Editor
+org.tigris.gef.base.ModeCreatePolyEdge
+org.tigris.gef.base.ModeManager
+org.tigris.gef.graph.presentation.JGraphInternalPane
+
+4194
+except prop panel tag valu proppaneltaggedvalu panel found select tag valu taggedvalu explor get except complain quot org argouml uml ui foundat core prop panel tag valu proppaneltaggedvalu panel found quot afaik from composit centric explor perspect tag valu taggedvalu model element modelel ha proppanel on simpli exclud tag valu taggedvalu tab prop tabprop set target settarget suffici except thrown
+0
+
+4200
+activ diagram vanish activ diagram vanish get defect stand main model folder right mous click choos from drope meniu quot add quot appear renam diagram ju drag on on right mous button releas remain unchang expect expand diagram tree select properti own element diagram click allow review
+0
+
+4222
+oper argument name refresh incorrectli chang name argument oper doesn apo work circunst creat creat oper add argument set name argument diagram doesn apo refresh name save project name argument chang name oper next time open project doen apo happen
+0
+
+4227
+chang notat set updat diagram chang notat set menu edit gt set updat diagram appli press appli chang notat languag view gt notat report tom issu 4224
+0
+
+4231
+open except find context initi activ diagram report problem http argouml tigri org project bug project_bug html error open file casino dev workflow casinodevworkflow zargo info argo uml argouml version 21 java version 07 0_07 java vendor sun microsystem java vendor url http java sun com java home directori java jre1 07 0_07 java classpath dev tool devtool argo uml argouml argouml jar oper window xp version architectur x86 user name alec clew user home directori document set alec clew current directori dev tool devtool argo uml argouml jvm total memori 14888960 jvm free memori 1250640 error occur 29 2006 07 11 54 gmt caus java lang illeg state except illegalstateexcept find context initi activ diagram org tigri gef persist pgml pgml handler pgmlhandler init diagram initdiagram pgml handler pgmlhandler java 112 org tigri gef persist pgml pgml handler pgmlhandler pgml handler pgmlhandler java 72 org tigri gef persist pgml initi handler initialhandl start element startel initi handler initialhandl java 62 com sun org apach xerc intern parser abstract sax parser abstractsaxpars start element startel unknown sourc com sun org apach xerc intern impl dtd xmldtd valid xmldtdvalid start element startel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan start element scanstartel unknown sourc com sun org apach xerc intern impl xml document scanner impl xmldocumentscannerimpl content dispatch contentdispatch scan root element hook scanrootelementhook unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml parser xmlparser pars unknown sourc com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars unknown sourc javax xml parser sax parser saxpars pars unknown sourc org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 150 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 119 org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 67 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 355 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 341 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1239 org argouml uml ui action open project actionopenproject action perform actionperform action open project actionopenproject java 160 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc javax swing abstract button abstractbutton handler action perform actionperform unknown sourc javax swing button model defaultbuttonmodel fire action perform fireactionperform unknown sourc javax swing button model defaultbuttonmodel set press setpress unknown sourc javax swing abstract button abstractbutton click doclick unknown sourc javax swing plaf basic basic menu item ui basicmenuitemui click doclick unknown sourc javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt compon process mous event processmouseev unknown sourc javax swing compon jcompon process mous event processmouseev unknown sourc java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process mous event processmouseev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc full except org argouml persist open except openexcept java lang illeg state except illegalstateexcept find context initi activ diagram org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 74 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 355 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 341 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1239 org argouml uml ui action open project actionopenproject action perform actionperform action open project actionopenproject java 160 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc javax swing abstract button abstractbutton handler action perform actionperform unknown sourc javax swing button model defaultbuttonmodel fire action perform fireactionperform unknown sourc javax swing button model defaultbuttonmodel set press setpress unknown sourc javax swing abstract button abstractbutton click doclick unknown sourc javax swing plaf basic basic menu item ui basicmenuitemui click doclick unknown sourc javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt compon process mous event processmouseev unknown sourc javax swing compon jcompon process mous event processmouseev unknown sourc java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process mous event processmouseev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc caus java lang illeg state except illegalstateexcept find context initi activ diagram org tigri gef persist pgml pgml handler pgmlhandler init diagram initdiagram pgml handler pgmlhandler java 112 org tigri gef persist pgml pgml handler pgmlhandler pgml handler pgmlhandler java 72 org tigri gef persist pgml initi handler initialhandl start element startel initi handler initialhandl java 62 com sun org apach xerc intern parser abstract sax parser abstractsaxpars start element startel unknown sourc com sun org apach xerc intern impl dtd xmldtd valid xmldtdvalid start element startel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan start element scanstartel unknown sourc com sun org apach xerc intern impl xml document scanner impl xmldocumentscannerimpl content dispatch contentdispatch scan root element hook scanrootelementhook unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml parser xmlparser pars unknown sourc com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars unknown sourc javax xml parser sax parser saxpars pars unknown sourc org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 150 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 119 org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 67 31 more java lang illeg state except illegalstateexcept find context initi activ diagram org argouml uml diagram activ ui uml activ diagram umlactivitydiagram initi uml activ diagram umlactivitydiagram java 118 org tigri gef persist pgml pgml handler pgmlhandler init diagram initdiagram pgml handler pgmlhandler java 108 org tigri gef persist pgml pgml handler pgmlhandler pgml handler pgmlhandler java 72 org tigri gef persist pgml initi handler initialhandl start element startel initi handler initialhandl java 62 com sun org apach xerc intern parser abstract sax parser abstractsaxpars start element startel unknown sourc com sun org apach xerc intern impl dtd xmldtd valid xmldtdvalid start element startel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan start element scanstartel unknown sourc com sun org apach xerc intern impl xml document scanner impl xmldocumentscannerimpl content dispatch contentdispatch scan root element hook scanrootelementhook unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml parser xmlparser pars unknown sourc com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars unknown sourc javax xml parser sax parser saxpars pars unknown sourc org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 150 org tigri gef persist pgml pgml stack parser pgmlstackpars read diagram readdiagram pgml stack parser pgmlstackpars java 119 org argouml persist diagram member file persist diagrammemberfilepersist load diagram member file persist diagrammemberfilepersist java 67 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 355 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 341 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1239 org argouml uml ui action open project actionopenproject action perform actionperform action open project actionopenproject java 160 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc javax swing abstract button abstractbutton handler action perform actionperform unknown sourc javax swing button model defaultbuttonmodel fire action perform fireactionperform unknown sourc javax swing button model defaultbuttonmodel set press setpress unknown sourc javax swing abstract button abstractbutton click doclick unknown sourc javax swing plaf basic basic menu item ui basicmenuitemui click doclick unknown sourc javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt compon process mous event processmouseev unknown sourc javax swing compon jcompon process mous event processmouseev unknown sourc java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process mous event processmouseev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc
+30
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.FragmentContentDispatcher
+com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.ContentDispatcher
+com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration
+com.sun.org.apache.xerces.internal.parsers.XMLParser
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicMenuItemUI
+javax.swing.plaf.basic.BasicMenuItemUI.Handler
+javax.xml.parsers.SAXParser
+org.argouml.persistence.DiagramMemberFilePersister
+org.argouml.persistence.UmlFilePersister
+org.argouml.persistence.ZargoFilePersister
+org.argouml.ui.ProjectBrowser
+org.argouml.uml.diagram.activity.ui.UMLActivityDiagram
+org.argouml.uml.ui.ActionOpenProject
+org.tigris.gef.persistence.pgml.InitialHandler
+org.tigris.gef.persistence.pgml.PGMLHandler
+org.tigris.gef.persistence.pgml.PGMLStackParser
+
+4245
+repaint except creat sequenc diagram get follow except first time sequenc diagram creat apo ve catch debugg context didn apo obviou caus problem appear problem michiel report comment issu 4174 ha close except thread quot awt event queue eventqueu quot java lang pointer except nullpointerexcept java awt rectangl set bound setbound unknown sourc javax swing repaint manag repaintmanag collect dirti compon collectdirtycompon unknown sourc javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc javax swing event queue util systemeventqueueutil compon work request componentworkrequest run unknown sourc java awt event invoc event invocationev dispatch unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc
+6
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.Rectangle
+java.awt.event.InvocationEvent
+javax.swing.RepaintManager
+javax.swing.SystemEventQueueUtilities.ComponentWorkRequest
+
+4272
+invalid element except invalidelementexcept checklist follow caus complet crash argo uml argouml invalid element except invalidelementexcept draw class draw associ delet from model associ draw associ class click checklist tab minim argo uml argouml window show screen show empti argo uml argouml window last step need show sever problem issu similar issu 4182 except except thread quot awt event queue eventqueu quot org argouml model invalid element except invalidelementexcept uuid 10 c3 a8 a2a c3a8a2a 10 bd3 d01 e34 10bd3d01e34 8000 00000000000009 ac 00000000000009ac org argouml model mdr facad mdr impl facademdrimpl get name getnam facad mdr impl facademdrimpl java 4403 org argouml ocl critic ocl evalu criticoclevalu eval string evaltostr critic ocl evalu criticoclevalu java 64 org argouml uml cognit checklist uml check item umlcheckitem expand uml check item umlcheckitem java 87 org argouml cognit checklist check item checkitem get descript getdescript check item checkitem java 128 org argouml cognit checklist ui tabl model checklist tablemodelchecklist get valu getvalueat tab checklist tabchecklist java 363 javax swing tabl jtabl get valu getvalueat unknown sourc javax swing tabl jtabl prepar render preparerender unknown sourc javax swing plaf basic basic tabl ui basictableui paint cell paintcel unknown sourc javax swing plaf basic basic tabl ui basictableui paint cell paintcel unknown sourc javax swing plaf basic basic tabl ui basictableui paint unknown sourc javax swing plaf compon ui componentui updat unknown sourc javax swing compon jcompon paint compon paintcompon unknown sourc javax swing compon jcompon paint unknown sourc javax swing compon jcompon paint children paintchildren unknown sourc javax swing compon jcompon paint unknown sourc javax swing viewport jviewport paint unknown sourc javax swing compon jcompon paint children paintchildren unknown sourc javax swing compon jcompon paint unknown sourc javax swing compon jcompon paint children paintchildren unknown sourc javax swing compon jcompon paint unknown sourc javax swing compon jcompon paint children paintchildren unknown sourc javax swing compon jcompon paint unknown sourc javax swing compon jcompon paint children paintchildren unknown sourc javax swing compon jcompon paint unknown sourc javax swing compon jcompon paint offscreen buffer paintwithoffscreenbuff unknown sourc javax swing compon jcompon paint buffer paintdoublebuff unknown sourc javax swing compon jcompon paint immedi _paintimmedi unknown sourc javax swing compon jcompon paint immedi paintimmedi unknown sourc javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc javax swing event queue util systemeventqueueutil compon work request componentworkrequest run unknown sourc java awt event invoc event invocationev dispatch unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc caus javax jmi reflect invalid object except invalidobjectexcept object mofid 10 c3 a8 a2a c3a8a2a 10 bd3 d01 e34 10bd3d01e34 8000 00000000000009 ac 00000000000009ac longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 org netbean mdr handler instanc handler instancehandl handl get _handleget instanc handler instancehandl java 193 org omg uml foundat core uml associ umlassoci impl get name getnam unknown sourc org argouml model mdr facad mdr impl facademdrimpl get name getnam facad mdr impl facademdrimpl java 4394 36 more
+18
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.event.InvocationEvent
+javax.swing.JComponent
+javax.swing.JTable
+javax.swing.JViewport
+javax.swing.RepaintManager
+javax.swing.SystemEventQueueUtilities.ComponentWorkRequest
+javax.swing.plaf.ComponentUI
+javax.swing.plaf.basic.BasicTableUI
+org.argouml.cognitive.checklist.CheckItem
+org.argouml.cognitive.checklist.ui.TableModelChecklist
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.ocl.CriticOclEvaluator
+org.argouml.uml.cognitive.checklist.UMLCheckItem
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.handlers.InstanceHandler
+org.omg.uml.foundation.core.UmlAssociation.Impl
+
+4276
+invalid object except invalidobjectexcept delet class draw class select delet from model menu rightclick javax jmi reflect invalid object except invalidobjectexcept object mofid 127 249892 a7 249892a7 10 bd8531009 10bd8531009 8000 00000000000007 e2 00000000000007e2 longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler base object handler baseobjecthandl ref meta object refmetaobject base object handler baseobjecthandl java 292 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl model event registermodelev model event pump mdr impl modeleventpumpmdrimpl java 446 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl add model event listen addmodeleventlisten model event pump mdr impl modeleventpumpmdrimpl java 152 org argouml model abstract model event pump abstractmodeleventpump add model event listen addmodeleventlisten abstract model event pump abstractmodeleventpump java 63 org argouml uml ui uml model element list model2 umlmodelelementlistmodel2 set target settarget uml model element list model2 umlmodelelementlistmodel2 java 305 org argouml uml ui uml model element list model2 umlmodelelementlistmodel2 target remov targetremov uml model element list model2 umlmodelelementlistmodel2 java 429 org argouml uml ui prop panel proppanel fire target remov firetargetremov prop panel proppanel java 529 org argouml uml ui prop panel proppanel target remov targetremov prop panel proppanel java 483 org argouml uml ui tab prop tabprop fire target remov firetargetremov tab prop tabprop java 849 org argouml uml ui tab prop tabprop target remov targetremov tab prop tabprop java 789 org argouml ui detail pane detailspan fire target remov firetargetremov detail pane detailspan java 677 org argouml ui detail pane detailspan target remov targetremov detail pane detailspan java 605 org argouml ui targetmanag target manag targetmanag fire target remov firetargetremov target manag targetmanag java 809 org argouml ui targetmanag target manag targetmanag intern set target internalonsettarget target manag targetmanag java 478 org argouml ui targetmanag target manag targetmanag remov target removetarget target manag targetmanag java 642 org argouml ui targetmanag target manag targetmanag target remov targetremov remov target manag targetmanag java 1116 org argouml ui targetmanag target manag targetmanag remov properti chang propertychang target manag targetmanag java 1107 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl fire model event pump mdr impl modeleventpumpmdrimpl java 412 org argouml model mdr model event pump mdr impl modeleventpumpmdrimpl chang model event pump mdr impl modeleventpumpmdrimpl java 334 org netbean mdr util event notifi eventnotifi event deliveri eventsdeliveri run event notifi eventnotifi java 270 java lang thread run thread java 595
+12
+java.lang.Thread
+org.argouml.model.AbstractModelEventPump
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.ui.DetailsPane
+org.argouml.ui.targetmanager.TargetManager
+org.argouml.ui.targetmanager.TargetManager.Remover
+org.argouml.ui.targetmanager.TargetManager.TargetRemover
+org.argouml.uml.ui.PropPanel
+org.argouml.uml.ui.TabProps
+org.argouml.uml.ui.UMLModelElementListModel2
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.util.EventNotifier.EventsDelivery
+
+4279
+invalid element except invalidelementexcept set notat languag project load project load clear file gt load project follow except load project after state restart argo uml argouml error open file issue4274 softiam zargo info argo uml argouml version pre 22 alpha2 java version 02 0_02 java vendor sun microsystem java vendor url http java sun com java home directori program file java jre1 02 0_02 java classpath argouml core lib build eclips eclips workspac argouml core lib antlral jar eclips workspac argouml core lib common log jar eclips workspac argouml core lib log4j jar eclips workspac argouml core lib ocl argo jar eclips workspac argouml core lib toolbar jar eclips workspac argouml core lib swidget jar eclips workspac argouml core lib gef 11 m10 3m10 jar eclips workspac argouml core model build eclips eclips workspac argouml core model mdr build eclips eclips workspac argouml core model mdr lib jmi jar eclips workspac argouml core model mdr lib jmiutil jar eclips workspac argouml core model mdr lib mdrapi jar eclips workspac argouml core model mdr lib mof jar eclips workspac argouml core model mdr lib nbmdr jar eclips workspac argouml core model mdr lib openid util jar argouml core tool build eclips eclips workspac argouml core tool ant lib ant jar eclips workspac argouml core tool junit junit jar eclips workspac argouml core tool lib easymock12 jar eclips workspac argouml build eclips eclips workspac argouml core lib antlral jar eclips workspac argouml core lib common log jar eclips workspac argouml core lib log4j jar eclips workspac argouml core lib ocl argo jar eclips workspac argouml core lib toolbar jar eclips workspac argouml core lib swidget jar eclips workspac argouml core lib gef 11 m10 3m10 jar eclips workspac argouml core model build eclips eclips workspac argouml core lib log4j jar eclips workspac argouml core tool ant lib ant jar eclips workspac argouml core tool junit junit jar eclips workspac argouml core tool lib easymock12 jar oper window xp version architectur x86 user name tom morri user home directori document set tom morri current directori eclips workspac argouml jvm total memori 68018176 jvm free memori 12835120 error occur fri jun 16 11 46 16 edt 2006 caus org argouml model invalid element except invalidelementexcept javax jmi reflect invalid object except invalidobjectexcept object mofid 64 88 100 116 c26 bc 116c26bc 10 bdbac263d 10bdbac263d 8000 0000000000001005 longer exist org argouml model mdr facad mdr impl facademdrimpl get base getbas facad mdr impl facademdrimpl java 1651 org argouml model mdr core helper mdr impl corehelpermdrimpl get sourc getsourc core helper mdr impl corehelpermdrimpl java 1233 org argouml model abstract core helper decor abstractcorehelperdecor get sourc getsourc abstract core helper decor abstractcorehelperdecor java 380 org argouml uml diagram ui fig edg model element figedgemodelel get sourc getsourc fig edg model element figedgemodelel java 1132 org argouml uml diagram ui fig edg model element figedgemodelel updat classifi updateclassifi fig edg model element figedgemodelel java 1022 org argouml uml diagram ui fig edg model element figedgemodelel render chang renderingchang fig edg model element figedgemodelel java 712 org argouml uml diagram ui fig edg model element figedgemodelel notat chang notationchang fig edg model element figedgemodelel java 898 org argouml applic event argo event pump argoeventpump handl fire notat event handlefirenotationev argo event pump argoeventpump java 190 org argouml applic event argo event pump argoeventpump handl fire event handlefireev argo event pump argoeventpump java 264 org argouml applic event argo event pump argoeventpump fire event dofireev argo event pump argoeventpump java 298 org argouml applic event argo event pump argoeventpump fire event fireev argo event pump argoeventpump java 282 org argouml kernel project set projectset fire event fireev project set projectset java 425 org argouml kernel project set projectset set notat languag setnotationlanguag project set projectset java 116 org argouml persist argo parser argopars handl notat languag handlenotationlanguag argo parser argopars java 307 org argouml persist argo parser argopars handl end element handleendel argo parser argopars java 174 org argouml persist sax parser base saxparserbas end element endel sax parser base saxparserbas java 247 com sun org apach xerc intern parser abstract sax parser abstractsaxpars end element endel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan end element scanendel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml parser xmlparser pars unknown sourc com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars unknown sourc javax xml parser sax parser saxpars pars unknown sourc org argouml persist sax parser base saxparserbas pars sax parser base saxparserbas java 146 org argouml persist argo parser argopars read project readproject argo parser argopars java 90 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 343 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 341 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1281 org argouml uml ui action open project actionopenproject action perform actionperform action open project actionopenproject java 164 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc javax swing abstract button abstractbutton handler action perform actionperform unknown sourc javax swing button model defaultbuttonmodel fire action perform fireactionperform unknown sourc javax swing button model defaultbuttonmodel set press setpress unknown sourc javax swing plaf basic basic button listen basicbuttonlisten mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt compon process mous event processmouseev unknown sourc javax swing compon jcompon process mous event processmouseev unknown sourc java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process mous event processmouseev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc caus javax jmi reflect invalid object except invalidobjectexcept object mofid 64 88 100 116 c26 bc 116c26bc 10 bdbac263d 10bdbac263d 8000 0000000000001005 longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 org omg uml behavioralel usecas includ impl get base getbas unknown sourc org argouml model mdr facad mdr impl facademdrimpl get base getbas facad mdr impl facademdrimpl java 1644 56 more full except org argouml persist open except openexcept org argouml model invalid element except invalidelementexcept javax jmi reflect invalid object except invalidobjectexcept object mofid 64 88 100 116 c26 bc 116c26bc 10 bdbac263d 10bdbac263d 8000 0000000000001005 longer exist org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 363 org argouml persist zargo file persist zargofilepersist load doload zargo file persist zargofilepersist java 341 org argouml ui project browser projectbrows load project loadproject project browser projectbrows java 1281 org argouml uml ui action open project actionopenproject action perform actionperform action open project actionopenproject java 164 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc javax swing abstract button abstractbutton handler action perform actionperform unknown sourc javax swing button model defaultbuttonmodel fire action perform fireactionperform unknown sourc javax swing button model defaultbuttonmodel set press setpress unknown sourc javax swing plaf basic basic button listen basicbuttonlisten mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt compon process mous event processmouseev unknown sourc javax swing compon jcompon process mous event processmouseev unknown sourc java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process mous event processmouseev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc caus org argouml model invalid element except invalidelementexcept javax jmi reflect invalid object except invalidobjectexcept object mofid 64 88 100 116 c26 bc 116c26bc 10 bdbac263d 10bdbac263d 8000 0000000000001005 longer exist org argouml model mdr facad mdr impl facademdrimpl get base getbas facad mdr impl facademdrimpl java 1651 org argouml model mdr core helper mdr impl corehelpermdrimpl get sourc getsourc core helper mdr impl corehelpermdrimpl java 1233 org argouml model abstract core helper decor abstractcorehelperdecor get sourc getsourc abstract core helper decor abstractcorehelperdecor java 380 org argouml uml diagram ui fig edg model element figedgemodelel get sourc getsourc fig edg model element figedgemodelel java 1132 org argouml uml diagram ui fig edg model element figedgemodelel updat classifi updateclassifi fig edg model element figedgemodelel java 1022 org argouml uml diagram ui fig edg model element figedgemodelel render chang renderingchang fig edg model element figedgemodelel java 712 org argouml uml diagram ui fig edg model element figedgemodelel notat chang notationchang fig edg model element figedgemodelel java 898 org argouml applic event argo event pump argoeventpump handl fire notat event handlefirenotationev argo event pump argoeventpump java 190 org argouml applic event argo event pump argoeventpump handl fire event handlefireev argo event pump argoeventpump java 264 org argouml applic event argo event pump argoeventpump fire event dofireev argo event pump argoeventpump java 298 org argouml applic event argo event pump argoeventpump fire event fireev argo event pump argoeventpump java 282 org argouml kernel project set projectset fire event fireev project set projectset java 425 org argouml kernel project set projectset set notat languag setnotationlanguag project set projectset java 116 org argouml persist argo parser argopars handl notat languag handlenotationlanguag argo parser argopars java 307 org argouml persist argo parser argopars handl end element handleendel argo parser argopars java 174 org argouml persist sax parser base saxparserbas end element endel sax parser base saxparserbas java 247 com sun org apach xerc intern parser abstract sax parser abstractsaxpars end element endel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan end element scanendel unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl fragment content dispatch fragmentcontentdispatch dispatch unknown sourc com sun org apach xerc intern impl xml document fragment scanner impl xmldocumentfragmentscannerimpl scan document scandocu unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml11 configur xml11configur pars unknown sourc com sun org apach xerc intern parser xml parser xmlparser pars unknown sourc com sun org apach xerc intern parser abstract sax parser abstractsaxpars pars unknown sourc javax xml parser sax parser saxpars pars unknown sourc org argouml persist sax parser base saxparserbas pars sax parser base saxparserbas java 146 org argouml persist argo parser argopars read project readproject argo parser argopars java 90 org argouml persist uml file persist umlfilepersist load doload uml file persist umlfilepersist java 343 29 more caus javax jmi reflect invalid object except invalidobjectexcept object mofid 64 88 100 116 c26 bc 116c26bc 10 bdbac263d 10bdbac263d 8000 0000000000001005 longer exist org netbean mdr handler base object handler baseobjecthandl get deleg _getdeleg base object handler baseobjecthandl java 353 org netbean mdr handler instanc handler instancehandl get instanc deleg getinstancedeleg instanc handler instancehandl java 48 org netbean mdr handler instanc handler instancehandl handl getr _handlegetr instanc handler instancehandl java 103 org omg uml behavioralel usecas includ impl get base getbas unknown sourc org argouml model mdr facad mdr impl facademdrimpl get base getbas facad mdr impl facademdrimpl java 1644 56 more
+33
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.FragmentContentDispatcher
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration
+com.sun.org.apache.xerces.internal.parsers.XMLParser
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicButtonListener
+javax.xml.parsers.SAXParser
+org.argouml.application.events.ArgoEventPump
+org.argouml.kernel.ProjectSettings
+org.argouml.model.AbstractCoreHelperDecorator
+org.argouml.model.mdr.CoreHelperMDRImpl
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.persistence.ArgoParser
+org.argouml.persistence.SAXParserBase
+org.argouml.persistence.UmlFilePersister
+org.argouml.persistence.ZargoFilePersister
+org.argouml.ui.ProjectBrowser
+org.argouml.uml.diagram.ui.FigEdgeModelElement
+org.argouml.uml.ui.ActionOpenProject
+org.netbeans.mdr.handlers.BaseObjectHandler
+org.netbeans.mdr.handlers.InstanceHandler
+org.omg.uml.behavioralelements.usecases.Include.Impl
+
+4280
+wrong behavior save unavail media step reproduc open project save remov media usb drive network share folder unplug media small modif project resav file argo pop up messag box text quot problem ha occur file corrupt report bug www argouml org quot pop up messag box stack trace file found except filenotfoundexcept thrown don apo right behavior argo pop up messag box nicer text quot file project current unavail choos locat save quot eventu open save file chooser filechoos
+0
+
+4281
+delet context state machin statemachin delet state machin statemachin current delet oper state machin statemachin statechart diagram statechartdiagram delet necessari own state machin statemachin exist
+0
+
+4298
+move view notat menu item file menu menu item view gt notat lead list support languag belong view menu set languag us creation project retain possibl easyli notat languag us project menuitem move file menu preferr properti item
+0
+
+4302
+lt lt gt gt stereotyp sequenc diagram step select classifi role directli diagram select properti window click stereotyp type stereotyp name expect result stereotyp creat assign classifi displai diagram actual result stereotyp creat assign classifi role displai project explor lt lt gt gt diagram stereotyp unasign from classifi role remov from avail classifi apo stereotyp
+0
+
+4324
+wrong extens save step reproduc creat project add compon save name quot foo quot extens quot uml quot chang resav project file name quot foo uml quot correct extens quot zargo quot press quot save quot get foo uml zargo file apo good alreaedi save chosen extens deduc from file name file name get cancel extens chang fear apo file chooser dialog filechooserdialog issu
+0
+
+4330
+except quot send email expert quot step reproduc select activ critic from pane todopan press quot send email expert quot button follow except thrown stack from consol pop up appear except thread quot awt event queue eventqueu quot java lang pointer except nullpointerexcept org argouml ui cmd action email expert actionemailexpert action perform actionperform action email expert actionemailexpert java 57 javax swing abstract button abstractbutton fire action perform fireactionperform unknown sourc javax swing abstract button abstractbutton handler action perform actionperform unknown sourc javax swing button model defaultbuttonmodel fire action perform fireactionperform unknown sourc javax swing button model defaultbuttonmodel set press setpress unknown sourc javax swing plaf basic basic button listen basicbuttonlisten mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt awt event multicast awteventmulticast mous releas mousereleas unknown sourc java awt compon process mous event processmouseev unknown sourc javax swing compon jcompon process mous event processmouseev unknown sourc java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process mous event processmouseev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc
+13
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicButtonListener
+org.argouml.ui.cmd.ActionEmailExpert
+
+4342
+delet from model enabl quot save project quot item remov quot delet from model quot quot save project quot entri quot file quot menu enabl
+0
+
+4349
+activ diagram refresh after delet action state step repeat bug delet transiton associt action state delet delet action state action state get remov form activ diagram save model action state get remov follow error gener inconsist ha detect save model repair report save model amend describ org argouml uml diagram activ ui fig action state figactionst quot delet action state quot remov model element longer repositori thankyou
+0
+
+4354
+error deploy diagram apo two error relat occur set oper place compon node deploy diagram relat fact associ visibl properti panel connect two compon aren apo displai diagram except thread quot awt event queue eventqueu quot java lang illeg state except illegalstateexcept sourc port dest port fig defin org argouml uml diagram ui fig associ figassoci befor edg lai org tigri gef present fig edg poli figedgepoli layout edg layoutedg fig edg poli figedgepoli java 130 org tigri gef present fig edg poli figedgepoli comput rout impl computerouteimpl fig edg poli figedgepoli java 89 org tigri gef present fig edg figedg comput rout computerout fig edg figedg java 169 org tigri gef base layer perspect layerperspect edg ad edgead layer perspect layerperspect java 222 org tigri gef graph graph support mutablegraphsupport fire edg ad fireedgead graph support mutablegraphsupport java 323 org argouml uml diagram deploy deploy diagram graph model deploymentdiagramgraphmodel add edg addedg deploy diagram graph model deploymentdiagramgraphmodel java 320 org argouml uml diagram deploy deploy diagram graph model deploymentdiagramgraphmodel add node relat edg addnoderelatededg deploy diagram graph model deploymentdiagramgraphmodel java 337 org tigri gef base mode place modeplac mous releas mousereleas mode place modeplac java 194 org argouml uml diagram ui add exist node command addexistingnodecommand execut add exist node command addexistingnodecommand java 160 org argouml uml diagram ui dn dj graph dndjgraph drop dn dj graph dndjgraph java 200 java awt dnd drop target droptarget drop unknown sourc sun awt dnd sun drop target context peer sundroptargetcontextp process drop messag processdropmessag unknown sourc sun awt dnd sun drop target context peer sundroptargetcontextp access 800 unknown sourc sun awt dnd sun drop target context peer sundroptargetcontextp event dispatch eventdispatch dispatch drop event dispatchdropev unknown sourc sun awt dnd sun drop target context peer sundroptargetcontextp event dispatch eventdispatch dispatch event dispatchev unknown sourc sun awt dnd sun drop target event sundroptargetev dispatch unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev unknown sourc java awt lightweight dispatch lightweightdispatch process drop target event processdroptargetev unknown sourc java awt lightweight dispatch lightweightdispatch dispatch event dispatchev unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc error edg reject sourc end attach compon impl id 64 88 100 d4 b0696 5d4b0696 10 c795 a88 a1 10c795a88a1 8000 0000000000003 dd7 0000000000003dd7 mid 64 88 100 d4 b0696 5d4b0696 10 c795 a88 a1 10c795a88a1 8000 0000000000000388 opckg 64 88 100 d4 b0696 5d4b0696 10 c795 a88 a1 10c795a88a1 8000 0000000000000622 graph model deploy diagram graph model deploymentdiagramgraphmodel java 267
+18
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+java.awt.dnd.DropTarget
+org.argouml.uml.diagram.deployment.DeploymentDiagramGraphModel
+org.argouml.uml.diagram.ui.AddExistingNodeCommand
+org.argouml.uml.diagram.ui.DnDJGraph
+org.tigris.gef.base.LayerPerspective
+org.tigris.gef.base.ModePlace
+org.tigris.gef.graph.MutableGraphSupport
+org.tigris.gef.presentation.FigEdge
+org.tigris.gef.presentation.FigEdgePoly
+sun.awt.dnd.SunDropTargetContextPeer
+sun.awt.dnd.SunDropTargetContextPeer.EventDispatcher
+sun.awt.dnd.SunDropTargetEvent
+
+4362
+except thrown draw gener problem issu 4354 collab diagram place collabor draw gener except thrown linu commit similar fix issu 4354
+0
+
+4363
+dash transit persist dash transit persist transit activ diagram from object flow state objectflowst drawn dash save reload project transit caus transit shown dash patch solv problem index fig transit figtransit java rc file cv argouml src src_new org argouml uml diagram state ui fig transit figtransit java retriev revis 60 diff r1 60 fig transit figtransit java fig transit figtransit java jun 2006 13 54 53 0000 60 fig transit figtransit java 18 jul 2006 19 52 25 0000 111 111 model get facad getfacad get sourc getsourc owner newown model get facad getfacad object flow state isaobjectflowst model get facad getfacad get target gettarget owner newown get fig getfig set dash setdash dash
+0
+
+4364
+drag associ diagram creat ari diamond apo except thrown start argo uml argouml place class associ drag associ from explor diagram problem here investig tomorrow java lang cast except classcastexcept org argouml uml diagram structur static_structur ui diagram render classdiagramrender get fig edg getfigedgefor diagram render classdiagramrender java 166 org tigri gef base layer perspect layerperspect edg ad edgead layer perspect layerperspect java 217 org tigri gef graph graph support mutablegraphsupport fire edg ad fireedgead graph support mutablegraphsupport java 323 org argouml uml diagram structur static_structur diagram graph model classdiagramgraphmodel add edg addedg diagram graph model classdiagramgraphmodel java 424 org argouml uml diagram structur static_structur diagram graph model classdiagramgraphmodel add node relat edg addnoderelatededg diagram graph model classdiagramgraphmodel java 490 info ad edg type org omg uml foundat core associ end associationend impl diagram diagram graph model classdiagramgraphmodel java 406 org tigri gef base mode place modeplac mous releas mousereleas mode place modeplac java 194 org argouml uml diagram ui add exist node command addexistingnodecommand execut add exist node command addexistingnodecommand java 160 org argouml uml diagram ui dn dj graph dndjgraph drop dn dj graph dndjgraph java 200 java awt dnd drop target droptarget drop drop target droptarget java 398 sun awt dnd sun drop target context peer sundroptargetcontextp process drop messag processdropmessag sun drop target context peer sundroptargetcontextp java 542 sun awt dnd sun drop target context peer sundroptargetcontextp access 800 sun drop target context peer sundroptargetcontextp java 52 sun awt dnd sun drop target context peer sundroptargetcontextp event dispatch eventdispatch dispatch drop event dispatchdropev sun drop target context peer sundroptargetcontextp java 805 sun awt dnd sun drop target context peer sundroptargetcontextp event dispatch eventdispatch dispatch event dispatchev sun drop target context peer sundroptargetcontextp java 743 sun awt dnd sun drop target event sundroptargetev dispatch sun drop target event sundroptargetev java 29 java awt compon dispatch event impl dispatcheventimpl compon java 3494 java awt contain dispatch event impl dispatcheventimpl contain java 1627 java awt compon dispatch event dispatchev compon java 3477 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 3483 java awt lightweight dispatch lightweightdispatch process drop target event processdroptargetev contain java 3269 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3123 java awt contain dispatch event impl dispatcheventimpl contain java 1613 java awt window dispatch event impl dispatcheventimpl window java 1606 java awt compon dispatch event dispatchev compon java 3477 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 456 java awt event dispatch thread eventdispatchthread pump on event hierarchi pumponeeventforhierarchi event dispatch thread eventdispatchthread java 201 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 151 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 145 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 137 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 100
+17
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+java.awt.dnd.DropTarget
+org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel
+org.argouml.uml.diagram.static_structure.ui.ClassDiagramRenderer
+org.argouml.uml.diagram.ui.AddExistingNodeCommand
+org.argouml.uml.diagram.ui.DnDJGraph
+org.tigris.gef.base.LayerPerspective
+org.tigris.gef.base.ModePlace
+org.tigris.gef.graph.MutableGraphSupport
+sun.awt.dnd.SunDropTargetContextPeer
+sun.awt.dnd.SunDropTargetContextPeer.EventDispatcher
+sun.awt.dnd.SunDropTargetEvent
+
+4367
+delet call self action invalid element except invalidelementexcept make argo unstabl step creat file creat sequenc diagram creat classifi role creat call action from st 1st nd 2nd creat call action from nd 2nd self assign name call select call action step right click select delet from model time argo complet unstabl save amp get report 22 b2 22b2 found 22 b1 22b1 b2 older releas
+0
+
+4372
+endless loop delet commentedg delet comment edg bound transit select comment quot annot element quot field properti panel crash 100 cpu except log
+0
+

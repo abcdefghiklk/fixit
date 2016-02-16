@@ -1,0 +1,174 @@
+1219592
+bibtex kei gener author editor abl gener bibtex kei follow us auth lower author specifi us edtr lower name bibtex kei on ha specifi author editor auth lower edtr lower most case least on notabl except inbook entri contain author chapter author field editor book editor field natur name author bibtex kei auth edtr prefer author us editor author miss relat issu nice on show author editor on column entri tabl two column wast screen space nice journal booktitl reason on field appli best jukka suomela jukka suomela sammal pp fi
+0
+
+1285977
+imposs properli sort numer field properli sort numer field year humber number digit alphabet order jab ref jabref ignor numer field
+0
+
+1297576
+print entri preview send content entri preview printer simpl file print cool custom preview allow note comment displai nice format print inform easili copi past entri preview solut depend target programm fail preserv text format
+0
+
+1436014
+comma ad separ keyword ad keyword content selector comma ad befor keyword set ad remov keyword separ prefer group panel keyword get separ space appli jab ref jabref
+0
+
+1489454
+acrobat launch fail win98 us jab ref jabref windows98 se java jre adob reader work fine exept view pdf file click pdf icon ha effect statu line viewer call assum ha hardcod cmd ex util java command com win98 help lot help jab ref jabref great tool
+0
+
+1495181
+dotless tild handl preview coupl minor problem preview window follow correctli dotless lost turn space eat
+0
+
+1503956
+help text help icon option prefer entri preview help button contain text help usual help icon
+0
+
+1534537
+resiz group usabl issu press down arrow bottom left corner group on time manag vertic enlarg group up down resiz arrow sight state obviou resiz back search window initi render window invis suggest chang group resiz drag bottom border group open launch group resiz necessari fit window best
+0
+
+1535044
+month sort don bug featur request great month sort base calendar alphabet us year first sort criterion month second sort criterion get paper sort from pril eptemb
+0
+
+1538769
+freez exit dialog box cancel button version win2000 jabref freez statu string start close dialog box open file step reproduc choos file databas autodetect format press cancel button
+0
+
+1540646
+sort order bibtexkei hello refer jab ref jabref prefer sort entri bibtexkei prefer entri save file order bibxtexkei option prefer entri tabl primari sort criterion offer bibtexkei nice add ve found workaround bibtexkei intern fourth sort criterion ve simpli us three unus field first three criteria suppos best idea
+0
+
+1542552
+wrong author from inspec isi file isi inspec databas on two most us physic export refer format shown jabref import pars author first name incorrectli us case exampl refer file ha on author us style fn isi format vr pt ti optic properti mgo dope li nbo linbo sub singl crystal au jame brown jame marc brown brown brown optic materi py 2006 pd 04 2006 vl 28 ji opt mater netherland bp 467 ep 472 ps 467 72 ut inspec 8863438 er ef
+0
+
+1545601
+download pdf corrupt pdf field text download pdf file edit area download text get place automat creat name file ha speed download bug download fast from local file
+0
+
+1548875
+download pdf produc unsupport filenam after reconfigur bibtex kei gener incorpor first word titl download pdf function fail attempt creat filenam base bibtex kei titl first word contain charact get incorpor kei filenam unsupport pdf get save solut base platform remov translat unsupport filenam charat bibtex kei befor automat creat filenam save file
+0
+
+1553552
+properli detect chang flag chang version jab ref jabref chang made bibtex field recognis chang user switch field big deal small field bibtexkei author larger field review annot potenti lot work lost jab ref jabref doesn recogn chang made user ha deliber chang differ field befor save oper don chang field hit save quit ve lost chang made last field bad us emac keybind hit close databas jab ref jabref initi copi past half write lengthi review
+0
+
+1570570
+deselect duplic minor addit aid usabl import refer list databas suspect duplic detect displai screen addit deselect select button addit button deselect duplic save manual unclick suspect duplic cumbersom import 100 refer 50 duplic dan
+0
+
+1574773
+sanit url sanitizeurl break ftp file sanit url sanitizeurl chang kind url http url make imposs ftp file note third slash url ditto pure local path neuter sanit comment doesn explain bad charact portabl url don solut work ftp allow pretti file limit unix system addit pure local path home user exampl txt valid url perfectli valid argument unixi browser pass sanit url sanitizeurl unchang
+0
+
+1587342
+quer ar xiv arxiv oai2 repositori great featur direct queri from ar xiv arxiv area scienc high energi physic astronomi cond mat uniqu document id establish issu queri oai2 repositori scientist work field hep ph 0608155 sampl perl code ha us add 500 paper includ full text bibtex databas us jabref here usr bin perl queri ar xiv arxiv org get refer bib tex bibtex us jab ref jabref refer manag take file name form path file hep ph0608155 ps gz creat hep number hep ph 0608155 retriev bibliograph inform oai2 from ar xiv arxiv org ar xiv arxiv xml record on pars append file call arxiv bib bib tex bibtex format file pass usabl jab ref jabref id last chang mon 2006 02 06 08 42 56 arwagn ingata homeunix net author alexand wagner languag perl copyright 2005 alexand wagner free softwar redistribut modifi term gnu gener licens publish free softwar foundat version option version program distribut hope useful warranti even impli warranti merchant fit purpos gnu gener licens more detail reciev copi gnu gener licens program write free softwar foundat 675 mass av cambridg ma 02139 usa us xml path xpath us lwp user agent userag us local xmlfile ar xiv arxiv xml dublincor dc titl dc creator dc descript dc date dc type dc identifi dc publish dc languag dc right arxivrecord datestamp id keynam forenam affili titl comment report journal ref doi abstract bibfil arxiv bib filenam argv path split filenam file path path arxivno file arxivno ps gz arxivno pdf arxivno ph ph arxivno th th arxivno ex ex arxivno cond mat cond mat arxivno physic physic print retriev document inform arxivno oaiurl http arxiv org oai2 verb get record getrecord identifi oai ar xiv arxiv org arxivno metadata prefix metadataprefix ar xiv arxiv userag perl ua lwp user agent userag ua agent userag ua env proxi env_proxi request http request get oaiurl respons ua request request xmlresult respons content xmlresult h1 retri after handl load server secnd xmlresult secnd html bodi secnd h1 retri after secnd second h1 secnd bodi html print ar xiv arxiv report heavi load print retri after secnd second stand sleep secnd request http request get oaiurl respons ua request request xmlresult respons content xp xml path xpath xml xmlresult xp xml path xpath filenam xmlfile foreach dcelem arxivrecord nodeset xp find dcelem nodelist nodeset get nodelist get_nodelist dcelem eq keynam keynam map string valu string_valu nodelist dcelem eq forenam forenam map string valu string_valu nodelist dcentri dcelem map string valu string_valu nodelist open bibfil die open bibfil journal year volum page journal dcentri journal ref journal volum dcentri journal ref volum journal volum year dcentri journal ref year year page dcentri journal ref page journal page volum page year page year eq yr dcentri datestamp yr print articl keynam yr print articl keynam year print author foreach author keynam print print author forenam print print titl dcentri titl print journal dcentri journal ref print journal journal print volum volum print year year print page page print eprint dcentri id print doi dcentri doi print url http de arxiv org ab dcentri id print abstract dcentri abstract print comment dcentri comment print reportno dcentri report print pdf filenam print sla ccitat slaccit citat hep split arxivno hep uc hep print hep print
+0
+
+1588028
+html tabl doi url jab ref jabref 2b export html tabl html tabl abstract doi url rel link absolut link url prefix http dx doi org resourc layout tableref tablerefsbib layout line resourc layout tablerefsabsbib tablerefsabsbib layout line
+0
+
+1594123
+failur big number jab ref jabref develop us bib desk bibdesk mac time want jab ref jabref 2b fail load databas follow error java lang number format except numberformatexcept input string 2707318256 java lang number format except numberformatexcept input string forinputstr number format except numberformatexcept java 48 java lang integ pars parseint integ java 480 java lang integ pars parseint integ java 518 net sf jabref import bibtex parser bibtexpars pars field content parsefieldcont bibtex parser bibtexpars java 555 net sf jabref import bibtex parser bibtexpars pars field parsefield bibtex parser bibtexpars java 478 net sf jabref import bibtex parser bibtexpars pars entri parseentri bibtex parser bibtexpars java 465 net sf jabref import bibtex parser bibtexpars pars bibtex parser bibtexpars java 322 net sf jabref import open databas action opendatabaseact load databas loaddatabas open databas action opendatabaseact java 238 net sf jabref import open databas action opendatabaseact open openit open databas action opendatabaseact java 93 net sf jabref import open databas action opendatabaseact run open databas action opendatabaseact java 60 here version db string bourdieu bourdieu pierr book bourdieu 2002 question sociologi address pari author bourdieu isbn 2707318256 publish minuit titl question de sociologi year 2002 put isbn number solv issu bib desk bibdesk doesn put curli brace number correct ha problem big number format isbn suppli amazon correct full db option entri imho jab ref jabref handl more gracefulli number number fail leav string error occur pars input string integ btw isbn field list option field entri type applic book journal cheer ulf martin
+4
+java.lang.Integer
+java.lang.NumberFormatException
+net.sf.jabref.imports.BibtexParser
+net.sf.jabref.imports.OpenDatabaseAction
+
+1594169
+entri editor navig panel entri editor consist panel on move from on panel next press ctrl tab fact work first time move panel on press tab _and then_ ctrl tab behaviour ctrl shift tab
+0
+
+1601651
+pdf subdirectori miss first charact facil link pdf link string return pdf field gener tab miss first charact subdirectori name option prefer us regular express tick set bibtexkei extens option prefer main pdf dir set target pdf file dir mydir ref2002 myref2002 pdf link set facil dir ydir ref2002 myref2002 pdf idea
+0
+
+1631548
+open last edit db startup depend work dir littl bug featur jab ref jabref option open last edit databas startup depend work directori jab ref jabref start exampl pc03 work bibliographi jabref document my_docu bib pc03 work bibliographi cd pc03 work jabref result empti jab ref jabref open home work bibliographi document my_docu bib suggest jab ref jabref store absolut path open last edit featur even rel path provid set store machin depend configur file java user pref userpref net sf jabref pref xml more sophist approach store home directori rel path absolut path open absolut rel path home directori rel path provid open jab ref jabref current offic tool ms oo fault toler kind bernd bug found jab ref jabref
+0
+
+1641247
+minor updat after gener bibtex kei bibtex kei gener bibtex kei differ preview panel updat
+0
+
+1648789
+problem write xmp switch write follow field xmp metadata error occur write xmp metadata select entri error write pdf ps great featur
+0
+
+1709449
+click doi from context menu fail document doi hyperlink jab ref jabref show document list hyperlink icon offer right click icon hyperlink icon doi icon context menu nice click doi icon fail doi server prepend firefox cut request url retriev retriev url http 10 1109 49 622908 cut cheer bernd suggest us rd 3rd icon document list hyperlink doi avail show user rememb guess save doi hyperlink document
+0
+
+1711135
+bib tex bibtex error miss space befor line break notic bib file save jab ref jabref ha line break line problem caus slight bug referenc bib tex bibtex string line broken right after constant part string part space after us string author name author field entri jab ref jabref type author field jane doe janedo john doe johndo jp morgan jpmorgan foo bar foobar export string author jane doe janedo john doe johndo jp morgan jpmorgan foo bar foobar notic last ha space result concaton bib tex bibtex read content foo bar string andcontentsoffoobarstr oppos correct content foo bar string contentsoffoobarstr hope understand
+0
+
+1738920
+window posit multi monitor environ platform win xp winxp sp2 monitor setup desktop extend two monitor jab ref jabref program start manual drag jab ref jabref window nd 2nd monitor close jab ref jabref disconnect nd 2nd monitor from comput singl monitor setup restart jab ref jabref jab ref jabref window visibl posit last coordin relat disconnect nd 2nd monitor suggest window visibl screen coordin reset
+0
+
+1749613
+translat startup info get kei bind synchron file displai consol option prefer extern file link extern file first item properli translat french appear pertoir princip file file translat
+0
+
+1785416
+ink exact bib kei bibkei fail hello post messag recent christoph suggest add problem bug databas here jabref 3b bibtexkei gener pattern author year kei exist jabref automat add letter after kei miller 2000 miller_2000 miller 2000a miller_2000a miller 2000b miller_2000b autolink correspondingli name pdf ppt file jabref includ file miller 2000 miller_2000 file field file field miller 2000 miller_2000 contain miller 2000 miller_2000 pdf miller 2000a miller_2000a pdf miller 2000b miller_2000b pdf document jabref search file inlcud bibtexkei limit exact match rememb problem previou version guess possbl set correct regular express regular express cryptic manual page regex help suggest proper regex heiko link regex christoph oezbek coezbek 2007 08 17 07 53 heiko 3b implement written synchron file behavior caus problem workaround enter bug bug databas includ comment follow culprit found util find associ file findassociatedfil check bibtex kei contain filenam christoph
+0
+
+1827568
+save databas menu work version save button work fine menu entri labeld save databas fact save databas fortunaleti quit jab ref jabref ask save chang work star next file name remov on think bib file ha save jab ref jabref linux kde suse java tm se runtim environ build 01 0_01 b06 java hot spot hotspot tm client vm build 01 0_01 b06 mix mode share note us utf file
+0
+
+1944198
+fetch medlin error jab ref jabref fetch med line medlin data keyword get error except thread thread java lang illeg state except illegalstateexcept match found java util regex matcher group unknown sourc net sf jabref import medlin fetcher medlinefetch get id getid unknown sourc net sf jabref import medlin fetcher medlinefetch run unknown sourc java lang thread run unknown sourc
+3
+java.lang.Thread
+java.util.regex.Matcher
+net.sf.jabref.imports.MedlineFetcher
+
+2027944
+filter fail directori chang path custom filter chang account copi filter directori dummy1 configur filter jab ref jabref option manag custom filter databas filter renam directori contain filter dummy2 reconfigur filter account directori name databas messag displai file export filter found filter directori displai messag dummy1 dummy2 configur filter window show dummy2 bug found compil from sourc juli 24 2008
+0
+
+2105329
+entri main window doesn get updat bug featur add entri button view main window us get updat show posit entri entri list jump posit entri doesn happen anymor on ha scroll find entri databas featur feat bug correct next version oliv great work jabref marvel
+0
+
+2119059
+first author ri format keyword a1 us first author au author ri file ap american physic societi journal keyword a1 detect jab ref jabref ri filter emmanuel clouet cea fr
+0
+
+2207462
+web search result hidden jab ref jabref window search string web search search acm digit librari function follow search sql inject guid window open progress bar result shown empti window disappear main jab ref jabref window messag box open 444 entri found reduc server load 50 download hit messag box close result window stai background invis on move jab ref jabref window find result expect focu move result window version info jab ref jabref svn trunk window
+0
+
+2904968
+entri editor open click entri open entri editor type thing notic jab ref jabref beta2 2beta2 rev 3140 work fact after click abl creat exampl lead consist behavior idea relat issu follow messag displai time except list except thread awt event queue eventqueu java lang cast except classcastexcept javax swing text area jtextarea cast net sf jabref field editor fieldeditor net sf jabref entri editor entryeditor store current edit storecurrentedit entri editor entryeditor java 672 net sf jabref entri editor entryeditor switchto entri editor entryeditor java 723 net sf jabref base panel basepanel get entri editor getentryeditor base panel basepanel java 2065 net sf jabref gui main tabl select listen maintableselectionlisten edit signal editsignal main tabl select listen maintableselectionlisten java 202 net sf jabref gui main tabl select listen maintableselectionlisten mous click mouseclick main tabl select listen maintableselectionlisten java 257 java awt awt event multicast awteventmulticast mous click mouseclick awt event multicast awteventmulticast java 253 java awt compon process mous event processmouseev compon java 6266 javax swing compon jcompon process mous event processmouseev compon jcompon java 3267 java awt compon process event processev compon java 6028 java awt contain process event processev contain java 2041 java awt compon dispatch event impl dispatcheventimpl compon java 4630 java awt contain dispatch event impl dispatcheventimpl contain java 2099 java awt compon dispatch event dispatchev compon java 4460 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4574 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 4247 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 4168 java awt contain dispatch event impl dispatcheventimpl contain java 2085 java awt window dispatch event impl dispatcheventimpl window java 2475 java awt compon dispatch event dispatchev compon java 4460 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 599 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 269 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 184 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 174 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 169 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 161 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 122
+11
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+javax.swing.JComponent
+net.sf.jabref.BasePanel
+net.sf.jabref.EntryEditor
+net.sf.jabref.gui.MainTableSelectionListener
+
+2931293
+faill gener bibtexkei b2 6b2 set bibtex kei pattern author alpha authorsalpha year author name shorter charact common chines abref jabref repli gener bibtex kei entri follow error code java lang string index bound except stringindexoutofboundsexcept string index rang kei form gener
+0
+
+2938562
+move file turn rel filenam absolut gener tab manag file attach bib entri context menu file list move renam function turn rel filenam rel doc folder databas set absolut filenam avoid observ jab ref jabref b2 6b2
+0
+

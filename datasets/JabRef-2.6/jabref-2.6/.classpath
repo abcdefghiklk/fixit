@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/osx"/>
+	<classpathentry kind="src" path="src/extensions"/>
+	<classpathentry excluding="extensions/|java/|osx/" kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/plugin/commons-logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spin.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/microba.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/PDFBox-0.7.3-dev-reduced.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr-3.0b5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/plugin/jpf.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/plugin/jpf-boot.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/plugin/JPFCodeGenerator-rt.jar" sourcepath="/JPFCodeGenerator/src"/>
+	<classpathentry exported="true" kind="lib" path="lib/glazedlists-1.7.0_java15.jar"/>
+	<classpathentry kind="lib" path="lib/JempBox-0.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/forms-1.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.7-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="lib/looks-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/AppleJavaExtensions-1.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

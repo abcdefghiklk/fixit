@@ -1,0 +1,963 @@
+950961
+Folding: handling newlines at the start of closed folds  Here is the example text folded using explicit folding: 1| //{{{ 2| Folding 3| Test 4| Case 5| //}}} 6| Other text which folds to: 1| //{{{ [4 lines] 6| Other text By placing the caret after the last brace and pressing return we get the following result: 1| //{{{ 2| New text entered 7| Other text In the editor the fold is now showen as unfolded, but the text within the fold is not displayed. To display the contents of the fold you have to close the fold and open it again which then would display the expected text: 1| //{{{ 2| New text entered 3| Folding 4| Test 5| Case 6| //}}} 7| Other text This error appears to exist with any folding plugin, not just explicit folding. Secondly, with explict folding only, placing the caret between the braces that make up the start of the fold whilst folded and pressing return causes the fold to be 'lost'. As in the space taken up by the fold is still indicated by jEdit but the fold is no longer displayed: 1| //{{ 2| ^{ 7| Other text There are three ways to get the fold back. 1) Delete the new line and whitespace entered. This returns the fold in a closed position 2) Add new braces to complete the fold marker. This adds the fold in an open position but without the origenal text displayed. Closing and reopening the fold corrects this, the same as the first bug. 3) Reopen the file KeeperOfTheSoul <ex@dynafus.com>
+5
+org.gjt.sp.jedit.buffer.BufferAdapter
+org.gjt.sp.jedit.buffer.BufferChangeListener.Adapter
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.textarea.BufferHandler
+org.gjt.sp.jedit.textarea.RangeMap
+
+981012
+The editor text area is not properly recognizing Indic input  The editor text area is not properly recognizing Unicode Indic(Sanskrit) input on Windows 2000. I am using the Windows 2000 IME "Sanskrit, Devanagari - INSCRIPT" for inputting the Devanagari(Sanskrit) letters. I am attaching the screenshots of the word "Sanskritam" typed in Windows notepad and the JEdit. The Notepad is displaying the word properly, but the JEdit is not displaying it properly. I am using JDK1.5.0 to Jedit.
+1
+org.gjt.sp.jedit.syntax.Chunk
+
+1193683
+folding bug, text is in a black hole  Hi, when you have some folded text(folding closed) {{{ test aaaa bbbb cccc }}} Close it you'll get {{{ test [4 lines] Delete one { You'll have {{ test and no text fold anymore. It seems really dangerous isn't it ? But the weird thing is that the text is not completely lost because you can type another {(no need to undo) and the fold will reappear magically. So the text was still here but hidden by jEdit's text area
+1
+org.gjt.sp.jedit.textarea.BufferHandler
+
+1292706
+Size of file open/save dialogs incorrect on dual displays  The size of the open/save dialog is incorrectly calculated/restored when the dialog is displayed on the second display on a dual display system(Windows XP). Basically, if the dialog opens on the secondary display, then the previous size and position is lost. Here are the tests I have performed to explore the behaviour. If the dialog appears on the primary display, the width is correctly calculated/restore from previous settings. If the adjustments are made(with the dialog still on the primary display) then these are correctly restored on next opening of the dialog. This is the behaviour I would expect. If the dialog appears on the secondary display, previous size and position settings are lost. I think that the width of the dialog is being determined by the minimum width of the tree component in the dialog.(See attachment). Any resizing of the dialog(with the dialog still on the secondary display) is lost the next time it is open. This is abnormal behaviour. If the dialog is opened on the secondary display, resized and dragged it to the primary display. The size and position settings are restored on next open.
+1
+org.gjt.sp.jedit.GUIUtilities
+
+1382388
+Incorrect Python code indentation   Hello. I have found a little bug: processing the "Indent Lines" command(CTRL + I) to the Python code causes the wrong identation of selected text. Example: Before: if(row +1) > self.grid.GetNumberRows(): self.table.data.append(obj) self.grid.AppendRows(1, True) else: self.grid.SetCellValue(row, 0, fileName) self.table.data.append(obj) self.grid.AutoSizeColumn(0, True) after: if(row +1) > self.grid.GetNumberRows(): self.table.data.append(obj) self.grid.AppendRows(1, True) else: self.grid.SetCellValue(row, 0, fileName) self.table.data.append(obj) self.grid.AutoSizeColumn(0, True)
+4
+org.gjt.sp.jedit.Mode
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.indent.IndentAction.NoIncrease
+org.gjt.sp.jedit.indent.WhitespaceRule
+
+1500938
+Search expression  Hello, this is not a bug, but a wish. As of 4.3pre1, after doing a search(Ctrl-f), when I do another search(Ctrl-f) again, then the previous search expression is not present in the Search dialog anymore. That would actually help in case user wants just to adjust the search expression/regex. thank you for JEdit. Peter
+1
+org.gjt.sp.jedit.search.SearchDialog
+
+1520769
+Autosave turned off for Untitled Documents.  I have an issue where sometimes untitled documents get left on to disk. I think it's an issue when the app closes improperly in some way. An option to never save untitled documents would be a nice feature and would solve this issue.
+3
+org.gjt.sp.jedit.Autosave
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.options.SaveBackupOptionPane
+
+1520774
+'/' + enter in VFSFileChooser File: field  Mac OSX(10.4.7 - intel) jEdit 4.3 Pre 5 If I type '/' + enter in the File-Browser I get the file list in the attatched screen shot. This is from the activity log: [debug] WorkThread: Running in work thread: [id=16,run=org.gjt.sp.jedit.browser.BrowserIORequest[type=LIST_DIRECTORY,vfs=org.gjt.sp.jedit.io.FileVFS@8c40ee,path1=/opt/development/evt/conf/ibatis/,path2=null]] [debug] VFSFileNameField: doComplete(roots:,,false [debug] WorkThread: Running in work thread: [id=19,run=org.gjt.sp.jedit.browser.BrowserIORequest[type=LIST_DIRECTORY,vfs=org.gjt.sp.jedit.io.FileRootsVFS@d74138,path1=roots:,path2=null]] In 4.2 Final, just typeing '/' took me to the root directory "/".
+1
+org.gjt.sp.jedit.MiscUtilities
+
+1533473
+caret/display position w/ multiple views open  Version 4.3pre5, seen on Windows as well as FreeBSD, JDK1.5 If I have 2 views open and both have the same file active(eg foo.txt, line 20 in view 1, line 50 in view 2), then I switch to a different buffer in one of the views(switch view 1 to bar.txt), when that view switches back to foo.txt, it's caret/display placement is the same as the other view(ie, before switching to bar.txt, the caret was on line 20, now it is on line 50, where the other view is located as well.)
+1
+org.gjt.sp.jedit.EditPane
+
+1536064
+focus in filesystembrowser NOT in filenamefield  I just updated to 4.3pre6: [message] Log: java.version=1.5.0_07 [message] Log: java.vm.version=1.5.0_07-b03 [message] Log: java.runtime.version=1.5.0_07-b03 [message] Log: java.vendor=Sun Microsystems Inc. [message] Log: java.compiler=null [message] Log: os.name=Windows XP [message] Log: os.version=5.1 [message] Log: os.arch=x86 ... [notice] jEdit: jEdit version 4.3pre6 When I try to open a file(Ctrl-O) the focus in the filesystembrowser is on the Commands menu instead of the filename field. AFAICT this is because the GUIUtilities.requestFocus() method does not do its job. There was a patch to this method, see rev.5386: http://svn.sourceforge.net/viewvc/jedit/jEdit/trunk/ org/gjt/sp/jedit/GUIUtilities.java?r1=5372&r2=5386 prompted by a bug-report 1275607 http://sourceforge.net/tracker/ index.php?func=detail&aid=1275607&group_id=588&atid=300588 The bug was triggered by something else(find dialog), and the final messages of the bug report indicate that this particular patch was not needed for the bug resolution anyway. So my problem might possibly resolved by simply reverting this patch.(unfortunately, I do not have time to try that here) I don't have an idea about the reason for this bug. Can someone confirm this? cheers, stefan
+1
+org.gjt.sp.jedit.GUIUtilities
+
+1538051
+Memory used reported inconsistent  When I double click on the memory gauge(bottom right) the GC runs and then a dialog appears that reports numbers that have nothing to do with the numbers I can see on the bottom right. jEdit 4.3pre6, jdk1.6beta2, Linux 2.6.15-26-686.
+3
+org.gjt.sp.jedit.gui.StatusBar
+org.gjt.sp.jedit.gui.StatusBar.MemoryStatus
+org.gjt.sp.jedit.jEdit
+
+1538702
+PluginManager: Dependency plugins are not activated  In the Manage-Tab, if activating a plugin, the non- optional dependencies should get activated automatically too if they are available but unloaded. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_06-b05 jEdit Version: SVN Revision 6684
+13
+org.gjt.sp.jedit.GUIUtilities
+org.gjt.sp.jedit.GUIUtilities.SizeSaver
+org.gjt.sp.jedit.PluginJAR
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.gui.ErrorListDialog.ActionHandler
+org.gjt.sp.jedit.gui.FloatingWindowContainer
+org.gjt.sp.jedit.jEdit
+org.gjt.sp.jedit.pluginmgr.ManagePanel
+org.gjt.sp.jedit.pluginmgr.ManagePanel.HelpButton
+org.gjt.sp.jedit.pluginmgr.ManagePanel.KeyHandler
+org.gjt.sp.jedit.pluginmgr.ManagePanel.PluginTableModel
+org.gjt.sp.jedit.pluginmgr.PluginManager
+org.gjt.sp.jedit.pluginmgr.Roster.Remove
+
+1538743
+While editing ToolBar, the category should be remembered  While editing ToolBar, the category of actions should be remembered when adding actions to the toolbar. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_06-b05 jEdit Version: SVN Revision 6684
+1
+org.gjt.sp.jedit.options.ToolBarEditDialog
+
+1541009
+4.3pre6 regexp find: hangs + huge memory waste  When you do "Find" or "Find and Replace" or "Replace All" with the regular expression "$"(match end of line), 4.3pre6 just hangs while its memory-usage meter thing in the bottom-right-hand-side of its status bar shows memory usage increasing exponentially! Also, this happens regardless of whether the search is performed within a selection, the current buffer, all buffers, or within a directory. To reproduce this bug: 1. Make a new buffer with this content: foo bar baz 2. Select all the text(C-a) 3. Open search&replace dialog(C-f) 4. Type the following regexp in the "search for" field: $ 5. Enable the "regular expressions" check-box(A-x) 7. Press the "Find" or "Find and Replace" or "Replace All" button. 8. Observe that jEdit now hangs, and its memory usage is rapidly increasing(look at memory usage stats at bottom-right-hand-corner of status bar). The expected result is that jEdit should NOT hang and the search should be performed correctly. Thanks for your attention.
+4
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.PatternSearchMatcher
+org.gjt.sp.jedit.search.SearchAndReplace
+org.gjt.sp.jedit.search.SearchMatcher
+
+1541372
+move caret on collapsing a fold  If the caret is in a fold that gets collapsed, the caret should be placed at first line of that fold, i. e. the remaining visible line, otherwise it reexpands the fold on direction key press. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_06-b05 jEdit Version: SVN Revision 6684
+2
+org.gjt.sp.jedit.textarea.Gutter.MouseHandler
+org.gjt.sp.jedit.textarea.JEditTextArea
+
+1542026
+Keyboard navigation through menubar inserts char into buffer  Using the keyboard(characters, or space for checkboxes [return for checkboxes works correctly]) to navigate through the menubar inserts the pressed characters literally in the current buffer if the choice is not a sub-/menu, but an action, even if the pressed character is not anything choosable(e. g. Alt+p -> a) Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_06-b05 jEdit Version: SVN Revision 6684(4.3pre7)
+1
+org.gjt.sp.jedit.jEdit.MyFocusManager
+
+1546200
+Add filter to recent files menu  Add filter to recent files menu This patch helps to find a items in the recent "files menue", by typing the first letter of the filename in a new textfield in recent files menu. Files which are not matching are enabled in menue. Please add it to org/gjt/sp/jedit/menu/ RecentFilesProvider.java Joerg
+1
+org.gjt.sp.jedit.menu.RecentFilesProvider
+
+1548902
+4.3pre6: Format paragraph - StringIndexOutOfBoundsException  If caret is not inside paragraph(e.g. buffer is empty), then in action "Format paragraph" occurs StringIndexOutOfBoundsException. ------------------------------------- java.lang.StringIndexOutOfBoundsException: String index out of range: 0 at java.lang.String.charAt(Unknown Source) at org.gjt.sp.jedit.TextUtilities.ignoringWhitespaceIndex(TextUtilities.java:667) at org.gjt.sp.jedit.textarea.JEditTextArea.formatParagraph(JEditTextArea.java:4107) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) at java.lang.reflect.Method.invoke(Unknown Source) at bsh.Reflect.invokeMethod(Reflect.java:134) at bsh.Reflect.invokeObjectMethod(Reflect.java:80) at bsh.Name.invokeMethod(Name.java:858) at bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) at bsh.BSHBlock.evalBlock(BSHBlock.java:130) at bsh.BSHBlock.eval(BSHBlock.java:80) at bsh.BshMethod.invokeImpl(BshMethod.java:362) at bsh.BshMethod.invoke(BshMethod.java:258) at bsh.BshMethod.invoke(BshMethod.java:186) at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:509) at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:76) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:229) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:195) at org.gjt.sp.jedit.gui.DefaultInputHandler.handleKey(DefaultInputHandler.java:362) at org.gjt.sp.jedit.View.processKeyEvent(View.java:617) at org.gjt.sp.jedit.textarea.JEditTextArea.processKeyEvent(JEditTextArea.java:4582) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.KeyboardFocusManager.redispatchEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(Unknown Source) at java.awt.DefaultKeyboardFocusManager.dispatchEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source) ------------------------------------- Maybe similar problem: https://sourceforge.net/tracker/ index.php?func=detail&aid=1173630&group_id=588&atid=100588
+2
+org.gjt.sp.jedit.TextUtilities
+org.gjt.sp.jedit.textarea.JEditTextArea
+
+1549282
+Saving of a file with r/o flag.  jEdit doesn't interpret the "NO" button correctly when I trying to cancel the file saving procedure of r/o file. jEdit 4.3Pre6.
+1
+org.gjt.sp.jedit.Buffer
+
+1560006
+Search dialog doesn't get the focus  The search dialog sometimes does not get the focus when I open it, so the search text goes to the editor buffer instead. I use jEdit 4.3pre6, with Sun jdk 1.5.0_06. I'm on RedHat, running GNOME.
+1
+org.gjt.sp.jedit.search.SearchDialog
+
+1560584
+Performing action "Add explicit fold": exception.  Hi, I have found a little bug: Performing action "Add explicit fold"(C-e a) when last selected line = last line in the end of the file, causes to an exception: java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 20 at org.gjt.sp.jedit.buffer.JEditBuffer.getLineStartOffset(JEditBuffer.java:323) at org.gjt.sp.jedit.textarea.JEditTextArea.addExplicitFold(JEditTextArea.java:5941) at org.gjt.sp.jedit.textarea.JEditTextArea.addExplicitFold(JEditTextArea.java:3916) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) at java.lang.reflect.Method.invoke(Method.java:585) ...................................................................... jEdit 4.3 Pre7.
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+1565447
+HyperSearch reports incorrect occurrence count  HyperSearch reports the number of lines containing one or more instances of a string, not the number of occurrences of the string in the file. Enter two or more identical strings on a single line. Select one of the strings, then HyperSearch. The occurrence count will show 1, not the actual number of strings in the file. jEdit 4.2final Windows 2000 SP4 JRE 5.0 update 8
+4
+org.gjt.sp.jedit.search.HyperSearchFileNode
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.HyperSearchResults.ResultCellRenderer
+org.gjt.sp.jedit.search.HyperSearchResults.ResultCellRenderer.CountNodes
+
+1569735
+IMPORTS in IMPORTS fail to get resolved partly(hash-issue?)  Consider this test_syntax.xml mode file: """ <?xml version="1.0"?> <!DOCTYPE MODE SYSTEM "xmode.dtd"> <MODE> <RULES> <SEQ TYPE="KEYWORD1">one</SEQ> <IMPORT DELEGATE="DELEGATE_1" /> </RULES> <RULES SET="DELEGATE_1"> <SEQ TYPE="KEYWORD2">2two</SEQ> <IMPORT DELEGATE="DELEGATE_2" /> </RULES> <RULES SET="DELEGATE_2"> <SEQ TYPE="KEYWORD4">three</SEQ> <SEQ TYPE="KEYWORD4">3three</SEQ> </RULES> </MODE> """ And this file handled by it: """ // Test jEdit syntax modes one two2two 3three """ The problem is, that "three" and "3three" do not get highlighted/recognized, unless you add a rule into the DELEGATE_1 set starting with the same char/number, e.g. changing "2two" to "32two" would highlight "3three" from DELEGATE_2..! I've tried to call ParserRuleSet::resolveImports() recursively at the beginning for the rulesets it processes, but this can cause infinite loops. If IMPORTS of "infinite" depth wouldn't be supported, that would make sense, but only rules with already existing hash/index chars get applied seems to be a bug somewhere.((( Use case: I want to use this for the php.xml mode file, so that I import a list of regular expressions for function definitions into a rule set, where the regular KEYWORDs are defined, so that the keywords get highlighted as supposed, but the regular expressions(one for each hash char) are recognized also, not overriding the highlighting of the KEYWORDs.)))
+1
+org.gjt.sp.jedit.syntax.XModeHandler
+
+1570554
+File Open Dialog: can't handle full pathnames  Hi, When typing in a path in FSB, it does not go to the path typed in "File Name" box. I am using jedit cvs version with jdk 1.5.0_08. This used to work in previous jedit versions. Jiger
+3
+org.gjt.sp.jedit.browser.VFSBrowser
+org.gjt.sp.jedit.browser.VFSBrowser.ActionHandler
+org.gjt.sp.jedit.browser.VFSFileChooserDialog
+
+1571629
+File System Browser: Filter does not work  In the current SVN version(4.3pre8), the Filter does not seem to have any effect. New globs are added to the history only when pressing Enter, but don't influence the files shown. When the "filter by current buffer extension" option is set, the files are filtered, but the filter glob is not shown. I think it would also be good to be able to set/unset this option directly in the dialog.
+2
+org.gjt.sp.jedit.browser.VFSBrowser
+org.gjt.sp.jedit.browser.VFSBrowser.ActionHandler
+
+1571752
+'Add Explicit Fold'  in PHP mode - wrong comments  jEdit version: 4.3pre7 Java version: 1.6.0-beta2 Before 'Add Explicit fold' the content of buffer looks like this('X' means selection boundaries): <?php Xfunction foo() { }X /* :folding=explicit:*/ ?> After: <?php <!--{{{ --> function foo() { } //}}} /* :folding=explicit:*/ ?> If is between '<?php' and 'function' empty line, then it works OK.
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+1574587
+No Undo past file save  An option(?) to only allow UNDO back as far as the last time the file was saved to disk by the user. Presumably, if the user writes to disk, they want the changes. UNDO tracking should be reset upon a save. Autosaves and the like do not count.
+5
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.buffer.UndoManager
+org.gjt.sp.jedit.bufferio.BufferSaveRequest
+org.gjt.sp.jedit.options.EditingOptionPane
+org.gjt.sp.jedit.options.GeneralOptionPane
+
+1575505
+C+j bug  Enter this text: :(solid) solid-color gl-color rect-dim >r origin get r> ; Select the word(solid). Press C+j. Expected behavior: :(solid) solid-color gl-color rect-dim >r origin get r> ; Actual: Nothing happens
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+1576535
+Fix invalid selection in newly opened buffer  Reproduction recipe of the problem: 1. Open an arbitrary buffer and select some texts. 2. Create a new file without jEdit. The path of this file must not be in jEdit's history. 3. Open the file with jEdit. After the above steps, the selection in newly opened buffer is not cleared(remains at same offsets in step 1). If the new file is longer than offsets of the selection, the selection appears in the new buffer. Otherwise, accessing to the selected offsets results in ArrayIndexOutOfBoundsException. I found this problem while testing the recent changes to ColumnRuler plugin. In this case, the exception is thrown by paint() method of ColumnRuler, and jEdit gives up the remaining paint operation. This small patch will fix the problem.
+1
+org.gjt.sp.jedit.EditPane
+
+1578785
+Provide a way of reloading changed buffers without prompting  Warning when a buffer is beeing reloaded is wise as a general rule, but sometimes there are files you're editing that you *know* will change. Typical examples are: - system log files - reports of unit tests Then it would be useful to have these buffers beeing reloaded without beeing prompted. A trivial though not ideal solution would be to add a 4th option "autmatic reload, no confirmation" to the saving global option. A better solution would be to provide a per-buffer option, e.g. "don't prompt when reloading" It would also be very useful, at least to me, to turn off this prompt in a macro, that is, if this option was available in the bean shell
+9
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.PerspectiveManager
+org.gjt.sp.jedit.PerspectiveManager.PerspectiveHandler
+org.gjt.sp.jedit.gui.BufferOptions
+org.gjt.sp.jedit.gui.BufferOptions.ActionHandler
+org.gjt.sp.jedit.jEdit
+org.gjt.sp.jedit.options.BufferOptionPane
+org.gjt.sp.jedit.options.BufferOptionPane.ActionHandler
+org.gjt.sp.jedit.options.GeneralOptionPane
+
+1584436
+soft wrap, cut and null-pointer exception  I edit larger texts with soft wrap turned on. If I cut a text fragment that is larger then the text view, and then move back to the beginning of the text buffer by using the cursor keys, Page-Up or Ctrl-Home, I usually get a NullPointerException. Steps to reproduce: - load http://www.jedit.org/users-guide/starting.html - set buffer line wrap = soft, wrap at 80 characters - cut lines 5 to 45 - press Ctrl-Home This results in a BeanShell error dialog. The beginning of the text buffer is then missing in the display. I have attached a log of the exception. I have confirmed this error in jEdit 4.3pre7, 4.3pre6, and 4.3pre3. This works fine in 4.3pre2. I could not test it in 4.3pre1 due to another bug involving soft wrap.
+1
+org.gjt.sp.jedit.textarea.Anchor
+
+1589360
+Rectangular Selection and Dragging  [cut 'n' pasted from slava on jedit-devel] Hi, I found a way to reproduce an obscure rectangular selection bug that I've been seeing recently. Create a new buffer, set the wrap margin to 64, enable soft wrap, and paste these two lines(hopefully my mail client won't break them) [ { 0 0 } ] [ 0 0 } "doc" get T{ one-word-elt } prev-elt ] unit-test [ { 0 0 } ] [ 2 0 } "doc" get T{ one-word-elt } prev-elt ] unit-test Now position the cursor after the second "[", and C+drag a one-column vertical selection. What actually happens is the selection extends a few characters to the right, even though you are dragging straight down. Does anybody feel like taking a look at this? Slava
+1
+org.gjt.sp.jedit.textarea.TextAreaMouseHandler
+
+1593359
+JEditTextArea processes keyboard input that is not for it  JEditTextArea processes keyboard input that is not meant for it. e. g. if focus is on Activity Log Dockable or Java Insight Dockable, pressing Del-key deletes characters from the buffer. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+1
+org.gjt.sp.jedit.gui.InputHandler
+
+1593375
+Filterable Activity Log Viewer  In Activity Log Viewer give the option to filter the output, e. g. for [error], [debug], [notice], ... Or maybe even better to provide a text field where you can enter a regex which a line must match against to be shown. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+2
+org.gjt.sp.jedit.gui.FilteredListModel
+org.gjt.sp.jedit.gui.LogViewer
+
+1593389
+FSB delete action on directory not working  FSB delete action invoked on a directory should recursively delete the files and folders it contains and not just state "Cannot delete file". Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+2
+org.gjt.sp.jedit.browser.VFSBrowser
+org.gjt.sp.jedit.io.FileVFS
+
+1593464
+system icons for files in FSB  I'm missing an option to "Use system icons for files" in FSB like Project Viewer has. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+5
+org.gjt.sp.jedit.browser.FileCellRenderer
+org.gjt.sp.jedit.io.FileVFS
+org.gjt.sp.jedit.io.FileVFS.LocalFile
+org.gjt.sp.jedit.io.VFSFile
+org.gjt.sp.jedit.options.BrowserOptionPane
+
+1593523
+"Toggle Tree View" broken  If doing "Toggle Tree View" in HyperSearch Results window context menu, it doesn't switch properly, means if switching back to show the path and filename in one line, the path is missing. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+1
+org.gjt.sp.jedit.search.HyperSearchOperationNode
+
+1593526
+automatically hide HyperSearch Results  If all nodes got removed from HyperSearch Results, either manually or with the clear button, the dockable should hide, because you have no benefit from it anymore until you do a new search which brings it up automatically. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+1
+org.gjt.sp.jedit.search.HyperSearchResults
+
+1593543
+Save the editmode for Recent files  If you e. g. open build.properties.sample and change the editmode to "properties", then you close that file and then reopen it, you again have to change the editmode manually. This should be done automatically, at least for the files in the recent files list. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+6
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.BufferHistory
+org.gjt.sp.jedit.BufferHistory.Entry
+org.gjt.sp.jedit.BufferHistory.RecentHandler
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.jEdit
+
+1593576
+Autoindenting should copy exact whitespaces  If autoindenting copies the indentation of last line the indentation should be done the same way it was copied from, e. g. currently if Soft tabs are enabled, always spaces are inserted, even if the previous line is indented with literally tabs or tabs and spaces mixed. The whitespaces should simply be copied from the line that the auto-indenting is taken from. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+2
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.util.StandardUtilities
+
+1593735
+embedd optionspanes into JScrollPanes  The optionspanes(general and plugins) should be embedded into a JScrollPane, so that the dialog stays at the size the user had chosen and doesn't resize always just because a settings pane is shown that needs more space. For some the settings panes are so huge, that the complete dialog doesn't fit on the screen anymore. Sorry if this is a dupe, but I have many bugs to post and am too lazy to check them all for dupes currently. :-) OS: Windows XP Java Version: Sun Java 1.5.0_09-b03 jEdit Version: 4.3pre8
+2
+org.gjt.sp.jedit.gui.OptionsDialog
+org.gjt.sp.jedit.gui.OptionsDialog.PaneNameRenderer
+
+1594234
+Incremental search should tell if string was found  Hi, I think the incremental search textbox should tell if the searched string was found or not(like Firefox does). I tried on my copy to put a red background, I think it really helps. Do you think I should add it to jEdit ?
+2
+org.gjt.sp.jedit.OptionGroup
+org.gjt.sp.jedit.search.SearchBar
+
+1594910
+Indentation of Javascript embedded in HTML is broken  Hi, Code indentation does not work for Javascript code in a <script> block in HTML mode. Indentation works OK in .js files in javascript mode. Adding html to the javascript fileglob "*.{js,html}" forces HTML into Javascript mode, indentation works OK, but HTML is not highlighted/indented correctly. Environment: Windows XP Home SP2 java version "1.5.0_08" Java(TM) 2 Runtime Environment, Standard Edition(build 1.5.0_08-b03) Java HotSpot(TM) Client VM(build 1.5.0_08-b03, mixed mode) jEdit 4.3pre8 Thanks
+4
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.Mode
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.textarea.JEditTextArea
+
+1599024
+Need action to reload buffer with different encoding  Open the attached textfile that I created with jEdit 4.3pre8. You'll see some squares instead of the Slovak characters. The encoding cp-1250 was used when I created the file and I expect that jEdit will recognize this when I open the file. Perhaps this isn't possible but when I set the buffer encoding manually to cp-1250 the characters are still displayed with the wrong encoding although the status bar tells me that the encoding cp-1250 is now active and used. Besides this bug it would be in general nice to have a menu entry to show opened files in different encodings. This should be like the menu "View -> Character Encoding" in Firefox.
+1
+org.gjt.sp.jedit.menu.ReloadWithEncodingProvider
+
+1599709
+NPE with JEditBuffer and new indenting  The indenting refactoring introduced some NullPointerExceptions. I've "catched" one in r8096, but as stated in the commit message, it's probably an error further up. r8096 should be reverted. The problem seems to be that ctx.rules.getModeName() returns null, while it should return the main rule name. To reproduce: Save an empty buffer as test.php. Type: --------------- <?php $foo = '<ENTER> --------------- When pressing ENTER, after the "'", the following exception gets thrown: java.lang.NullPointerException at org.gjt.sp.jedit.buffer.JEditBuffer.getIdealIndentForLine(JEditBuffer.java:991) at org.gjt.sp.jedit.buffer.JEditBuffer.indentLine(JEditBuffer.java:907) at org.gjt.sp.jedit.textarea.TextArea.insertEnterAndIndent(TextArea.java:4327) at sun.reflect.GeneratedMethodAccessor23.invoke(Unknown Source) at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) at java.lang.reflect.Method.invoke(Unknown Source) at bsh.Reflect.invokeMethod(Reflect.java:134) at bsh.Reflect.invokeObjectMethod(Reflect.java:80) at bsh.Name.invokeMethod(Name.java:858) at bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) at bsh.BSHBlock.evalBlock(BSHBlock.java:130) at bsh.BSHBlock.eval(BSHBlock.java:80) at bsh.BshMethod.invokeImpl(BshMethod.java:362) at bsh.BshMethod.invoke(BshMethod.java:258) at bsh.BshMethod.invoke(BshMethod.java:186) at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:509) at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:76) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:415) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:381) at org.gjt.sp.jedit.gui.DefaultInputHandler.handleKey(DefaultInputHandler.java:373) at org.gjt.sp.jedit.input.AbstractInputHandler.processKeyEventKeyStrokeHandling(AbstractInputHandler.java:116) at org.gjt.sp.jedit.gui.InputHandler.processKeyEvent(InputHandler.java:184) at org.gjt.sp.jedit.textarea.TextArea.processKeyEvent(TextArea.java:4572) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.KeyboardFocusManager.redispatchEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(Unknown Source) at java.awt.DefaultKeyboardFocusManager.dispatchEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source)
+1
+org.gjt.sp.jedit.buffer.JEditBuffer
+
+1600401
+StringIndexOutOfBoundsException in TokenMarker  After pressing ENTER in a rather long line in a .php file, I got the following exception. The line appeared wrong highlighted in the first place, that why I wanted to see if splitting it would resolve the highlight issue. After this the buffer window is not usable anymore(e.g. I cannot enter it, nor does it get repainted). [error] Buffer: Exception while sending buffer event to org.gjt.sp.jedit.textarea.BufferHandler@1484a8a : [error] Buffer: java.lang.StringIndexOutOfBoundsException: String index out of range: 103 [error] Buffer: at java.lang.String.<init>(Unknown Source) [error] Buffer: at org.gjt.sp.jedit.syntax.TokenMarker.handleRule(TokenMarker.java:343) [error] Buffer: at org.gjt.sp.jedit.syntax.TokenMarker.markTokens(TokenMarker.java:155) [error] Buffer: at org.gjt.sp.jedit.buffer.JEditBuffer.markTokens(JEditBuffer.java:1234) [error] Buffer: at org.gjt.sp.jedit.textarea.ChunkCache.lineToChunkList(ChunkCache.java:771) [error] Buffer: at org.gjt.sp.jedit.textarea.ChunkCache.getLineSubregionCount(ChunkCache.java:266) [error] Buffer: at org.gjt.sp.jedit.textarea.DisplayManager.updateScreenLineCount(DisplayManager.java:661) [error] Buffer: at org.gjt.sp.jedit.textarea.BufferHandler.doDelayedUpdate(BufferHandler.java:327) [error] Buffer: at org.gjt.sp.jedit.textarea.BufferHandler.transactionComplete(BufferHandler.java:287) [error] Buffer: at org.gjt.sp.jedit.buffer.JEditBuffer.fireTransactionComplete(JEditBuffer.java:2173) [error] Buffer: at org.gjt.sp.jedit.buffer.JEditBuffer.endCompoundEdit(JEditBuffer.java:1966) [error] Buffer: at org.gjt.sp.jedit.textarea.TextArea.insertEnterAndIndent(TextArea.java:4331) [error] Buffer: at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) [error] Buffer: at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) [error] Buffer: at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) [error] Buffer: at java.lang.reflect.Method.invoke(Unknown Source) [error] Buffer: at bsh.Reflect.invokeMethod(Reflect.java:134) [error] Buffer: at bsh.Reflect.invokeObjectMethod(Reflect.java:80) [error] Buffer: at bsh.Name.invokeMethod(Name.java:858) [error] Buffer: at bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) [error] Buffer: at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) [error] Buffer: at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) [error] Buffer: at bsh.BSHBlock.evalBlock(BSHBlock.java:130) [error] Buffer: at bsh.BSHBlock.eval(BSHBlock.java:80) [error] Buffer: at bsh.BshMethod.invokeImpl(BshMethod.java:362) [error] Buffer: at bsh.BshMethod.invoke(BshMethod.java:258) [error] Buffer: at bsh.BshMethod.invoke(BshMethod.java:186) [error] Buffer: at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:509) [error] Buffer: at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:76) [error] Buffer: at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:415) [error] Buffer: at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:381) [error] Buffer: at org.gjt.sp.jedit.gui.DefaultInputHandler.handleKey(DefaultInputHandler.java:373) [error] Buffer: at org.gjt.sp.jedit.input.AbstractInputHandler.processKeyEventKeyStrokeHandling(AbstractInputHandler.java:116) [error] Buffer: at org.gjt.sp.jedit.gui.InputHandler.processKeyEvent(InputHandler.java:184) [error] Buffer: at org.gjt.sp.jedit.textarea.TextArea.processKeyEvent(TextArea.java:4572) [error] Buffer: at java.awt.Component.processEvent(Unknown Source) [error] Buffer: at java.awt.Container.processEvent(Unknown Source) [error] Buffer: at java.awt.Component.dispatchEventImpl(Unknown Source) [error] Buffer: at java.awt.Container.dispatchEventImpl(Unknown Source) [error] Buffer: at java.awt.Component.dispatchEvent(Unknown Source) [error] Buffer: at java.awt.KeyboardFocusManager.redispatchEvent(Unknown Source) [error] Buffer: at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(Unknown Source) [error] Buffer: at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(Unknown Source) [error] Buffer: at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(Unknown Source) [error] Buffer: at java.awt.DefaultKeyboardFocusManager.dispatchEvent(Unknown Source) [error] Buffer: at java.awt.Component.dispatchEventImpl(Unknown Source) [error] Buffer: at java.awt.Container.dispatchEventImpl(Unknown Source) [error] Buffer: at java.awt.Window.dispatchEventImpl(Unknown Source) [error] Buffer: at java.awt.Component.dispatchEvent(Unknown Source) [error] Buffer: at java.awt.EventQueue.dispatchEvent(Unknown Source) [error] Buffer: at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) [error] Buffer: at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) [error] Buffer: at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) [error] Buffer: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] Buffer: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] Buffer: at java.awt.EventDispatchThread.run(Unknown Source) [error] ExtensionManager: Error repainting line range {12,39}: [error] ExtensionManager: java.lang.StringIndexOutOfBoundsException: String index out of range: 103 [error] ExtensionManager: at java.lang.String.<init>(Unknown Source) [error] ExtensionManager: at org.gjt.sp.jedit.syntax.TokenMarker.handleRule(TokenMarker.java:343) [error] ExtensionManager: at org.gjt.sp.jedit.syntax.TokenMarker.markTokens(TokenMarker.java:155) [error] ExtensionManager: at org.gjt.sp.jedit.buffer.JEditBuffer.markTokens(JEditBuffer.java:1234) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ChunkCache.lineToChunkList(ChunkCache.java:771) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ChunkCache.updateChunksUpTo(ChunkCache.java:646) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ChunkCache.getLineInfo(ChunkCache.java:255) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ExtensionManager.paintScreenLineRange(ExtensionManager.java:102) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.TextAreaPainter.paint(TextAreaPainter.java:726) [error] ExtensionManager: at javax.swing.JComponent.paintToOffscreen(Unknown Source) [error] ExtensionManager: at javax.swing.BufferStrategyPaintManager.paint(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.paint(Unknown Source) [error] ExtensionManager: at javax.swing.JComponent._paintImmediately(Unknown Source) [error] ExtensionManager: at javax.swing.JComponent.paintImmediately(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.seqPaintDirtyRegions(Unknown Source) [error] ExtensionManager: at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(Unknown Source) [error] ExtensionManager: at java.awt.event.InvocationEvent.dispatch(Unknown Source) [error] ExtensionManager: at java.awt.EventQueue.dispatchEvent(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.run(Unknown Source) [error] ExtensionManager: Error repainting line range {12,39}: [error] ExtensionManager: java.lang.StringIndexOutOfBoundsException: String index out of range: 103 [error] ExtensionManager: at java.lang.String.<init>(Unknown Source) [error] ExtensionManager: at org.gjt.sp.jedit.syntax.TokenMarker.handleRule(TokenMarker.java:343) [error] ExtensionManager: at org.gjt.sp.jedit.syntax.TokenMarker.markTokens(TokenMarker.java:155) [error] ExtensionManager: at org.gjt.sp.jedit.buffer.JEditBuffer.markTokens(JEditBuffer.java:1234) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ChunkCache.lineToChunkList(ChunkCache.java:771) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ChunkCache.updateChunksUpTo(ChunkCache.java:646) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ChunkCache.getLineInfo(ChunkCache.java:255) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.ExtensionManager.paintScreenLineRange(ExtensionManager.java:102) [error] ExtensionManager: at org.gjt.sp.jedit.textarea.Gutter.paintComponent(Gutter.java:131) [error] ExtensionManager: at javax.swing.JComponent.paint(Unknown Source) [error] ExtensionManager: at javax.swing.JComponent.paintToOffscreen(Unknown Source) [error] ExtensionManager: at javax.swing.BufferStrategyPaintManager.paint(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.paint(Unknown Source) [error] ExtensionManager: at javax.swing.JComponent._paintImmediately(Unknown Source) [error] ExtensionManager: at javax.swing.JComponent.paintImmediately(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) [error] ExtensionManager: at javax.swing.RepaintManager.seqPaintDirtyRegions(Unknown Source) [error] ExtensionManager: at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(Unknown Source) [error] ExtensionManager: at java.awt.event.InvocationEvent.dispatch(Unknown Source) [error] ExtensionManager: at java.awt.EventQueue.dispatchEvent(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] ExtensionManager: at java.awt.EventDispatchThread.run(Unknown Source) [error] AWT-EventQueue-0: Exception in thread "AWT-EventQueue-0" [error] AWT-EventQueue-0: java.lang.StringIndexOutOfBoundsException: String index out of range: 103 [error] AWT-EventQueue-0: at java.lang.String.<init>(Unknown Source) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.syntax.TokenMarker.handleRule(TokenMarker.java:343) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.syntax.TokenMarker.markTokens(TokenMarker.java:155) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.buffer.JEditBuffer.markTokens(JEditBuffer.java:1234) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.ChunkCache.lineToChunkList(ChunkCache.java:771) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.ChunkCache.updateChunksUpTo(ChunkCache.java:646) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.ChunkCache.getLineInfo(ChunkCache.java:255) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.Gutter.paintLine(Gutter.java:544) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.Gutter.paintComponent(Gutter.java:137) [error] AWT-EventQueue-0: at javax.swing.JComponent.paint(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.JComponent.paintToOffscreen(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.BufferStrategyPaintManager.paint(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.RepaintManager.paint(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.JComponent._paintImmediately(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.JComponent.paintImmediately(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.RepaintManager.seqPaintDirtyRegions(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(Unknown Source) [error] AWT-EventQueue-0: at java.awt.event.InvocationEvent.dispatch(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventQueue.dispatchEvent(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.run(Unknown Source) [error] AWT-EventQueue-0: Exception in thread "AWT-EventQueue-0" [error] AWT-EventQueue-0: java.lang.StringIndexOutOfBoundsException: String index out of range: 103 [error] AWT-EventQueue-0: at java.lang.String.<init>(Unknown Source) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.syntax.TokenMarker.handleRule(TokenMarker.java:343) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.syntax.TokenMarker.markTokens(TokenMarker.java:155) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.buffer.JEditBuffer.markTokens(JEditBuffer.java:1234) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.ChunkCache.lineToChunkList(ChunkCache.java:771) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.ChunkCache.updateChunksUpTo(ChunkCache.java:646) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.ChunkCache.getLineInfo(ChunkCache.java:255) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.TextArea.invalidateLine(TextArea.java:1145) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.TextArea.blinkCaret(TextArea.java:2118) [error] AWT-EventQueue-0: at org.gjt.sp.jedit.textarea.TextArea$CaretBlinker.actionPerformed(TextArea.java:5907) [error] AWT-EventQueue-0: at javax.swing.Timer.fireActionPerformed(Unknown Source) [error] AWT-EventQueue-0: at javax.swing.Timer$DoPostEvent.run(Unknown Source) [error] AWT-EventQueue-0: at java.awt.event.InvocationEvent.dispatch(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventQueue.dispatchEvent(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.pumpEvents(Unknown Source) [error] AWT-EventQueue-0: at java.awt.EventDispatchThread.run(Unknown Source) [debug] PHPSideKickParser: Requesting sidekick complete [debug] WorkThread: Running in work thread: [id=265,run=org.gjt.sp.jedit.bufferio.BufferAutosaveRequest[Y.php(X\)]] [debug] DockableWindowManager: Loading dockables from jeditresource:/ErrorList.jar!/dockables.xml [debug] EditBus: DockableWindowUpdate[what=ACTIVATED,dockable=error-list,source=org.gjt.sp.jedit.gui.DockableWindowManager[,0,0,1600x1081,invalid,layout=org.gjt.sp.jedit.gui.DockableLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]]
+1
+org.gjt.sp.jedit.syntax.TokenMarker
+
+1601718
+jEdit freezes on regexpr "||"  set "Search for:" to "||" check "Regular expressions" click "Replace All" version : jEdit 4.3pre8
+1
+org.gjt.sp.jedit.search.SearchAndReplace
+
+1608486
+Support for "thick" caret  I've attached a patch for a new configuration option, "thick caret"(in Global options -> Text area). When selected, this causes the caret to be painted slightly wider than the current default. Personally I believe it makes the caret easier to see(as well as better looking, but that might be because I'm used to it from other editors of course). What's with the -devel mailing list btw? Seems I'm unable to subscribe or send mail to it..
+4
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.options.TextAreaOptionPane
+org.gjt.sp.jedit.textarea.TextAreaPainter
+org.gjt.sp.jedit.textarea.TextAreaPainter.PaintCaret
+
+1608948
+Filter box lose focus bug  I had to do this for a class, so since I fixed it I might as well submit it as a patch. I tried creating a diff, but since I didn't sync it with the jEdit CVS server I was not able to create one. But as it says on your website I will just post it here. *********THE BUG:********* Under the File System Browser, used to open and save files, the Filer textbox doesn't become deselected after it loses focus. To replicate this: 1) Run jEdit 2) Select File->Open 3) Click in the Filter textbox and then click in a different box such as the File Name text box. As you can see the text in the Filter textbox is still selected and/or the caret is still blinking as if it has keyboard focus. *********THE FIX:********* The function protected void processFocusEvent(FocusEvent e) in HistoryComboBoxEditor is where the problem is. HistoryComboBoxEditor is a subclass of org.gjt.sp.jedit.browser.VFSBrowser.java. The correct code is: protected void processFocusEvent(FocusEvent e) { // AWT will call setItem() when the editor loses // focus; that can cause weird and unwanted things // to happen, so ignore lost focus events. if(e.getID() != FocusEvent.FOCUS_LOST) super.processFocusEvent(e); //NEW CODE ADDED BY JAY else { setCaretPosition(0); this.getCaret().setVisible(false); } ///end NEW CODE } This restores the default behavior of what usually happens when the focus is lost. I hope this is helpful to you all.
+1
+org.gjt.sp.jedit.browser.VFSBrowser.HistoryComboBoxEditor
+
+1611766
+avoid NPE from getIndentRules()  At jEdit trunk r8210, I saw a NPE from getIndentRulse(). I could reproduce it with [Record Temporary Macro] > [Stop Recording]. The attached patch will fix this problem. Though the patch is working fine, I don't know why lineMgr.getLineContext(line) returns null with the above operation. I made this patch to be the least change to avoid an actual problem. But the function seemed to rely on some unclear non-null assumptions. - tokenMarker.getMainRuleSet() - getMainRuleSet().getModeName() - jEdit.getMode(modeName) - getMode(modeName).getIndentRules() If these can be problems, I think the patch should be revised.
+1
+org.gjt.sp.jedit.buffer.JEditBuffer
+
+1617509
+Filter Bug in File System Browser  In File System Browser don't work filter And interesting that filter as *.css work but filter zak* don't work.
+1
+org.gjt.sp.jedit.io.GlobVFSFileFilter
+
+1620694
+Background Plugin - Scrolling with MouseWheel Issue  Hi, I'm using jEdit 4.3pre8, on Linux, jdk1.5.0_10. Since the 4.3preX the Background Plugin scrolls the Background Picture, when i am scrolling with the mousewheel or use the scrollbar. It still works fine(the picture is fixed) when i use the pageup pagedown keys. .ApeHanger
+3
+org.gjt.sp.jedit.textarea.BufferHandler
+org.gjt.sp.jedit.textarea.TextArea
+org.gjt.sp.jedit.textarea.TextAreaPainter
+
+1628053
+TextPane Buffer combobox: hovertip showing full path  The buffer switcher can't always display the full path of the file I'm editing. Twould be nice to have a hovertip showing me the full path also.
+2
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.gui.BufferSwitcher
+
+1630805
+Escaped quotes messed up(since pre9)  Hello All, Attached file showcases a bug with the PHP syntax highlighting. The syntax highlighting messes up for me with the first escaped quote in the javascript embedded in the PHP echo statement on line 7 and stays messed up until the closing parenthesis on line 25. As of SVN revision 8320, I can recreate this on a full "native install"(dist) on a Mac 10.4.8, Intel Core Duo. Kevin
+2
+org.gjt.sp.jedit.syntax.ParserRule
+org.gjt.sp.jedit.syntax.TokenMarker
+
+1638642
+jEdit could use JSplitPane continuous layout  Hi, I think jEdit could use continuous layout in the JSplitPanes. Of course this should be a property and could be changed on the fly Matthieu
+10
+org.gjt.sp.jedit.GUIUtilities
+org.gjt.sp.jedit.GUIUtilities.SizeSaver
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.browser.BrowserView
+org.gjt.sp.jedit.browser.BrowserView.TableMouseHandler
+org.gjt.sp.jedit.gui.OptionsDialog
+org.gjt.sp.jedit.gui.RegisterViewer
+org.gjt.sp.jedit.help.HelpViewer
+org.gjt.sp.jedit.options.AppearanceOptionPane
+org.gjt.sp.jedit.pluginmgr.InstallPanel
+
+1641997
+automatic reloading of buffers  The option "autoreload without notification" is only available in buffer options. In the General Options pane, the apropriate List has 4 items, but the last item is empty and can't be selected. jedit 4.3pre9 WinXP SP2 Sun JRE 1.5.0_10
+1
+org.gjt.sp.jedit.options.GeneralOptionPane
+
+1642574
+Change number of visible rows in buffer switcher in gui  This patch makes possible to change number of visible rows in buffer switcher via global options. SVN revision - 8724
+2
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.options.ViewOptionPane
+
+1645528
+Perspective saver: option to ignore remote VFS files  If I have files open from the sql: vfs, or even the sftp:// vfs, it would be nice if the perspective saver could ignore those files but remember all my local files. I'd like a checkbox that lets me switch this behavior(restoring sftp:// and sql:// files in perspective) off.
+2
+org.gjt.sp.jedit.PerspectiveManager.PerspectiveHandler
+org.gjt.sp.jedit.options.GeneralOptionPane
+
+1646058
+Improve keyboard interaction in HyperSearch Results  This patch will improve some keyboard interaction in the [HyperSearch Results] tree. * Two flavors [Space], [Enter] to open the node. Pressing [Space] opens the selected node without changing the focus.(The focus remains on the [HyperSearch Results] tree.) Pressing [Enter] opens the selected node and set the focus to the textArea. Without this patch, the latter requires 3 strokes [Enter]+[Ctrl+E]+[Ctrl+J]. * Enable [Delete] key to remove the node. Without this patch, removing nodes can be done only with mouse(context menu). I also implemented adjusting the selection on removal so that repeating some removals behave naturally. P.S. I found the two flavors to open buffers in the macro Files/Buffer_Switcher.bsh. I like this interface very much. I would like to see this interface in all tree or list interface about buffers in jEdit. ErrorList, ProjectViewer and Sidekick are in mind. If you like this patch, I'll try to implement this interface for these plugins.
+4
+org.gjt.sp.jedit.search.HyperSearchResults
+org.gjt.sp.jedit.search.HyperSearchResults.KeyHandler
+org.gjt.sp.jedit.search.HyperSearchResults.MouseHandler
+org.gjt.sp.jedit.search.HyperSearchResults.RemoveTreeNodeAction
+
+1649033
+Correct the focus after choosing the directory to search  After choosing the directory to search via [Choose...] button in [Search And Replace] dialog, the view is focused and [Search And Replace] dialog becomes inactive. I can't find the way to set focus back using keyboard. So I'm forced to use the mouse. Keyboard shortcut for action 'find' brings [Search And Replace] dialog up. But then, all settings are reset. This patch will solve the above problem. I would like to work with less use of the mouse, don't you?
+3
+org.gjt.sp.jedit.GUIUtilities
+org.gjt.sp.jedit.browser.VFSFileChooserDialog
+org.gjt.sp.jedit.search.SearchDialog.MultiFileActionHandler
+
+1654543
+4.3pre10(svn) breaks FTP "connect to secure FTP server" dlg  The FTP plugin no longer shows me the textfields for username/pw/key location in the "connect to secure ftp server" dialog. All I can see is the "save password" checkbox. Reverting back to 4.3pre9, it works again. What broke?
+1
+org.gjt.sp.jedit.gui.VariableGridLayout
+
+1658252
+C mode: incorrect bracket matching in multi-line defines  Try this define: #define LONG_MULTI_LINE_DEFINE { \ code; \ more code; \ even more code; \ } The brackets don't match.
+4
+org.gjt.sp.jedit.syntax.ParserRule
+org.gjt.sp.jedit.syntax.TokenMarker
+org.gjt.sp.jedit.syntax.XModeHandler
+org.gjt.sp.jedit.syntax.XModeHandler.TagDecl
+
+1659666
+perl.xml patch for quote-like operators  patch for perl.xml to handle quote-like operators as documented in http://perldoc.perl.org/perlop.html section Quote-and-Quote-like-Operators. http://perldoc.perl.org/perlop.html#Quote-and-Quote-like-Operators-operator%2c-quote-operator%2c-quote-like-q-qq-qx-qw-m--qr-s-tr-'-''-%22-%22%22-%2f%2f-%60-%60%60-%3c%3c-escape-sequence-escape Without the patch quote-like operators only accepted curly brackets, round brackets, slash or pipe as delimiter. I have a problem with dealing with something like this: eval(q[sub d { my $time=gmtime(); $time=~s/...(...) +(\d+)(........) ..(..)/$2 $1 $4 $3/; print DEBUG "$time <$_[0]>\n"; }]) if $DEBUG; the quote-like operator ends at }] but now jEdit sees $_[0] as the end! Should be fixed by moving some syntax mode code around.
+2
+org.gjt.sp.jedit.TextUtilities
+org.gjt.sp.jedit.syntax.TokenMarker
+
+1663617
+Spaces in URL paths bug(xml/errorlist)  Hi, when an xml file is in a folder that contains spaces in it's name, if there is an error in the xml that is displayed in ErrorList, when clicking on it, the ErrorList will open another buffer. The reason is that it replaces the path by an URL, and replaces the space by a %20.
+1
+org.gjt.sp.jedit.jEdit
+
+1664900
+Auto-indent breaks if previous line is a single line indent  Damn I hate these small summary fields. I also hate the auto-inserted word-wrap in these text fields, BTW. </rant> Anyway, this might be a dupe of some of the other several auto-indent bugs, but I took some time to look at this one and have a good idea of what's going on(though I haven't looked at how to fix it just yet). The problem is with a piece of code like this, for example(in a mode like C or Java): if(foo) bar; for(;;) { As soon as you hit "{" the line will be indented to the same level as "bar;", which is wrong. This is because in JEditBuffer.java:getIdealIndentForLine(), "oldIndent" is initialized to the indent size of the last non-empty line. In this case this is wrong, since the last non-empty line is at a different indent level than the current indent line. The code needs to check what's the auto-indent level for the next line after the last non-empty line, instead of just using the same indent level.
+3
+org.gjt.sp.jedit.indent.IndentAction.Collapse
+org.gjt.sp.jedit.indent.OpenBracketIndentRule
+org.gjt.sp.jedit.indent.RegexpIndentRule
+
+1668893
+Wrong conversion to UTF-16(with BOM)  Recently I mentioned, that when changing encoding to UTF-16, then saving file and reopening it a BOM appears at the end of each line(in my case it is FF FE) before \n This strange behavior appeared in 4.3pre9
+2
+org.gjt.sp.jedit.MiscUtilities
+org.gjt.sp.jedit.bufferio.BufferIORequest
+
+1671312
+4.3pre15: RegEx can't be used to find zero width match  Hello Thanks again for a wonderful programmers' word processor. In jEdit 4.3pre2, you can quickly add a comma(or anything else) to the end of every line by 1. Press Ctrl-F 2. Check "Regular expressions" 3. Enter $ under 'Search for' 4. Enter , under 'Replace with' 5. Pressing Alt-A The above would match the end of the line, and add a comma to the end. In jEdit 4.3pre9, this does not happen. You have to instead match a character AND the end of the line. If you want to match empty lines, you have to 'Search For'(\n)$ and 'Replace with' ,$1 or $1, but this only has the desired affect for every second line. Using 'Search for' $(\n) and 'Replace with' ,$1 matches all but the last line in the buffer. In jEdit 4.3pre2, $ alone on its own would match the end of the line BEFORE the \n. And this would give the desired effect. Best regards Carlos
+3
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.PatternSearchMatcher
+org.gjt.sp.jedit.search.SearchAndReplace
+
+1676041
+"CamelHumps" words  Hi, attached is a small patch, which adds an option to change the behaviour, how the caret jumps to next/previous word. If enabled jEdit treats every "CamelHump" part of a word as a word itself when moving the caret. It does not affect the selection of a whole word with double click or shortcut. The option can be found in the editing option pane. I hope, you like it. 8) bye horst
+5
+org.gjt.sp.jedit.TextUtilities
+org.gjt.sp.jedit.options.EditingOptionPane
+org.gjt.sp.jedit.options.EditingOptionPane.ModeProperties
+org.gjt.sp.jedit.textarea.TextArea
+org.gjt.sp.jedit.textarea.TextAreaMouseHandler
+
+1687264
+Fix an exception with [Delete] for empty HyperSearchResults  This is a followup for the patch #1646058 which enabled removing a node in HyperSearchResults with [Delete] key. If [Delete] key is pressed for empty HyperSearchResults, an exception is shown in the Activity Log. However, it seems no effect except for the log. This patch will fix the above problem.
+1
+org.gjt.sp.jedit.search.HyperSearchResults
+
+1694133
+File Browser: back-arrow in filename textbox  2.) File Browser: Especially with "Save as" ------------------------------------------- The Cursor stands in the Filed "Filename" at the end. When you move the Cursor(for example with the left arrow) to left most position and further, the Directory begins to change(move level up). It is not so nice, when you want to save a File for example in C:\home\eclipse\workspace\fraktal\doc and you suddendly stand in C:
+4
+org.gjt.sp.jedit.browser.BrowserView.ParentDirectoryList
+org.gjt.sp.jedit.browser.VFSBrowser
+org.gjt.sp.jedit.browser.VFSDirectoryEntryTable
+org.gjt.sp.jedit.browser.VFSFileNameField
+
+1708876
+file browser 4.3 pre wrong file type parsing  There is wrong file name parsing in File Browser when sorting files by type. It's done by most left dot and should be done by most right dot. Let's say the file name is my_file.test.txt the commont file type is txt. jEdit takes test.txt
+1
+org.gjt.sp.jedit.MiscUtilities
+
+1708881
+File Browser in 4.3 pre: reset the column width when resort   It's not a critical issue. In 4.3 pre9 in File Browser pane it's possible to change the column width. However every time after re-sort files( I mean double click on column header like Name, Type, Size, Last Modified) all column widths are reset to default value. It's important when File Browser is docked.
+1
+org.gjt.sp.jedit.browser.VFSDirectoryEntryTable.MouseHandler
+
+1723506
+Context menu key not functional on Windows  jEdit 4.3pre9 using Java 1.6.0_01 on Windows XP Pro Normally, the context menu key has the same effect as a mouse right click; in jEdit, however, it has no effect.
+1
+org.gjt.sp.jedit.textarea.JEditTextArea
+
+1724940
+typing in multiple select  If I highlight multiple selections of text in the text area and then begin typing, only the first character of what I type is inserted in the selected areas(except for where the cursor ended up after making the selection). For example if I have the text: <body> <p> Some Text </p> </body> and I highlight both p's in the <p> tags and then type "div" I end up with: <body> <d> Some Text </div> </body> I've attached a screenshot.
+1
+org.gjt.sp.jedit.textarea.BufferHandler
+
+1730845
+Select line from gutter  It would be very convenient to be able to select an entire line of text, including the return character, by simply clicking in the gutter. Even better, select multiple lines by clicking and dragging in the gutter. Several lesser editors have this feature. Any chance of having this added?
+4
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.options.GutterOptionPane
+org.gjt.sp.jedit.textarea.Gutter
+org.gjt.sp.jedit.textarea.Gutter.MouseHandler
+
+1739675
+Error in jedit svn revision 9820+  After compile and update my jedit to pre10(revision 9820+) i got some erros trying to use c+i with python files. Look attached file to see the error.
+1
+org.gjt.sp.jedit.indent.WhitespaceRule
+
+1744674
+Bad EBMessage from HyperSearch Results  Using jEdit development version, SVN rev 9867. When double-clicking an item in the HyperSearch Results window, the corresponding file is opened in a buffer, but the BufferUpdate.LOADED message that is sent when the buffer has been loaded comes with a null view instead of the actual view in which it is opened. The null view causes the SideKick plugin to ignore this message, so it doesn't update its SideKick tree for the buffer(which is now the active buffer).
+3
+org.gjt.sp.jedit.search.HyperSearchFileNode
+org.gjt.sp.jedit.search.HyperSearchResult
+org.gjt.sp.jedit.search.HyperSearchResults
+
+1747300
+Enable customization of folding presentation  It will be very nice if the way folding is drawn in the gutter is customizable. One customization can be made by the user, e.g. selecting the icons to show for start/end of fold, another could be by enabling a folding-mode provider(fold handler, like SideKick) select the icons for each fold.
+6
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.options.GutterOptionPane
+org.gjt.sp.jedit.textarea.CircleFoldPainter
+org.gjt.sp.jedit.textarea.Gutter
+org.gjt.sp.jedit.textarea.SquareFoldPainter
+org.gjt.sp.jedit.textarea.TriangleFoldPainter
+
+1748509
+Persistent Plugin Install Lists  From ManagePanel, we need another button "Save" which pops up a file save dialog and lets you save the list of currently installed plugins to an .xml file. If you save it as "default.xml", the InstallPanel will load it automatically when it is displayed, and select those plugins as candidates to install(if they're not installed already). On the InstallPanel, we need a button "Load" which pops up a file load dialog in the same place, and lets you load the .xml file. When it's loaded, any plugin that is not installed but is on that lists gets a checkbox in the install menu.
+9
+org.gjt.sp.jedit.GUIUtilities
+org.gjt.sp.jedit.browser.VFSFileChooserDialog
+org.gjt.sp.jedit.pluginmgr.InstallPanel
+org.gjt.sp.jedit.pluginmgr.InstallPanel.ChoosePluginSet
+org.gjt.sp.jedit.pluginmgr.InstallPanel.ClearPluginSet
+org.gjt.sp.jedit.pluginmgr.InstallPanel.PluginTableModel
+org.gjt.sp.jedit.pluginmgr.InstallPanel.StringMapHandler
+org.gjt.sp.jedit.pluginmgr.ManagePanel
+org.gjt.sp.jedit.pluginmgr.ManagePanel.SaveButton
+
+1749475
+ShortcutOptionPane: global table, Incremental Search/filter  In addition to being able select the ActionSet in the ShortcutOptions combobox, there should be a way for the user to show ALL actions in one table, and scroll through them, as well as filter them with an incremental search/filter textbox above the table.
+3
+org.gjt.sp.jedit.options.ShortcutsOptionPane
+org.gjt.sp.jedit.options.ShortcutsOptionPane.ShortcutsModel
+org.gjt.sp.jedit.options.ShortcutsOptionPane.TableMouseHandler
+
+1768638
+patch to configure file status checking  Attached is a patch to fix the following problem: steps to reproduce: 1. Mount a remote filesystem across the internet [1]. 2. Open several files from that location via jEdit 3. Move focus to an application other than jEdit 4. Move focus back to jEdit actual behavior: jEdit freezes for multiple seconds as the app checks file status for each buffer. expected behavior: Buffer should be editable immediately. The patch adds a combo box to GlobalOptionPane that controls when jEdit checks file status. The new option reads: === prompt == Check for file change upon: === values == application focus application focus, visiting the buffer or saving any buffer visiting the buffer or saving any buffer visiting or saving the buffer saving the buffer State for this configuration option is stored in a new integer property named 'checkFileStatus'. The patch implements this new behavior. In case you're curious, here's a short description of the use case satisfied by each option: --- 1 Making 'application focus' the default option avoids introducing new overhead and retains behavior that plugins may expect. This option could be dropped if those goals aren't important. --- 2 The 'application focus, visiting[...]' option is useful in an environment where multiple users may edit a file simultaneously. --- 3 The 'visiting the buffer or saving any buffer' option defers notification of file changes until the user is at a natural pausing point in workflow. --- 4 The 'visiting or saving the buffer' option deals well with many files where checking file attributes has high latency, such as in the sshfs-attached filesystem scenario that motivated this patch. --- 5 The 'saving the buffer' option disables checking file attributes except during save and exit. This can be helpful when a network-attached filesystem is intermittently unavailable or unresponsive. [1] I use sshfs w/ compression enabled. http://fuse.sourceforge.net/sshfs.html
+8
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.EditServer
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.View.WindowHandler
+org.gjt.sp.jedit.gui.CloseDialog.ActionHandler
+org.gjt.sp.jedit.jEdit
+org.gjt.sp.jedit.options.GeneralOptionPane
+org.gjt.sp.jedit.search.SearchAndReplace
+
+1781853
+Add sortable Release Date column to Plugin Manager  Usually I want to see new released plugins in the Plugin Manager. So I wrote a patch to add a new "Release Date" column to the install and update table. All columns in the table are also sortable. See screen shot an uploaded patches.
+5
+org.gjt.sp.jedit.pluginmgr.InstallPanel
+org.gjt.sp.jedit.pluginmgr.InstallPanel.EntryCompare
+org.gjt.sp.jedit.pluginmgr.InstallPanel.HeaderMouseHandler
+org.gjt.sp.jedit.pluginmgr.InstallPanel.HeaderRenderer
+org.gjt.sp.jedit.pluginmgr.InstallPanel.PluginTableModel
+
+1788847
+Syntax highlighting: Easy configuration of syntax styles  Currently, the syntax styles(token type settings used for syntax highlighting) in jEdit are configurable only using the Syntax Highlighting option pane of the Global Options dialog. This is not user friendly, since users do not normally know what each token type means for the specific mode(s) they're using. For example, if I want to configure the style of C++ variables, I need to match the style of a variable in some C++ buffer against the various token types in the option pane. If there are multiple token types with the same style, I need to try each one, click 'apply' and check how it affects the coloring in the buffer until I find which token type corresponds to C++ variables. I think the following would make it much easier for users to customize the styles: Provide an action that finds the token type under the caret, and opens the syntax style dialog for that token type. This way, the user doesn't even need to know the token types, he can simply put the caret on a variable, invoke the action and configure the style for variables. Later, this mechanism can be extended to provide mode-specific colors(i.e. override the global settings, like with the Editing option pane) - the style dialog can have a check-box to specify whether to set the global or mode-specific style for the token type, and jEdit can override the global settings with mode-specific ones whenever the mode is changed. But that's for another feature request, for now there's no need.
+3
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.gui.StyleEditor
+org.gjt.sp.jedit.options.SyntaxHiliteOptionPane.MouseHandler
+
+1789707
+fix for getXMLEncoding()  Hello, attached patch is for org/gjt/sp/jedit/io/XMLEncodingDetector.java(Revision 10456) The function Charset.isSupported() does not return false if an unsupported encoding is given but throws an IllegalCharsetNameException. Therefore it is not possible to open files with a wrong/unsupported encoding or use hypersearch in directories that contain such files. The bug can be reproduced by creating a file with the following line in it: <?xml version="1.0" encoding="{@CHARSET}"?>(this is part of a template file from wotlab burning board 3) The fix catches this exception, adds a message to the log and returns null. Greetings Andre
+2
+org.gjt.sp.jedit.io.EncodingServer
+org.gjt.sp.jedit.io.XMLEncodingDetector
+
+1818140
+Edit History Text  With this patch it is possible to edit the entries in the HistoryText by clicking on "Previously entered strings:" A simple table appears and the history entries can be changed by clicking: Move: PgUp/PgDown; Edit: Double-Click or Insert/Delete. The new class ListModelEditor is not only limited to HistoryText. It can be used to edit any DefaultListModel.
+2
+org.gjt.sp.jedit.gui.HistoryText
+org.gjt.sp.jedit.gui.ListModelEditor
+
+1825720
+Autosave bug in pre11  If you have an untitled file open whose parent directory does not exist, autosave will pop up a 'file not found' error every 30 seconds. Annoying.
+1
+org.gjt.sp.jedit.bufferio.BufferAutosaveRequest
+
+1834620
+Regex capturing groups above $9 can't be accessed  Capturing groups above $9 can't be accessed in jEdit 4.2final. For example... Input text: 123456789abc Search regex: ^(1)(2)(3)(4)(5)(6)(7)(8)(9)(a)(b)(c)$ Replace regex: $1$2$3$4$5$6$7$8$9$10$11$12 Expected output: 123456789abc Actual output: 123456789101112 It seems the lexer only reads in the first digit following the dollar sign and treats the second digit as plain text.
+1
+org.gjt.sp.jedit.search.SearchAndReplace
+
+1854542
+VFS Browser should show previous path when pressing escape  This is for bug #1519924. I basically just added an anonymous KeyAdapter that responds to the escape key and sets the text field's text back to the current path of the browser. This is done in the VFSBrowser constructor and is only done if the mode is equal to BROWSER, since the escape key is normally set to close the dialog window otherwise.
+2
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.browser.VFSBrowser
+
+1866836
+After completion column cursor should be kept  Hi, when typing in a column cursor, after using the completion popup it would be better if the cursor would still be column cursor
+2
+org.gjt.sp.jedit.gui.CompleteWord
+org.gjt.sp.jedit.gui.CompleteWord.Words
+
+1869978
+untitled buffer not closed with 2 views  When jEdit has only one buffer open, which name is untitled-x and which is empty and not dirty, it is closed automatically when another buffer is opened. This is fine. But it does not work, if there are more than one open views. jedit 4.3pre9, 4.3pre12 WinXP SP2 Sun JRE 1.6.0_03
+1
+org.gjt.sp.jedit.jEdit
+
+1883809
+View - Scrolling - Center Caret On Screen  This action should scroll up or down until the caret is in the middle of the TextArea, not what it is currently doing, which is just move the caret to the middle of the textarea. This action is totally useless at the moment.
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+1887293
+Incremental Search Bar always disappears  Pressing ESCAPE when the search bar is focused, it disappears - *whether or not* the search bar is set to be always visible in the global options.
+3
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.search.SearchBar
+org.gjt.sp.jedit.search.SearchBar.KeyHandler
+
+1894235
+[ 1887293 ] Incremental Search Bar always disappears  This is my first patch submission, so I apologize if I'm not following standard customs. I was able to replicate this behavior on Mac OS X Leopard, but only when changing the "Always show search bar" checkbox in Global Options after startup. The corresponding state within the SearchBar object(previously stored in private member 'temp') wasn't being updated after pressing either Apply or OK from the Global Options dialog. It looks like the state of the checkbox was being followed only upon startup. So, here are the changes that I've tried and which I'm submitting as a patch: 1) Renamed SearchBar.temp to 'isRemovable' to better describe what it's supposed to be storing. 2) Moved much of the code that was previously in SearchBar.propertiesChanged() to a new private method, SearchBar.setCloseButtonVisibility(). This is because the SearchBar constructor was calling propertiesChanged() but the properties may not have been changed. 3) In the View class, moved the invocation of searchBar.propertiesChanged() so that it's called regardless of whether the "Always show search bar" is checked or not. The previous version updated the Search Bar's state only if the check box is checked.
+3
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.search.SearchBar
+org.gjt.sp.jedit.search.SearchBar.KeyHandler
+
+1906288
+Bug in scrollLine calculation with soft-wrapped lines  At first suppose the following two examples to reproduce the effects of this bug with enabled Soft-Wrap and jEdit4.3pre13 - jre_1.6.0_04 on windows machine: 1st example) Open jEdit and take a clean buffer. Let the TextArea has 8 visible lines. Write 3 empty lines. Now write one line, that spans at least 3 screenlines. Now write some empty lines below the last line, so that the scrollbar is shown on the right side. Now delete the line above the one, that spans several lines and look at the scrollbar. it's getting smaller each time you delete the line above the long one. 2nd example) This relates to another bug, where an exception occurs sometimes at scrolling down after deleting a softwrapped line. Open jEdit and take a clean buffer. Let the TextArea has 8 visible lines. Be sure, that the last line is not partially visible. Write something into the first line so that it spans two screenlines. Now write 9 further short lines so that you have 10 physical lines in total - 2 more than visible. Now select the whole first line(Selection from the very beginning of the first screenline until the very beginning of the third screenline) and remove it(Ctrl-X). You see that, for no reason, the scrollbar disappears. Now scroll down(with Array-Down-Key) to the very last line of the buffer. You will get the following exception: java.lang.NullPointerException at org.gjt.sp.jedit.textarea.TextArea.scrollTo(TextArea.java:1009) at org.gjt.sp.jedit.textarea.TextArea.scrollToCaret(TextArea.java:873) at org.gjt.sp.jedit.textarea.TextArea._finishCaretUpdate(TextArea.java:5101) at org.gjt.sp.jedit.textarea.TextArea.finishCaretUpdate(TextArea.java:5260) at org.gjt.sp.jedit.textarea.TextArea.moveCaretPosition(TextArea.java:2365) at org.gjt.sp.jedit.textarea.TextArea.moveCaretPosition(TextArea.java:2331) at org.gjt.sp.jedit.textarea.TextArea.moveCaretPosition(TextArea.java:2320) at org.gjt.sp.jedit.textarea.TextArea._changeLine(TextArea.java:5375) at org.gjt.sp.jedit.textarea.TextArea.goToNextLine(TextArea.java:2589) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) at java.lang.reflect.Method.invoke(Unknown Source) at org.gjt.sp.jedit.bsh.Reflect.invokeMethod(Reflect.java:134) at org.gjt.sp.jedit.bsh.Reflect.invokeObjectMethod(Reflect.java:80) at org.gjt.sp.jedit.bsh.Name.invokeMethod(Name.java:855) at org.gjt.sp.jedit.bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) at org.gjt.sp.jedit.bsh.BSHBlock.evalBlock(BSHBlock.java:130) at org.gjt.sp.jedit.bsh.BSHBlock.eval(BSHBlock.java:80) at org.gjt.sp.jedit.bsh.BshMethod.invokeImpl(BshMethod.java:362) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:258) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:186) at org.gjt.sp.jedit.BeanShellFacade.runCachedBlock(BeanShellFacade.java:224) at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:443) at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:76) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:383) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:349) at org.gjt.sp.jedit.gui.DefaultInputHandler.handleKey(DefaultInputHandler.java:197) at org.gjt.sp.jedit.input.AbstractInputHandler.processKeyEventKeyStrokeHandling(AbstractInputHandler.java:364) at org.gjt.sp.jedit.gui.InputHandler.processKeyEvent(InputHandler.java:152) at org.gjt.sp.jedit.textarea.TextArea.processKeyEvent(TextArea.java:4731) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.KeyboardFocusManager.redispatchEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(Unknown Source) at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(Unknown Source) at java.awt.DefaultKeyboardFocusManager.dispatchEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source) I figured out, that in org.gjt.sp.jedit.textarea.Anchor.preContentRemoved(int,int,int) the scrollLine count is updated so that it reflects the correct value after the remove operation. But in a next step org.gjt.sp.jedit.textarea.BufferHandler.doDelayedUpdate() is called which calls in turn org.gjt.sp.jedit.textarea.DisplayManager.updateScreenLineCount() for the line, where the removed content started. This method then calls DisplayManager.updateScreenLineCount() for that line. Because the value was invalidated before, it is now recalculated. But in this recalculation(especially in DisplayManger.setScreenLineCount()) also the scrollLineCount.scrollLine is updated by the difference to the previous screenLineCount of that line. I would liketo fix this bug, but I don't know which side-effects it would have not to update the scrollLine in setScreenLineCount. Can anybody give some response? I think, this bug also results in some of the NPE occuring at scrolling sometimes. Thanks, zoniie
+1
+org.gjt.sp.jedit.textarea.Anchor
+
+1910061
+4.3pre13, r11659 - Center Caret On Screen action  In the revision 11659 was changed behaviour of the "Center Caret On Screen" action(C + e C + n): "- Center Caret On Screen now scrolls your document so your caret doesn't change. [ 1883809 - ezust ]" But for that purpose we have the "Scroll to Current Line"(C + e C + j) action. The "Center Caret On Screen" action is supposed to change the caret position.
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+1912735
+Selected text "char counter" in status bar  When I select a text in the main editor, if I need to know the number of chars in the string I need to call the word count function, but may be it can be easier if I have a counter directly on the status bar.
+3
+org.gjt.sp.jedit.gui.statusbar.SelectionLengthWidgetFactory
+org.gjt.sp.jedit.gui.statusbar.SelectionLengthWidgetFactory.SelectionLengthWidget
+org.gjt.sp.jedit.gui.statusbar.SelectionLengthWidgetFactory.SelectionLengthWidget.SelectionLength
+
+1913979
+HistoryTextField: array out of bounds when no history  Brand new jedit 4.3pre13 install. Virgin properties. No previous history values in the properties. Try to search for something. you get this: java.lang.ArrayIndexOutOfBoundsException: 0 >= 0 at java.util.Vector.elementAt(Vector.java:427) at javax.swing.DefaultListModel.elementAt(DefaultListModel.java:247) at org.gjt.sp.jedit.gui.HistoryModel.getItem(HistoryModel.java:86) at org.gjt.sp.jedit.search.SearchDialog.setSearchString(SearchDialog.java:151) at org.gjt.sp.jedit.search.SearchDialog.showSearchDialog(SearchDialog.java:109) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) at java.lang.reflect.Method.invoke(Method.java:597) at org.gjt.sp.jedit.bsh.Reflect.invokeMethod(Reflect.java:134) at org.gjt.sp.jedit.bsh.Reflect.invokeStaticMethod(Reflect.java:98) at org.gjt.sp.jedit.bsh.Name.invokeMethod(Name.java:871) at org.gjt.sp.jedit.bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) at org.gjt.sp.jedit.bsh.BSHBlock.evalBlock(BSHBlock.java:130) at org.gjt.sp.jedit.bsh.BSHBlock.eval(BSHBlock.java:80) at org.gjt.sp.jedit.bsh.BshMethod.invokeImpl(BshMethod.java:362) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:258) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:186) at org.gjt.sp.jedit.BeanShellFacade.runCachedBlock(BeanShellFacade.java:224) at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:443) at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:76) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:383) at org.gjt.sp.jedit.jEdit$3.invokeAction(jEdit.java:3000) at org.gjt.sp.jedit.jEdit$3.invokeAction(jEdit.java:2984) at org.gjt.sp.jedit.EditAction$Wrapper.actionPerformed(EditAction.java:220) at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1995) at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2318) at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:387) at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:242) at javax.swing.AbstractButton.doClick(AbstractButton.java:357) at javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1170) at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1211) at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:272) at java.awt.Component.processMouseEvent(Component.java:6038) at javax.swing.JComponent.processMouseEvent(JComponent.java:3260) at java.awt.Component.processEvent(Component.java:5803) at java.awt.Container.processEvent(Container.java:2058) at java.awt.Component.dispatchEventImpl(Component.java:4410) at java.awt.Container.dispatchEventImpl(Container.java:2116) at java.awt.Component.dispatchEvent(Component.java:4240) at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4322) at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3986) at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3916) at java.awt.Container.dispatchEventImpl(Container.java:2102) at java.awt.Window.dispatchEventImpl(Window.java:2429) at java.awt.Component.dispatchEvent(Component.java:4240) at java.awt.EventQueue.dispatchEvent(EventQueue.java:599) at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:273) at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:183) at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:173) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:168) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:160) at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)
+1
+org.gjt.sp.jedit.search.SearchDialog
+
+1923613
+reverse regex search  I have implemented support for reverse searching with regular expressions. This works by searching in the forward direction and accepting the last match prior to the current match. Thus it's functional for small-to-moderate sized buffers, but not too efficient for very large buffers. Since I think most folks are using jEdit for source editing, not grepping massive log files, I'm hoping this is an acceptable tradeoff.
+4
+org.gjt.sp.jedit.search.PatternSearchMatcher
+org.gjt.sp.jedit.search.SearchAndReplace
+org.gjt.sp.jedit.search.SearchBar
+org.gjt.sp.jedit.search.SearchDialog
+
+1931333
+4.3pre13: Appends number to text when using autocomplete  When selecting a completion in the autocomplete popup by number, the number is appened to the text. How to reproduce: 1. Create a new buffer 2. Type in: foo foobar 3. Type in fo and hit Ctrl-B for autocomplete. The autocomplete popup displays the two alternatives 1: foo 2: foobar 4. Type 2 to select the second alternative. fo will be completed to foobar2 instead of foo.
+1
+org.gjt.sp.jedit.gui.CompleteWord
+
+1936518
+File/Directory properties dialog  Add "Properties" to the context menu of the File Browser, showing the file/directory properties of the selected item(e.g. date, size, path).
+4
+org.gjt.sp.jedit.browser.BrowserCommandsMenu
+org.gjt.sp.jedit.browser.VFSBrowser
+org.gjt.sp.jedit.gui.FilePropertiesDialog
+org.gjt.sp.jedit.gui.FilePropertiesDialog.ButtonActionHandler
+
+1938174
+Fix for Activity Log filter that causes jEdit to freeze  Occasionally, typing rapidly in the filter text box on the Activity Log will cause jEdit to freeze with 100% CPU activity. The problem is caused by the rapid changing of the filter text not happening on the awt event dispatch thread. This patch simply wraps the contents of the FilteredListModel.setFilter method with a runnable that is then called with SwingUtilities.invokeLater. Patch to be applied to org.gjt.sp.jedit.gui.FilteredListModel.java. Patch created against revision 12387.
+1
+org.gjt.sp.jedit.gui.FilteredListModel
+
+1942313
+Expanding a fold twice moves caret unexpectedly  I'm using 4.3pre13 on Debian Testing(with Java 1.6.0_04) and on Ubuntu Feisty(with Java 1.5.0_11). I get the same results on both machines. Create the following file, and save it as test.cpp: int a = 1; void bcd() { // } void efg() { // } void hij() { // } Change the folding mode(if necessary) to `indent'. Move the caret to the `hij' line. Press Alt+Backspace to contract the fold. It works. Press Alt+Enter to expand the fold. It works. Press Alt+Enter a second time. The caret moves unexpectedly to the `bcd' line. I think this is a bug: I think the caret should stay where it is, and jEdit should either do nothing or print an error message.
+1
+org.gjt.sp.jedit.textarea.DisplayManager
+
+1947676
+Show the search string in the HyperSearch Results dockable  It would be useful to see the search string in the HyperSearch Results dockable, possibly as part of the label at the top, both if results were found or not. Currently, during search, it just specifies "Searching ..."(and also the file being currently searched), and when the search is over it just specifies "Done" or "Not found". It would be useful to see the search string as part of the label as well(possibly truncated to some logical width).
+2
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.HyperSearchResults
+
+1961989
+Customize Tool Bar and Context Menu: Reset  Button  Both the Tool Bar and Context Menu edit pane should contain a Reset button to get rid of the customizations. Causes: Customizing Tool Bar or Context Menu does override the whole Menu/Tool Bar definition. When jEdit is updated and the old personal settings will be used on, changes of the delivered Context Menu/Tool Bar will be invisible until the customizations are removed from the properties file. Additional, icon assignments for the customized actions of the Tool bar are saved to the properties file. They should be removed too.
+4
+org.gjt.sp.jedit.gui.AbstractContextOptionPane
+org.gjt.sp.jedit.gui.AbstractContextOptionPane.ActionHandler
+org.gjt.sp.jedit.options.ToolBarOptionPane
+org.gjt.sp.jedit.options.ToolBarOptionPane.ActionHandler
+
+1965114
+'n' key in file system browser  Pressing 'n' with the file system browser dockable open, and the file list focused, opens a new file. This is really annoying, because it makes keyboard completion useless. If I want to open a new file, I can just press C+n. With this "feature"(clearly added by someone not familiar with jEdit's features) I cannot complete filenames by typing them.
+1
+org.gjt.sp.jedit.browser.VFSDirectoryEntryTable
+
+1984000
+Untitled buffer is lost after C+n  When I'm editing an untitled buffer and call File > New, the edited buffer is lost from the buffer list. jEdit SVN revision 12783
+1
+org.gjt.sp.jedit.bufferset.BufferSet
+
+1984974
+Plain view should include(optional) Status Bar  The plain view is a little too plain IMHO. I'd like to be able to tell what line I'm on and what mode the buffer is in, for example. It would be nice to have the option to enable the status bar in plain views.
+2
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.options.StatusBarOptionPane
+
+1999448
+More efficient and general fix for black hole bug  I found joining lines is very slow only when folding mode is set to other than 'none'. Reproduction recipe:(WARNING: This will cause vary long hang up.) - Open doc/CHANGES.txt in jEdit source tree. - Do [Expand All Folds](C+e x).(without this, another bug happens.) - Do [Select All](C+a). - Try [Join Lines](C+j). This patch will speed up this situation by minimizing calls to buffer.getFoldLevel(). Also, this patch will expand the care about black hole bug to support ... - multi line edit including folded line - more folding modes other than 'explicit' - modification at the middle of folded range. I want approval from Matthieu who made the current fixes for the bugs.
+3
+org.gjt.sp.jedit.textarea.BufferHandler
+org.gjt.sp.jedit.textarea.DisplayManager
+org.gjt.sp.jedit.textarea.TextArea
+
+2015210
+IllegalArgumentException  jEdit 4.2 1)Utilites->Global Options->Appearance Inputing negative number in "History text field entries to remember'' will result in thrown of IllegalArgumentException. Similarly 2)Utilites->Global Options->Autosave & Backup Inputing negative number in "Autosave frequency(secs)" will result in thrown of IllegalArgumentException. xyuanUMD
+2
+org.gjt.sp.jedit.options.AppearanceOptionPane
+org.gjt.sp.jedit.options.SaveBackupOptionPane
+
+2017514
+Context menu and 'Select All'  This is probably the exact same bug as http://sourceforge.net/tracker/index.php?func=detail&aid=1325352&group_id=588&atid=100588(Context menu and 'Select all'), but I open a new bug as that one was automatically closed almost 2 years ago. Summary: Select all(Ctrl+A), then right-click in the selection(as if to copy, or cut). About one in 3 or 4 times, I lose the selection. Ubuntu Hardy, up-to-date(13 Jul 2008) jedit/ $ svn info Path: . URL: https://jedit.svn.sourceforge.net/svnroot/jedit/jEdit/trunk Repository Root: https://jedit.svn.sourceforge.net/svnroot/jedit Repository UUID: 6b1eeb88-9816-0410-afa2-b43733a0f04e Revision: 13044 Node Kind: directory Schedule: normal Last Changed Author: ezust Last Changed Rev: 13032 Last Changed Date: 2008-07-08 12:47:25 -0400(Tue, 08 Jul 2008)
+1
+org.gjt.sp.jedit.textarea.MouseHandler
+
+2060078
+BufferSets: exclusive buffers to sibling buffersets  For non-Global-scope buffersets, it would be nice if there was an option to remove a buffer from one bufferset as soon as it is added to another.
+1
+org.gjt.sp.jedit.View
+
+2068307
+No "File Not Saved" alert on close of untitled buffers  If I create a new buffer and immediately close it, or add text but delete it all, and then try to close the buffer, jEdit asks me if I would like to save the empty buffer. I've used other editors before, like notepad, for example, that doesn't ask you to save if the buffer is empty. That's not to say that you can't save an empty buffer, it just would require you to initiate the save command on your own. Frequently, I create new buffers, paste text into it, modify it, and cut it all to the clipboard; using the new buffer only as a temporary space to manipulate some text. In this scenario, I feel it would be beneficial to suppress that alert. What do you all think?
+6
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.MiscUtilities
+org.gjt.sp.jedit.MiscUtilities.VarCompressor
+org.gjt.sp.jedit.gui.CloseDialog
+org.gjt.sp.jedit.jEdit
+org.gjt.sp.jedit.options.SaveBackupOptionPane
+
+2069249
+Reverse regex search for "$" matches at start position  Reverse regex search was enabled in r13400. But a problem has been found while testing the patch. https://sourceforge.net/support/tracker.php?aid=1923613 Repeating [Find Previous] for ".$" stops at every character. It should stop at every end of non-empty line. In contrast, repeating [Find Next] for "^." stops at every start of non-empty line. "$" looks matching at start position of reverse regex search.
+3
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.PatternSearchMatcher
+org.gjt.sp.jedit.search.SearchAndReplace
+
+2077326
+MD5Sum a buffer and file for "file not saved" warning check  When closing a dirty buffer, or doing a "reload" of a dirty buffer, Instead of popping up a dialog asking confirming that changes are not saved, do a comparison of the Md5sum of the buffer and what is on the disk, and if they match, don't show any dialog.
+2
+org.gjt.sp.jedit.Buffer
+org.gjt.sp.jedit.options.SaveBackupOptionPane
+
+2089713
+DIRTY_CHANGED is not sent after emptying Untitled buffer  With r13466, sometimes BufferTabs shows wrong icon for Untitled buffer which is dirty. This seems to happen since r13446, or related changes. Reproduction recipe: 1. Open a new buffer. 2. Type 'a'. Now the buffer becomes dirty and DIRTY_CHANGED is sent over EditBus. 3. Type BS. Now the buffer becomes not dirty and DIRTY_CHANGED is sent. 4. Type 'a'. Now the buffer becomes dirty but DIRTY_CHANGED is not sent. Because of this, the icon on BufferTabs remain showing "new", but when I close this buffer, the prompt comes up. Then buffer.isDirty() gives true.
+1
+org.gjt.sp.jedit.Buffer
+
+2091052
+BufferSet : loose a dirty buffer  Using View bufferset : -Get one dirty buffer. -Create a new view containing this buffer -remove the dirty buffer from the first view -Close the second view. The dirty buffer is still in memory but not visible in any edit pane
+5
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.bufferset.BufferSetManager
+org.gjt.sp.jedit.bufferset.BufferSetManager.BufferSetClosed
+org.gjt.sp.jedit.gui.CloseDialog
+org.gjt.sp.jedit.jEdit
+
+2122926
+Add right-click menu to the Errors status bar widget  It would be nice of the "Errors" status bar widget had a right-click menu, with an item for clearing all errors. Or maybe have the right-click simply clear all errors without a menu.
+2
+org.gjt.sp.jedit.gui.statusbar.ErrorsWidgetFactory.ErrorHighlight
+org.gjt.sp.jedit.gui.statusbar.ErrorsWidgetFactory.ErrorHighlight.MyMouseAdapter
+
+2129419
+NPE in EditPane.setBuffer when quitting jEdit  When trying to quit jEdit, I get the following Null-Pointer-Exception, which is probably related to some files being changed/deleted(due to a "cvs up" in the background). Previously to trying to quit jEdit, the "Files have changed. Reload?" dialog already failed, so that "Close" was the only option that worked. The NPE: java.lang.NullPointerException at org.gjt.sp.jedit.EditPane.setBuffer(EditPane.java:136) at org.gjt.sp.jedit.View.setBuffer(View.java:1009) at org.gjt.sp.jedit.View.showBuffer(View.java:1484) at org.gjt.sp.jedit.View.showBuffer(View.java:1042) at org.gjt.sp.jedit.gui.CloseDialog$ListHandler.valueChanged(CloseDialog.java:233) at javax.swing.JList.fireSelectionValueChanged(JList.java:1765) at javax.swing.JList$ListSelectionHandler.valueChanged(JList.java:1779) at javax.swing.DefaultListSelectionModel.fireValueChanged(DefaultListSelectionModel.java:167) at javax.swing.DefaultListSelectionModel.fireValueChanged(DefaultListSelectionModel.java:147) at javax.swing.DefaultListSelectionModel.fireValueChanged(DefaultListSelectionModel.java:194) at javax.swing.DefaultListSelectionModel.changeSelection(DefaultListSelectionModel.java:388) at javax.swing.DefaultListSelectionModel.changeSelection(DefaultListSelectionModel.java:398) at javax.swing.DefaultListSelectionModel.setSelectionInterval(DefaultListSelectionModel.java:442) at javax.swing.JList.setSelectedIndex(JList.java:2179) at org.gjt.sp.jedit.gui.CloseDialog.<init>(CloseDialog.java:96) at org.gjt.sp.jedit.jEdit.closeAllBuffers(jEdit.java:1871) at org.gjt.sp.jedit.jEdit.exit(jEdit.java:2621) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) at java.lang.reflect.Method.invoke(Method.java:597) at org.gjt.sp.jedit.bsh.Reflect.invokeMethod(Reflect.java:134) at org.gjt.sp.jedit.bsh.Reflect.invokeStaticMethod(Reflect.java:98) at org.gjt.sp.jedit.bsh.Name.invokeMethod(Name.java:871) at org.gjt.sp.jedit.bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) at org.gjt.sp.jedit.bsh.BSHBlock.evalBlock(BSHBlock.java:130) at org.gjt.sp.jedit.bsh.BSHBlock.eval(BSHBlock.java:80) at org.gjt.sp.jedit.bsh.BshMethod.invokeImpl(BshMethod.java:362) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:258) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:186) at org.gjt.sp.jedit.BeanShellFacade.runCachedBlock(BeanShellFacade.java:225) at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:441) at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:73) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:352) at org.gjt.sp.jedit.jEdit$4.invokeAction(jEdit.java:3080) at org.gjt.sp.jedit.jEdit$4.invokeAction(jEdit.java:3062) at org.gjt.sp.jedit.EditAction$Wrapper.actionPerformed(EditAction.java:220) at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1995) at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2318) at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:387) at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:242) at javax.swing.AbstractButton.doClick(AbstractButton.java:357) at javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1220) at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1261) at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:272) at java.awt.Component.processMouseEvent(Component.java:6041) at javax.swing.JComponent.processMouseEvent(JComponent.java:3265) at java.awt.Component.processEvent(Component.java:5806) at java.awt.Container.processEvent(Container.java:2058) at java.awt.Component.dispatchEventImpl(Component.java:4413) at java.awt.Container.dispatchEventImpl(Container.java:2116) at java.awt.Component.dispatchEvent(Component.java:4243) at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4322) at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3986) at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3916) at java.awt.Container.dispatchEventImpl(Container.java:2102) at java.awt.Window.dispatchEventImpl(Window.java:2440) at java.awt.Component.dispatchEvent(Component.java:4243) at java.awt.EventQueue.dispatchEvent(EventQueue.java:599) at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:273) at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:183) at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:173) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:168) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:160) at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)
+1
+org.gjt.sp.jedit.gui.CloseDialog.ListHandler
+
+2169354
+4.3pre15: replace with empty $1 inserts 'null'  Replacing with $1 when $1 is empty, incorrectly inserts 'null'. It should insert nothing instead. Example: If you have the following buffer: <start> select it.name, it.code, it.address from employees it where code = '111' <end> Search(with regular expressions on) for: \bit(\.)*\b Replace with: emp$1 Expected results: <start> select emp.name, emp.code, emp.address from employees emp where code = '111' <end> Actual results: <start> select emp.name, emp.code, emp.address from employees empnull where code = '111' <end>
+1
+org.gjt.sp.jedit.search.SearchAndReplace
+
+2173091
+4.3pre16: regex hypersearch '^' only matches the first line  Make a new buffer with 15 lines(empty or not, does not matter) With regex switched on and hypersearch switched on, search for ^ This will match only the first line! It should match all 15 lines.
+3
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.PatternSearchMatcher
+org.gjt.sp.jedit.search.SearchAndReplace
+
+2173112
+4.3pre16: regex '$' does not match last line in selection  In a new buffer, make 10 empty lines.(NOTE: they don't have to be empty) Select any five lines(i.e. a text selection) Search for $(with hypersearch, selection, and regular expressions turned on) This only matches the first 4 lines. The fifth is not matched Now search for $ and replace with z Since the fifth line was not matched, z is placed on only the first 4 lines. Please note: -- ^ works fine. Just $ demonstrates this behaviour -- the lines do not have to be empty. This is reproducable for non-empty lines as well, and any mixture of empty non-empty lines
+1
+org.gjt.sp.jedit.search.HyperSearchRequest
+
+2183929
+4.3pre16: files in buffer switcher not ordered  Tested against jEdit 4.3pre16(r13908) Instead of being ordered by filename, the buffer switcher is ordered by when the files were opened. To reproduce: Use touch to create two files in the same directory: foo.txt and bar.txt Set "Sort buffer sets" to On. Set "Sort buffer sets by filename, instead of pathname" to On. Open foo.txt in jEdit. Then open bar.txt in jEdit. Check the buffer switcher. Foo.txt is shown above bar.txt. This is true for the current view, and any new views(View->New View) that you then create. If you close jEdit then open it again, the switcher is ordered correctly(i.e. bar.txt then foo.txt)
+4
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.bufferset.BufferSet
+org.gjt.sp.jedit.bufferset.BufferSetAdapter
+org.gjt.sp.jedit.bufferset.BufferSetManager
+
+2199003
+Docking option pane: Configure dockables by plugin  When there are many plugins installed, there are usually also many dockables available. The Docking option pane in the Global Options dialog shows the entire list of dockables, ordered by their titles. There are two issues with this: 1. Sometimes, dockables from different plugins have the same title(e.g. "Tag List" exists both in Tags and in CtagsInterface, and soon also in Source Navigator), and it is therefore impossible to know which dockable I'm configuring - the one from Tags or the one from CtagsInterface. 2. The list of dockables becomes long, making it less convenient to configure the desired dockables. To solve these issues, the Docking option pane should have a combo-box for choosing the set of dockables to present in the table, similar to the combo-box in the Shortcuts option pane, so that the user can choose to configure the dockables of a specific plugin, or the core, or all, if desired.
+4
+org.gjt.sp.jedit.gui.DockableWindowFactory
+org.gjt.sp.jedit.gui.DockableWindowManager
+org.gjt.sp.jedit.options.DockingOptionPane
+org.gjt.sp.jedit.options.WindowTableModel
+
+2218621
+FileBrowser: Directory of current buffer  When I type "-"(minus) in FileBrowser's Path dropdown and press enter, minus is appended to the path instead of changing path to current buffer. When I choose "Directory of current buffer" from commands menu, it works ok. ~ and / options are working fine. There is also small inconsistency, because in search and replace dialog to current buffer points empty dropdown, not minus. Maybe in FileBrowser it should as well, but for now neither minus nor empty field points to current directory.
+1
+org.gjt.sp.jedit.MiscUtilities
+
+2220025
+Make offset, line, column, relative display configurable  jEdit 4.3pre15 and earlier displayed line, column, and relative position within the text area in the left side of the status bar. jEdit 4.3pre16 also shows offset from the beginning of the file. I find the offset to be distracting. It would be nice if this display could be configurable, so the offset, line number, column number, and relative position could be turned on or off as the user desires.
+2
+org.gjt.sp.jedit.gui.StatusBar
+org.gjt.sp.jedit.options.StatusBarOptionPane
+
+2220033
+Relative position in status bar is inaccurate  jEdit 4.3pre16 from svn The relative position display in the status bar is broke. To see the bug: 1. open a file larger than is visible all at once 2. using the down arrow key, scroll down through the file 3. notice that the relative position displays "BOT" well before the bottom of the file 4. continue to scroll completely to the bottom of the file 5. using the up arrow key, scroll up through the file 6. notice that the relative position continues to say "BOT" well up from the bottom of the file
+3
+org.gjt.sp.jedit.gui.StatusBar
+org.gjt.sp.jedit.gui.StatusBar.MouseHandler
+org.gjt.sp.jedit.options.StatusBarOptionPane
+
+2446121
+Highlight terms in HyperSearch Results Window/color for type  It would be a big increase in usability if the terms searched for were highlighted in the lines displayed in the hypersearch results window and the lines were colored for type(e.g. comments in "comment" color). When there are a lot of results, and the terms are only part of each line, it can be difficult to find the relevant ones. For example: I might search for the term "boolean" but I'm not interested in any cases where it appears in a comment, or where it's part of a method name. So instead of: public boolean doIt() { public void booleanChecker(int boolVal) { this appears in a multi-line comment about booleans I would see(excuse the HTML code): public <font style="color: BLUE;">boolean</font> doIt() { public void <font style="color: BLUE;">boolean</font>Checker(int boolVal) { <font style="color: GREEN;">this appears in a multi-line comment about <font style="color: BLUE;">boolean</font>s</font>
+3
+org.gjt.sp.jedit.search.HyperSearchResults
+org.gjt.sp.jedit.search.HyperSearchResults.ActionHandler
+org.gjt.sp.jedit.search.HyperSearchResults.HighlightingTree
+
+2555956
+Show presence of jedit server  jEdit should provide some GUI for the user to check whether or not jEdit is currently using a server. And it would be of special interest if it runs in background mode. Maybe it can be part of the help -> about, which shows the jEdit version and Java version.
+1
+org.gjt.sp.jedit.gui.AboutDialog.AboutPanel
+
+2569381
+Adds option to search all open buffers to complete word  Adds option to search all open buffers to build the completion list. My guess was that the TextArea options pane was the most logical place for the option, but I'm open to suggestions.
+2
+org.gjt.sp.jedit.gui.CompleteWord
+org.gjt.sp.jedit.options.TextAreaOptionPane
+
+2596087
+Scroll fails with 1 visible line and soft wrap  Hi, here is a fun bug : Resize the textarea to have less than one visible line(in fact 1 line max and no partial second line) Create a buffer like this aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa With softwrap 80 cols(the first line must take more than one line. Put the caret on the first line. press arrow down The caret will move but the textarea will not scroll and you will not be able to see it. You can press arrow down as much as necessary to go on the second line, and then you will see the textarea moving. Second example : Put the caret on line 2 And press "arrow up" Your caret will be on the last line of the first line, but the texarea will show you the first line of line 1
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+2646484
+patch: Smarter SmartEnd()  This is a fulfillment of feature request http://sourceforge.net/tracker2/index.php?func=detail&aid=1903596&group_id=588&atid=350588 smartEnd now consumes 4 key presses: end_of_code -> end_of_whitespace -> end_of_line -> end_of_visible_lines
+2
+org.gjt.sp.jedit.textarea.JEditTextArea
+org.gjt.sp.jedit.textarea.TextArea
+
+2668434
+fullscreen-mode  A fullscreen mode for jEdit would be very nice. Especially on netbooks with limited screen-size it is useful, to get rid of the titlebar and window-borders.
+2
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.options.ViewOptionPane
+
+2688862
+"Redo HyperSearch" uses title of last search  When re-doing a HyperSearch(from the context menu of a HyperSearch results entry), the title of the last search gets used for the new node. It should use the correct/new title instead, of course. TO REPRODUCE: 1. enable multiple results in the HyperSearch Results widget/dock 2. Search for something using HyperSearch 3. Search for something different(using HS) 4. Right-click the first result, select "Redo HyperSearch"(just renamed in SVN) RESULT: The title of the second search gets used, but it should be the same as for the first one.
+3
+org.gjt.sp.jedit.search.HyperSearchOperationNode
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.HyperSearchResults.RedoSearchAction
+
+2696564
+Text Block Selection via Gutter Right-Click  As per my first request here: http://community.jedit.org/?q=node/view/4151, I'd like to request the context menu not popup when the user right-clicks on the gutter to better facilitate selection of a text block. Thanks guys, Ehtyar.
+4
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.options.GutterOptionPane
+org.gjt.sp.jedit.textarea.Gutter
+org.gjt.sp.jedit.textarea.Gutter.MouseHandler
+
+2744708
+BufferTabs - Deleted file doesn't show as dirty buffer.  Unchanged, but deleted files are not appearing as dirty buffers as they did previously. Steps to reproduce: Create a file and save it. Now delete the file through normal OS methods. Go back to jEdit - you get the "File changed on disk" dialog. Click "close". Notice that the buffer is not marked dirty. Everything behaves as if it is non-existent on the filesystem - eg. Saving the file at this point brings up the file dialog to chose the save location. The buffer is just not marked as dirty as it was in previous versions.
+1
+org.gjt.sp.jedit.Buffer
+
+2759434
+indent related bug(svn rev 14922)  Python mode if True:<ENTER> <CARRET><ENTER - the exception occures> java.lang.StringIndexOutOfBoundsException: String index out of range: 1 at java.lang.String.charAt(String.java:687) at org.gjt.sp.util.StandardUtilities.getIndentString(StandardUtilities.java:104) at org.gjt.sp.jedit.buffer.JEditBuffer.indentLine(JEditBuffer.java:991) at org.gjt.sp.jedit.textarea.TextArea.insertEnterAndIndent(TextArea.java:4292) at sun.reflect.GeneratedMethodAccessor17.invoke(Unknown Source) at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) at java.lang.reflect.Method.invoke(Method.java:597) at org.gjt.sp.jedit.bsh.Reflect.invokeMethod(Reflect.java:134) at org.gjt.sp.jedit.bsh.Reflect.invokeObjectMethod(Reflect.java:80) at org.gjt.sp.jedit.bsh.Name.invokeMethod(Name.java:855) at org.gjt.sp.jedit.bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:75) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:102) at org.gjt.sp.jedit.bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:47) at org.gjt.sp.jedit.bsh.BSHBlock.evalBlock(BSHBlock.java:130) at org.gjt.sp.jedit.bsh.BSHBlock.eval(BSHBlock.java:80) at org.gjt.sp.jedit.bsh.BshMethod.invokeImpl(BshMethod.java:362) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:258) at org.gjt.sp.jedit.bsh.BshMethod.invoke(BshMethod.java:186) at org.gjt.sp.jedit.BeanShellFacade.runCachedBlock(BeanShellFacade.java:225) at org.gjt.sp.jedit.BeanShell.runCachedBlock(BeanShell.java:423) at org.gjt.sp.jedit.BeanShellAction.invoke(BeanShellAction.java:73) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:352) at org.gjt.sp.jedit.gui.InputHandler.invokeAction(InputHandler.java:317) at org.gjt.sp.jedit.gui.DefaultInputHandler.handleKey(DefaultInputHandler.java:197) at org.gjt.sp.jedit.input.AbstractInputHandler.processKeyEventKeyStrokeHandling(AbstractInputHandler.java:405) at org.gjt.sp.jedit.gui.InputHandler.processKeyEvent(InputHandler.java:151) at org.gjt.sp.jedit.textarea.TextArea.processKeyEvent(TextArea.java:4525) at java.awt.Component.processEvent(Component.java:5911) at java.awt.Container.processEvent(Container.java:2023) at java.awt.Component.dispatchEventImpl(Component.java:4501) at java.awt.Container.dispatchEventImpl(Container.java:2081) at java.awt.Component.dispatchEvent(Component.java:4331) at java.awt.KeyboardFocusManager.redispatchEvent(KeyboardFocusManager.java:1848) at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(DefaultKeyboardFocusManager.java:704) at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(DefaultKeyboardFocusManager.java:969) at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(DefaultKeyboardFocusManager.java:841) at java.awt.DefaultKeyboardFocusManager.dispatchEvent(DefaultKeyboardFocusManager.java:668) at java.awt.Component.dispatchEventImpl(Component.java:4373) at java.awt.Container.dispatchEventImpl(Container.java:2081) at java.awt.Window.dispatchEventImpl(Window.java:2458) at java.awt.Component.dispatchEvent(Component.java:4331) at java.awt.EventQueue.dispatchEvent(EventQueue.java:599) at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:269) at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:184) at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:174) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:169) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:161) at java.awt.EventDispatchThread.run(EventDispatchThread.java:122)
+1
+org.gjt.sp.util.StandardUtilities
+
+2762745
+PluginManager not saving pluginset  PluginManager is not saving pluginset. To reproduce: 1. Open PluginManager 2. click Manage tab 3. click Save Currently Checked Plugins Set icon 4. choose filename from save dialog 5. save file 6. open file, see that it is empty.
+2
+org.gjt.sp.jedit.pluginmgr.ManagePanel.SaveButton
+org.gjt.sp.util.IOUtilities
+
+2777073
+Fix gutter width for line numbers  When line numbers are displayed in the gutter, a 5-digit width is always reserved for them, even if the buffer has less(e.g. 20 lines) or more(e.g. 200,000 lines). For a buffer with 20 lines, there will be redundant space reserved for the line numbers. For a buffer with 200,000 lines, the line numbers will be written on top of the fold markers. For a buffer with 2,000,000 lines, the first digit will be "cut" by the gutter boundary and not be completely visible.
+4
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.options.GutterOptionPane
+org.gjt.sp.jedit.textarea.Gutter
+org.gjt.sp.jedit.textarea.TextArea
+
+2781716
+Line numbers in Hypersearch Results are wrongly highlighted  Reproduction recipe: Put "1" for an empty buffer, and do hypersearch for "1". The result becomes "1: 1" and both "1" for line number and for the text is highlighted. The line number shouldn't be highlighted. I can reproduce this with jEdit trunk r14991, JRE 6u13, Windows XP.
+1
+org.gjt.sp.jedit.search.HyperSearchResults.HighlightingTree
+
+2814857
+Stop caret timer in text area on dispose  This patch calls caretTimer.stop() in removeNotify in TextArea. Without this, Swing cannot shutdown the event queue when its parent frame is disposed.
+1
+org.gjt.sp.jedit.textarea.TextArea
+
+2823909
+action bar not visible in full screen mode  version : jEdit 4.3pre17 OS/JDK : java 5 & java 6, multiple OS steps to reproduce : - Utilities > Action Bar the action bar is shown at the bottom of the text area - close the action bar - View > Toggle full screen mode - Utilities > Action Bar the action bar is not shown
+1
+org.gjt.sp.jedit.View
+
+2824045
+Toggle FullScreen Mode: Window ends up under others  Sometimes when I toggle fullscreen mode, the jEdit window appears behind other windows(such as my desktop panel). This happens in BOTH directions(switching it on and off). I have to toggle between jedit and another window before I can see it fully again, even though it already has focus. java version "1.6.0_13" Java(TM) SE Runtime Environment(build 1.6.0_13-b03) Java HotSpot(TM) 64-Bit Server VM(build 11.3-b02, mixed mode) Linux 2.6.26-2-amd64 #1 SMP Sun Jun 21 04:47:08 UTC 2009 x86_64 GNU/Linux
+1
+org.gjt.sp.jedit.View
+
+2842444
+Manually stop a HyperSearch operation/request  So there is the maximum results option that prompts you to stop or continue a HyperSearch, but it would be nice to have a manual stop button for that purpose. This patch does just that. A stop button is added using the default set of icons to the HyperSearch pane(next to highlight, clear, and multi-results buttons). IT is disabled when there is no search currently active, and enabled otherwise. To stop it I basically the mimicked the max-results mechanism, except I use a temporary property to indicate that the stop button was clicked(not to sure if this is the best way to handle it, but all I could think of and it works just fine).
+3
+org.gjt.sp.jedit.search.HyperSearchRequest
+org.gjt.sp.jedit.search.HyperSearchResults
+org.gjt.sp.jedit.search.HyperSearchResults.ActionHandler
+
+2844750
+line height correction(disappearing underscores)  Attached is a patch(against SVN r16059) which solves problem of underscores disappearing when the cursor is moved up and down the lines of the TextArea with the "DejaVu Sans Mono" at 15pt in jEdit from SVN trunk(r16059) under openjdk6-1.5-2-i686. The root cause was the underscore in this particular font descends below lineHeight and appears on the first pixel of the next line. So when the next line is drawn, the underscore of the current line is painted-over and it disappears. The solution used in the patch is to always draw one extra line above the first line being repainted, so that any underscores in the extra above line are preserved during the repaint. Thanks for your consideration.
+3
+org.gjt.sp.jedit.textarea.InputMethodSupport
+org.gjt.sp.jedit.textarea.TextAreaPainter.PaintLineBackground
+org.gjt.sp.jedit.textarea.TextAreaPainter.PaintText
+
+2846169
+IndentFoldHandler - allow blank lines after start of fold  This patch considers blank lines that come after the start of a fold as part of the fold itself. This was a major annoyance for me for many years and I am finally glad to have fixed it! :-) Attached are two screencasts demonstrating the before & after of applying this patch. Thanks for your consideration.
+3
+org.gjt.sp.jedit.buffer.FoldHandler
+org.gjt.sp.jedit.buffer.IndentFoldHandler
+org.gjt.sp.jedit.buffer.JEditBuffer
+
+2882702
+Multiple Monitor Right Click Context Menu Issue  When operating with multiple monitors, the right click context menu always displays to the left of the arrow on the secondary monitor. It appears that when the jedit window is in the second monitor(to the right in my case) jedit always believes it is approaching the right most margin of the observable area and pushes the menu to the left to keep it visible. Even though in my case this area is still visible. This occurs with jEdit 4.3pre17 on both Windows and Linux.
+2
+org.gjt.sp.jedit.GUIUtilities
+org.gjt.sp.jedit.View
+
+2887515
+Navigate in AboutDialog  My name(Jörg Spieler) is since years in the AboutDialog, but y never saw it, because the name list is slow in jEdit. With this little patch it is possible to navigate in the AboutDialog with the arrow keys
+2
+org.gjt.sp.jedit.gui.AboutDialog
+org.gjt.sp.jedit.gui.AboutDialog.AboutPanel
+
+2887516
+Copy hyper search results to clipboard  This patch adds a new pop up menu "copy to clipboard" to hyper search results nodes
+5
+org.gjt.sp.jedit.search.HyperSearchResults
+org.gjt.sp.jedit.search.HyperSearchResults.CopyToClipboardAction
+org.gjt.sp.jedit.search.HyperSearchResults.MouseHandler
+org.gjt.sp.jedit.search.HyperSearchResults.ResultTreeTransferHandler
+org.gjt.sp.jedit.search.HyperSearchResults.ToStringNodes
+
+2896464
+Plain text copy from HyperSearch results  HyperSearch results used to get copied as plaint text some version before 4.3pre17. I used this for further processing. Now, it seems, that html is copied such that further processing of the results is interfered.
+5
+org.gjt.sp.jedit.search.HyperSearchResults
+org.gjt.sp.jedit.search.HyperSearchResults.CopyToClipboardAction
+org.gjt.sp.jedit.search.HyperSearchResults.MouseHandler
+org.gjt.sp.jedit.search.HyperSearchResults.ResultTreeTransferHandler
+org.gjt.sp.jedit.search.HyperSearchResults.ToStringNodes
+
+2911122
+Unable to Print.  A bug seems to have been introduced with revision #16499 which prevents users from printing. Comment from commit: "commit patch #2876132 - get plugin resources from anonymous JARClassLoader" Steps to reproduce: Go to "File" -> "Print" A Dialog appears that says "No print service found.". This has been confirmed on Mac OS X 10.6.2 using Java 6, and Ubuntu using Java 6.
+1
+org.gjt.sp.jedit.JARClassLoader
+

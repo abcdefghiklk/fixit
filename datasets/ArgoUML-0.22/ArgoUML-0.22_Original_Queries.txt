@@ -1,0 +1,663 @@
+549
+Enumeration datatypes should be represented on the class diagram  Enumeration datatypes(the only datatypes users can create) should be able to be placed on the  class diagram.  Not a very high priority, but added here for the record.
+17
+org.argouml.model.mdr.MetaTypesMDRImpl
+org.argouml.ui.targetmanager.ActionAddEnumerationLiteral
+org.argouml.ui.targetmanager.TargetManager
+org.argouml.uml.diagram.UmlDiagramRenderer
+org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel
+org.argouml.uml.diagram.static_structure.ui.ClassDiagramRenderer
+org.argouml.uml.diagram.static_structure.ui.FigClass
+org.argouml.uml.diagram.static_structure.ui.FigClassifierBox
+org.argouml.uml.diagram.static_structure.ui.FigDataType
+org.argouml.uml.diagram.static_structure.ui.FigEnumeration
+org.argouml.uml.diagram.static_structure.ui.FigInterface
+org.argouml.uml.diagram.static_structure.ui.FigStereotypeDeclaration
+org.argouml.uml.diagram.static_structure.ui.SelectionDataType
+org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram
+org.argouml.uml.diagram.ui.ActionCompartmentDisplay
+org.argouml.uml.diagram.ui.FigEnumLiteralsCompartment
+org.argouml.uml.diagram.ui.FigStereotypeText
+
+1641
+Explorer option for creating diagrams from elements  useful where you lost/never had a class diagram for a particular package.
+1
+org.argouml.ui.explorer.ExplorerPopup
+
+1671
+extra &lt;searchpath&gt; added every time project is saved  Testcase:  1. start argouml 0.13.2 2. create a class and name it &apos;A&apos; 3. create an attr &apos;newAttr&apos; by doubleclicking in the attr compartment 4. create an oper by doubleclicking in the attr compartment 5. save project as &apos;test.zargo&apos; 6. make a copy of test.zargo 7. make new project(important!) 8. open test.zargo 9. save  Theoretically, the two .zargo files should be identically since there were made no changes. The following analysis reveals differences in the 5 files contained in the zip file test.zargo. These differences should be fixed, because they will affect the files iteratively at every save/load cycle.(The test case is very simple. Ideally, the analysis should be done with a project that has all diagram types and all cases in it.)  1. test.argo  The line   &lt;searchpath href=&quot;PROJECT_DIR&quot; /&gt; was added.  2. test.todo  OK, identical  3. test.xmi  OK, identical  4. test_ClassDiagram1.pgml  a strange empty FigGroup is added:   &lt;group name=&quot;Fig1&quot;        description=&quot;org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]&quot;        fill=&quot;1&quot;        fillcolor=&quot;-1&quot;        stroke=&quot;1&quot;        strokecolor=&quot;-16777216&quot;   &gt;     &lt;private&gt;     &lt;/private&gt;        &lt;/group&gt;   5. test_UsecaseDiagram1.pgml  OK, identical(of course, it was empty)
+2
+org.argouml.kernel.Project
+org.argouml.kernel.TestProject
+
+1884
+view todo-items by poster: selected item deselected by argo  view todo-items by poster. Open any of the poster groups. Select one of the todo items. It will be automatically deselected after about one second. Cross-checked V0.12, same problem occures.
+2
+org.argouml.cognitive.ui.ToDoByOffender
+org.argouml.cognitive.ui.ToDoByPoster
+
+1911
+Implement a FileView for Argo Filechooser  It would be nice if argo specific files e.g. ZARGO, ARGO and XMI files get a specific icon when selecting the filechooser.  that can be accomplished by implementing a FileVIew for the FileChooser.
+7
+org.argouml.persistence.UmlFilePersister
+org.argouml.persistence.XmiFilePersister
+org.argouml.persistence.XmlFilePersister
+org.argouml.persistence.ZipFilePersister
+org.argouml.ui.ProjectBrowser
+org.argouml.uml.ui.ActionOpenProject
+org.argouml.uml.ui.ProjectFileView
+
+1942
+Enhance ArgoUML by support for Model, Subsystem, ElementImport  - enhance ArgoUML to support Model, Subsystem and ElementImport - create relevant Figs and improve or add PropertyPanels - give possibility to add, define and remove ElementImport relations  between elements. - make property panels for Packages acknowledge that they are  generalizable elements
+9
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.model.mdr.ModelManagementFactoryMDRImpl
+org.argouml.model.mdr.ModelManagementHelperMDRImpl
+org.argouml.ui.DisplayTextTree
+org.argouml.uml.ui.model_management.ActionAddPackageImport
+org.argouml.uml.ui.model_management.ActionRemovePackageImport
+org.argouml.uml.ui.model_management.PropPanelModel
+org.argouml.uml.ui.model_management.PropPanelPackage
+org.argouml.uml.ui.model_management.UMLClassifierPackageImportsListModel
+
+2144
+Use Case property tab: Operations are not listed  Operations are not listed in the Use Case Property Tab furthermore, there is no possibility to create operations on use cases.
+4
+org.argouml.ui.targetmanager.TargetManager
+org.argouml.uml.ui.behavior.use_cases.ActionNewExtensionPoint
+org.argouml.uml.ui.behavior.use_cases.PropPanelUseCase
+org.argouml.uml.ui.foundation.core.PropPanelClassifier
+
+2145
+Use Case Property Tab: Attributes are not listed  Attributes are not listed in the Use Case Property Tab furthermore, there is no possibility to create attributes on use cases.
+4
+org.argouml.ui.targetmanager.TargetManager
+org.argouml.uml.ui.behavior.use_cases.ActionNewExtensionPoint
+org.argouml.uml.ui.behavior.use_cases.PropPanelUseCase
+org.argouml.uml.ui.foundation.core.PropPanelClassifier
+
+2225
+Allow the user to create diagrams without selecting a classifier/operation  This issue requests the following enhancement: Allow the user to create diagrams without selecting a classifier/operation first  The UML standard says that a Collaboration diagram needs(can not  exist without) at least a &quot;Classifier&quot; or &quot;Operation&quot; - if I interpret the standard well.  But a user should be able to start ArgoUML and draw some Collaboration diagrams, without first defining e.g. a class. The same applies to e.g. a Statechart diagram.  Which would mean that, formally, the user is making a mistake here.  There are many ways to handle &quot;user mistakes&quot; with varying degrees of user-friendlyness. One such way is to not allow him to do so, by e.g. downlighting toolbuttons. Another way, in which ArgoUML excells, is to allow the mistake, and  warn the user with a critic(which is a non-obstructive way), and give hime the possibility to correct the error.  Hence the following proposal: 1. Do not downlight the collaboration &amp; statechart diagram creation functions any more - never. 2. Create a critic to warn for a missing classifier/operation/modelelement for these diagrams. 3. Allow the user to change the namespace &amp; represented xxx of a collaboration &amp; statemachine.
+22
+org.argouml.ui.explorer.PerspectiveManager
+org.argouml.ui.explorer.rules.GoCollaborationToDiagram
+org.argouml.ui.explorer.rules.GoModelElementToContainedDiagrams
+org.argouml.ui.explorer.rules.GoModelElementToContainedLostElements
+org.argouml.ui.explorer.rules.GoModelElementToContents
+org.argouml.ui.explorer.rules.GoNamespaceToOwnedElements
+org.argouml.uml.diagram.DiagramFactory
+org.argouml.uml.diagram.activity.ui.UMLActivityDiagram
+org.argouml.uml.diagram.sequence.SequenceDiagramGraphModel
+org.argouml.uml.diagram.state.ui.UMLStateDiagram
+org.argouml.uml.ui.ActionActivityDiagram
+org.argouml.uml.ui.ActionCollaborationDiagram
+org.argouml.uml.ui.ActionNewDiagram
+org.argouml.uml.ui.ActionSequenceDiagram
+org.argouml.uml.ui.ActionStateDiagram
+org.argouml.uml.ui.behavior.collaborations.ActionSetRepresentedClassifierCollaboration
+org.argouml.uml.ui.behavior.collaborations.ActionSetRepresentedOperationCollaboration
+org.argouml.uml.ui.behavior.collaborations.PropPanelCollaboration
+org.argouml.uml.ui.behavior.collaborations.TestUMLCollaborationRepresentedClassifierComboBoxModel
+org.argouml.uml.ui.behavior.collaborations.TestUMLCollaborationRepresentedOperationComboBoxModel
+org.argouml.uml.ui.behavior.collaborations.UMLCollaborationRepresentedClassifierComboBoxModel
+org.argouml.uml.ui.behavior.collaborations.UMLCollaborationRepresentedOperationComboBoxModel
+
+2460
+[Java] Missing label on radiobuttons in Import Sources -&gt; Java  Missing label on radiobuttons in Import Sources -&gt; Java  In the &quot;Import Sources&quot; dialog, tab &quot;Java&quot;: The 2nd radiobutton pair does not have a label, conform to the 1st one. It should read: &quot;Arrays modelled as&quot;, and the buttons: &quot;Datatypes&quot;  and &quot;Multiplicity 1..n&quot;.
+1
+org.argouml.uml.reveng.FileImportSupport
+
+2472
+Wrong keyboard focus in Settings dialog after close &amp; reopen  The keyboard focus(indicated by a blue rectangle) location remains after  closing the Settings dialog box with the close button in the window border and  reopening it.  1. Select in the Menu Edit -&gt; Settings... The keyboard focus is initially on  the Preferences tab. 2. Click on the last checkmark. The keyboard focus is indicated by a blue  rectangle around this item. 3. Close the dialog box with the close button in the top right corner of the  window border. 4. Select in the Menu Edit -&gt; Settings... The keyboard focus is now still on  the last checkbox. This is wrong; it should be as in 1 above. 5. Close the dialog with the Cancel button. 6. Select in the Menu Edit -&gt; Settings... The keyboard focus is again on the  Preferences tab. So, in this case it is OK.
+2
+org.argouml.ui.ActionSettings
+org.argouml.ui.SettingsDialog
+
+2500
+Find does not find anything that is not on a diagram  The &quot;Find...&quot; function in the menu or toolbar is designed not to find anything  that is not on any diagram. It should allow to search the model instead.  Reproduce as follows: 1. Start ArgoUML. 2. Create a class and name it e.g. &quot;Testing&quot;. 5. Select Find in the toolbar. 6. Enter as searchstring &quot;*est*&quot;, and start the search. This way it works fine. 7. Remove the class from the diagram. 8. Start the search again. The class is not found.  You have to fill in &quot;In diagram: &lt;searchstring&gt;&quot; to be able to find something,  so it is obvious to the user that only diagrams are searched.  I do not know(yet) how to change the UI, so that this added functionality is  available. Any input is welcome!
+6
+org.argouml.ui.FindDialog
+org.argouml.ui.TabResults
+org.argouml.uml.ChildGenRelated
+org.argouml.uml.PredicateFind
+org.argouml.uml.TMResults
+org.argouml.uml.cognitive.ChildGenFind
+
+2522
+Initial Value should not be combo  The initial-value field on the attribute panel uses a deprecated(therefore  defect) combo box control. This should actually be a simple text entry field,  the drop down combo gives no real added value and adds un-needed complication.
+4
+org.argouml.uml.ui.foundation.core.PropPanelAttribute
+org.argouml.uml.ui.foundation.core.PropPanelParameter
+org.argouml.uml.ui.foundation.core.UMLDefaultValueExpressionModel
+org.argouml.uml.ui.foundation.core.UMLInitialValueExpressionModel
+
+2618
+Editing association rolename adds +, ++, +++  When I first create an association I see + and +, one for each role.  If I double click on a &quot;+&quot; and type in a role name &quot;foo&quot;, I now see &quot;++foo&quot;, and the role name property is recorded as &quot;+foo&quot;.  To fix, the parsing of the in-diagram user-entered text must process  and strip off any visibility characters(+, -, #).
+5
+org.argouml.uml.diagram.ui.FigAssociation
+org.argouml.uml.notation.AssociationRoleNotation
+org.argouml.uml.notation.uml.AssociationRoleNotationUml
+org.argouml.uml.notation.uml.InitNotationUml
+org.argouml.uml.notation.uml.NotationUtilityUml
+
+2712
+[CD] AssociationRole name should be hidden rather than show &quot;/:&quot;  AssociationRole name on the collaboration diagram should be hidden rather than  show &quot;/:&quot;(if the name is empty and no bases has been assigned).  Or it could be left empty, which would look very much the same, might perhaps  still be clickable then which I don&apos;t know if it is a good thing or not.
+7
+org.argouml.uml.diagram.collaboration.ui.FigAssociationRole
+org.argouml.uml.diagram.ui.FigAssociation
+org.argouml.uml.notation.AssociationEndNameNotation
+org.argouml.uml.notation.AssociationRoleNotation
+org.argouml.uml.notation.uml.AssociationEndNameNotationUml
+org.argouml.uml.notation.uml.AssociationRoleNotationUml
+org.argouml.uml.notation.uml.InitNotationUml
+
+2732
+Style tab: Not responsive to incorrect contents  When appending garbage like &apos;+&apos; in the Bounds: field in the Style tab nothing  happens. ArgoUML doesn&apos;t react or show what is going on in any way.  See also issue 2152.
+1
+org.argouml.ui.StylePanelFig
+
+3100
+new package or class shown with funny name in explorer  After adding a new package, the package is shown in the explorer with a funny  name: &quot;(anon Package)&quot; or &quot;(anon Class)&quot;. My guess it stands for &quot;anonymous  package&quot; or &quot;anonymous class&quot;, however this came to me after many hours or  thinking. I wonder why this cryptic description whas chosen? Why not write the  whole string, there&apos;s plenty of room.
+2
+org.argouml.ui.DisplayTextTree
+org.argouml.uml.ui.UMLListCellRenderer2
+
+3145
+switching off multiple adding for a diagram tool by clicking on it does still add one more item  Switching off multiple adding for a diagram tool by clicking on it does still  add one more item.  The manual says: &quot;When(button 1 double click is) used on the tool bar with a tool to add an  artifact, the selected artifact will be added multiple times to the drawing  area, once for each further button click, until the tool is again selected or  another tool chosen.&quot;   The last part is the problem: If we are in multiple adding mode, then a single  click on the tool switches back to single adding mode, but we remain in adding  mode! It would be much more logicat to de-select the tool.
+2
+org.argouml.uml.diagram.ui.RadioAction
+org.argouml.uml.diagram.ui.UMLDiagram
+
+3164
+Entering an internal transition via PropPanel does not update state  When the designer enters an internal transition(do, entry, exit, or &quot;plain&quot; internal transition), the state in the diagram is not updated accordingly.   Editing the fields in the state fig itself behaves correctly and does update the model.
+9
+org.argouml.uml.diagram.state.ui.FigState
+org.argouml.uml.diagram.ui.FigEdgeModelElement
+org.argouml.uml.diagram.ui.FigNodeModelElement
+org.argouml.uml.diagram.ui.UMLDiagram
+org.argouml.uml.ui.TabProps
+org.argouml.uml.ui.behavior.state_machines.AbstractPropPanelState
+org.argouml.uml.ui.behavior.state_machines.ActionNewTransition
+org.argouml.uml.ui.behavior.state_machines.PropPanelCompositeState
+org.argouml.uml.ui.behavior.state_machines.PropPanelSimpleState
+
+3197
+Implement CallState  This issue requests to implement CallStates.  Currently, CallState is not yet implemented, since the UML1.3 spec only  defines it as: &quot;A call state is an action state that has exactly one call action as its entry  action.&quot;, but there is no special notation defined. Hence implementing it  would beter wait till UML 1.4, where its notation is specified as: &quot;A call state is shown in the same way as an action state, except that the  name of the operation of the call action is put in the symbol, along with the  name of the classifier that hosts the operation in parentheses under it.&quot;
+10
+org.argouml.uml.diagram.activity.ui.FigCallState
+org.argouml.uml.diagram.activity.ui.UMLActivityDiagram
+org.argouml.uml.notation.CallStateNotation
+org.argouml.uml.notation.uml.CallStateNotationUml
+org.argouml.uml.notation.uml.InitNotationUml
+org.argouml.uml.ui.TabProps
+org.argouml.uml.ui.behavior.activity_graphs.ActionNewEntryCallAction
+org.argouml.uml.ui.behavior.activity_graphs.PropPanelCallState
+org.argouml.uml.ui.behavior.activity_graphs.UMLCallStateEntryList
+org.argouml.uml.ui.behavior.activity_graphs.UMLCallStateEntryList.PopupMenuNewCallAction
+
+3350
+Double click on edge should edit its name  Double clicking on a textual annotation of an edge(such as the association name) places ArgoUML into edit mode on that text.  However if that text is currently blank it is not possible to see where to double click.  I would like double clicking the edge itself to go to edit mode for the edges that have some name annotation.  For the association edge I would like this to include editing association end name by double clicking the line end.
+3
+org.argouml.uml.diagram.state.ui.FigTransition
+org.argouml.uml.diagram.ui.FigAssociation
+org.argouml.uml.diagram.ui.FigEdgeModelElement
+
+3363
+Complete the ObjectFlowState implementation: state, dashed line  The following is from the users list, describing the problems:    Hi Marco,  Well, it is kind of possible to create such a ObjectFlowState, bound to a  state, but you have to know which way works, and which way doesn&apos;t.  Implementing the ObjectFlowState in ArgoUML was one of the first Java  additions I did, and there are some things missing and some things I would do  differently now. The manual does not really describe it, AFAIK.  Let me guide you through - I suppose you use V0.18.1.  Create a class named &quot;Invoice&quot;. Create a statechart diagram for it, with 2 states, named &quot;paid&quot; and &quot;unpaid&quot;. Create an activity diagram for the package containing the Invoice class. Draw a ObjectFlowState on it. In the properties panel, select the dropdown labelled Type, and select the  Invoice class. The diagram now shows this name underlined. Now double-click on the ObjectFlowState on the diagram, BELOW its name(in the  white space). This will give you an empty edit box. Enter the text &quot;paid&quot;, and press enter.  Since this state already exists, its name is recognized, and the text remains  visible on the diagram. If you enter something that is not a state of the class, it is refused.  But: Since the properties panels do not show this link to the state, you can not  alter it except by entering the text on the diagram.  And, apparently the state name disappears from the diagram after a save - load  cycle :-(  And the dashed transitions to and from the ObjectFlowState turn into full  lines :-( This used to work at the time I created this functionality...  Maybe I will try to improve all this some day...  Regards, Michiel      ----- Original Message -----  From: &quot;Marco LOMBARDO&quot;  To: &lt;users@argouml.tigris.org&gt; Sent: Wednesday, July 27, 2005 3:08 PM Subject: [argouml-users] State into an ObjectFlowState?   &gt; Into an activity diagram one can put Activity and ObjectFlowState. &gt; For an ObjectFlowState should be possible to specify a state for example &gt; for an Invoice the state &quot;paid&quot; or &quot;unpaid&quot;. &gt;  &gt; I have not found where to put it. It&apos;s a missing functionality? &gt;  &gt; Regards, &gt;  &gt; Mar &gt; Compilo subAdministrator &gt; compilo.sf.net &gt;  &gt;
+17
+org.argouml.model.AbstractActivityGraphsHelperDecorator
+org.argouml.uml.diagram.activity.ui.FigObjectFlowState
+org.argouml.uml.generator.GeneratorDisplay
+org.argouml.uml.generator.ParserDisplay
+org.argouml.uml.notation.ObjectFlowStateStateNotation
+org.argouml.uml.notation.ObjectFlowStateTypeNotation
+org.argouml.uml.notation.uml.InitNotationUml
+org.argouml.uml.notation.uml.ObjectFlowStateStateNotationUml
+org.argouml.uml.notation.uml.ObjectFlowStateTypeNotationUml
+org.argouml.uml.ui.TabProps
+org.argouml.uml.ui.behavior.activity_graphs.ActionAddOFSState
+org.argouml.uml.ui.behavior.activity_graphs.ActionSetClassifierInStateType
+org.argouml.uml.ui.behavior.activity_graphs.PropPanelClassifierInState
+org.argouml.uml.ui.behavior.activity_graphs.PropPanelObjectFlowState
+org.argouml.uml.ui.behavior.activity_graphs.UMLClassifierInStateTypeComboBoxModel
+org.argouml.uml.ui.behavior.activity_graphs.UMLOFSStateListModel
+org.argouml.uml.ui.behavior.activity_graphs.UMLObjectFlowStateClassifierComboBoxModel
+
+3498
+Diagram name removed from application title bar  With a use case selected, choose add a new use case diagram. The new use case  diagram then becomes a child of the selected use case. Change the name of the use case  diagram. Click in the use case diagram. The new name of the use case diagram is then correctly  shown in the explorer... but not in the title caption of ArgoUML.  Haven&apos;t checked other diagram types. Assume the problem exists there too.
+5
+org.argouml.application.Main
+org.argouml.ui.GUITestProjectBrowser
+org.argouml.ui.ProjectBrowser
+org.argouml.ui.ProjectBrowser.TitleHandler
+org.argouml.ui.cmd.ActionNew
+
+3619
+Self association invisible after Add to Diagram  Adding a Class with an Association to itself to a Class diagram creates an invisible edge(with a very helpful critic note attached saying it should be made more visible).  There doesn&apos;t appear to be any way to resize or move it and if there&apos;s more than one for a single class the labels overlap so that they are unreadable.
+1
+org.argouml.uml.diagram.ui.FigAssociation
+
+3631
+Perspectives settings should be included in settings menu  The &quot;perspectives&quot; settings for the Explorer is too well hidden.  It should be included in the general Settings dialog at a minimum.
+1
+org.argouml.ui.cmd.GenericArgoMenuBar
+
+3665
+Activity Diagram drop not properly constrained  Create a Use Case in a Use Case Diagram Create an Activity Diagram in the Use Case Create a 2nd Activity Diagram in the same Use Case Create a Start state in the Activity Diagram Select the 1st Activity Diagram From the Explorer pane, drag the Start node contained by the 2nd Activity Graph onto the Diagram pane(which now contains the 1st Activity Graph)  ArgoUML throws several CompositionViolationExceptions.
+1
+org.argouml.uml.diagram.state.StateDiagramGraphModel
+
+3711
+Strip diagrams from poseidon *.xmi file  tried loading an XMI formatted file that was created with poseidon UML and received the following beauty.   java.lang.IllegalArgumentException 	at org.argouml.kernel.Project.addModel(Project.java:417) 	at org.argouml.persistence.XMIParser.readModels(XMIParser.java:125) 	at org.argouml.persistence.XmiFilePersister.doLoad(XmiFilePersister.java:174) 	at org.argouml.uml.ui.ActionFileOperations.loadProject(ActionFileOperations.java:163) 	at org.argouml.uml.ui.ActionOpenProject.actionPerformed(ActionOpenProject.java:133) 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1849) 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2169) 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:420) 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:258) 	at javax.swing.AbstractButton.doClick(AbstractButton.java:302) 	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1000) 	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1041) 	at java.awt.Component.processMouseEvent(Component.java:5488) 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3093) 	at java.awt.Component.processEvent(Component.java:5253) 	at java.awt.Container.processEvent(Container.java:1966) 	at java.awt.Component.dispatchEventImpl(Component.java:3955) 	at java.awt.Container.dispatchEventImpl(Container.java:2024) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4212) 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3892) 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3822) 	at java.awt.Container.dispatchEventImpl(Container.java:2010) 	at java.awt.Window.dispatchEventImpl(Window.java:1766) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:463) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:234) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:163) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+2
+org.argouml.persistence.XMIParser
+org.argouml.ui.SettingsTabPreferences
+
+3718
+ModelElements not saved unless contained in Model  If you load the attached model and immediately save it back out again, all the comments are missing.  It looks like adding the comments to a diagram helps at least some of them get saved correctly, but I&apos;m not sure if it&apos;s the fact that they are in a diagram or something in the model itself which is changed when they are manipulated.  I suspect latter.
+10
+org.argouml.kernel.Project
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.model.mdr.MDRModelImplementation
+org.argouml.model.mdr.XmiReaderImpl
+org.argouml.model.mdr.XmiReference
+org.argouml.model.mdr.XmiReferenceProviderImpl
+org.argouml.model.mdr.XmiReferenceResolverImpl
+org.argouml.model.mdr.XmiWriterMDRImpl
+org.argouml.persistence.XMIParser
+org.argouml.uml.ProfileJava
+
+3773
+Usability: tree should not be closed when switching perspectives  It is annoying that the explorer tree is closed after switching to a new perspective. It would be nice if the root node would be reopened.
+1
+org.argouml.ui.explorer.ExplorerTreeModel
+
+3774
+Do not set namespace of Model when adding to diagram  To repeat: Start argouml. Drag the created defaultmodel into the class diagram.  Here is the backtrace:      [echo] --- Executing ArgoUML ---   [argouml] log4j:WARN No appenders could be found for logger (org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel).   [argouml] log4j:WARN Please initialize the log4j system properly.   [argouml] javax.jmi.reflect.CompositionCycleException   [argouml]     at org.netbeans.mdr.storagemodel.StorableObject.setComposite(StorableObject.java:275)   [argouml]     at org.netbeans.mdr.storagemodel.AssocEndIndexSet.add(AssocEndIndexSet.java:150)   [argouml]     at org.netbeans.mdr.storagemodel.StorableAssociation.addLink(StorableAssociation.java:370)   [argouml]     at org.netbeans.mdr.handlers.AssociationHandler._handleLocalAdd(AssociationHandler.java:161)   [argouml]     at org.netbeans.mdr.handlers.AssociationHandler._handleAdd(AssociationHandler.java:150)   [argouml]     at org.omg.uml.foundation.core.ANamespaceOwnedElement$Impl.add(Unknown Source)   [argouml]     at org.omg.uml.foundation.core.ANamespaceOwnedElement$Impl._add(Unknown Source)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler._handleSetR(InstanceHandler.java:149)   [argouml]     at org.omg.uml.modelmanagement.Model$Impl.setNamespace(Unknown  Source)   [argouml]     at org.argouml.model.mdr.CoreHelperMDRImpl.addOwnedElement(CoreHelperMDRImpl.java:1972)   [argouml]     at  org.argouml.model.AbstractCoreHelperDecorator.addOwnedElement(AbstractCoreHelperDecorator.java:620)   [argouml]     at  org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel.addNode(ClassDiagramGraphModel.java:355)   [argouml]     at org.tigris.gef.base.ModePlace.mouseReleasedModePlace.java:18 9)   [argouml]     at org.argouml.uml.diagram.ui.AddExistingNodeCommand.execute(AddExistingNodeCommand.java:151)   [argouml]     at org.argouml.uml.diagram.ui.DnDJGraph.drop(DnDJGraph.java:176)    [argouml]     at java.awt.dnd.DropTarget.drop(DropTarget.java:398)   [argouml]     at sun.awt.dnd.SunDropTargetContextPeer.processDropMessage(SunDropTargetContextPeer.java:542)   [argouml]     at sun.awt.dnd.SunDropTargetContextPeer.access$800(SunDropTargetContextPeer.java:52)   [argouml]     at  sun.awt.dnd.SunDropTargetContextPeer$EventDispatcher.dispatchDropEvent(SunDropTargetContextPeer.java:805)   [argouml]     at  sun.awt.dnd.SunDropTargetContextPeer$EventDispatcher.dispatchEvent(SunDropTargetContextPeer.java:743)   [argouml]     at sun.awt.dnd.SunDropTargetEvent.dispatch(SunDropTargetEvent.java:29)   [argouml]     at java.awt.Component.dispatchEventImpl(Component.java:3494)   [argouml]     at java.awt.Container.dispatchEventImpl(Container.java:1627)   [argouml]     at java.awt.Component.dispatchEvent(Component.java:3477)   [argouml]     at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:3483)   [argouml]     at java.awt.LightweightDispatcher.processDropTargetEvent(Container.java:3269)   [argouml]     at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3123)   [argouml]     at java.awt.Container.dispatchEventImpl(Container.java:1613)   [argouml]     at java.awt.Window.dispatchEventImpl(Window.java:1606)   [argouml]     at java.awt.Component.dispatchEvent(Component.java:3477)   [argouml]     at java.awt.EventQueue.dispatchEvent(EventQueue.java:456)   [argouml]     at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:201)   [argouml]     at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:151)   [argouml]     at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:145)   [argouml]     at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:137)   [argouml]     at java.awt.EventDispatchThread.run(EventDispatchThread.java:100)
+1
+org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel
+
+3790
+Exception when saving to a readonly directory  To reproduce the error: 1 Open a zargo-File(I tried to open a zargo-file created under 0.20.alpha3)  2 Try to save it after performing some changes.  Stacktrace: java.lang.NullPointerException 	at org.argouml.persistence.ZargoFilePersister.doSave(ZargoFilePersister.java:214) 	at org.argouml.persistence.AbstractFilePersister.save(AbstractFilePersister.java:197) 	at org.argouml.ui.ProjectBrowser.trySave(ProjectBrowser.java:980) 	at org.argouml.ui.ProjectBrowser.trySave(ProjectBrowser.java:946) 	at org.argouml.uml.ui.ActionSaveProject.actionPerformed(ActionSaveProject.java:96) 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1849) 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2169) 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:420) 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:258) 	at javax.swing.AbstractButton.doClick(AbstractButton.java:302) 	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1000) 	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1041) 	at java.awt.Component.processMouseEvent(Component.java:5488) 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3126) 	at java.awt.Component.processEvent(Component.java:5253) 	at java.awt.Container.processEvent(Container.java:1966) 	at java.awt.Component.dispatchEventImpl(Component.java:3955) 	at java.awt.Container.dispatchEventImpl(Container.java:2024) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4212) 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3892) 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3822) 	at java.awt.Container.dispatchEventImpl(Container.java:2010) 	at java.awt.Window.dispatchEventImpl(Window.java:1774) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:463) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:242) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:163) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+1
+org.argouml.ui.ProjectBrowser
+
+3803
+Direct entry into text fields on drawings results in doubled first character  For instance, in a statechart, select a previously unselected transition. Now  the first character that you type will be doubled in the text field. This is  annoying.    Under Tiger 10.4 with an updated Java VM(via Web Start).
+1
+org.argouml.uml.diagram.ui.FigNodeModelElement
+
+3812
+Exception opening project - FigCommentPort class not found  When I open my recent project, I got this error :  org.argouml.persistence.OpenException 	at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:74) 	at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:355) 	at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:319) 	at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1114) 	at org.argouml.uml.ui.ActionReopenProject.actionPerformed(ActionReopenProject.java:86) 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1849) 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2169) 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:420) 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:258) 	at javax.swing.AbstractButton.doClick(AbstractButton.java:302) 	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1000) 	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1041) 	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:231) 	at java.awt.Component.processMouseEvent(Component.java:5488) 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3126) 	at java.awt.Component.processEvent(Component.java:5253) 	at java.awt.Container.processEvent(Container.java:1966) 	at java.awt.Component.dispatchEventImpl(Component.java:3955) 	at java.awt.Container.dispatchEventImpl(Container.java:2024) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4212) 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3892) 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3822) 	at java.awt.Container.dispatchEventImpl(Container.java:2010) 	at java.awt.Window.dispatchEventImpl(Window.java:1774) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:463) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:242) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:163) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:110) Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 	at java.util.ArrayList.RangeCheck(ArrayList.java:547) 	at java.util.ArrayList.get(ArrayList.java:322) 	at org.argouml.persistence.FigEdgeHandler.addObject(FigEdgeHandler.java:111) 	at org.tigris.gef.persistence.pgml.PrivateHandler.gotElement(PrivateHandler.java:61) 	at org.argouml.persistence.PrivateHandler.gotElement(PrivateHandler.java:109) 	at org.tigris.gef.persistence.pgml.BaseHandler.endElement(BaseHandler.java:174) 	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:633) 	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1241) 	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(XMLDocumentFragmentScannerImpl.java:1685) 	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:368) 	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:834) 	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:764) 	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:148) 	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1242) 	at javax.xml.parsers.SAXParser.parse(SAXParser.java:375) 	at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:149) 	at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:118) 	at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:67) 	... 31 more Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 	at java.util.ArrayList.RangeCheck(ArrayList.java:547) 	at java.util.ArrayList.get(ArrayList.java:322) 	at org.argouml.persistence.FigEdgeHandler.addObject(FigEdgeHandler.java:111) 	at org.tigris.gef.persistence.pgml.PrivateHandler.gotElement(PrivateHandler.java:61) 	at org.argouml.persistence.PrivateHandler.gotElement(PrivateHandler.java:109) 	at org.tigris.gef.persistence.pgml.BaseHandler.endElement(BaseHandler.java:174) 	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:633) 	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1241) 	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(XMLDocumentFragmentScannerImpl.java:1685) 	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:368) 	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:834) 	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:764) 	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:148) 	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1242) 	at javax.xml.parsers.SAXParser.parse(SAXParser.java:375) 	at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:149) 	at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:118) 	at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:67) 	at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:355) 	at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:319) 	at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1114) 	at org.argouml.uml.ui.ActionReopenProject.actionPerformed(ActionReopenProject.java:86) 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1849) 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2169) 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:420) 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:258) 	at javax.swing.AbstractButton.doClick(AbstractButton.java:302) 	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1000) 	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1041) 	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:231) 	at java.awt.Component.processMouseEvent(Component.java:5488) 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3126) 	at java.awt.Component.processEvent(Component.java:5253) 	at java.awt.Container.processEvent(Container.java:1966) 	at java.awt.Component.dispatchEventImpl(Component.java:3955) 	at java.awt.Container.dispatchEventImpl(Container.java:2024) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4212) 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3892) 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3822) 	at java.awt.Container.dispatchEventImpl(Container.java:2010) 	at java.awt.Window.dispatchEventImpl(Window.java:1774) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:463) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:242) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:163) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+1
+org.argouml.persistence.PGMLStackParser
+
+3814
+Can not select base classes from top packages  There is a very artificaial restriction that base class for classifier in role  can be selected only from packages down the tree.  If sequense is associated with some class, i want to use classes from other  packages - why not?  This is a crtitical issue
+1
+org.argouml.uml.ui.ActionCollaborationDiagram
+
+3848
+Allow generalizing datatypes on diagram  In the words of Roy Feldman:  &quot;In order to use AndromMDA as is, you don&apos;t need the ability to modify a  profile. However, if you want to make any significant extensions or customizations to the AndroMDA plug-in cartridges, which is something I am interested in, then you need the ability to modify and extend the profile. That includes(...) generalizing DataTypes(...).&quot;  This should be implemented by allowing a DataType to be drawn on the  diagram, according the notation defined in the UML spec.
+14
+org.argouml.ui.targetmanager.ActionAddEnumerationLiteral
+org.argouml.ui.targetmanager.TargetManager
+org.argouml.uml.diagram.UmlDiagramRenderer
+org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel
+org.argouml.uml.diagram.static_structure.ui.ClassDiagramRenderer
+org.argouml.uml.diagram.static_structure.ui.FigClass
+org.argouml.uml.diagram.static_structure.ui.FigClassifierBox
+org.argouml.uml.diagram.static_structure.ui.FigDataType
+org.argouml.uml.diagram.static_structure.ui.FigEnumeration
+org.argouml.uml.diagram.static_structure.ui.FigInterface
+org.argouml.uml.diagram.static_structure.ui.FigStereotypeDeclaration
+org.argouml.uml.diagram.ui.ActionCompartmentDisplay
+org.argouml.uml.diagram.ui.FigEnumLiteralsCompartment
+org.argouml.uml.diagram.ui.FigStereotypeText
+
+3882
+Transitions names are not refreshed  When I create a transition in a activity diagram, it doesn&apos;t refresh the name  of the transition at the hierarchical selection tree. The program uses the  defined Trigger instead the name there.
+1
+org.argouml.ui.DisplayTextTree
+
+3911
+Incorrect use of &quot;Remove&quot; in popup menu for action arguments  Incorrect use of &quot;Remove&quot; in popup menu for action arguments: Select an action. In the properties panel, there is a field Arguments. Rightclick gives: &quot;New&quot; and &quot;Remove&quot;. The latter is wrong according the terminology page of ArgoUML: it should be &quot;Delete from Model&quot;.
+1
+org.argouml.uml.ui.behavior.common_behavior.ActionRemoveArgument
+
+3912
+Deleting argument of an action does not hide it  Deleting an argument from an action in the properties panel with the popup menu, by selecting&quot;Remove&quot;, does not remove the argument from the arguments field.  Changing the target reveals that the deletion did happen correctly, only the list did not update.
+3
+org.argouml.uml.ui.behavior.common_behavior.ActionRemoveArgument
+org.argouml.uml.ui.behavior.common_behavior.PropPanelAction
+org.argouml.uml.ui.behavior.common_behavior.UMLActionArgumentListModel
+
+3918
+differing edit field properties for Transition Guard Expression  The properties of the edit field &apos;Transition Guard Expression&apos; differs from what is used for other edit fields. The type size is bigger and at the same time the actual height of the input field is smaller than others. This renders the input almost unreadable. I first recognized this in version 0.18.1
+4
+org.argouml.uml.ui.behavior.common_behavior.PropPanelAction
+org.argouml.uml.ui.behavior.common_behavior.PropPanelArgument
+org.argouml.uml.ui.behavior.state_machines.PropPanelGuard
+org.argouml.uml.ui.foundation.core.PropPanelGeneralization
+
+3921
+Reopen last saved should be reopen last  The option to automatically load the last saved project on startup of ArgoUML I think would be more useful as reopen last project(ie last opened project or last saved project)
+1
+org.argouml.ui.ProjectBrowser
+
+3923
+Problem importing Poseidon activity diagrams from XMI  There is a bug in Beta 3 which prevents you using the activity diagram  for AndroMDA.  Here is what I&apos;ve done: 1) Import an XMI from Poseidon, which works well with AndroMDA(the  PiggyBank example). Everything went fine.  2) If I add my activity diagram under the use case diagram I always get  a new activity graph, so I have 2 activity graphs alltogether. I cannot  add an activity diagram under the imported activity graph. Please see the screenshot I attached. See: http://argouml.tigris.org/servlets/ReadMsg?list=dev&amp;msgNo=19267 Screenshot: http://argouml.tigris.org/servlets/GetAttachment?list=dev&amp;msgId=770688&amp;attachId=1  3) This code, which works with Poseidon, won&apos;t work with ArgoUML:  Collection actionStates = getModel().getAllActionStates(); for(Iterator iterActionState = actionStates.iterator(); iterActionState.hasNext();) { ActionStateFacade actionState =(ActionStateFacade) iterActionState.next();  actionState is always &quot;null&quot;.  4) Importing the activity diagram from Poseidon works and the result can  be processed by AndroMDA but if you are making the activity diagram from  the beginning with ArgoUML, it won&apos;t work because of the error above (nr. 3).  So, it seems that ArgoUML still has a problem with activity diagram...  Thanks, Lofi.
+1
+org.argouml.persistence.XMIParser
+
+3938
+Toolbar button backgrounds wrong when using Java 5 L&amp;F  The button background for buttons with icons in the main tool bar and the diagram toolbar don&apos;t match the toolbar background.  The toolbar background has a gradient, while the buttons don&apos;t.  The highlight color is OK(if you rollover or select a button), but the normal background is a flat grey rather than having a gradient to match the look and feel(the shiny metalic Java 5 L&amp;F).  This makes the toolbar look wierd with alternating shiny and flat patches.  These tool bars appear to get created in GenericArgoMenu bar which in turn calls code from the the org.tigris.toolbar project(an entire project for a toolbar?).  I don&apos;t have a copy of that project, so I didn&apos;t chase it any further.
+1
+org.argouml.ui.cmd.GenericArgoMenuBar
+
+3945
+Exception assigning an operation to a callevent  The following Exception happens when assigning an operatioon to a callevent in  the following way:  1. Start ArgoUML.  2. Draw a class. 3. Create an operation for the class. 4. Select the class, and create a statechart diagram. 5. Create 2 states and a transition. 6. Rightclick the trigger fiels of the transition and create a new callevent. 7. Create a parameter for this callevent. 8. Set the type of the parameter to int and the initial value to 1, and give  it a name. 9. Navigate to the callevent, and select the &quot;newOperation&quot; from the dropdown. Bang:    [argouml] [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception  occurred ************ at Mon Feb 13 13:03:31 CET 2006   [argouml] java.lang.IllegalArgumentException: handle: CallEvent$Impl   ID: .:0000000000000786  MID: .:00000000000004FE  OPCKG: .:0000000000000622 or  operation:    [argouml]     at  org.argouml.model.mdr.CommonBehaviorHelperMDRImpl.setOperation(CommonBehaviorHelperMDRImpl.java:249)   [argouml]     at  org.argouml.model.AbstractCommonBehaviorHelperDecorator.setOperation(AbstractCommonBehaviorHelperDecorator.java:152)   [argouml]     at  org.argouml.uml.ui.behavior.state_machines.UMLCallEventOperationComboBox2.actio nPerformed(PropPanelCallEvent.java:91)   [argouml]     at javax.swing.JComboBox.fireActionEvent(JComboBox.java:1197)   [argouml]     at javax.swing.JComboBox.contentsChanged(JComboBox.java:1268)   [argouml]     at javax.swing.AbstractListModel.fireContentsChanged(AbstractListModel.java:100)   [argouml]     at org.argouml.uml.ui.UMLComboBoxModel2.fireContentsChanged(UMLComboBoxModel2.java:501)   [argouml]     at org.argouml.uml.ui.UMLComboBoxModel2.setSelectedItem(UMLComboBoxModel2.java:391)   [argouml]     at org.argouml.uml.ui.UMLComboBoxModel2.removeElement(UMLComboBoxModel2.java:402)   [argouml]     at org.argouml.uml.ui.UMLComboBoxModel2.propertyChange(UMLComboBoxModel2.java:168)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:437)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:356)   [argouml]     at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270)   [argouml]     at java.lang.Thread.run(Thread.java:595)
+1
+org.argouml.uml.ui.behavior.state_machines.UMLCallEventOperationComboBox2
+
+3947
+bad behaviour in sequence diagrams when remove simple states or call actions  I have created a sequence diagram for an use case. I have added to it some  classified roles and some callings and returns, in one of the returns of a  call the &apos;activity&apos; doens&apos;t finish at the point of the return and this causes  that I can&apos;t insert new call at the lane. When I reload the seuqence diagram  to check if the problem persist the white rectangle that indicates the  duration of the call doesn&apos;t appear in any lane for any call and is imposible  to add new calls.  This makes these diagrams impossible to use.
+1
+org.argouml.model.mdr.CommonBehaviorFactoryMDRImpl
+
+3974
+Methods and properties not updated in class diagrams  If I change the name of a method or property in a class diagrams, it won&apos;t be updated until I reload the diagram, or add a parameter. The same thing happens if I change the visibility or modifier(static for example) of a method or property.  Although I&apos;m not sure, I believe that this bug was not present in the last version I&apos;ve used(0.20.alpha5).
+1
+org.argouml.uml.diagram.static_structure.ui.FigClass
+
+4005
+Make activity graph context assignment easier  I am using the Argouml with Andromda extension. One thing required by Andromda is to assign a controller class as the context of an activity graph by adding a tag like these, as quote from Andromda&apos;s guide: -----------  Add a tagged value to the controller, pointing to the use-case, like this:  @andromda.presentation.controller.usecase=My UseCase (the value is the name of the use-case). ----------- I noticed with or without setting this tag, the exported xmi file from argouml has the following tag within the activity tag: -----------    &lt;UML:StateMachine.context&gt;                     &lt;UML:UseCase xmi.idref = &apos;.:0000000000000EB9&apos;/&gt;    &lt;/UML:StateMachine.context&gt; -------- where it references the Use Case. Is there a way to change the context to point to the controller class? Thanks, wai yung
+5
+org.argouml.model.mdr.MetaTypesMDRImpl
+org.argouml.uml.ui.behavior.activity_graphs.PropPanelActivityGraph
+org.argouml.uml.ui.behavior.state_machines.PropPanelStateMachine
+org.argouml.uml.ui.behavior.state_machines.UMLStateMachineContextComboBoxModel
+org.argouml.uml.ui.foundation.core.PropPanelModelElement
+
+4007
+Exception when deleting other diagram  An exception occurs when deleting a diagram indirectly that is not the current one.  1. Load the attached zargo. 2. Go to the activity diagram. 3. In the explorer, select class A, and delete from model. 4. Answer Yes to the dialog.  This causes following exception:       [echo] --- Executing ArgoUML ---   [argouml] [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sun Feb 26 20:40:03 CET 2006   [argouml] javax.jmi.reflect.InvalidObjectException: Object with MOFID .:00000000000007DD no longer exists.   [argouml]     at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103)   [argouml]     at org.omg.uml.behavioralelements.statemachines.SimpleState$Impl.getDoActivity(Unknown Source)   [argouml]     at org.argouml.model.mdr.FacadeMDRImpl.getDoActivity(FacadeMDRImpl.java:2765)   [argouml]     at org.argouml.uml.diagram.state.ui.FigState.updateListeners(FigState.java:150)   [argouml]     at org.argouml.uml.diagram.ui.FigNodeModelElement.setOwner(FigNodeModelElement.java:1236)   [argouml]     at org.argouml.uml.diagram.state.ui.FigState.setOwner(FigState.java:110)   [argouml]     at org.tigris.gef.presentation.Fig.removeFromDiagram(Fig.java:705)   [argouml]     at org.tigris.gef.presentation.FigNode.removeFromDiagram(FigNode.java:230)   [argouml]     at org.argouml.uml.diagram.ui.FigNodeModelElement.removeFromDiagram(FigNodeModelElement.java:1569)   [argouml]     at org.argouml.kernel.Project.removeFigs(Project.java:1055)   [argouml]     at org.argouml.kernel.Project.trashInternal(Project.java:969)   [argouml]     at org.argouml.kernel.Project.moveToTrash(Project.java:947)   [argouml]     at org.argouml.uml.diagram.ui.FigNodeModelElement.propertyChange(FigNodeModelElement.java:910)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:437)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:356)   [argouml]     at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270)   [argouml]     at java.lang.Thread.run(Thread.java:595)   [argouml] log4j:WARN No appenders could be found for logger(org.argouml.ui.targetmanager.TargetManager).   [argouml] log4j:WARN Please initialize the log4j system properly.   [argouml] java.lang.NullPointerException   [argouml]     at javax.swing.SwingUtilities.computeIntersection(SwingUtilities.java:417)   [argouml]     at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:430)   [argouml]     at org.argouml.uml.diagram.ui.TabDiagram.setTarget(TabDiagram.java:195)   [argouml]     at org.argouml.uml.diagram.ui.TabDiagram.targetSet(TabDiagram.java:372)   [argouml]     at org.argouml.ui.targetmanager.TargetManager.fireTargetSet(TargetManager.java:783)   [argouml]     at org.argouml.ui.targetmanager.TargetManager.internalOnSetTarget(TargetManager.java:487)   [argouml]     at org.argouml.ui.targetmanager.TargetManager.setTarget(TargetManager.java:467)   [argouml]     at org.argouml.uml.diagram.ui.UMLDiagram.propertyChange(UMLDiagram.java:484)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:437)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:356)   [argouml]     at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270)   [argouml]     at java.lang.Thread.run(Thread.java:595)   [argouml] [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sun Feb 26 20:40:03 CET 2006   [argouml] javax.jmi.reflect.InvalidObjectException: Object with MOFID .:00000000000007DE no longer exists.   [argouml]     at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103)   [argouml]     at org.omg.uml.behavioralelements.statemachines.SimpleState$Impl.getExit(Unknown Source)   [argouml]     at org.argouml.model.mdr.FacadeMDRImpl.getExit(FacadeMDRImpl.java:1821)   [argouml]     at org.argouml.uml.notation.uml.StateBodyNotationUml.toString(StateBodyNotationUml.java:85)   [argouml]     at org.argouml.uml.diagram.state.ui.FigState.updateInternal(FigState.java:278)   [argouml]     at org.argouml.uml.diagram.state.ui.FigState.modelChanged(FigState.java:131)   [argouml]     at org.argouml.uml.diagram.ui.FigNodeModelElement.propertyChange(FigNodeModelElement.java:942)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:437)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:356)   [argouml]     at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270)   [argouml]     at java.lang.Thread.run(Thread.java:595)   [argouml] [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sun Feb 26 20:40:03 CET 2006   [argouml] javax.jmi.reflect.InvalidObjectException: Object with MOFID .:00000000000007DE no longer exists.   [argouml]     at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48)   [argouml]     at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103)   [argouml]     at org.omg.uml.behavioralelements.statemachines.SimpleState$Impl.getExit(Unknown Source)   [argouml]     at org.argouml.model.mdr.FacadeMDRImpl.getExit(FacadeMDRImpl.java:1821)   [argouml]     at org.argouml.uml.notation.uml.StateBodyNotationUml.toString(StateBodyNotationUml.java:85)   [argouml]     at org.argouml.uml.diagram.state.ui.FigState.updateInternal(FigState.java:278)   [argouml]     at org.argouml.uml.diagram.state.ui.FigState.modelChanged(FigState.java:131)   [argouml]     at org.argouml.uml.diagram.ui.FigNodeModelElement.propertyChange(FigNodeModelElement.java:942)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:437)   [argouml]     at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:356)   [argouml]     at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270)   [argouml]     at java.lang.Thread.run(Thread.java:595)
+2
+org.argouml.uml.diagram.state.ui.UMLStateDiagram
+org.argouml.uml.diagram.ui.FigNodeModelElement
+
+4019
+Save project dialog should remember what was loaded  The save project dialog assumes you want to save as the filename of the last project you saved rather than the last project you loaded.
+1
+org.argouml.ui.ProjectBrowser
+
+4031
+TagDefinition of type Enumeration problem - AndroMDA profile  Open the ArgoUML compatible(single file version) AndroMDA profile and look for the TagDefinition @andromda.hibernate.generator.class which is owned by the stereotype &lt;&lt;Entity&gt;&gt;.  The type of the TagDefinition should be HibernateGeneratorClass but instead it shows up as what looks like an internal xmi.id and is greyed out.
+15
+org.argouml.model.AbstractExtensionMechanismsHelperDecorator
+org.argouml.model.mdr.DataTypesHelperMDRImpl
+org.argouml.model.mdr.ExtensionMechanismsHelperMDRImpl
+org.argouml.model.mdr.FacadeMDRImpl
+org.argouml.uml.reveng.java.Modeller
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTagDefinition
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue.ActionSetTaggedValueModelElement
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue.ActionSetTaggedValueType
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue.UMLDataValueListModel
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue.UMLReferenceValueListModel
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue.UMLTaggedValueModelElementComboBoxModel
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTaggedValue.UMLTaggedValueTypeComboBoxModel
+org.argouml.uml.ui.foundation.extension_mechanisms.UMLStereotypeTagDefinitionListModel
+org.argouml.uml.ui.foundation.extension_mechanisms.UMLTagDefinitionOwnerComboBoxModel
+
+4037
+Excessive redraws in some diagrams in CVS version(regression from 0.20)  I see ArgoUML taking upwards of 40% of my processor time on some diagrams. For instance, I have one project in which the two most complicated class diagrams burn 50% or so of my processor time.  Running the Quartz Debug application, I see that on those two diagrams the diagram is being entirely repainted constantly. This is not the case on any of the other diagrams.  I have a big screen(1920x1200), so this takes quite a bit of time.  So I went back to the 0.20 release version, and I don&apos;t see this behavior(in fact, the CPU load is better even on the other drawings).  I built the CVS version using &quot;build.sh package&quot;, then copied the .jar files to the proper place inside another copy of the application. It otherwise seems to work fine.  Examining things further, it is not the complexity that causes this redrawing; it is the presence of certain Association edges in the current diagram.  In the attached CA3Design.zargo file, you can see this in the &quot;Hardware Resources&quot; and &quot;Active Objects&quot; class diagrams.   I have made a simple diagram with one association that triggers this behavior. Look at the &quot;Redraw Problem Demonstrated&quot; class diagram.  If you open the context menu on the Association and choose &quot;Navigability/bidirectional&quot; the constant repainting stops.
+1
+org.argouml.uml.diagram.ui.FigAssociation
+
+4043
+Names of states disappear when project is loaded  Make a state chart. Name the states in it. Save it. Load it. The state names are no longer displayed.  build from CVS HEAD on 7 March 2006.
+1
+org.argouml.uml.diagram.state.ui.FigState
+
+4049
+Updating the role phrase of an association on a diagram does not update the connections pane  Changing the role phrase of an association end does not change the connections panel until you change tabs and back again.  This should happen immediately.
+2
+org.argouml.uml.ui.UMLModelElementListModel2
+org.argouml.uml.ui.foundation.core.UMLAssociationConnectionListModel
+
+4078
+Operation box in CallAction proppanel is too small  The Operation field is only a few pixels high(JRE5 metal)
+1
+org.argouml.uml.ui.behavior.common_behavior.PropPanelCallAction
+
+4085
+Exception adding deferrable event in Action State  An IllegalArgumentException is thrown when you select from the Deferrable Events pane of the Action State property panel when you choose Select -&gt; Add... from the context(popup) menu.    java.lang.IllegalArgumentException: Unrecognized object [ActionState$Impl  ID: .:00000000000018EB  MID: .:00000000000005E9  OPCKG: .:0000000000000622/class org.omg.uml.behavioralelements.activitygraphs.ActionState$Impl]  	at org.argouml.model.mdr.FacadeMDRImpl.illegalArgument(FacadeMDRImpl.java:4150) 	at org.argouml.model.mdr.FacadeMDRImpl.illegalArgumentObject(FacadeMDRImpl.java:4125) 	at org.argouml.model.mdr.FacadeMDRImpl.getTrigger(FacadeMDRImpl.java:3416) 	at org.argouml.uml.ui.behavior.activity_graphs.ActionAddEventAsTrigger.getSelected(ActionAddEventAsTrigger.java:79) 	at org.argouml.uml.ui.AbstractActionAddModelElement.actionPerformed(AbstractActionAddModelElement.java:79) 	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+1
+org.argouml.uml.ui.behavior.state_machines.PopupMenuNewEvent
+
+4088
+Exception creating classifierrole  Spotted this in stack trace after the event. I think all I did was to -  Create class Create collab diagram from that Create classifier role in that diagram  Haven&apos;t been able to reproduce since   INFO: Factory created org.argouml.uml.ui.foundation.core.PropPanelClass for org.omg.uml.foundation.core.UmlClass$Impl(TabProps.java:344)  INFO: targetRemoved targetevent :  org.argouml.ui.targetmanager.TargetEvent[source=org.argouml.ui.targetmanager.TargetManager@14ba9a2](UMLComboBoxModel2.java:551)  INFO: Getting prop panel for: org.omg.uml.foundation.core.UmlClass$Impl, found(in cache?) org.argouml.uml.ui.foundation.core.PropPanelClass[,0,0,801x172,invalid,layout=org.tigris.swidgets.LabelledLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=](TabProps.java:335)  INFO: Adding diagram member(Project.java:339)  INFO: There are now 5 members(Project.java:352)  INFO: Factory created org.argouml.uml.diagram.ui.PropPanelUMLCollaborationDiagram for org.argouml.uml.diagram.collaboration.ui.UMLCollaborationDiagram(TabProps.java:344)  INFO: Factory created org.argouml.uml.ui.behavior.collaborations.PropPanelClassifierRole for org.omg.uml.behavioralelements.collaborations.ClassifierRole$Impl(TabProps.java:344)  INFO: targetRemoved targetevent :  org.argouml.ui.targetmanager.TargetEvent[source=org.argouml.ui.targetmanager.TargetManager@14ba9a2](UMLComboBoxModel2.java:551) [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Mon Mar 13 22:01:12 GMT 2006 java.lang.IllegalArgumentException: illegal range bound 	at org.argouml.model.mdr.DataTypesFactoryMDRImpl.s2b(DataTypesFactoryMDRImpl.java:304) 	at org.argouml.model.mdr.DataTypesFactoryMDRImpl.createMultiplicityRange(DataTypesFactoryMDRImpl.java:253) 	at org.argouml.model.mdr.DataTypesFactoryMDRImpl.parseRanges(DataTypesFactoryMDRImpl.java:236) 	at org.argouml.model.mdr.DataTypesFactoryMDRImpl.createMultiplicity(DataTypesFactoryMDRImpl.java:223) 	at org.argouml.uml.ui.behavior.collaborations.ActionSetClassifierRoleMultiplicity.setSelectedItem(ActionSetClassifierRoleMultiplicity.java:65) 	at org.argouml.uml.ui.ActionSetMultiplicity.actionPerformed(ActionSetMultiplicity.java:57) 	at javax.swing.JComboBox.fireActionEvent(Unknown Source) 	at javax.swing.JComboBox.contentsChanged(Unknown Source) 	at javax.swing.AbstractListModel.fireContentsChanged(Unknown Source) 	at org.argouml.uml.ui.UMLComboBoxModel2.fireContentsChanged(UMLComboBoxModel2.java:515) 	at org.argouml.uml.ui.UMLComboBoxModel2.setSelectedItem(UMLComboBoxModel2.java:403) 	at org.argouml.uml.ui.UMLMultiplicityComboBoxModel.setSelectedItem(UMLMultiplicityComboBoxModel.java:102) 	at org.argouml.uml.ui.UMLComboBoxModel2.propertyChange(UMLComboBoxModel2.java:151) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:438) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:357) 	at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270) 	at java.lang.Thread.run(Unknown Source)  INFO: Configuration saved to C:\Documents and Settings\Bob\argo.user.properties(ConfigurationProperties.java:136)
+7
+org.argouml.model.mdr.DataTypesFactoryMDRImpl
+org.argouml.model.mdr.DataTypesHelperMDRImpl
+org.argouml.uml.ui.UMLComboBoxModel2
+org.argouml.uml.ui.UMLModelElementListModel2
+org.argouml.uml.ui.behavior.common_behavior.UMLReceptionSignalComboBoxModel
+org.argouml.uml.ui.foundation.core.UMLStructuralFeatureTypeComboBoxModel
+org.argouml.uml.ui.foundation.extension_mechanisms.UMLTagDefinitionTypeComboBoxModel
+
+4100
+Exception in UMLModelElementListModel2 when deleting  An exception occurs in the following circumstances:  1. Draw 2 classes with a Generalization between them. 2. Show the proppanel of the Generalization. 3. Delete from model the parent class.  [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sat Mar 18 16:30:35 CET 2006 javax.jmi.reflect.InvalidObjectException: Object with MOFID .:000000000000077C no longer exists. 	at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) 	at org.netbeans.mdr.handlers.AssociationHandler._handleQuery(AssociationHandler.java:105) 	at org.omg.uml.foundation.core.AParentSpecialization$Impl.getSpecialization(Unknown Source) 	at org.argouml.model.mdr.FacadeMDRImpl.getSpecializations(FacadeMDRImpl.java:3223) 	at org.argouml.uml.ui.foundation.core.UMLGeneralizableElementSpecializationListModel.buildModelList(UMLGeneralizableElementSpecializationListModel.java:50) 	at org.argouml.uml.ui.UMLModelElementListModel2.propertyChange(UMLModelElementListModel2.java:117) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:438) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:357) 	at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270) 	at java.lang.Thread.run(Unknown Source)
+1
+org.argouml.ui.explorer.NameOrder
+
+4101
+The button in UMLComboBoxNavigator is initially downlighted  The button in UMLComboBoxNavigator, which is the combobox with a navigation button at the right, is initially downlighted.  See e.g. on the properties panel of a Statemachine, namespace &amp; context fields.  Once you select something else in the combo, the button is active.  If you select the empty value, e.g. on the Operation field of the Callevent proppanel, the button remains highlighted - which is also wrong.
+1
+org.argouml.uml.ui.UMLComboBoxNavigator
+
+4103
+Exception when deleting transition  The following causes an exception:  1. Create a statechart diagram.with 2 states and a transition. 2. Make the transition visible in the explorer. 3. Delete one of the states.  [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sun Mar 19 17:39:53 CET 2006 javax.jmi.reflect.InvalidObjectException: Object with MOFID .:00000000000007F7 no longer exists. 	at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) 	at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48) 	at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103) 	at org.omg.uml.behavioralelements.statemachines.Transition$Impl.getTrigger(Unknown Source) 	at org.argouml.model.mdr.FacadeMDRImpl.getTrigger(FacadeMDRImpl.java:3413) 	at org.argouml.uml.notation.uml.TransitionNotationUml.toString(TransitionNotationUml.java:430) 	at org.argouml.ui.explorer.ExplorerTree.convertValueToText(ExplorerTree.java:256) 	at javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent(DefaultTreeCellRenderer.java:331) 	at org.argouml.uml.ui.UMLTreeCellRenderer.getTreeCellRendererComponent(UMLTreeCellRenderer.java:78) 	at javax.swing.plaf.basic.BasicTreeUI$NodeDimensionsHandler.getNodeDimensions(BasicTreeUI.java:2693) 	at javax.swing.tree.AbstractLayoutCache.getNodeDimensions(AbstractLayoutCache.java:475) 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.updatePreferredSize(VariableHeightLayoutCache.java:1342) 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.updatePreferredSize(VariableHeightLayoutCache.java:1333) 	at javax.swing.tree.VariableHeightLayoutCache.treeNodesChanged(VariableHeightLayoutCache.java:418) 	at javax.swing.plaf.basic.BasicTreeUI$Handler.treeNodesChanged(BasicTreeUI.java:3667) 	at javax.swing.tree.DefaultTreeModel.fireTreeNodesChanged(DefaultTreeModel.java:466) 	at javax.swing.tree.DefaultTreeModel.nodesChanged(DefaultTreeModel.java:328) 	at javax.swing.tree.DefaultTreeModel.nodeChanged(DefaultTreeModel.java:261) 	at org.argouml.ui.explorer.ExplorerTreeNode.nodeModified(ExplorerTreeNode.java:102) 	at org.argouml.ui.explorer.ExplorerTreeModel.traverseModified(ExplorerTreeModel.java:237) 	at org.argouml.ui.explorer.ExplorerTreeModel.traverseModified(ExplorerTreeModel.java:233) 	at org.argouml.ui.explorer.ExplorerTreeModel.traverseModified(ExplorerTreeModel.java:233) 	at org.argouml.ui.explorer.ExplorerTreeModel.traverseModified(ExplorerTreeModel.java:233) 	at org.argouml.ui.explorer.ExplorerTreeModel.traverseModified(ExplorerTreeModel.java:233) 	at org.argouml.ui.explorer.ExplorerTreeModel.traverseModified(ExplorerTreeModel.java:233) 	at org.argouml.ui.explorer.ExplorerTreeModel.modelElementChanged(ExplorerTreeModel.java:213) 	at org.argouml.ui.explorer.ExplorerEventAdaptor.propertyChange(ExplorerEventAdaptor.java:196) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:438) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:357) 	at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270) 	at java.lang.Thread.run(Thread.java:595)
+1
+org.argouml.ui.DisplayTextTree
+
+4129
+ActionState notation not updated on Activity Graph  If you change the script body of an ActionState&apos;s entry action, the diagram isn&apos;t updated.  If you change the ActionState&apos;s name(which isn&apos;t displayed), the diagram will update with the correct text from the entry action.
+1
+org.argouml.uml.diagram.activity.ui.FigActionState
+
+4130
+Exception when startng new project with Node selected  A &quot;no longer exists&quot; exception hapens when selecting &quot;New...&quot; for the attached project.  1. Load the attached project. 2. In the Deployment diagram, select the only Node. 3. Select &quot;New...&quot;. Answer No.  [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sun Mar 26 23:13:55 CEST 2006 javax.jmi.reflect.InvalidObjectException: Object with MOFID 10-0-0-9--3049a8a5:10a386296b1:-8000:0000000000000CBD no longer exists. 	at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) 	at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48) 	at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103) 	at org.omg.uml.foundation.core.Node$Impl.getDeployedComponent(Unknown Source) 	at org.argouml.model.mdr.FacadeMDRImpl.getDeployedComponents(FacadeMDRImpl.java:2605) 	at org.argouml.uml.ui.foundation.core.UMLNodeDeployedComponentListModel.buildModelList(PropPanelNode.java:107) 	at org.argouml.uml.ui.UMLModelElementListModel2.propertyChange(UMLModelElementListModel2.java:117) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:438) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:357) 	at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270) 	at java.lang.Thread.run(Unknown Source) [org.netbeans.mdr.Logger] INFORMATIONAL *********** Exception occurred ************ at Sun Mar 26 23:13:55 CEST 2006 javax.jmi.reflect.InvalidObjectException: Object with MOFID 10-0-0-9--3049a8a5:10a386296b1:-8000:0000000000000CBD no longer exists. 	at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) 	at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48) 	at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103) 	at org.omg.uml.foundation.core.Node$Impl.getDeployedComponent(Unknown Source) 	at org.argouml.model.mdr.FacadeMDRImpl.getDeployedComponents(FacadeMDRImpl.java:2605) 	at org.argouml.uml.ui.foundation.core.UMLNodeDeployedComponentListModel.buildModelList(PropPanelNode.java:107) 	at org.argouml.uml.ui.UMLModelElementListModel2.propertyChange(UMLModelElementListModel2.java:117) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:438) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:357) 	at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270) 	at java.lang.Thread.run(Unknown Source)
+2
+org.argouml.model.mdr.ModelEventPumpMDRImpl
+org.argouml.ui.cmd.ActionNew
+
+4137
+Stereotype Proppanel should show field for extendedElements  The Stereotype Proppanel should show a field for extendedElements.  From the UML document:  extendedElement: Designates the model elements affected by the stereotype. Each one must be a model element of the kind specified by the baseClass attribute.
+2
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelStereotype
+org.argouml.uml.ui.foundation.extension_mechanisms.UMLExtendedElementsListModel
+
+4148
+Specification missing from Operation property panel  The Operation property panel provides no field to display or modify the attribute &apos;specification&apos;(of type String).  This means that this information is effectively lost/hidden for XMI files imported with this attribute set.
+4
+org.argouml.uml.ui.foundation.core.PropPanelOperation
+org.argouml.uml.ui.foundation.core.PropPanelOperation.ActionNewMethod
+org.argouml.uml.ui.foundation.core.PropPanelOperation.ActionNewRaisedSignal
+org.argouml.uml.ui.foundation.core.UMLOperationSpecificationDocument
+
+4155
+File Save overwrites without confirmation  If you create a new project and then select File-&gt;Save and specify an existing filename, the file will be overwritten without any warning or confirmation.  The File-&gt;Save As operation does ask for confirmation, so there are apparently two different code paths.
+1
+org.argouml.uml.ui.ActionSaveProject
+
+4162
+checklist uses &lt;attribute&gt; where it should use &lt;class&gt;  in the checklist for a class attribute, there is this item:  &quot;does &lt;attribute&gt; apply to all instances of class &lt;attribute&gt; including instances of subclasses?&quot;  it should read:  &quot;does &lt;attribute&gt; apply to all instances of class &lt;attribute&apos;s containing class&gt; including instances of subclasses?&quot;
+1
+org.argouml.ocl.CriticOclEvaluator
+
+4173
+Deleting element while editing tagged values causes exceptions  After certain actions involving tagged values, the properties tab is empty.  To reproduce:  create a new class in the class diagram click on the &quot;tagged values&quot; tab select the first tagged value(still empty) press ctrl-del =&gt; the class is deleted create a new new class in the class diagram click on the properties tab    =&gt; it is empty, the console shows exceptions  Log file is attached.
+4
+org.argouml.uml.ui.ActionBaseDelete
+org.argouml.uml.ui.TabTaggedValues
+org.argouml.uml.ui.TabTaggedValuesModel
+org.argouml.uml.ui.foundation.extension_mechanisms.PropPanelTagDefinition
+
+4178
+Allow commentedes to be removed from the proppanel  Allow commentedes to be removed from the proppanel field &quot;Annotated Elements&quot;. This should be done with a popup menu for this field, containing one entry: &quot;Remove&quot;.
+2
+org.argouml.uml.diagram.static_structure.ui.FigComment
+org.argouml.uml.ui.foundation.core.PropPanelComment
+
+4180
+Stereotype on Package Fig is deformed after reload  1. When doubleclicking a stereotype on a class or package, you get a edit box.  in the past, the stereotype was never editable, and it should not be.  2. The Stereotype of a package is shown with a ugly border when saved and reloaded(but not after creation).
+2
+org.argouml.uml.diagram.static_structure.ui.FigPackage
+org.argouml.uml.diagram.ui.FigStereotypesCompartment
+
+4181
+Drawing associationclass broken  It is impossible to draw an associationclass on the diagram.  When you try, the edge does not attach, and you get the following exception:  Exception in thread &quot;AWT-EventQueue-0&quot; java.lang.ClassCastException: org.argouml.uml.diagram.ui.FigAssociationClass 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.registerModelEvent(ModelEventPumpMDRImpl.java:461) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.addModelEventListener(ModelEventPumpMDRImpl.java:170) 	at org.argouml.uml.diagram.ui.FigNodeModelElement.addElementListener(FigNodeModelElement.java:1674) 	at org.argouml.uml.diagram.static_structure.ui.FigClass.updateListeners(FigClass.java:878) 	at org.argouml.uml.diagram.ui.FigNodeModelElement.setOwner(FigNodeModelElement.java:1208) 	at org.argouml.uml.diagram.static_structure.ui.FigClass.&lt;init&gt;(FigClass.java:152) 	at org.argouml.uml.diagram.ui.FigClassAssociationClass.&lt;init&gt;(FigClassAssociationClass.java:56) 	at org.argouml.uml.diagram.ui.ModeCreateAssociationClass.endAttached(ModeCreateAssociationClass.java:75) 	at org.tigris.gef.base.ModeCreatePolyEdge.mouseReleased(ModeCreatePolyEdge.java:250) 	at org.tigris.gef.base.ModeManager.mouseReleased(ModeManager.java:220) 	at org.tigris.gef.base.Editor.mouseReleased(Editor.java:772) 	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:231) 	at java.awt.Component.processMouseEvent(Component.java:5488) 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3126) 	at org.tigris.gef.graph.presentation.JGraphInternalPane.processMouseEvent(JGraph.java:640) 	at java.awt.Component.processEvent(Component.java:5253) 	at java.awt.Container.processEvent(Container.java:1966) 	at java.awt.Component.dispatchEventImpl(Component.java:3955) 	at java.awt.Container.dispatchEventImpl(Container.java:2024) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4212) 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3892) 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3822) 	at java.awt.Container.dispatchEventImpl(Container.java:2010) 	at java.awt.Window.dispatchEventImpl(Window.java:1774) 	at java.awt.Component.dispatchEvent(Component.java:3803) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:463) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:242) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:163) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+1
+org.argouml.uml.diagram.static_structure.ui.ClassDiagramRenderer
+
+4194
+Exception: Class PropPanelTaggedValue for Panel not found  When selecting a TaggedValue in the explorer, you get an exception complaining that:  &quot;Class org.argouml.uml.ui.foundation.core.PropPanelTaggedValue for Panel not found!&quot; AFAIK, you only can do this from within the Composite-Centric explorer perspective.  Indeed, the TaggedValue is a ModelElement, but has no Proppanel.  Should it have one?  Simply excluding the TaggedValue in TabProps.setTarget() is not sufficient - still exceptions are thrown.
+2
+org.argouml.uml.ui.TabProps
+org.argouml.uml.ui.foundation.core.PropPanelTaggedValue
+
+4200
+Activity diagrams vanish in a new Package  Activity diagrams vanish in a Package. That is how you can get the defect: stand on the main Model folder; right mouse click and choose from droped meniu &quot;Add Package&quot;; new package appears; rename the package; there are some diagrams below, so i jus drag them one by one using right mouse button and releasing over the package; the package remains unchanged(i expected it should become expandable like a diagram in the tree); in selected package Properties Owned Elements I can see my diagrams, but double click does not allow me to review them.
+2
+org.argouml.ui.explorer.PerspectiveManager
+org.argouml.ui.explorer.rules.GoModelElementToBehavior
+
+4222
+Operation and argument names refresh incorrectly  When you change the name of an argument of a operation in a class it doesn&apos;t work in some circunstances.  1 Create a new class  2 Create new operation in the class  3 Add argument(set the name of the argument)  4 The diagram doesn&apos;t refresh this name and save the project with the default name  of the argument. It also changes the name of the operation.  5 Next time you open the project all this doens&apos;t happen
+2
+org.argouml.uml.ui.UMLComboBoxModel2
+org.argouml.uml.ui.foundation.core.UMLStructuralFeatureTypeComboBoxModel
+
+4227
+Changing notation settings does not update diagram  Changing notation settings in the menu Edit -&gt; Settings... does not update the diagram when Apply or OK is pressed.  This also applies to changing the notation language with View -&gt; Notation.  Reported by Tom in issue 4224.
+4
+org.argouml.uml.diagram.ui.CompartmentFigText
+org.argouml.uml.diagram.ui.FigEdgeModelElement
+org.argouml.uml.diagram.ui.FigFeaturesCompartment
+org.argouml.uml.diagram.ui.FigNodeModelElement
+
+4231
+Open exception - Cannot find context namespace while initializing activity diagram  Please report this problem at http://argouml.tigris.org/project_bugs.html Error opening file : CasinoDevWorkflow.zargo  System Info: ArgoUML version : 0.21.2 Java Version : 1.5.0_07 Java Vendor : Sun Microsystems Inc. Java Vendor URL : http://java.sun.com/ Java Home Directory : C:\Java\jre1.5.0_07 Java Classpath : c:\DevTools\argoUML\argouml.jar Operation System : Windows XP, Version 5.1 Architecture : x86 User Name : Alec Clews User Home Directory : C:\Documents and Settings\Alec Clews Current Directory : C:\DevTools\argoUML JVM Total Memory : 14888960 JVM Free Memory : 1250640    Error occurred at : 29 May 2006 07:11:54 GMT Cause : java.lang.IllegalStateException: Cannot find context namespace while initializing activity diagram at org.tigris.gef.persistence.pgml.PGMLHandler.initDiagram(PGMLHandler.java:112) at org.tigris.gef.persistence.pgml.PGMLHandler.(PGMLHandler.java:72) at org.tigris.gef.persistence.pgml.InitialHandler.startElement(InitialHandler.java:62) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source) at javax.xml.parsers.SAXParser.parse(Unknown Source) at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:150) at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:119) at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:67) at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:355) at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:341) at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1239) at org.argouml.uml.ui.ActionOpenProject.actionPerformed(ActionOpenProject.java:160) at javax.swing.AbstractButton.fireActionPerformed(Unknown Source) at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.setPressed(Unknown Source) at javax.swing.AbstractButton.doClick(Unknown Source) at javax.swing.plaf.basic.BasicMenuItemUI.doClick(Unknown Source) at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.Component.processMouseEvent(Unknown Source) at javax.swing.JComponent.processMouseEvent(Unknown Source) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source) ------- Full exception : org.argouml.persistence.OpenException: java.lang.IllegalStateException: Cannot find context namespace while initializing activity diagram at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:74) at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:355) at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:341) at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1239) at org.argouml.uml.ui.ActionOpenProject.actionPerformed(ActionOpenProject.java:160) at javax.swing.AbstractButton.fireActionPerformed(Unknown Source) at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.setPressed(Unknown Source) at javax.swing.AbstractButton.doClick(Unknown Source) at javax.swing.plaf.basic.BasicMenuItemUI.doClick(Unknown Source) at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.Component.processMouseEvent(Unknown Source) at javax.swing.JComponent.processMouseEvent(Unknown Source) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source) Caused by: java.lang.IllegalStateException: Cannot find context namespace while initializing activity diagram at org.tigris.gef.persistence.pgml.PGMLHandler.initDiagram(PGMLHandler.java:112) at org.tigris.gef.persistence.pgml.PGMLHandler.(PGMLHandler.java:72) at org.tigris.gef.persistence.pgml.InitialHandler.startElement(InitialHandler.java:62) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source) at javax.xml.parsers.SAXParser.parse(Unknown Source) at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:150) at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:119) at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:67) ... 31 more java.lang.IllegalStateException: Cannot find context namespace while initializing activity diagram at org.argouml.uml.diagram.activity.ui.UMLActivityDiagram.initialize(UMLActivityDiagram.java:118) at org.tigris.gef.persistence.pgml.PGMLHandler.initDiagram(PGMLHandler.java:108) at org.tigris.gef.persistence.pgml.PGMLHandler.(PGMLHandler.java:72) at org.tigris.gef.persistence.pgml.InitialHandler.startElement(InitialHandler.java:62) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source) at javax.xml.parsers.SAXParser.parse(Unknown Source) at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:150) at org.tigris.gef.persistence.pgml.PGMLStackParser.readDiagram(PGMLStackParser.java:119) at org.argouml.persistence.DiagramMemberFilePersister.load(DiagramMemberFilePersister.java:67) at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:355) at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:341) at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1239) at org.argouml.uml.ui.ActionOpenProject.actionPerformed(ActionOpenProject.java:160) at javax.swing.AbstractButton.fireActionPerformed(Unknown Source) at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.setPressed(Unknown Source) at javax.swing.AbstractButton.doClick(Unknown Source) at javax.swing.plaf.basic.BasicMenuItemUI.doClick(Unknown Source) at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.Component.processMouseEvent(Unknown Source) at javax.swing.JComponent.processMouseEvent(Unknown Source) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source)
+1
+org.argouml.uml.diagram.activity.ui.UMLActivityDiagram
+
+4245
+Repaint exception when creating sequence diagram  I get the following exception the first time a sequence diagram is created.  I&apos;ve tried catching it in the debugger and looking at the context, but didn&apos;t see anything obvious which would indicate what is causing the problem.  This appears to be the same problem that both Michiel and I reported in comments to issue 4174(which has since been closed).  Exception in thread &quot;AWT-EventQueue-0&quot; java.lang.NullPointerException 	at java.awt.Rectangle.setBounds(Unknown Source) 	at javax.swing.RepaintManager.collectDirtyComponents(Unknown Source) 	at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source) 	at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(Unknown Source) 	at java.awt.event.InvocationEvent.dispatch(Unknown Source) 	at java.awt.EventQueue.dispatchEvent(Unknown Source) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source) 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source) 	at java.awt.EventDispatchThread.run(Unknown Source)
+1
+org.argouml.uml.diagram.ui.TabDiagram
+
+4272
+InvalidElementException in Checklist  The following causes a complete crash of ArgoUML due to InvalidElementException:  1. Draw 2 Classes. 2. Draw an association between them. 3. Delete from model the association. 4. Again, draw an association between these classes. 5. Click on the Checklist tab. 6. Minimize the ArgoUML window. 7. Show the screen again.  This shows an empty ArgoUML window. The last 2 steps are only needed to show the severeness of the problem.  This issue is similar to issue 4182.  The exception:  Exception in thread &quot;AWT-EventQueue-0&quot; org.argouml.model.InvalidElementException: UUID: 10-0-0-9--c3a8a2a:10bd3d01e34:-8000:00000000000009AC         at org.argouml.model.mdr.FacadeMDRImpl.getName(FacadeMDRImpl.java:4403)         at org.argouml.ocl.CriticOclEvaluator.evalToString(CriticOclEvaluator.java:64)         at org.argouml.uml.cognitive.checklist.UMLCheckItem.expand(UMLCheckItem.java:87)         at org.argouml.cognitive.checklist.CheckItem.getDescription(CheckItem.java:128)         at org.argouml.cognitive.checklist.ui.TableModelChecklist.getValueAt(TabChecklist.java:363)         at javax.swing.JTable.getValueAt(Unknown Source)         at javax.swing.JTable.prepareRenderer(Unknown Source)         at javax.swing.plaf.basic.BasicTableUI.paintCell(Unknown Source)         at javax.swing.plaf.basic.BasicTableUI.paintCells(Unknown Source)         at javax.swing.plaf.basic.BasicTableUI.paint(Unknown Source)         at javax.swing.plaf.ComponentUI.update(Unknown Source)         at javax.swing.JComponent.paintComponent(Unknown Source)         at javax.swing.JComponent.paint(Unknown Source)         at javax.swing.JComponent.paintChildren(Unknown Source)         at javax.swing.JComponent.paint(Unknown Source)         at javax.swing.JViewport.paint(Unknown Source)         at javax.swing.JComponent.paintChildren(Unknown Source)         at javax.swing.JComponent.paint(Unknown Source)         at javax.swing.JComponent.paintChildren(Unknown Source)         at javax.swing.JComponent.paint(Unknown Source)         at javax.swing.JComponent.paintChildren(Unknown Source)         at javax.swing.JComponent.paint(Unknown Source)         at javax.swing.JComponent.paintChildren(Unknown Source)         at javax.swing.JComponent.paint(Unknown Source)         at javax.swing.JComponent.paintWithOffscreenBuffer(Unknown Source)         at javax.swing.JComponent.paintDoubleBuffered(Unknown Source)         at javax.swing.JComponent._paintImmediately(Unknown Source)         at javax.swing.JComponent.paintImmediately(Unknown Source)         at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source)         at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(Unknown Source)         at java.awt.event.InvocationEvent.dispatch(Unknown Source)         at java.awt.EventQueue.dispatchEvent(Unknown Source)         at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source)         at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)         at java.awt.EventDispatchThread.pumpEvents(Unknown Source)         at java.awt.EventDispatchThread.pumpEvents(Unknown Source)         at java.awt.EventDispatchThread.run(Unknown Source) Caused by: javax.jmi.reflect.InvalidObjectException: Object with MOFID 10-0-0-9--c3a8a2a:10bd3d01e34:-8000:00000000000009AC no longer exists.         at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353)         at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48)         at org.netbeans.mdr.handlers.InstanceHandler._handleGet(InstanceHandler.java:193)         at org.omg.uml.foundation.core.UmlAssociation$Impl.getName(Unknown Source)         at org.argouml.model.mdr.FacadeMDRImpl.getName(FacadeMDRImpl.java:4394)         ... 36 more
+1
+org.argouml.uml.cognitive.checklist.UMLCheckItem
+
+4276
+InvalidObjectException when deleting 2 classes at once  1. Draw 2 classes. 2. Select them both. 3.Delete from Model(in the menu, or by rightclicking).  javax.jmi.reflect.InvalidObjectException: Object with MOFID 127-0-0-2--249892a7:10bd8531009:-8000:00000000000007E2 no longer exists. 	at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) 	at org.netbeans.mdr.handlers.BaseObjectHandler.refMetaObject(BaseObjectHandler.java:292) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.registerModelEvent(ModelEventPumpMDRImpl.java:446) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.addModelEventListener(ModelEventPumpMDRImpl.java:152) 	at org.argouml.model.AbstractModelEventPump.addModelEventListener(AbstractModelEventPump.java:63) 	at org.argouml.uml.ui.UMLModelElementListModel2.setTarget(UMLModelElementListModel2.java:305) 	at org.argouml.uml.ui.UMLModelElementListModel2.targetRemoved(UMLModelElementListModel2.java:429) 	at org.argouml.uml.ui.PropPanel.fireTargetRemoved(PropPanel.java:529) 	at org.argouml.uml.ui.PropPanel.targetRemoved(PropPanel.java:483) 	at org.argouml.uml.ui.TabProps.fireTargetRemoved(TabProps.java:849) 	at org.argouml.uml.ui.TabProps.targetRemoved(TabProps.java:789) 	at org.argouml.ui.DetailsPane.fireTargetRemoved(DetailsPane.java:677) 	at org.argouml.ui.DetailsPane.targetRemoved(DetailsPane.java:605) 	at org.argouml.ui.targetmanager.TargetManager.fireTargetRemoved(TargetManager.java:809) 	at org.argouml.ui.targetmanager.TargetManager.internalOnSetTarget(TargetManager.java:478) 	at org.argouml.ui.targetmanager.TargetManager.removeTarget(TargetManager.java:642) 	at org.argouml.ui.targetmanager.TargetManager$TargetRemover.remove(TargetManager.java:1116) 	at org.argouml.ui.targetmanager.TargetManager$Remover.propertyChange(TargetManager.java:1107) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.fire(ModelEventPumpMDRImpl.java:412) 	at org.argouml.model.mdr.ModelEventPumpMDRImpl.change(ModelEventPumpMDRImpl.java:334) 	at org.netbeans.mdr.util.EventNotifier$EventsDelivery.run(EventNotifier.java:270) 	at java.lang.Thread.run(Thread.java:595)
+1
+org.argouml.uml.ui.ActionDeleteModelElements
+
+4279
+InvalidElementException when setting notation language on project load  I had a project loaded and cleared it using File-&gt;New, then tried to load a new project and got the following exception.  The only way to load a new project after it got into this state was to restart ArgoUML.  Error opening file : issue4274-Softiam.zargo  System Info: ArgoUML version : PRE-0.22.alpha2 Java Version : 1.5.0_02 Java Vendor : Sun Microsystems Inc. Java Vendor URL : http://java.sun.com/ Java Home Directory : C:\Program Files\Java\jre1.5.0_02 Java Classpath : \argouml-core-lib\build-eclipse;C:\eclipse-workspace\argouml-core-lib\antlrall-2.7.2.jar;C:\eclipse-workspace\argouml-core-lib\commons-logging-1.0.2.jar;C:\eclipse-workspace\argouml-core-lib\log4j-1.2.6.jar;C:\eclipse-workspace\argouml-core-lib\ocl-argo-1.1.jar;C:\eclipse-workspace\argouml-core-lib\toolbar-1.2.jar;C:\eclipse-workspace\argouml-core-lib\swidgets-0.1.4.jar;C:\eclipse-workspace\argouml-core-lib\gef-0.11.3M10.jar;C:\eclipse-workspace\argouml-core-model\build-eclipse;C:\eclipse-workspace\argouml-core-model-mdr\build-eclipse;C:\eclipse-workspace\argouml-core-model-mdr\lib\jmi.jar;C:\eclipse-workspace\argouml-core-model-mdr\lib\jmiutils.jar;C:\eclipse-workspace\argouml-core-model-mdr\lib\mdrapi.jar;C:\eclipse-workspace\argouml-core-model-mdr\lib\mof.jar;C:\eclipse-workspace\argouml-core-model-mdr\lib\nbmdr.jar;C:\eclipse-workspace\argouml-core-model-mdr\lib\openide-util.jar;\argouml-core-tools\build-eclipse;C:\eclipse-workspace\argouml-core-tools\ant-1.6.2\lib\ant.jar;C:\eclipse-workspace\argouml-core-tools\junit-3.8.1\junit.jar;C:\eclipse-workspace\argouml-core-tools\lib\easymock12.jar;C:\eclipse-workspace\argouml\build-eclipse;C:\eclipse-workspace\argouml-core-lib\antlrall-2.7.2.jar;C:\eclipse-workspace\argouml-core-lib\commons-logging-1.0.2.jar;C:\eclipse-workspace\argouml-core-lib\log4j-1.2.6.jar;C:\eclipse-workspace\argouml-core-lib\ocl-argo-1.1.jar;C:\eclipse-workspace\argouml-core-lib\toolbar-1.2.jar;C:\eclipse-workspace\argouml-core-lib\swidgets-0.1.4.jar;C:\eclipse-workspace\argouml-core-lib\gef-0.11.3M10.jar;C:\eclipse-workspace\argouml-core-model\build-eclipse;C:\eclipse-workspace\argouml-core-lib\log4j-1.2.6.jar;C:\eclipse-workspace\argouml-core-tools\ant-1.6.2\lib\ant.jar;C:\eclipse-workspace\argouml-core-tools\junit-3.8.1\junit.jar;C:\eclipse-workspace\argouml-core-tools\lib\easymock12.jar Operation System : Windows XP, Version 5.1 Architecture : x86 User Name : tom.morris User Home Directory : C:\Documents and Settings\tom.morris Current Directory : C:\eclipse-workspace\argouml JVM Total Memory : 68018176 JVM Free Memory : 12835120    Error occurred at : Fri Jun 16 11:46:16 EDT 2006 Cause : org.argouml.model.InvalidElementException: javax.jmi.reflect.InvalidObjectException: Object with MOFID -64--88-1-100-116c26bc:10bdbac263d:-8000:0000000000001005 no longer exists. at org.argouml.model.mdr.FacadeMDRImpl.getBase(FacadeMDRImpl.java:1651) at org.argouml.model.mdr.CoreHelperMDRImpl.getSource(CoreHelperMDRImpl.java:1233) at org.argouml.model.AbstractCoreHelperDecorator.getSource(AbstractCoreHelperDecorator.java:380) at org.argouml.uml.diagram.ui.FigEdgeModelElement.getSource(FigEdgeModelElement.java:1132) at org.argouml.uml.diagram.ui.FigEdgeModelElement.updateClassifiers(FigEdgeModelElement.java:1022) at org.argouml.uml.diagram.ui.FigEdgeModelElement.renderingChanged(FigEdgeModelElement.java:712) at org.argouml.uml.diagram.ui.FigEdgeModelElement.notationChanged(FigEdgeModelElement.java:898) at org.argouml.application.events.ArgoEventPump.handleFireNotationEvent(ArgoEventPump.java:190) at org.argouml.application.events.ArgoEventPump.handleFireEvent(ArgoEventPump.java:264) at org.argouml.application.events.ArgoEventPump.doFireEvent(ArgoEventPump.java:298) at org.argouml.application.events.ArgoEventPump.fireEvent(ArgoEventPump.java:282) at org.argouml.kernel.ProjectSettings.fireEvent(ProjectSettings.java:425) at org.argouml.kernel.ProjectSettings.setNotationLanguage(ProjectSettings.java:116) at org.argouml.persistence.ArgoParser.handleNotationLanguage(ArgoParser.java:307) at org.argouml.persistence.ArgoParser.handleEndElement(ArgoParser.java:174) at org.argouml.persistence.SAXParserBase.endElement(SAXParserBase.java:247) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source) at javax.xml.parsers.SAXParser.parse(Unknown Source) at org.argouml.persistence.SAXParserBase.parse(SAXParserBase.java:146) at org.argouml.persistence.ArgoParser.readProject(ArgoParser.java:90) at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:343) at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:341) at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1281) at org.argouml.uml.ui.ActionOpenProject.actionPerformed(ActionOpenProject.java:164) at javax.swing.AbstractButton.fireActionPerformed(Unknown Source) at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.setPressed(Unknown Source) at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.Component.processMouseEvent(Unknown Source) at javax.swing.JComponent.processMouseEvent(Unknown Source) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source) Caused by: javax.jmi.reflect.InvalidObjectException: Object with MOFID -64--88-1-100-116c26bc:10bdbac263d:-8000:0000000000001005 no longer exists. at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48) at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103) at org.omg.uml.behavioralelements.usecases.Include$Impl.getBase(Unknown Source) at org.argouml.model.mdr.FacadeMDRImpl.getBase(FacadeMDRImpl.java:1644) ... 56 more ------- Full exception : org.argouml.persistence.OpenException: org.argouml.model.InvalidElementException: javax.jmi.reflect.InvalidObjectException: Object with MOFID -64--88-1-100-116c26bc:10bdbac263d:-8000:0000000000001005 no longer exists. at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:363) at org.argouml.persistence.ZargoFilePersister.doLoad(ZargoFilePersister.java:341) at org.argouml.ui.ProjectBrowser.loadProject(ProjectBrowser.java:1281) at org.argouml.uml.ui.ActionOpenProject.actionPerformed(ActionOpenProject.java:164) at javax.swing.AbstractButton.fireActionPerformed(Unknown Source) at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source) at javax.swing.DefaultButtonModel.setPressed(Unknown Source) at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) at java.awt.Component.processMouseEvent(Unknown Source) at javax.swing.JComponent.processMouseEvent(Unknown Source) at java.awt.Component.processEvent(Unknown Source) at java.awt.Container.processEvent(Unknown Source) at java.awt.Component.dispatchEventImpl(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source) at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) at java.awt.Container.dispatchEventImpl(Unknown Source) at java.awt.Window.dispatchEventImpl(Unknown Source) at java.awt.Component.dispatchEvent(Unknown Source) at java.awt.EventQueue.dispatchEvent(Unknown Source) at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.pumpEvents(Unknown Source) at java.awt.EventDispatchThread.run(Unknown Source) Caused by: org.argouml.model.InvalidElementException: javax.jmi.reflect.InvalidObjectException: Object with MOFID -64--88-1-100-116c26bc:10bdbac263d:-8000:0000000000001005 no longer exists. at org.argouml.model.mdr.FacadeMDRImpl.getBase(FacadeMDRImpl.java:1651) at org.argouml.model.mdr.CoreHelperMDRImpl.getSource(CoreHelperMDRImpl.java:1233) at org.argouml.model.AbstractCoreHelperDecorator.getSource(AbstractCoreHelperDecorator.java:380) at org.argouml.uml.diagram.ui.FigEdgeModelElement.getSource(FigEdgeModelElement.java:1132) at org.argouml.uml.diagram.ui.FigEdgeModelElement.updateClassifiers(FigEdgeModelElement.java:1022) at org.argouml.uml.diagram.ui.FigEdgeModelElement.renderingChanged(FigEdgeModelElement.java:712) at org.argouml.uml.diagram.ui.FigEdgeModelElement.notationChanged(FigEdgeModelElement.java:898) at org.argouml.application.events.ArgoEventPump.handleFireNotationEvent(ArgoEventPump.java:190) at org.argouml.application.events.ArgoEventPump.handleFireEvent(ArgoEventPump.java:264) at org.argouml.application.events.ArgoEventPump.doFireEvent(ArgoEventPump.java:298) at org.argouml.application.events.ArgoEventPump.fireEvent(ArgoEventPump.java:282) at org.argouml.kernel.ProjectSettings.fireEvent(ProjectSettings.java:425) at org.argouml.kernel.ProjectSettings.setNotationLanguage(ProjectSettings.java:116) at org.argouml.persistence.ArgoParser.handleNotationLanguage(ArgoParser.java:307) at org.argouml.persistence.ArgoParser.handleEndElement(ArgoParser.java:174) at org.argouml.persistence.SAXParserBase.endElement(SAXParserBase.java:247) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source) at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source) at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source) at javax.xml.parsers.SAXParser.parse(Unknown Source) at org.argouml.persistence.SAXParserBase.parse(SAXParserBase.java:146) at org.argouml.persistence.ArgoParser.readProject(ArgoParser.java:90) at org.argouml.persistence.UmlFilePersister.doLoad(UmlFilePersister.java:343) ... 29 more Caused by: javax.jmi.reflect.InvalidObjectException: Object with MOFID -64--88-1-100-116c26bc:10bdbac263d:-8000:0000000000001005 no longer exists. at org.netbeans.mdr.handlers.BaseObjectHandler._getDelegate(BaseObjectHandler.java:353) at org.netbeans.mdr.handlers.InstanceHandler.getInstanceDelegate(InstanceHandler.java:48) at org.netbeans.mdr.handlers.InstanceHandler._handleGetR(InstanceHandler.java:103) at org.omg.uml.behavioralelements.usecases.Include$Impl.getBase(Unknown Source) at org.argouml.model.mdr.FacadeMDRImpl.getBase(FacadeMDRImpl.java:1644) ... 56 more
+2
+org.argouml.uml.notation.java.AssociationEndNameNotationJava
+org.argouml.uml.notation.java.InitNotationJava
+
+4280
+wrong behavior when saving to an unavailable media  Steps to reproduce: - open a project, and save it into a removable media(e.g. an usb drive, or a network shared folder) - unplug the above media - do a small modification to the project and resave the file  Argo pops up a message box with a text like &quot;A problem has occured.. your file can be corrupted.. please report a bug at www.argouml.org&quot;. Then, it also pops up a message box with the stack trace of the FileNotFoundException thrown.  I don&apos;t think this is the right behavior. Argo should pop up a message box with a nicer text.. something like: &quot;The former file for this project is currently unavailable. Please choose another location to save it.&quot;, and eventually open a save FileChooser.
+3
+org.argouml.ui.ProjectBrowser
+org.argouml.uml.ui.ActionSaveProject
+org.argouml.uml.ui.ActionSaveProjectAs
+
+4281
+Deleting the context of a StateMachine should not delete the StateMachine  If you currently delete an operation, then its StateMachine and StatechartDiagram are deleted too.  That is not necessary - the namespace that owns the StateMachine still exists.
+3
+org.argouml.kernel.TestProject
+org.argouml.model.mdr.CoreFactoryMDRImpl
+org.argouml.uml.ui.ActionDeleteModelElements
+
+4298
+Move the View-Notation menu-item to the file menu  The menu-item View-&gt;Notation leading to a list of the supported languages does not belong in the View menu, since it does set the DEFAULT language, which is only used for the creation of new projects.  We should retain the possibility to easyly switch the notation language used in the project, so this menuitem should move into the File menu, preferrably just above the Properties item.
+3
+org.argouml.kernel.ProjectSettings
+org.argouml.notation.ui.ActionNotation
+org.argouml.ui.cmd.GenericArgoMenuBar
+
+4302
+&lt;&lt;null&gt;&gt; stereotype in the sequence diagram  Steps: 1.- Select a classifier role directly in the diagram 2.- Select property window 3.- Click on new stereotype 4.- Type the stereotype name  Expected result  Stereotype created and assigned to the classifier and displayed in the diagram  Actual Result  Stereotype created and assigned to the classifier role and displayed in the project explorer but &lt;&lt;null&gt;&gt; in the diagram  If the stereotype is unasigned from the classifier role it is removed from the available classifier&apos;s stereotypes
+1
+org.argouml.uml.diagram.sequence.ui.FigClassifierRole
+
+4324
+Wrong default extension while saving  Steps to reproduce:  - Create a new project, add a component, save it with name &quot;foo&quot; and extension &quot;.uml&quot; - Now, do some changes, and resave the project. The default file name is &quot;foo.uml&quot;(correct) but the default extension is &quot;.zargo&quot;! If I press &quot;save&quot;, I get a foo.uml.zargo file. That&apos;s not good.  Maybe we should alreaedy save the chosen extension, or just deduce it from the file name.  Moreover, the file name gets cancelled when the extension is changed. But I fear it&apos;s a FileChooserDialog issue...
+3
+org.argouml.persistence.PersistenceManager
+org.argouml.persistence.TestPersistenceManager
+org.argouml.ui.ProjectBrowser
+
+4330
+Exception in &quot;Send email to expert&quot;  Steps to reproduce: - select an active critic from the ToDoPane - press the &quot;send email to expert&quot; button  The following exception is thrown(stack from the console, no pop-ups appear): Exception in thread &quot;AWT-EventQueue-0&quot; java.lang.NullPointerException 	at org.argouml.ui.cmd.ActionEmailExpert.actionPerformed(ActionEmailExpert.java:57) 	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source) 	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source) 	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source) 	at javax.swing.DefaultButtonModel.setPressed(Unknown Source) 	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source) 	at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) 	at java.awt.AWTEventMulticaster.mouseReleased(Unknown Source) 	at java.awt.Component.processMouseEvent(Unknown Source) 	at javax.swing.JComponent.processMouseEvent(Unknown Source) 	at java.awt.Component.processEvent(Unknown Source) 	at java.awt.Container.processEvent(Unknown Source) 	at java.awt.Component.dispatchEventImpl(Unknown Source) 	at java.awt.Container.dispatchEventImpl(Unknown Source) 	at java.awt.Component.dispatchEvent(Unknown Source) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) 	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source) 	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) 	at java.awt.Container.dispatchEventImpl(Unknown Source) 	at java.awt.Window.dispatchEventImpl(Unknown Source) 	at java.awt.Component.dispatchEvent(Unknown Source) 	at java.awt.EventQueue.dispatchEvent(Unknown Source) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source) 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source) 	at java.awt.EventDispatchThread.run(Unknown Source)
+1
+org.argouml.cognitive.ui.TabToDo
+
+4342
+Delete from model does not enable &quot;Save Project&quot;  When an item is removed using &quot;Delete from model&quot; the &quot;Save Project&quot; entry in the &quot;File&quot; menu is not enabled.
+1
+org.argouml.model.mdr.UmlFactoryMDRImpl
+
+4349
+Activity Diagram not refreshed after deletion of a Action State  Steps to repeat bug.  1 Delete all the transiton associted with the action state you want to delete.  2 Delete the action state.  Nothing happens the action state does not get removed form the Activity Diagram and as soon as you save the model. The action state does get remove and the following error is generated.  An inconsistency has been detected when saving the model.These have been repaired and are reported below. The save will continue with the model having been amended as described.  org.argouml.uml.diagram.activity.ui.FigActionState &quot;Deleted Action State&quot; -- Removed: model element no longer in the repository    Thankyou
+6
+org.argouml.uml.diagram.activity.ui.FigActionState
+org.argouml.uml.diagram.activity.ui.FigCallState
+org.argouml.uml.diagram.activity.ui.FigObjectFlowState
+org.argouml.uml.diagram.collaboration.ui.FigClassifierRole
+org.argouml.uml.diagram.sequence.ui.FigClassifierRole
+org.argouml.uml.diagram.state.ui.FigSubmachineState
+
+4354
+Errors on Deployment Diagram  I&apos;m not sure if these two errors are related, but they occured in the same set of operations while placing Components and Nodes on a Deployment Diagram.  Also perhaps related is the fact that Associations which are visible in the property panel connecting two Components aren&apos;t being displayed on the diagram.  Exception in thread &quot;AWT-EventQueue-0&quot; java.lang.IllegalStateException: Both the source port and dest port fig must be defined on a org.argouml.uml.diagram.ui.FigAssociation before the edge can be layed out 	at org.tigris.gef.presentation.FigEdgePoly.layoutEdge(FigEdgePoly.java:130) 	at org.tigris.gef.presentation.FigEdgePoly.computeRouteImpl(FigEdgePoly.java:89) 	at org.tigris.gef.presentation.FigEdge.computeRoute(FigEdge.java:169) 	at org.tigris.gef.base.LayerPerspective.edgeAdded(LayerPerspective.java:222) 	at org.tigris.gef.graph.MutableGraphSupport.fireEdgeAdded(MutableGraphSupport.java:323) 	at org.argouml.uml.diagram.deployment.DeploymentDiagramGraphModel.addEdge(DeploymentDiagramGraphModel.java:320) 	at org.argouml.uml.diagram.deployment.DeploymentDiagramGraphModel.addNodeRelatedEdges(DeploymentDiagramGraphModel.java:337) 	at org.tigris.gef.base.ModePlace.mouseReleased(ModePlace.java:194) 	at org.argouml.uml.diagram.ui.AddExistingNodeCommand.execute(AddExistingNodeCommand.java:160) 	at org.argouml.uml.diagram.ui.DnDJGraph.drop(DnDJGraph.java:200) 	at java.awt.dnd.DropTarget.drop(Unknown Source) 	at sun.awt.dnd.SunDropTargetContextPeer.processDropMessage(Unknown Source) 	at sun.awt.dnd.SunDropTargetContextPeer.access$800(Unknown Source) 	at sun.awt.dnd.SunDropTargetContextPeer$EventDispatcher.dispatchDropEvent(Unknown Source) 	at sun.awt.dnd.SunDropTargetContextPeer$EventDispatcher.dispatchEvent(Unknown Source) 	at sun.awt.dnd.SunDropTargetEvent.dispatch(Unknown Source) 	at java.awt.Component.dispatchEventImpl(Unknown Source) 	at java.awt.Container.dispatchEventImpl(Unknown Source) 	at java.awt.Component.dispatchEvent(Unknown Source) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source) 	at java.awt.LightweightDispatcher.processDropTargetEvent(Unknown Source) 	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source) 	at java.awt.Container.dispatchEventImpl(Unknown Source) 	at java.awt.Window.dispatchEventImpl(Unknown Source) 	at java.awt.Component.dispatchEvent(Unknown Source) 	at java.awt.EventQueue.dispatchEvent(Unknown Source) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source) 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source) 	at java.awt.EventDispatchThread.pumpEvents(Unknown Source) 	at java.awt.EventDispatchThread.run(Unknown Source)  ERROR: Edge rejected. Its source end is attached to Component$Impl  ID: -64--88-1-100--5d4b0696:10c795a88a1:-8000:0000000000003DD7  MID: -64--88-1-100--5d4b0696:10c795a88a1:-8000:0000000000000388  OPCKG: -64--88-1-100--5d4b0696:10c795a88a1:-8000:0000000000000622 but this is not in the graph model(DeploymentDiagramGraphModel.java:267)
+1
+org.argouml.uml.diagram.deployment.ui.DeploymentDiagramRenderer
+
+4362
+Exception thrown drawing generalization  This is the same problem as issue 4354 but collab diagrams. Place 2 collaborations and draw a generalization between them, an exception is thrown.  Linus, is it okay to commit a similar fix to that of issue 4354?
+1
+org.argouml.uml.diagram.collaboration.ui.CollabDiagramRenderer
+
+4363
+Dashed transitions do not persist  Dashed transitions do not persist.  When a transition in a activity diagram goes to or from an ObjectFlowState, it should be drawn dashed.  Saving and reloading a project with such a transition causes the transition to be shown not dashed.  This patch solves the problem:  Index: FigTransition.java =================================================================== RCS file: /cvs/argouml/src_new/org/argouml/uml/diagram/state/ui/FigTransition.java,v retrieving revision 1.60 diff -u -r1.60 FigTransition.java --- FigTransition.java 4 Jun 2006 13:54:53 -0000 1.60 +++ FigTransition.java 18 Jul 2006 19:52:25 -0000 @@ -111,6 +111,7 @@                          Model.getFacade().getSource(newOwner))                      || Model.getFacade().isAObjectFlowState(                              Model.getFacade().getTarget(newOwner)); +            getFig().setDashed(dashed);          }      }
+1
+org.argouml.uml.diagram.state.ui.FigTransition
+
+4364
+Dragging association onto diagram creates n-ary diamond  There&apos;s also an exception thrown.  1. Start ArgoUML 2. Place 2 classes and association them 3. Drag the association from explorer onto diagram  I think I can see the problem here. Will investigate tomorrow.   java.lang.ClassCastException 	at org.argouml.uml.diagram.static_structure.ui.ClassDiagramRenderer.getFigEdgeFor(ClassDiagramRenderer.java:166) 	at org.tigris.gef.base.LayerPerspective.edgeAdded(LayerPerspective.java:217) 	at org.tigris.gef.graph.MutableGraphSupport.fireEdgeAdded(MutableGraphSupport.java:323) 	at org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel.addEdge(ClassDiagramGraphModel.java:424) 	at org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel.addNodeRelatedEdges(ClassDiagramGraphModel.java:490) INFO: Adding an edge of type org.omg.uml.foundation.core.AssociationEnd$Impl to class diagram.(ClassDiagramGraphModel.java:406)  	at org.tigris.gef.base.ModePlace.mouseReleased(ModePlace.java:194) 	at org.argouml.uml.diagram.ui.AddExistingNodeCommand.execute(AddExistingNodeCommand.java:160) 	at org.argouml.uml.diagram.ui.DnDJGraph.drop(DnDJGraph.java:200) 	at java.awt.dnd.DropTarget.drop(DropTarget.java:398) 	at sun.awt.dnd.SunDropTargetContextPeer.processDropMessage(SunDropTargetContextPeer.java:542) 	at sun.awt.dnd.SunDropTargetContextPeer.access$800(SunDropTargetContextPeer.java:52) 	at sun.awt.dnd.SunDropTargetContextPeer$EventDispatcher.dispatchDropEvent(SunDropTargetContextPeer.java:805) 	at sun.awt.dnd.SunDropTargetContextPeer$EventDispatcher.dispatchEvent(SunDropTargetContextPeer.java:743) 	at sun.awt.dnd.SunDropTargetEvent.dispatch(SunDropTargetEvent.java:29) 	at java.awt.Component.dispatchEventImpl(Component.java:3494) 	at java.awt.Container.dispatchEventImpl(Container.java:1627) 	at java.awt.Component.dispatchEvent(Component.java:3477) 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:3483) 	at java.awt.LightweightDispatcher.processDropTargetEvent(Container.java:3269) 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3123) 	at java.awt.Container.dispatchEventImpl(Container.java:1613) 	at java.awt.Window.dispatchEventImpl(Window.java:1606) 	at java.awt.Component.dispatchEvent(Component.java:3477) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:456) 	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:201) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:151) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:145) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:137) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:100)
+4
+org.argouml.uml.diagram.collaboration.CollabDiagramGraphModel
+org.argouml.uml.diagram.deployment.DeploymentDiagramGraphModel
+org.argouml.uml.diagram.static_structure.ClassDiagramGraphModel
+org.argouml.uml.diagram.use_case.UseCaseDiagramGraphModel
+
+4367
+deleting call self action throws InvalidElementException and makes Argo unstable  steps: 1.- create a *new file* 2.- create a sequence diagram 3.- create 2 classifier roles 4.- create new call action from 1st to 2nd 5.- create new call action from 2nd to it self 6.- assign a name to calls 7.- select call action in step 5 8.- Right click and select delete from model  At this time Argo is complete unstable  9.- Save &amp; get a report(0.22b2 only)  Found in 0.22B1 and B2, probably older releases too
+2
+org.argouml.uml.diagram.sequence.ui.FigClassifierRole
+org.argouml.uml.diagram.sequence.ui.SequenceDiagramLayer
+
+4372
+Endless loop when deleting commentedge  When you delete a comment edge that was bound to a transition, and then select the comment, the &quot;annotated element&quot; field in the properties panel is crashed - 100% CPU, no exception logged.
+2
+org.argouml.model.mdr.CoreHelperMDRImpl
+org.argouml.uml.diagram.static_structure.ui.FigEdgeNote
+

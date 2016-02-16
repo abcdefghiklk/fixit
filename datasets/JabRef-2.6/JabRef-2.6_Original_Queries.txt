@@ -1,0 +1,292 @@
+1219592
+Bibtex key generation: author or editor  I'd like to be able to generate bibtex keys as follows: - Use [auth:lower], if an author is specified. - Otherwise, use [edtr:lower]. This way I'd always have some sensible name on Bibtex keys. Usually one has specified only the author or the editor, not both. Thus, using something like "[auth:lower][edtr:lower]" would do what I want in most cases. However, there is at least one notable exception: "inbook" entries. Those usually contain the author of the chapter in the "author" field, and the editor of the book in the "editor" field. Naturally, I'd like to have just the name of the author in the bibtex key. Thus, would it be possible to have something like [auth-or-edtr] which would prefer using the author and would use editor only if the author is missing? --- A related issue: It would be nice if one could show "author or editor" in one column in the entry table, too. Having two columns would be waste of screen space. Also, it would be nice to have "journal or booktitle" for the same reason. Usually only one of those fields applies. Best regards, Jukka Suomela jukka.suomela at sammal.pp.fi
+2
+net.sf.jabref.imports.EndnoteImporter
+net.sf.jabref.labelPattern.LabelPatternUtil
+
+1285977
+Impossible to properly sort a numeric field  It is not possible to properly sort a numeric field(such as years), when all "humbers" do not have the same number of digit(actually, this is an alphabetical ordering, and JabRef ignores numeric fields).
+3
+net.sf.jabref.FieldComparator
+net.sf.jabref.Util
+tests.net.sf.jabref.UtilTest
+
+1297576
+Printing of entry preview  Sending the content of the entry preview to a printer(simple File->Print) would be cool. Customizing the preview allows to have notes or comments displayed and nicely formated. But printing out this information is not easily possible(copy-paste of the entry preview can be a solution, but depending on the target programm may fail to preserve text formating).
+19
+net.sf.jabref.BasePanel
+net.sf.jabref.DuplicateResolverDialog
+net.sf.jabref.EntryEditor
+net.sf.jabref.JabRefPreferences
+net.sf.jabref.PreviewPanel
+net.sf.jabref.PreviewPanel.CloseAction
+net.sf.jabref.PreviewPanel.PrintAction
+net.sf.jabref.PreviewPrefsTab
+net.sf.jabref.collab.EntryAddChange
+net.sf.jabref.collab.EntryDeleteChange
+net.sf.jabref.export.ExportFormat
+net.sf.jabref.external.ExternalFileTypeEntryEditor
+net.sf.jabref.external.FileLinksUpgradeWarning
+net.sf.jabref.external.IconSelection
+net.sf.jabref.gui.ImportInspectionDialog
+net.sf.jabref.gui.MainTableSelectionListener
+net.sf.jabref.imports.IEEEXploreFetcher
+net.sf.jabref.util.DocumentPrinter
+net.sf.jabref.util.DocumentPrinter.DocumentPrintable
+
+1436014
+No comma added to separate keywords  When adding a keyword via the content selector, no comma is added before the keyword. I have set "When adding/removing keywords separate them by:" to ", " in the Preferences > Groups panel. But keywords still get separated by a space only. This applies to JabRef 2.0.1
+3
+net.sf.jabref.EntryEditor
+net.sf.jabref.FieldContentSelector
+net.sf.jabref.groups.GroupDialog
+
+1489454
+Acrobat Launch fails on Win98  I use JabRef 2.0.1 on Windows98 SE with Java JRE 5.0 and Adobe Reader 6.0. Everything works fine exept that I cannot view pdf-Files. Clicking on the pdf-icon has no effect. The status line says "viewer called" or something like that but nothing happens. I assume it has something to do with the hardcoding of "cmd.exe" in Util.java(which should probably be "command.com" for Win98). Unfortunately I cant help myself. Thanks a lot for your help! JabRef is a great tool!
+1
+net.sf.jabref.Util
+
+1495181
+Dotless i and tilde not handled in preview  A couple of minor problems with the preview window. Neither of the following come out correctly: \~{n} \~n \'\i \i {\i} The dotless i is "lost", and the \~ turns into a space, "eating" the n entirely!
+5
+net.sf.jabref.PreviewPanel
+net.sf.jabref.gui.ImportInspectionDialog
+tests.net.sf.jabref.AllTests
+tests.net.sf.jabref.export.layout.AllTests
+tests.net.sf.jabref.export.layout.LayoutTest
+
+1503956
+Help text instead of Help icon  In Options -> Preferences -> Entry preview, the help button contains the text "help" instead of the usual help icon
+4
+net.sf.jabref.ExternalTab
+net.sf.jabref.PrefsDialog2
+net.sf.jabref.PrefsDialog3
+net.sf.jabref.PreviewPrefsTab
+
+1534537
+resize groups interface  A usability issue: By pressing the down arrow(bottom left corner, groups interface) one too many times, I managed to vertically enlarge the groups interface until the up/down resize arrows were out of sight. In this state there was no obvious way to resize it back. If the search window is initiated, it is then rendered out-of-window and is hence invisible. I suggest changing the groups interface so that it resizes by dragging the bottom border. Also if the groups interface is open, and another interface is launched, the groups interface should auto-resize as necessary to fit the new interface in-window. best regards, -J
+13
+net.sf.jabref.BasePanel
+net.sf.jabref.JabRefFrame
+net.sf.jabref.JabRefFrame.CiteSeerPanelAction
+net.sf.jabref.JabRefFrame.CloseDatabaseAction
+net.sf.jabref.JabRefFrame.FetchCiteSeerAction
+net.sf.jabref.JabRefFrame.FetchMedlineAction
+net.sf.jabref.SidePane
+net.sf.jabref.SidePaneComponent
+net.sf.jabref.SidePaneManager
+net.sf.jabref.collab.FileUpdatePanel
+net.sf.jabref.groups.GroupSelector
+net.sf.jabref.imports.CiteSeerFetcher
+net.sf.jabref.imports.GeneralFetcher.FetcherAction
+
+1535044
+Month sorting  I don't know if it's a bug or a feature request but it would be great to have month sorting based on the calendar rather than on alphabet:-). Now I use year as first sort criterion and month as second sort criterion and I get the paper sorted from "A"pril to "S"eptember.
+3
+net.sf.jabref.FieldComparator
+net.sf.jabref.Util
+tests.net.sf.jabref.UtilTest
+
+1538769
+Freezes when exiting Import dialog box by Cancel button  Version: 2.1 on win2000 Jabref freezes with status string "Starting import" when closing the Import dialog box without opening a file. Steps to reproduce: Choose File|Import into new database|Autodetect format. Press the Cancel button
+1
+net.sf.jabref.gui.FileDialogs
+
+1540646
+default sort order: bibtexkey  Hello! I'm referring to JabRef 2.1. I prefer to sort the entries by default according to the bibtexkey, and I would also prefer the entries to be saved in the file ordered by the bibxtexkey. Unfortunately, Options -> Preferences -> Entry table -> Primary sort criterion does not offer "bibtexkey". It would be nice to add it, if possible. I should tell that I've found a workaround: as the bibtexkey is the internal fourth sort criterion, I've simply used three unused field for the first three criteria. However, I suppose this is not really the best idea...
+1
+net.sf.jabref.TablePrefsTab
+
+1542552
+Wrong author import from Inspec ISI file  The ISI Inspec database, one of the two most used in physics, exports the reference in the format shown below. Jabref imports it, but parses the authors first name incorrectly in all the 4 used cases. The example reference file below has one author in each of the used styles. FN ISI Export Format VR 1.0 PT J TI Optical properties of MgO doped LiNbO/sub 3/ single crystals AU James Brown James Marc Brown Brown, J.M. Brown, J. SO Optical Materials PY 2006 PD 04 2006 VL 28 IS 5 JI Opt. Mater.(Netherlands) BP 467 EP 472 PS 467-72 UT INSPEC:8863438 ER EF
+7
+net.sf.jabref.imports.IsiImporter
+tests.net.sf.jabref.AllTests
+tests.net.sf.jabref.UtilFindFileTest
+tests.net.sf.jabref.imports.AllTests
+tests.net.sf.jabref.imports.IsiImporterTest
+tests.net.sf.jabref.search.AllTests
+tests.net.sf.jabref.util.AllTests
+
+1545601
+downloading pdf corrupts pdf field text  When I try to download a pdf file in the edit area, sometimes the "Downloading..." text gets placed on top of the automatically created name for the new file. This only happens sometimes, and I think it has to do with the speed of download(bug happens when the download is fast, e.g. from a local file system).
+2
+net.sf.jabref.external.ExternalFilePanel
+net.sf.jabref.gui.FileListEditor
+
+1548875
+download pdf produces unsupported filename  After reconfiguring my bibtex key generator to incorporate the first word of the title, the download pdf function now fails because it attempts to create filenames based on the bibtex key. Because the title's first word might contain a character such as ':'(this gets incorporated into the key), the filename is unsupported and the pdf does not get saved. Solution: Based on the platform, remove or translate unsupported filename charaters in the bibtex key before automatically creating the filename and saving the file.
+2
+net.sf.jabref.external.ExternalFilePanel
+net.sf.jabref.gui.FileListEditor
+
+1553552
+Not properly detecting changes to flag as changed  In version 2.1 of JabRef any changes made to a bibtex field via the interface are not being recognised as changes until the user switches to another field. This may not be a big deal for small fields like "bibtexkey" or "author" but for the larger fields like "review" or "annote" there's the potential for a lot of work to be lost. Since JabRef doesn't recognize that any changes were made the user has to actually deliberately change to a different field before any save operations; if you don't change fields but still hit save then quit, you've just lost all changes you made to that last field. It's particularly bad if, like me, you're used to emacs keybindings and hit ^w(close database in JabRef) to initiate a copy & paste half way through writing a lengthy review.
+6
+net.sf.jabref.BasePanel
+net.sf.jabref.EntryEditor.CopyKeyAction
+net.sf.jabref.EntryEditor.NextEntryAction
+net.sf.jabref.EntryEditor.PrevEntryAction
+net.sf.jabref.EntryEditor.StoreFieldAction
+net.sf.jabref.EntryEditorTab
+
+1570570
+Deselect all duplicates on import  A minor addition which would aid usability. Upon importing a reference list into the database the suspected duplicates are detected and displayed on the screen. In addition to the "deselect all" and "select all" buttons it would be useful to have an additional button "deselect all duplicates", to save manually having to unclick each suspected duplicate,which can be quite cumbersome if you are importing 100 references of which 50 are duplicates. Regards, Dan
+3
+net.sf.jabref.gui.ImportInspectionDialog
+net.sf.jabref.gui.ImportInspectionDialog.DeselectDuplicatesButtonListener
+net.sf.jabref.gui.ImportInspectionDialog.TableClickListener
+
+1574773
+sanitizeUrl() breaks ftp:// and file:///  sanitizeUrl() changes any kind of URL to an "http://" URL, making it impossible to have "ftp://" or "file:///"(note the third slash) URLs. Ditto pure local paths. That's neutered, not sanitized. Unfortunately, the comment doesn't explain which "bad characters" break a "portable" URL, so I don't know what a solution that works for everyone should look like. It seems to me, though, that "ftp://" should be allowed on pretty much any system, while "file:///" may be limited to Unix-like systems. In addition, pure local paths(e.g. "/home/user/example.txt") are not valid URLs but perfectly valid arguments to give to Unixy browsers, and they should pass sanitizeUrl() unchanged.
+2
+net.sf.jabref.Util
+tests.net.sf.jabref.UtilTest
+
+1587342
+Quering ArXiv(and any OAI2 Repository)  It would be a great feature to import by direct query from arXiv. In certain areas of science(high energy physics, astronomy, cond-mat) the unique document id is established well enough to issue these queries using the OAI2 interface of these repositories. E.g. any scientist working in the field will know what to do with something like hep-ph/0608155. A sample perl-code which has been used to add some 500 papers including full text to a bibtex database used with jabref is given here: ----------------------------------------------------- #!/usr/bin/perl #========================================================================= # # Query arXiv.org to get a reference for BibTeX. Should be used # with JabRef Reference Manager # # Takes a file name of the form # /some/path/to/file/hep-ph0608155.ps.gz # creates a hep-number of it(e.g. hep-ph/0608155) and retrieves # the bibliographic information via OAI2 from arXiv.org as # arXiv-xml-record. This one is parsed and appended to a file # called arxiv.bib in BibTeX-Format. The file given is passed on to # be usable with JabRef. # # $Id: $ # Last change: <Mon, 2006/02/06 08:42:56 arwagner ingata.homeunix.net> # Author : Alexander Wagner # Language : Perl # #------------------------------------------------------------------------- # # Copyright(C) 2005 by Alexander Wagner # # This is free software; you can redistribute it and/or modify it # under the terms of the GNU Genereal Public License as published # by the Free Software Foundation; either version 2, or(at your # option) any later version. # # This program is distributed in the hope that it will be usefull, # but WITHOUT ANY WARRANTY; without even the implied warranty of # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU # General Public License for more details. # # You should have recieved a copy of the GNU General Public License # along with this program; if not, write to the Free Software # Foundation Inc., 675 Mass Ave, Cambridge, MA 02139, USA. # #========================================================================= use XML::XPath; use LWP::UserAgent; use locale; my $xmlfile = "arXiv.xml"; my @dublincore =( 'dc:title', 'dc:creator', 'dc:description', 'dc:date', 'dc:type', 'dc:identifier', 'dc:publisher', 'dc:language', 'dc:rights'); my @arxivrecord =( 'datestamp', 'id', 'keyname', 'forenames', 'affiliation', 'title', 'comments', 'report-no', 'journal-ref', 'doi', 'abstract' ); my $bibfile = "arxiv.bib"; my $filename= $ARGV[0]; @paths = split(/\//, $filename); $file = $paths[$#paths]; my $arxivno = $file; $arxivno =~ s/.ps.gz//g; $arxivno =~ s/.pdf//g; $arxivno =~ s#-ph#-ph/#g; $arxivno =~ s#-th#-th/#g; $arxivno =~ s#-ex#-ex/#g; $arxivno =~ s#cond-mat#cond-mat/#g; $arxivno =~ s#physics#physics/#g; print "Retrieving Document information for $arxivno...\n"; my $oaiurl = "http://arxiv.org/oai2?verb=GetRecord&identifier=oai:arXiv.org:$arxivno&metadataPrefix=arXiv"; my $useragent = "Perl"; $ua = new LWP::UserAgent; $ua->agent("$useragent"); $ua->env_proxy; $request = new HTTP::Request(GET,$oaiurl); $response = $ua->request($request); my $xmlresult = $response->content(); if($xmlresult =~ m/<h1>Retry after /) { # Handle load on server... $secnds = $xmlresult; $secnds =~ s#<html><body>\n##g; $secnds =~ s#<h1>Retry after ##g; $secnds =~ s# seconds</h1>\n##g; $secnds =~ s#</body></html>\n##g; print "arXiv reports heavy load.\n"; print "Retrying after -$secnds- seconds. Stand by...\n"; sleep($secnds+1); $request = new HTTP::Request(GET,$oaiurl); $response = $ua->request($request); $xmlresult = $response->content(); } my $xp = XML::XPath->new(xml=>$xmlresult); # my $xp = XML::XPath->new(filename=>$xmlfile); foreach $dcelem(@arxivrecord) { my $nodeset = $xp->find("//$dcelem"); if(my @nodelist = $nodeset->get_nodelist) { if($dcelem eq "keyname") { @keynames = map($_->string_value, @nodelist); } if($dcelem eq "forenames") { @forenames = map($_->string_value, @nodelist); } @dcentries{$dcelem} = map($_->string_value, @nodelist); } } open(OUT, ">>$bibfile") or die "Can't open $bibfile: $! \n"; my $journal = ""; my $year = ""; my $volume = ""; my $page = ""; $journal = $dcentries{'journal-ref'}; $journal =~ s/[0-9].*//g; $volume = $dcentries{'journal-ref'}; $volume =~ s/$journal//g; $volume =~ s/ .*//g; $year = $dcentries{'journal-ref'}; $year =~ s/.*?\(//g; $year =~ s/\).*//g; $page = $dcentries{'journal-ref'}; $page =~ s/$journal//g; $page =~ s/$volume//g; $page =~ s/\($year\)//g; $page =~ s/ //g; if($year eq "" ) { $yr = $dcentries{'datestamp'}; $yr =~ s/-.*//g; print OUT "\@ARTICLE{" . $keynames[0] . ":$yr,\n"; } else { print OUT "\@ARTICLE{" . $keynames[0] . ":$year,\n"; } print OUT " author = \""; $i = 0; foreach $author(@keynames) { if($i > 0) { print OUT " AND "; } print OUT $author . ", " . $forenames[$i]; $i++; } print OUT "\", \n"; print OUT " title = \"" . $dcentries{'title'} . "\",\n"; # print OUT " journal = \"" . $dcentries{'journal-ref'} . "\",\n"; print OUT " journal = \"$journal\",\n"; print OUT " volume = \"$volume\",\n"; print OUT " year = \"$year\",\n"; print OUT " pages = \"$page\",\n"; print OUT " eprint = \"" . $dcentries{'id'} . "\",\n"; print OUT " doi = \"" . $dcentries{'doi'} . "\",\n"; print OUT " url = \"http://de.arxiv.org/abs/" . $dcentries{'id'} . "\",\n"; print OUT " abstract = \"" . $dcentries{'abstract'} . "\",\n"; print OUT " comments = \"" . $dcentries{'comments'} . "\",\n"; print OUT " reportno = \"" . $dcentries{'report-no'} . "\",\n"; print OUT " pdf = \"$filename\",\n"; print OUT " SLACcitation = \"%%CITATION = ";($hep, $no) = split('/', $arxivno); $hep = uc($hep); print OUT "$hep $no;%%\"\n"; print OUT "}\n\n"; ------------------------------------------------------
+6
+net.sf.jabref.JabRefFrame
+net.sf.jabref.imports.GeneralFetcher
+net.sf.jabref.imports.OAI2Fetcher
+net.sf.jabref.imports.OAI2Handler
+tests.net.sf.jabref.imports.AllTests
+tests.net.sf.jabref.imports.OAI2ImportTest
+
+1588028
+export HTML table doi url  using JabRef 2.2b, when exporting to either "HTML table" or "HTML table(w/abstract)", the "DOI" url is a relative link instead of an absolute link. the url should be prefixed with "http://dx.doi.org/". resource/layout/tablerefs/tablerefsbib.layout(line 7) resource/layout/tablerefsabsbib/tablerefsabsbib.layout(line 9)
+3
+net.sf.jabref.export.layout.format.DOICheck
+tests.net.sf.jabref.export.layout.format.AllTests
+tests.net.sf.jabref.export.layout.format.DOICheckTest
+
+1594123
+Failure to import big numbers  Hi JabRef Developers Having used BibDesk on a Mac since a long time I wanted to give JabRef(v.2.2b) a try. However, it failed to load my database with the following error: java.lang.NumberFormatException: For input string: "2707318256" at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48) at java.lang.Integer.parseInt(Integer.java:480) at java.lang.Integer.parseInt(Integer.java:518) at net.sf.jabref.imports.BibtexParser.parseFieldContent(BibtexParser.java:555) at net.sf.jabref.imports.BibtexParser.parseField(BibtexParser.java:478) at net.sf.jabref.imports.BibtexParser.parseEntry(BibtexParser.java:465) at net.sf.jabref.imports.BibtexParser.parse(BibtexParser.java:322) at net.sf.jabref.imports.OpenDatabaseAction.loadDatabase(OpenDatabaseAction.java:238) at net.sf.jabref.imports.OpenDatabaseAction.openIt(OpenDatabaseAction.java:93) at net.sf.jabref.imports.OpenDatabaseAction$1.run(OpenDatabaseAction.java:60) Here is a short version of the DB: @string{bourdieu = {Bourdieu, Pierre}} @book{bourdieu-2002-questions-sociologie, Address = {Paris}, Author = bourdieu, Isbn = 2707318256, Publisher = {Minuit}, Title = {Questions de sociologie}, Year = 2002} Putting "{}" around the Isbn number solves the issue. Now, BibDesk doesn't put curly braces around numbers(which is correct, I think) and has no problem with big numbers which is a format in which ISBNs are often supplied(e.g. by Amazon). Correcting the full DB is not really an option: too many entries like this already. IMHO, JabRef should handle this more gracefully, i.e. try to import a number as a number, but if this fails leave it as a string(since the error occurs when trying to parse the input string as an integer). BTW, I think an ISBN field should be a listed optional field for all entry typed where applicable(e.g. books, journals). Cheers, Ulf Martin
+2
+net.sf.jabref.imports.BibtexParser
+tests.net.sf.jabref.imports.BibtexParserTest
+
+1594169
+Entry editor: navigation between panels  The entry editor consist of several panels. One can move from one panel to the next by pressing CTRL-TAB. But, in fact, it works the first time only. To move to the other panel, one must press TAB _and then_ CTRL-TAB. Same behaviour with CTRL-SHIFT-TAB.
+1
+net.sf.jabref.EntryEditorTab
+
+1601651
+PDF subdirectory - missing first character  When using the AUTO facility to link to a pdf the link string returned in the `Pdf' field(under the `General' tab) is missing the first character of the subdirectory name. The `Options > Preferences > Use regular expression' is ticked and set to the default `**/.*[bibtexkey].*\\.[extension]' The `Options > Preferences > Main PDF Dir' is set to: `D:\' The target PDF file is: `D:\myDir\myRef2002.pdf' But the link set by the auto facility is: `yDir\myRef2002.pdf' Any ideas anyone?
+3
+net.sf.jabref.Util
+net.sf.jabref.external.RegExpFileSearch
+tests.net.sf.jabref.UtilFindFileTest
+
+1631548
+"Open last edited DB at startup" depends on the working dir  Hi there, another little bug/feature: The JabRef option "Open last edited database at startup" depends on the working directory at which JabRef is started. Example: pc03:~/at-work/Bibliography $ jabref my_documents.bib pc03:~/at-work/Bibliography $ cd .. pc03:~/at-work $ jabref results in an empty JabRef not opening ${HOME}/at-work/Bibliography/my_documents.bib. I suggest that JabRef stores the absolute path for the "Open last edited..." feature, even if a relative path was provided. Since this setting is stored in a machine dependent configuration file(~/.java/.userPrefs/net/sf/jabref/prefs.xml), this should be okay. Another, more sophisticated approach, would be to store the home directory, the relative path and the absolute path and try to open(1) the absolute,(2) the relative path to the home directory and(3) the relative path as provided when opening JabRef. Current office tools(MS and OO) are doing it that fault tolerant way. kind regards Bernd p.s. this bug is found in JabRef 2.1
+1
+net.sf.jabref.JabRefFrame
+
+1641247
+Minor--No update after generate bibtex key  If you have a bibtex key already, and you re-generate the bibtex key to something different, the preview panel is not updated.
+6
+net.sf.jabref.EntryEditor
+net.sf.jabref.NameFormatterTab
+net.sf.jabref.PrefsDialog3
+net.sf.jabref.PreviewPanel
+net.sf.jabref.SearchManager2
+net.sf.jabref.SidePaneManager
+
+1648789
+Problem on writing XMP  When switching "Do not write the following fields to XMP Metadata" on, an error occurs at "Writing XMP metadata for selected entries": Error while writing 'C:\....pdf': null PS: Nevertheless great feature! Thank you!
+2
+net.sf.jabref.XmpPrefsTab
+net.sf.jabref.util.XMPSchemaBibtex
+
+1709449
+Clicking a DOI from context menu fails  Hi there! I have a document with an DOI and an hyperlink. JabRef(2.2) shows in the document list the hyperlink icon and offers on a right click to this icon the hyperlink icon and the DOI icon in a context menu(very nice!). Now: Clicking the DOI icon fails, since the default DOI server is not prepended, i.e. Firefox says --- cut --- The requested URL could not be retrieved While trying to retrieve the URL: http://10.1109/49.622908 --- cut --- cheers Bernd p.s. A suggestion: You should use a 3rd icon in the document list if both, the hyperlink and the DOI, are available to show this to the user. Otherwise I have to remember/guess that I saved an DOI and an hyperlink for this document.
+2
+net.sf.jabref.Util
+tests.net.sf.jabref.UtilTest
+
+1711135
+BibTeX export error; missing space before line breaks  I noticed that the bib file saved by JabRef has line breaks in long lines. This is no problem, but causes a slight bug when referencing BibTeX strings. If the line is broken right after a constant part of the string, this part may not have a space after it. In my case, I use strings for author names and when my author field for an entry becomes too long. In JabRef, I type in the author field: #JaneDoe# and #JohnDoe# and #JPMorgan# and #FooBar# The exported string looks like this: author = JaneDoe # { and } # JohnDoe # { and } # JPMorgan # { and} # FooBar, Notice how the last "and" has no space(should s/{ and}/{ and }/). This results in a concatonation for BibTeX that reads "andContentsOfFooBarString" as opposed to the correct "and ContentsOfFooBarString". I hope this is somewhat understandable.
+12
+net.sf.jabref.BasePanel
+net.sf.jabref.JabRefFrame
+net.sf.jabref.external.AutoSetExternalFileForEntries
+net.sf.jabref.external.SynchronizeFileField
+net.sf.jabref.external.SynchronizeFileField.OptionsDialog
+net.sf.jabref.gui.FileListEditor
+net.sf.jabref.gui.FileListTableModel
+net.sf.jabref.gui.ImportInspectionDialog.AutoSetLinks
+net.sf.jabref.gui.ImportInspectionDialog.LinkLocalFile
+net.sf.jabref.imports.EndnoteImporter
+net.sf.jabref.imports.FieldContentParser
+net.sf.jabref.imports.RisImporter
+
+1738920
+Windows Position in Multi-Monitor environment  Platform: WinXP SP2 with 2 monitors setup - Desktop extended to two monitors - JabRef program started - Manually drag JabRef window to 2nd monitor - Close JabRef - Disconnect 2nd monitor from computer and switch to single monitor setup - Restart JabRef - JabRef window not visible! It is positioned on the last coordinates which relate to the now disconnected 2nd monitor. Suggestion: If window is not visible on screen coordinates, reset to default.
+2
+net.sf.jabref.JabRefFrame
+net.sf.jabref.JabRefPreferences
+
+1749613
+About translation  * At startup, "INFO: Could not get key binding for "Synchronize files"" is displayed in the console * In Options -> Preferences -> External Files -> Link to external files, the first item is not properly translated: In French, it appears as "Répertoire principal file". "file" is not translated.
+1
+net.sf.jabref.ExternalTab
+
+1785416
+inking with exact BibKey fails  Hello, I posted the message below recently and Christopher suggested to add the problem to the bug database. So here it is. I'm using jabref 2.3b. My bibtexkeys are auto-generated by the pattern [author]_[year]. If some key already exists, jabref automatically adds letters after the key. miller_2000 miller_2000a miller_2000b, and so on. If I want to do autolinking of the correspondingly named pdf or ppt files, jabref includes all the files in the miller_2000 file-field. Thus the file field of miller_2000 contains: miller_2000.pdf, miller_2000a.pdf, miller_2000b.pdf, In the documentation I saw, that jabref searches for all files that "inlcude" the bibtexkey. How can I limit this to an exact match. I can not remember that I had the problem in previous versions. I guess this is possble by setting the correct regular expression? Regular expressions are quite cryptic to me. Also manual pages on regexs did not help. Any suggestions for a proper regex? Thanks, Heiko RE: auto-linking - regex By: Christopher Oezbek(coezbek) - 2007-08-17 07:53 Hi Heiko, in 2.3b a new implementation was written for the synchronize files behavior which is causing your problem and there is no workaround for this as far as I can see. Can you enter this as a bug into the Bug database? Include in your comment the following: >>> The culprit for this can be found in Util.findAssociatedFiles which only checks whether the bibtex-key is contained in the filename. <<< Thanks, Christopher
+3
+net.sf.jabref.ExternalTab
+net.sf.jabref.JabRefPreferences
+net.sf.jabref.Util
+
+1827568
+"Save Database" Menu not working in Version 2.2  While the save button works fine, the menu entry labeld "save database" does in fact NOT save the database. Fortunalety when quitting JabRef asks to save changes and that works. The Star "*" next to the file name is removed, so one thinks the bib file has been saved. JabRef: 2.2 final System: Linux KDE 3.4.2(Suse) Java(TM) SE Runtime Environment(build 1.6.0_01-b06) Java HotSpot(TM) Client VM(build 1.6.0_01-b06, mixed mode, sharing) Note: We use UTF-8 file.
+1
+net.sf.jabref.export.SaveDatabaseAction
+
+1944198
+fetch Medline error in JabRef 2.3.1  If I want to fetch MedLine data by keywords i always get this error: Exception in thread "Thread-5" java.lang.IllegalStateException: No match found at java.util.regex.Matcher.group(Unknown Source) at net.sf.jabref.imports.MedlineFetcher.getIds(Unknown Source) at net.sf.jabref.imports.MedlineFetcher.run(Unknown Source) at java.lang.Thread.run(Unknown Source) What could I do about it?
+1
+net.sf.jabref.imports.MedlineFetcher
+
+2027944
+Export filter: failed if directory changed  When the path of a customized export filter is changed, this is not always taken into account... 1) copy an export filter in a directory(such as "dummy1") 2) configure this export filter in JabRef(options --> manage customized export filters) 3) export a database using this filter 3) rename the directory containing the filter(such as "dummy2") 4) reconfigure the export filter to account for the new directory name 5) export the database ==> a message is displayed, saying the file could not be exported because the filter could not be found. The filter's directory displayed in the message is "dummy1", and not "dummy2".(but the "configuration of export filter " window shows "dummy2". Bug found in 2.3.1, but also when compiled from source(on July 24, 2008)
+3
+net.sf.jabref.export.CustomExportList
+net.sf.jabref.export.ExportCustomizationDialog
+net.sf.jabref.export.ExportFormats
+
+2105329
+New Entry: Main window doesn't get updated  I am not sure if this is a bug or a feature: If I add a new entry via the "+" button, the view of the main window used to get updated, showing me the position of the new entry in the entry list. This "jumping" to the position of the new entry doesn't happen anymore and one has to scroll to find the new entry in the database. If this is a feature, where is the feat? And if it's a bug, please correct it for the next version. Oliver P.S.: Thanks for the great work, the Jabref is marvellous!
+3
+net.sf.jabref.external.ExternalFileMenuItem
+net.sf.jabref.external.PushToApplicationButton
+net.sf.jabref.gui.MainTableSelectionListener
+
+2119059
+First author in RIS format  The keyword A1 is used for first author instead of AU for other authors in the RIS file of the APS(American Physical Society) journals. This keyword A1 is not detected by JabRef RIS import filter. emmanuel.clouet@cea.fr
+1
+net.sf.jabref.imports.RisImporter
+
+2207462
+Web search results hidden behind JabRef window  When searching for a string with the "Web Search > Search ACM Digital Library" function, the following happens(e.g. searching "sql injection" in The Guide): * A new window opens with progress bar where the results will later be shown(yet empty). * The new window disappears(behind the main JabRef window) and a message box opens: "444 entries found. To reduce server load, only 50 will be downloaded." * Hitting ok: Message box closes, but the result window stays in the background(invisible). One needs to move the JabRef window to find the results. I would expect that the focus moves to the results window again. Version info: JabRef 2.4.1 and also SVN trunk(on Windows)
+3
+net.sf.jabref.gui.ImportInspectionDialog
+net.sf.jabref.imports.ACMPortalFetcher
+net.sf.jabref.imports.ImportInspectionCommandLine
+
+2904968
+Entry Editor does not open  Usually, double-clicking on an entry opens the entry editor. Typing Return does the same thing. I have just noticed that in JabRef 6.2Beta2(rev 3140), this does not always work(in fact, nothing happens after a double-click). I have not been able to create an example leading consistently to this behavior yet. I have no idea if it is related to this issue, but the following message is displayed several times in the exceptions list: Exception in thread "AWT-EventQueue-0" java.lang.ClassCastException: javax.swing.JTextArea cannot be cast to net.sf.jabref.FieldEditor at net.sf.jabref.EntryEditor.storeCurrentEdit(EntryEditor.java:672) at net.sf.jabref.EntryEditor.switchTo(EntryEditor.java:723) at net.sf.jabref.BasePanel.getEntryEditor(BasePanel.java:2065) at net.sf.jabref.gui.MainTableSelectionListener.editSignalled(MainTableSelectionListener.java:202) at net.sf.jabref.gui.MainTableSelectionListener.mouseClicked(MainTableSelectionListener.java:257) at java.awt.AWTEventMulticaster.mouseClicked(AWTEventMulticaster.java:253) at java.awt.Component.processMouseEvent(Component.java:6266) at javax.swing.JComponent.processMouseEvent(JComponent.java:3267) at java.awt.Component.processEvent(Component.java:6028) at java.awt.Container.processEvent(Container.java:2041) at java.awt.Component.dispatchEventImpl(Component.java:4630) at java.awt.Container.dispatchEventImpl(Container.java:2099) at java.awt.Component.dispatchEvent(Component.java:4460) at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4574) at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4247) at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4168) at java.awt.Container.dispatchEventImpl(Container.java:2085) at java.awt.Window.dispatchEventImpl(Window.java:2475) at java.awt.Component.dispatchEvent(Component.java:4460) at java.awt.EventQueue.dispatchEvent(EventQueue.java:599) at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:269) at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:184) at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:174) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:169) at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:161) at java.awt.EventDispatchThread.run(EventDispatchThread.java:122)
+1
+net.sf.jabref.EntryEditor
+
+2931293
+faill to generate Bibtexkeys   In 2.6b2 I set the bibtex key pattern to [authorsAlpha][year]. When author's name is shorter than 3 characters(quite common for Chinese) JAbref replies "Generated bibtex key for 0 entries" with the following error code: java.lang.StringIndexOutOfBoundsException: String index out of range: 3. Sometimes a key of the form a, b is generated
+1
+net.sf.jabref.labelPattern.LabelPatternUtil
+
+2938562
+Move of files turns relative filenames to absolute ones  The "general"-tab provides the management of files attached to a bib entry. The context-menu of files in this list provides to move/rename functions. Using this turns relative filenames(relative to the doc-folder of the database settings) to absolute filenames. This should be avoided. This is observed in JabRef 2.6b2.
+1
+net.sf.jabref.external.MoveFileAction
+

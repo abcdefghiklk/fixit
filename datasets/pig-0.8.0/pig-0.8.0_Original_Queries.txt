@@ -1,0 +1,782 @@
+1 PIG-1781
+Piggybank: ISOToDay disregards timezone (should use ISODateTimeFormat instead of DateTime to parse) &lt p&gt (Apologies if this is the wrong place to file Piggybank bugs)&lt /p&gt &lt p&gt Bug in &lt a href=&quot http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/evaluation/datetime/truncate/ISOToDay.java?view=markup&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/evaluation/datetime/truncate/ISOToDay.java?view=markup&lt /a&gt &lt /p&gt &lt p&gt and other &lt a href=&quot http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/evaluation/datetime/truncate/&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/evaluation/datetime/truncate/&lt /a&gt  classes that copy-paste the same code.&lt /p&gt &lt p&gt These classes parse dates like so:&lt br/&gt   DateTimeZone.setDefault(DateTimeZone.UTC)   &lt br/&gt   DateTime dt = new DateTime((String)input.get(0).toString())  &lt /p&gt &lt p&gt This has two problems:&lt br/&gt (1) It messes up JVM static state by changing the DateTimeZone default time zone.&lt br/&gt (2) It ignore timezone information in the input string, so times like &quot 2009-12-09T23:59:59-0800&quot  get truncated to &quot 2009-12-10T00:00:00Z&quot , which is the wrong day of year. &lt /p&gt &lt p&gt Instead, they should use something like this, which respects the input timezone and does not modify any global state:&lt /p&gt &lt p&gt   DateTime dt ISODateTimeFormat.dateTime().withOffsetParsed().parseDateTime(isoDateString) &lt /p&gt &lt p&gt I have not provided a patch, because I&apos m not really set up to hack on Piggybank locally.&lt /p&gt &lt p&gt As a workaround, I am copy-pasting the classes into my own packages, and making the desired change.&lt /p&gt
+8
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToDay
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToHour
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToMinute
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToMonth
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToSecond
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToWeek
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.evaluation.datetime.truncate.ISOToYear
+contrib.piggybank.java.src.test.java.org.apache.pig.piggybank.test.evaluation.datetime.truncate.TestTruncateDateTime
+
+7 PIG-1993
+PigStorageSchema throw NPE with ColumnPruning &lt p&gt The following script fail:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0:&lt span class=&quot code-object&quot &gt int&lt /span&gt , a1:&lt span class=&quot code-object&quot &gt int&lt /span&gt , a2:&lt span class=&quot code-object&quot &gt int&lt /span&gt )  store a into &apos temp&apos  using org.apache.pig.piggybank.storage.PigStorageSchema()  exec a = LOAD &apos temp&apos  using org.apache.pig.piggybank.storage.PigStorageSchema()  b = FOREACH a GENERATE a1  dump b  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error message:&lt br/&gt java.lang.ArrayIndexOutOfBoundsException: 2&lt br/&gt         at org.apache.pig.piggybank.storage.PigStorageSchema.getNext(PigStorageSchema.java:94)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigRecordReader.nextKeyValue(PigRecordReader.java:187)&lt br/&gt         at org.apache.hadoop.mapred.MapTask$NewTrackingRecordReader.nextKeyValue(MapTask.java:423)&lt br/&gt         at org.apache.hadoop.mapreduce.MapContext.nextKeyValue(MapContext.java:67)&lt br/&gt         at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:143)&lt br/&gt         at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:621)&lt br/&gt         at org.apache.hadoop.mapred.MapTask.run(MapTask.java:305)&lt br/&gt         at org.apache.hadoop.mapred.LocalJobRunner$Job.run(LocalJobRunner.java:177)&lt /p&gt
+2
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.storage.PigStorageSchema
+contrib.piggybank.java.src.test.java.org.apache.pig.piggybank.test.TestPigStorageSchema
+
+10 PIG-1979
+New logical plan failing with ERROR 2229: Couldn&apos t find matching uid -1 &lt p&gt The below is my script &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  register myudf.jar  c01 = LOAD &apos input&apos   USING org.test.MyTableLoader(&apos &apos )  c02 = FILTER c01  BY result == &apos OK&apos   AND formatted IS NOT NULL  AND formatted != &apos &apos    c03 = FOREACH c02 GENERATE url, formatted, FLATTEN(usage)  c04 = FOREACH c03 GENERATE usage::domain AS domain, url, formatted  doc_001 = FOREACH c04 GENERATE domain,url, FLATTEN(MyExtractor(formatted)) AS category  doc_004_1 = GROUP doc_001 BY (domain,url)  doc_005 = FOREACH doc_004_1 GENERATE group.domain as domain, group.url as url, doc_001.category as category  STORE doc_005 INTO &apos out_final&apos  USING PigStorage()   review1 = FOREACH c04 GENERATE domain,url, MyExtractor(formatted) AS rev  review2 = FILTER review1 BY SIZE(rev)&amp gt 0  joinresult = JOIN review2 by (domain,url), doc_005 by (domain,url)  finalresult = FOREACH joinresult GENERATE  doc_005::category  STORE finalresult INTO &apos out_final&apos  using PigStorage()  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The script is failing in building the plan, while applying for logical optimization rule for AddForEach.&lt /p&gt &lt p&gt ERROR org.apache.pig.tools.grunt.Grunt - ERROR 2229: Couldn&apos t find matching uid -1 for project (Name: Project Type: bytearray Uid: 106 Input: 0 Column: 5)&lt /p&gt &lt p&gt The problem is happening when I try to include doc_005::category in the projection for relation finalresult. This is field is orginated from the udf org.vivek.udfs.MyExtractor (source given below).&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt   &lt span class=&quot code-keyword&quot &gt import&lt /span&gt  java.io.IOException  &lt span class=&quot code-keyword&quot &gt import&lt /span&gt  org.apache.pig.EvalFunc  &lt span class=&quot code-keyword&quot &gt import&lt /span&gt  org.apache.pig.data.*  &lt span class=&quot code-keyword&quot &gt import&lt /span&gt  org.apache.pig.impl.logicalLayer.FrontendException  &lt span class=&quot code-keyword&quot &gt import&lt /span&gt  org.apache.pig.impl.logicalLayer.schema.Schema  &lt span class=&quot code-keyword&quot &gt import&lt /span&gt  org.apache.pig.impl.logicalLayer.schema.Schema.FieldSchema   &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  class MyExtractor &lt span class=&quot code-keyword&quot &gt extends&lt /span&gt  EvalFunc&amp lt DataBag&amp gt  {   @Override  &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  Schema outputSchema(Schema arg0) {    &lt span class=&quot code-keyword&quot &gt try&lt /span&gt  {    &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  Schema.generateNestedSchema(DataType.BAG, DataType.CHARARRAY)    } &lt span class=&quot code-keyword&quot &gt catch&lt /span&gt  (FrontendException e) {    &lt span class=&quot code-object&quot &gt System&lt /span&gt .err.println(&lt span class=&quot code-quote&quot &gt &quot Error &lt span class=&quot code-keyword&quot &gt while&lt /span&gt  generating schema. &quot &lt /span&gt +e)     &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Schema(&lt span class=&quot code-keyword&quot &gt new&lt /span&gt  FieldSchema(&lt span class=&quot code-keyword&quot &gt null&lt /span&gt , DataType.BAG))    }  }    @Override   &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  DataBag exec(Tuple inputTuple)     &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException   {     &lt span class=&quot code-keyword&quot &gt try&lt /span&gt  {       Tuple tp2 = TupleFactory.getInstance().newTuple(1)        tp2.set(0, (inputTuple.get(0).toString()+inputTuple.hashCode()))        DataBag retBag = BagFactory.getInstance().newDefaultBag()        retBag.add(tp2)        &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  retBag      }     &lt span class=&quot code-keyword&quot &gt catch&lt /span&gt  (Exception e) {       &lt span class=&quot code-keyword&quot &gt throw&lt /span&gt  &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  IOException(&lt span class=&quot code-quote&quot &gt &quot  Caught exception&quot &lt /span&gt , e)      }   } }  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The script goes through fine if I disable AddForEach rule by -t AddForEach&lt /p&gt
+2
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+test.org.apache.pig.test.TestEvalPipeline2
+
+11 PIG-1978
+Secondary sort fail when dereferencing two fields inside foreach &lt p&gt The following script fail:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0, a1, a2)  b = group a by (a0, a1)  c = foreach b {     c1 = a.(a1,a2)      generate group, c1  } explain c  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error message:&lt br/&gt Caused by: org.apache.pig.impl.logicalLayer.FrontendException: ERROR 0: POForEach has more than 1 input plans&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer$SecondaryKeyDiscover.processForEach(SecondaryKeyOptimizer.java:551)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer$SecondaryKeyDiscover.processRoot(SecondaryKeyOptimizer.java:485)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer$SecondaryKeyDiscover.process(SecondaryKeyOptimizer.java:470)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer.visitMROp(SecondaryKeyOptimizer.java:254)&lt /p&gt &lt p&gt Thanks William reporting.&lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer
+test.org.apache.pig.test.TestSecondarySort
+
+12 PIG-1977
+&quot Stream closed&quot  error while reading Pig temp files (results of intermediate jobs) &lt p&gt In certain cases when compression of temporary files is on Pig scripts fail with following exception:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  java.io.IOException: Stream closed at java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:145) at java.io.BufferedInputStream.fill(BufferedInputStream.java:189) at java.io.BufferedInputStream.read(BufferedInputStream.java:237) at java.io.DataInputStream.readByte(DataInputStream.java:248) at org.apache.hadoop.io.file.tfile.Utils.readVLong(Utils.java:196) at org.apache.hadoop.io.file.tfile.Utils.readVInt(Utils.java:168) at org.apache.hadoop.io.file.tfile.Chunk$ChunkDecoder.readLength(Chunk.java:103) at org.apache.hadoop.io.file.tfile.Chunk$ChunkDecoder.checkEOF(Chunk.java:124) at org.apache.hadoop.io.file.tfile.Chunk$ChunkDecoder.close(Chunk.java:190) at java.io.FilterInputStream.close(FilterInputStream.java:155) at org.apache.pig.impl.io.TFileRecordReader.nextKeyValue(TFileRecordReader.java:85) at org.apache.pig.impl.io.TFileStorage.getNext(TFileStorage.java:76) at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigRecordReader.nextKeyValue(PigRecordReader.java:187) at org.apache.hadoop.mapred.MapTask$NewTrackingRecordReader.nextKeyValue(MapTask.java:474) at org.apache.hadoop.mapreduce.MapContext.nextKeyValue(MapContext.java:67) at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:143) at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:676) at org.apache.hadoop.mapred.MapTask.run(MapTask.java:336) at org.apache.hadoop.mapred.Child$4.run(Child.java:242) at java.security.AccessController.doPrivileged(Native Method) at javax.security.auth.Subject.doAs(Subject.java:396) at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1059) at org.apache.hadoop.mapred.Child.main(Child.java:236) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The workaround is to turn off the compression (pig.tmpfilecompression=false).&lt /p&gt
+2
+src.org.apache.pig.impl.io.TFileRecordReader
+test.org.apache.pig.test.TestTmpFileCompression
+
+13 PIG-1975
+Need to provide backward compatibility for legacy LoadCaster (without bytesToMap(bytes, fieldSchema)) &lt p&gt Pig changed LoadCaster interface in 0.9 for typed map (&lt a href=&quot https://issues.apache.org/jira/browse/PIG-1876&quot  title=&quot Typed map for Pig&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1876&quot &gt &lt del&gt PIG-1876&lt /del&gt &lt /a&gt ). We change&lt br/&gt bytesToMap(byte[] b, ResourceFieldSchema fieldSchema)&lt br/&gt to&lt br/&gt bytesToMap(byte[] b)&lt /p&gt &lt p&gt We should provide backward compatibility for old LoadCaster. If we don&apos t find the new bytesToMap, we use the old bytesToMap to convert bytes to map with bytearray value. It is still wrong but at least matching the ability of old behavior.&lt /p&gt
+1
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POCast
+
+15 PIG-1964
+PigStorageSchema fails if a column value is null &lt p&gt If the data being loaded by PigStorageSchema has a column with null value, the pig query fails with a NullPointerException.&lt /p&gt &lt p&gt The issue is currently seen in 0.8 branch in svn, not in the 0.8 apache release.&lt /p&gt
+2
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.storage.PigStorageSchema
+contrib.piggybank.java.src.test.java.org.apache.pig.piggybank.test.TestPigStorageSchema
+
+16 PIG-1963
+in nested foreach, accumutive udf taking input from order-by does not get results in order &lt p&gt This happens only when secondary sort is not being used for the order-by. &lt br/&gt For example -&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a1 = load &apos fruits.txt&apos  as (f1:&lt span class=&quot code-object&quot &gt int&lt /span&gt ,f2)  a2 = load &apos fruits.txt&apos  as (f1:&lt span class=&quot code-object&quot &gt int&lt /span&gt ,f2)   b = cogroup a1 by f1, a2 by f1   d = foreach b {    sort1 = order a1 by f2     sort2 = order a2 by f2  -- secondary sort not getting used here, MYCONCATBAG gets results in wrong order    generate group, MYCONCATBAG(sort1.f1), MYCONCATBAG(sort2.f2)  }  -- explain d  dump d  &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.AccumulatorOptimizer
+test.org.apache.pig.test.TestAccumulator
+
+17 PIG-1962
+Wrong alias assinged to store operator &lt p&gt Given the script&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  A = load &apos data&apos  as (a0, a1)  B = filter A by a0 &amp gt  1  store B into &apos output&apos    &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Alias &apos A&apos  (instead of &apos B&apos ) is assigned to the store operator:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  Map Plan A: Store(file:&lt span class=&quot code-comment&quot &gt ///Users/trunk/output:org.apache.pig.builtin.PigStorage) - scope-11 &lt /span&gt | |---A: New For Each(&lt span class=&quot code-keyword&quot &gt false&lt /span&gt ,&lt span class=&quot code-keyword&quot &gt false&lt /span&gt )[bag] - scope-10     |   |     |   Project[bytearray][0] - scope-6     |   |     |   Project[bytearray][1] - scope-8     |     |---B: Filter[bag] - scope-1         |   |         |   Greater Than[&lt span class=&quot code-object&quot &gt boolean&lt /span&gt ] - scope-5         |   |         |   |---Cast[&lt span class=&quot code-object&quot &gt int&lt /span&gt ] - scope-3         |   |   |         |   |   |---Project[bytearray][0] - scope-2         |   |         |   |---Constant(1) - scope-4         |         |---A: Load(file:&lt span class=&quot code-comment&quot &gt ///Users/trunk/data:org.apache.pig.builtin.PigStorage) - scope-0--------&lt /span&gt  &lt /pre&gt &lt /div&gt &lt /div&gt
+3
+src.org.apache.pig.backend.hadoop.executionengine.HExecutionEngine
+src.org.apache.pig.newplan.logical.relational.LogToPhyTranslationVisitor
+test.org.apache.pig.test.Util
+
+19 PIG-1955
+PhysicalOperator has a member variable (non-static) Log object that is non-transient, this causes serialization errors &lt p&gt I found this while trying to write unit tests. Creating a local PigServer to test my LoadFunc caused a serialization of the PhysicalOperator class, which failed due to:&lt br/&gt ..&lt br/&gt Caused by: java.io.NotSerializableException: org.apache.commons.logging.impl.Log4JCategoryLog&lt br/&gt ..&lt /p&gt &lt p&gt this is easily fixed by adding the transient keyword to the definition of log.&lt /p&gt &lt p&gt e.g.&lt /p&gt &lt p&gt on trunk:&lt br/&gt     private final transient Log log = LogFactory.getLog(getClass()) &lt br/&gt on the 0.8 tag:&lt br/&gt     private transient Log log = LogFactory.getLog(getClass()) &lt /p&gt
+21
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.PhysicalOperator
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.ExpressionOperator
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POCast
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POUserComparisonFunc
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POUserFunc
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCollectedGroup
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCombinerPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.PODemux
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.PODistinct
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POFRJoin
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POFilter
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLimit
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLoad
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLocalRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMergeJoin
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMultiQueryPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPreCombinerLocalRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSkewedJoin
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSort
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSplit
+
+22 PIG-1935
+New logical plan: Should not push up filter in front of Bincond &lt p&gt The following script produce wrong result:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  data = LOAD &apos data.txt&apos  using PigStorage() as (referrer:chararray, canonical_url:chararray, ip:chararray)  best_url = FOREACH data GENERATE ((canonical_url != &apos &apos  and canonical_url is not &lt span class=&quot code-keyword&quot &gt null&lt /span&gt ) ? canonical_url : referrer) AS url, ip  filtered = FILTER best_url BY url == &apos badsite.com&apos   dump filtered  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt data.txt:&lt br/&gt badsite.com             127.0.0.1&lt br/&gt goodsite.com/1?foo=true goodsite.com    127.0.0.1&lt /p&gt &lt p&gt Expected:&lt br/&gt (badsite.com,127.0.0.1)&lt /p&gt &lt p&gt We get nothing.&lt /p&gt &lt p&gt Thanks Corbin Hoenes for reporting.&lt /p&gt
+2
+src.org.apache.pig.newplan.logical.expression.BinCondExpression
+test.org.apache.pig.test.TestNewPlanFilterAboveForeach
+
+25 PIG-1932
+GFCross should allow the user to set the DEFAULT_PARALLELISM value &lt p&gt The internal UDF GFCross uses a final static int DEFAULT_PARALLELISM to determine how wide to spread the records in a cross.  It is currently hard wired to 96.  There are no comments in the code on how that value was settled on.  Despite the name, this value is not necessarily related to the reduce parallelism controlled by the parallel clause.  It controls how many artificial join key values are generated and how many times each record is duplicated before going through the join.  The higher it is set the more key values (and thus the less likely the cross will run out of memory) but also the more times each record is duplicated in the map phase before being sent to the reduce.  &lt /p&gt &lt p&gt We should leave the default value at 96 but allow a property to override this default and change the value.&lt /p&gt &lt p&gt We cannot use a constructor argument here because the use of the UDF is not exposed to the user, so he has no opportunity to pass a constructor argument to it.&lt /p&gt
+1
+src.org.apache.pig.impl.builtin.GFCross
+
+27 PIG-1927
+Dereference partial name failed &lt p&gt The following script fail:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0:&lt span class=&quot code-object&quot &gt int&lt /span&gt , a1)  b = group a by a0  c = foreach b generate flatten(a)  d = cogroup c by (a0)  e = foreach d generate c.a0 as e0  f = foreach e generate e0  describe f  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error message:&lt br/&gt Caused by: Failed to generate logical plan. Nested exception: org.apache.pig.impl.logicalLayer.FrontendException: ERROR 0: Cannot find field a0 in a::a0#17:int,a::a1#18:bytearray&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.alias_col_ref(LogicalPlanGenerator.java:12835)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.col_ref(LogicalPlanGenerator.java:12697)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.projectable_expr(LogicalPlanGenerator.java:7715)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.var_expr(LogicalPlanGenerator.java:7491)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.expr(LogicalPlanGenerator.java:6904)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.flatten_generated_item(LogicalPlanGenerator.java:5235)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.generate_clause(LogicalPlanGenerator.java:11022)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.foreach_plan(LogicalPlanGenerator.java:10789)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.foreach_clause(LogicalPlanGenerator.java:10670)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.op_clause(LogicalPlanGenerator.java:1280)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.general_statement(LogicalPlanGenerator.java:646)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.statement(LogicalPlanGenerator.java:467)&lt br/&gt         at org.apache.pig.parser.LogicalPlanGenerator.query(LogicalPlanGenerator.java:365)&lt br/&gt         at org.apache.pig.parser.QueryParserDriver.parse(QueryParserDriver.java:64)&lt /p&gt
+5
+src.org.apache.pig.PigServer
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestEvalPipeline2
+test.org.apache.pig.test.TestUnionOnSchema
+
+28 PIG-1923
+Jython UDFs fail to convert Maps of Integer values back to Pig types &lt p&gt java.io.IOException: Error executing function: org.apache.pig.backend.executionengine.ExecException: ERROR 0: Cannot convert jython type to pig datatype org.apache.pig.backend.executionengine.ExecException: ERROR 0: Cannot convert jython type to pig datatype java.lang.ClassCastException: java.lang.Integer cannot be cast to org.python.core.PyObject&lt br/&gt     at org.apache.pig.scripting.jython.JythonFunction.exec(JythonFunction.java:109)&lt br/&gt     at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POUserFunc.getNext(POUserFunc.java:229)&lt br/&gt     ... 10 more&lt /p&gt
+3
+src.org.apache.pig.scripting.jython.JythonFunction
+src.org.apache.pig.scripting.jython.JythonUtils
+test.org.apache.pig.test.TestScriptUDF
+
+30 PIG-1918
+Line number should be give for logical plan failures &lt p&gt Currently, the line is only given for the cases where we encounter problem in AST but not on the logical plan. It would be much more meaningful to users if it covered both&lt /p&gt
+39
+src.org.apache.pig.PigServer
+src.org.apache.pig.impl.logicalLayer.FrontendException
+src.org.apache.pig.impl.logicalLayer.validators.TypeCheckerException
+src.org.apache.pig.impl.plan.PlanValidationException
+src.org.apache.pig.impl.plan.VisitorException
+src.org.apache.pig.newplan.Operator
+src.org.apache.pig.newplan.logical.expression.AddExpression
+src.org.apache.pig.newplan.logical.expression.AndExpression
+src.org.apache.pig.newplan.logical.expression.BinCondExpression
+src.org.apache.pig.newplan.logical.expression.CastExpression
+src.org.apache.pig.newplan.logical.expression.ConstantExpression
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.expression.DivideExpression
+src.org.apache.pig.newplan.logical.expression.EqualExpression
+src.org.apache.pig.newplan.logical.expression.GreaterThanEqualExpression
+src.org.apache.pig.newplan.logical.expression.GreaterThanExpression
+src.org.apache.pig.newplan.logical.expression.IsNullExpression
+src.org.apache.pig.newplan.logical.expression.LessThanEqualExpression
+src.org.apache.pig.newplan.logical.expression.LessThanExpression
+src.org.apache.pig.newplan.logical.expression.MapLookupExpression
+src.org.apache.pig.newplan.logical.expression.ModExpression
+src.org.apache.pig.newplan.logical.expression.MultiplyExpression
+src.org.apache.pig.newplan.logical.expression.NegativeExpression
+src.org.apache.pig.newplan.logical.expression.NotEqualExpression
+src.org.apache.pig.newplan.logical.expression.NotExpression
+src.org.apache.pig.newplan.logical.expression.OrExpression
+src.org.apache.pig.newplan.logical.expression.ProjectExpression
+src.org.apache.pig.newplan.logical.expression.RegexExpression
+src.org.apache.pig.newplan.logical.expression.SubtractExpression
+src.org.apache.pig.newplan.logical.expression.UnaryExpression
+src.org.apache.pig.newplan.logical.expression.UserFuncExpression
+src.org.apache.pig.newplan.logical.relational.LOCogroup
+src.org.apache.pig.newplan.logical.relational.LOGenerate
+src.org.apache.pig.newplan.logical.relational.LOInnerLoad
+src.org.apache.pig.newplan.logical.relational.LOLoad
+src.org.apache.pig.newplan.logical.relational.LOSort
+src.org.apache.pig.newplan.logical.relational.LOUnion
+src.org.apache.pig.newplan.logical.relational.LogToPhyTranslationVisitor
+src.org.apache.pig.newplan.logical.rules.InputOutputFileValidator
+
+32 PIG-1912
+non-deterministic output when a file is loaded multiple times &lt p&gt I have a small demonstration script (actually, a directory with one main script and several other scripts that it calls) where the output (STOREd to a file) is not consistent between runs.  I will paste the files below this message, and I can also email the tarball to anybody who would like it  I wanted to just upload the tarball but I don&apos t see a way to do that.&lt /p&gt &lt p&gt The problem appears to be that when a dataset X gets LOADed twice, with things other than LOADs occurring between the loads (like a FOREACH GENERATE), a FOREACH GENERATE that is later performed on X doesn&apos t always choose the correct columns.  The correctness of the output was highly variable on my computer, for one of my co-workers it &lt b&gt almost&lt /b&gt  always failed, and for two other of my co-workers they didn&apos t see any failures, so it&apos s likely to be a race condition or something like that.&lt /p&gt &lt p&gt &amp #8211  FILES FOR REPLICATING THE PROBLEM&lt br/&gt &amp #8211  I will paste the name of the file as a comment, with the content of the file beneath it.&lt br/&gt &amp #8211  I will put the contents of the following files:&lt br/&gt &amp #8211  1) The Pig scripts (main.pig, calc_x_W.pig, calc_x_Y.pig, and load_raw_data.pig)&lt br/&gt &amp #8211  2) The input data file (data.csv)&lt br/&gt &amp #8211  3) The correct output file (correct_output.csv)&lt br/&gt &amp #8211  4) The shell script that runs the pig files and compares their output to what it should be&lt br/&gt &amp #8211  5) README&lt /p&gt &lt p&gt &amp #8211  main.pig&lt br/&gt RUN calc_x_W.pig &lt br/&gt RUN calc_x_Y.pig &lt br/&gt STORE x_W INTO &apos output/W&apos  USING PigStorage(&apos ,&apos ) &lt br/&gt STORE x_Y INTO &apos output/Y&apos  USING PigStorage(&apos ,&apos )   &amp #8211  this is wrong sometimes&lt /p&gt &lt p&gt &amp #8211  calc_x_W.pig&lt br/&gt RUN load_raw_data.pig &lt br/&gt x_W = FOREACH raw_data GENERATE x, w &lt /p&gt &lt p&gt &amp #8211  calc_x_Y.pig&lt br/&gt RUN load_raw_data.pig &lt br/&gt x_Y = FOREACH raw_data GENERATE x, y &lt /p&gt &lt p&gt &amp #8211  load_raw_data.pig&lt br/&gt raw_data = LOAD &apos data.csv&apos  USING PigStorage(&apos ,&apos )&lt br/&gt AS (&lt br/&gt   x,&lt br/&gt   y,&lt br/&gt   w&lt br/&gt ) &lt /p&gt &lt p&gt &amp #8211  data.csv&lt br/&gt x1,CORRECT  ANSWER,21148.59&lt br/&gt x2,CORRECT  OUTPUT,27219.98&lt br/&gt x3,RIGHT    ANSWER,10818.15&lt /p&gt &lt p&gt &amp #8211  correct_output.csv&lt br/&gt x1,CORRECT  ANSWER&lt br/&gt x2,CORRECT  OUTPUT&lt br/&gt x3,RIGHT    ANSWER&lt /p&gt &lt p&gt &amp #8211  testmany.sh&lt br/&gt typeset -a results&lt br/&gt i=0&lt br/&gt while (( i &amp lt  10 ))  do&lt br/&gt   rm -rf output/*&lt br/&gt   pig -x local -d WARN -e &quot set debug off run main.pig&quot  || break&lt br/&gt   diff correct_output.csv output/Y/part-m-00000 &amp amp &amp amp  echo good&lt br/&gt   results&lt span class=&quot error&quot &gt &amp #91 $i&amp #93 &lt /span&gt =$?&lt br/&gt   i=$((i+1))&lt br/&gt done &lt br/&gt echo $&lt /p&gt {results[*]}&lt p&gt &amp #8211  README&lt /p&gt &lt p&gt This directory is intended to show a non-deterministic bug in pig.&lt br/&gt Non-deterministic in the sense that the output of the script is not&lt br/&gt the same between different times it is run on the same input  usually&lt br/&gt the input is right, but sometimes it&apos s wrong for no apparent reason.&lt /p&gt &lt p&gt The scripts and dataset included in this directory demonstrate the&lt br/&gt issue.  The scripts load the file data.csv and write to the output&lt br/&gt directory, but the file output/Y/part-m-00000 is sometimes different&lt br/&gt between consecutive runs.  In particular, this file SHOULD just be&lt br/&gt the first and third columns of data.csv, but it sometimes uses the&lt br/&gt second column in place of the third.&lt /p&gt &lt p&gt The root of the problem appears to be that there is an intermediate&lt br/&gt LOAD of data.csv, after some relations have already been defined.&lt br/&gt The following things will make the error stop:&lt /p&gt &lt ul&gt  &lt li&gt commenting out &quot STORE x_W INTO &apos output/W&apos  USING PigStorage(&apos ,&apos ) &quot  in main.pig&lt /li&gt  &lt li&gt making a copy of data.csv called data2.csv, and a file load_daw_data2.pig&lt br/&gt   that loads data2.csv and having having calc_x_W.pig use that instead.&lt /li&gt &lt /ul&gt &lt p&gt It&apos s possible that this isn&apos t a bug and I&apos m just mis-using Pig &lt br/&gt if that is the case I would greatly appreciate hearing about it.&lt br/&gt I believe this issue was also discussed here:&lt br/&gt &lt a href=&quot http://mail-archives.apache.org/mod_mbox/pig-user/201102.mbox/%3CAANLkTi=2ZtkVGJevKLYSSzSH--KCcX38+Xaw2d2STNiS@mail.gmail.com%3E&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://mail-archives.apache.org/mod_mbox/pig-user/201102.mbox/%3CAANLkTi=2ZtkVGJevKLYSSzSH--KCcX38+Xaw2d2STNiS@mail.gmail.com%3E&lt /a&gt &lt /p&gt &lt p&gt I have a shell script testmany.sh which runs my script multiple times&lt br/&gt and reports for which runs the output agrreed with the file correct_output.csv.&lt /p&gt &lt p&gt IMPORTANT NOTE: We have run this code on 4 different laptops, all running&lt br/&gt pig 0.8.0.  On one laptop (the one I&apos m using) the output of this script&lt br/&gt was highly non-deterministic, generally giving both the wrong and the right&lt br/&gt output several times each during 10 runs.  Another laptop consistently got&lt br/&gt the wrong output up until the 28th run, when it finally gave the right output.&lt br/&gt The other two computer never actually observed the wrong output.  We suspect&lt br/&gt this is likely a race condition.&lt /p&gt &lt p&gt Thanks!&lt /p&gt &lt p&gt USAGE&lt br/&gt $ cd pigbug&lt br/&gt $ bash testmany.sh&lt br/&gt $ # the last line of output will be a sequence of 0s and 1s, with 1&lt br/&gt $ # meaning that there was disagreement between the output and&lt br/&gt $ # correct_output.csv&lt /p&gt &lt p&gt Field Cady&lt br/&gt field.cady@gmail.com&lt br/&gt fcady@operasolutions.com&lt br/&gt (360)621-4810&lt /p&gt
+4
+src.org.apache.pig.backend.hadoop.executionengine.HExecutionEngine
+src.org.apache.pig.newplan.logical.relational.LOLoad
+src.org.apache.pig.newplan.logical.relational.LogToPhyTranslationVisitor
+test.org.apache.pig.test.TestEvalPipeline2
+
+33 PIG-1911
+Infinite loop with accumulator function in nested foreach &lt p&gt Sample script:&lt /p&gt &lt p&gt register v_udf.jar &lt br/&gt a = load &apos 2records&apos  as (f1:chararray,f2:chararray) &lt br/&gt b = group a by f1 &lt br/&gt d = foreach b &lt /p&gt { sort = order a by f1     generate org.udfs.MyCOUNT(sort) as something   }&lt p&gt dump d &lt /p&gt &lt p&gt This causes infinite loop if MyCOUNT implements Accumulator interface.&lt /p&gt &lt p&gt The workaround is to take the function out of nested foreach into a separate foreach statement.&lt /p&gt
+3
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POUserFunc
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach
+test.org.apache.pig.test.TestAccumulator
+
+34 PIG-1910
+incorrect schema shown when project-star is used with other projections &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  grunt&amp gt  l = load &apos x&apos                                           grunt&amp gt  f = foreach l generate $1 as a, *, $2 as b            grunt&amp gt  describe f  f: {a: bytearray,(&lt span class=&quot code-keyword&quot &gt null&lt /span&gt ),b: bytearray}  -- The tuple returned by * is automatically flattened, so &lt span class=&quot code-keyword&quot &gt this&lt /span&gt  schema is not correct. It is more accurate to &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  a &lt span class=&quot code-keyword&quot &gt null&lt /span&gt  schema.  &lt /pre&gt &lt /div&gt &lt /div&gt
+6
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.expression.ExpToPhyTranslationVisitor
+src.org.apache.pig.newplan.logical.expression.ProjectExpression
+src.org.apache.pig.newplan.logical.relational.LOCogroup
+test.org.apache.pig.test.TestPigServer
+test.org.apache.pig.test.Util
+
+36 PIG-1894
+Worng stats shown when there are multiple stores but same file names &lt p&gt Pig 0.8/0.9 shows wrong stats for store counters when I have multiple store but of the same name.&lt /p&gt &lt p&gt To reproduce the issue please use the below script :&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  A = load &apos sampledata1&apos  as (f1:chararray,f2:chararray,f3:&lt span class=&quot code-object&quot &gt int&lt /span&gt )  B = filter A by f3==1  C = filter A by f3==2  D = filter A by f3==3  store B into &apos /folder/B/out.gz&apos   store C into &apos /folder/C/out.gz&apos   store D into &apos /folder/D/out.gz&apos   &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Input &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  aaa     a       1 aaa     b       1 bbb     a       2 bbb     b       2 ccc     a       3 ccc     b       3 &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt For this script Pig shows &lt br/&gt Output(s):&lt br/&gt Successfully stored 6 records (32 bytes) in: &quot /folder/B/out.gz&quot &lt br/&gt Successfully stored 6 records (32 bytes) in: &quot /folder/C/out.gz&quot &lt br/&gt Successfully stored 6 records (32 bytes) in: &quot /folder/D/out.gz&quot &lt /p&gt &lt p&gt Counters:&lt br/&gt Total records written : 18&lt br/&gt Total bytes written : 96&lt /p&gt
+4
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.JobControlCompiler
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POStore
+src.org.apache.pig.tools.pigstats.PigStatsUtil
+test.org.apache.pig.test.TestPigRunner
+
+37 PIG-1893
+Pig report input size -1 for empty input file &lt p&gt In the following script:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0, a1)  b = load &apos 2.txt&apos  as (b0, b1)  c = join a by a0, b by b0  dump c  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt If 1.txt is empty, Pig will report&lt br/&gt Successfully read -1 records from: &quot 1.txt&quot &lt /p&gt &lt p&gt In WebUI, we can see we only have one MultiInputCounters: &quot Input records from _0_2.txt&quot . In this case, we should count inputs &quot 1.txt&quot  0 instead -1.&lt /p&gt
+2
+src.org.apache.pig.tools.pigstats.JobStats
+test.org.apache.pig.test.TestPigRunner
+
+38 PIG-1892
+Bug in new logical plan : No output generated even though there are valid records &lt p&gt I have the below script which provides me no output even though there are valid records in relation B which is used for the left out join.&lt /p&gt &lt p&gt A0 = load &apos input&apos  using Maploader()  as ( map1, map2, map3 ) &lt br/&gt A = filter A0 by ( (map2#&apos params&apos #&apos prop&apos  == 464)   and (map2#&apos params&apos #&apos query&apos  is not null) ) &lt br/&gt B0 = filter A by (map1#&apos type&apos  == &apos c&apos ) &lt br/&gt B = filter B0 by ( map2#&apos info&apos #&apos s&apos  matches &apos aaaa|bbb|cccc&apos ) &lt br/&gt C =  filter A by (map1#&apos type&apos  == &apos p&apos ) &lt br/&gt D = join B by map2#&apos params&apos #&apos query&apos  LEFT OUTER , C by map2#&apos params&apos #&apos query&apos  &lt br/&gt store D into &apos output&apos  &lt /p&gt &lt p&gt This is a bug with the newlogical plan.  From the plan i can see that  map1#&apos type&apos   and map2#&apos info&apos #&apos s&apos  is not marked as RequiredKeys ,&lt br/&gt but where as all the fields reffered in the firts filter statement is marked as required.&lt /p&gt &lt p&gt For the script to work I have to turn off the coloumn prune optimizer by -t ColumnMapKeyPrune or rearrange the script such that &lt br/&gt B0 = filter A0 by ( (map2#&apos params&apos #&apos prop&apos  == 464)   and (map2#&apos params&apos #&apos query&apos  is not null) and (map1#&apos type&apos  == &apos c&apos ) ) &lt br/&gt C =  filter A0 by ( (map2#&apos params&apos #&apos prop&apos  == 464)   and (map2#&apos params&apos #&apos query&apos  is not null) and (map1#&apos type&apos  == &apos p&apos ) ) &lt /p&gt
+3
+src.org.apache.pig.newplan.logical.rules.MapKeysPruneHelper
+test.org.apache.pig.test.TestPruneColumn
+test.org.apache.pig.test.TestPruneColumn.PigStorageWithTrace
+
+40 PIG-1886
+Add zookeeper jar to list of jars shipped when HBaseStorage used &lt p&gt HBaseStorage currently asks Hadoop to include hbase and guava among the shipped jars. It should do the same for ZooKeeper.&lt /p&gt
+1
+src.org.apache.pig.backend.hadoop.hbase.HBaseStorage
+
+41 PIG-1885
+SUBSTRING fails when input length less than start &lt p&gt SUBSTRING throws an error if it gets a string which has a length less than its start value.  For example, SUBSTRING(x, 100, 120) will fail with any chararray of length less than 100.  It should return null instead.&lt /p&gt
+2
+src.org.apache.pig.builtin.SUBSTRING
+test.org.apache.pig.test.TestStringUDFs
+
+42 PIG-1884
+Change ReadToEndLoader.setLocation not throw UnsupportedOperationException &lt p&gt After &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1680&quot  title=&quot Pig 0.8 HBaseStorage may not against HBase 0.89&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1680&quot &gt &lt del&gt PIG-1680&lt /del&gt &lt /a&gt , we will call LoadFunc.setLocation() before launching hadoop job. This change cause TestExampleGenerator fail. The reason is ReadToEndLoader.setLocation() will throw UnsupportedOperationException. We never get to this point before &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1680&quot  title=&quot Pig 0.8 HBaseStorage may not against HBase 0.89&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1680&quot &gt &lt del&gt PIG-1680&lt /del&gt &lt /a&gt .&lt /p&gt
+3
+src.org.apache.pig.impl.io.ReadToEndLoader
+test.org.apache.pig.test.TestHBaseStorage
+test.org.apache.pig.test.TestJobSubmission
+
+43 PIG-1881
+Need a special interface for Penny (Inspector Gadget) &lt p&gt The proposed Penny tool needs access to Pig&apos s new logical plan in order to inject code into the the dataflow.  Once it has modified the plan it needs to then be able to hand back that modified plan and have Pig execute it.&lt /p&gt &lt p&gt As we don&apos t want to open this functionality up to general users, the proposal is to do this by subclasses PigServer with a new class that is marked as LimitedPrivate for Penny only.  This class will provide calls to parse a Pig Latin script and return a logical plan, and one to take a logical plan and execute it.&lt /p&gt
+3
+src.org.apache.pig.PigServer
+src.org.apache.pig.PigServer.Graph
+src.org.apache.pig.tools.grunt.GruntParser
+
+44 PIG-1876
+Typed map for Pig &lt p&gt Currently Pig map type is untyped, which means map value is always of bytearray(ie. unknown) type. In &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1277&quot  title=&quot Pig should give error message when cogroup on tuple keys of different inner type&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1277&quot &gt &lt del&gt PIG-1277&lt /del&gt &lt /a&gt , we allow unknown type to be a shuffle key, which somewhat relieve the problem. However, typed map is still beneficial in that:&lt /p&gt &lt p&gt 1. User can make semantic use of the map value type. Currently, user need to explicitly cast map value, which is ugly&lt br/&gt 2. Though &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1277&quot  title=&quot Pig should give error message when cogroup on tuple keys of different inner type&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1277&quot &gt &lt del&gt PIG-1277&lt /del&gt &lt /a&gt  allow unknown type be a shuffle key, the performance suffers. We don&apos t have a raw comparator for the unknown type, instead, we need to instantiate the value object and invoke its comparator&lt /p&gt &lt p&gt Here is proposed syntax for typed map:&lt br/&gt map&lt span class=&quot error&quot &gt &amp #91 type&amp #93 &lt /span&gt &lt /p&gt &lt p&gt Typed map can be used in place of untyped map could occur. For example:&lt br/&gt a = load &apos 1.txt&apos  as(map&lt span class=&quot error&quot &gt &amp #91 int&amp #93 &lt /span&gt ) &lt br/&gt b = foreach a generate (map&lt span class=&quot error&quot &gt &amp #91 (i:int)&amp #93 &lt /span&gt )a0   - - Map value is tuple&lt br/&gt b = stream a through `cat` as (m:map[&lt /p&gt {(i:int,j:chararray)}&lt p&gt ])   - - Map value is bag&lt /p&gt &lt p&gt MapLookup a typed map will result datatype of map value.&lt br/&gt a = load &apos 1.txt&apos  as(map&lt span class=&quot error&quot &gt &amp #91 int&amp #93 &lt /span&gt ) &lt br/&gt b = foreach a generate $0#&apos key&apos  &lt /p&gt &lt p&gt Schema for b:&lt br/&gt b: &lt /p&gt {int}&lt p&gt The behavior of untyped map will remain the same.&lt /p&gt
+14
+src.org.apache.pig.LoadCaster
+src.org.apache.pig.ResourceSchema
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POCast
+src.org.apache.pig.backend.hadoop.hbase.HBaseBinaryConverter
+src.org.apache.pig.builtin.BinStorage
+src.org.apache.pig.builtin.TextLoader
+src.org.apache.pig.builtin.Utf8StorageConverter
+src.org.apache.pig.data.DataType
+src.org.apache.pig.impl.io.ReadToEndLoader
+src.org.apache.pig.impl.logicalLayer.schema.Schema
+src.org.apache.pig.newplan.logical.LogicalExpPlanMigrationVistor
+src.org.apache.pig.newplan.logical.expression.MapLookupExpression
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestPOCast
+
+45 PIG-1874
+Make PigServer work in a multithreading environment &lt p&gt This means that PigServers should work if one creates separate PigServer instances for each thread (PigServers are not synchronized). &lt /p&gt
+4
+src.org.apache.pig.PigServer
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.POStatus
+src.org.apache.pig.impl.PigContext
+src.org.apache.pig.impl.util.UDFContext
+
+48 PIG-1871
+Dont throw exception if partition filters  cannot be pushed up. &lt p&gt Instead don&apos t try to push partition filters up and continue execution.&lt /p&gt
+3
+src.org.apache.pig.newplan.PColFilterExtractor
+src.org.apache.pig.newplan.logical.rules.PartitionFilterOptimizer
+test.org.apache.pig.test.TestPartitionFilterPushDown
+
+49 PIG-1870
+HBaseStorage doesn&apos t project correctly &lt p&gt Projecting columns after &lt tt&gt LOAD&lt /tt&gt  via &lt tt&gt HBaseStorage&lt /tt&gt  produces unexpected results. This is related to the &lt tt&gt loadKey&lt /tt&gt  functionality and how the &lt tt&gt pushProjection&lt /tt&gt  method in &lt tt&gt HBaseStorage&lt /tt&gt  has to offset to build a column list that aligns with the tuple (the column list doesn&apos t contain the row key).&lt /p&gt &lt p&gt This shift appears to create an inconsistency with the FieldSchema for the tuple which results in the wrong tuple value being fetched for a given column. I&apos ll attach a patch with unit tests that illustrate the problem.&lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.hbase.HBaseStorage
+test.org.apache.pig.test.MiniCluster
+
+50 PIG-1868
+New logical plan fails when I have complex data types from udf &lt p&gt The new logical plan fails when I have complex data types returning from my eval function.&lt /p&gt &lt p&gt The below is my script :&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  register myudf.jar     B1 = load &apos myinput&apos  as (id:chararray,ts:&lt span class=&quot code-object&quot &gt int&lt /span&gt ,url:chararray)  B2 = group B1 by id  B = foreach B2 {  Tuples = order B1 by ts   generate Tuples  }  C1 = foreach B generate TransformToMyDataType(Tuples,-1,0,1) as seq: { t: ( previous, current, next ) }  C2 = foreach C1 generate FLATTEN(seq)  C3 = foreach C2 generate  current.id as id  dump C3  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt On C3 it fails with below message :&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  Couldn&apos t find matching uid -1 &lt span class=&quot code-keyword&quot &gt for&lt /span&gt  project (Name: Project Type: bytearray Uid: 45 Input: 0 Column: 1) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The below is the describe on C1  &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  C1: {seq: {t: (previous: (id: chararray,ts: &lt span class=&quot code-object&quot &gt int&lt /span&gt ,url: chararray),current: (id: chararray,ts: &lt span class=&quot code-object&quot &gt int&lt /span&gt ,url: chararray),next: (id: chararray,ts: &lt span class=&quot code-object&quot &gt int&lt /span&gt ,url: chararray))}} &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The script works if I turn off new logical plan or use Pig 0.7.&lt /p&gt
+2
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestSchema
+
+51 PIG-1866
+Dereference a bag within a tuple does not work &lt p&gt The following script does not work (both in new and old logical plan):&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (t : tuple(i: &lt span class=&quot code-object&quot &gt int&lt /span&gt , b1: bag { b_tuple : tuple ( b_str: chararray) }))  b = foreach a generate t.b1  dump b  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt 1.txt:&lt br/&gt (1,&lt /p&gt {(one),(two)}&lt p&gt )&lt /p&gt &lt p&gt Error from old logical plan:&lt br/&gt java.lang.ClassCastException: org.apache.pig.data.BinSedesTuple cannot be cast to org.apache.pig.data.DataBag&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.processInputBag(POProject.java:482)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.getNext(POProject.java:197)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.processInputBag(POProject.java:480)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.getNext(POProject.java:197)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.processPlan(POForEach.java:339)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.getNext(POForEach.java:291)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.runPipeline(PigMapBase.java:237)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:232)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:53)&lt br/&gt         at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:144)&lt br/&gt         at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:621)&lt br/&gt         at org.apache.hadoop.mapred.MapTask.run(MapTask.java:305)&lt br/&gt         at org.apache.hadoop.mapred.LocalJobRunner$Job.run(LocalJobRunner.java:177)&lt /p&gt &lt p&gt Error from new logical plan:&lt br/&gt java.lang.NullPointerException&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.consumeInputBag(POProject.java:246)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.getNext(POProject.java:200)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.processPlan(POForEach.java:339)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.getNext(POForEach.java:291)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.runPipeline(PigMapBase.java:237)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:232)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:53)&lt br/&gt         at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:144)&lt br/&gt         at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:621)&lt br/&gt         at org.apache.hadoop.mapred.MapTask.run(MapTask.java:305)&lt br/&gt         at org.apache.hadoop.mapred.LocalJobRunner$Job.run(LocalJobRunner.java:177)&lt /p&gt &lt p&gt If we change &quot b = foreach a generate t.b1 &quot  to &quot b = foreach a generate t.i &quot , it works fine, only refer to a bag does not work.&lt /p&gt
+4
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject
+src.org.apache.pig.newplan.logical.relational.LogToPhyTranslationVisitor
+test.org.apache.pig.test.TestEvalPipeline2
+
+52 PIG-1862
+Pig returns exit code 0 for the failed Pig script due to non-existing input directory &lt p&gt Test case:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos nonexisting.file&apos   b = filter a by $0 &amp gt  0  c = group b by $0  d = join c by $0, b by $0  store d into &apos output&apos   &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The script fails, but the return code is 0.&lt /p&gt
+9
+src.org.apache.pig.PigServer
+src.org.apache.pig.backend.hadoop.executionengine.HExecutionEngine
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher
+src.org.apache.pig.tools.grunt.GruntParser
+src.org.apache.pig.tools.pigstats.JobStats
+test.org.apache.pig.test.TestGroupConstParallel
+test.org.apache.pig.test.TestJobSubmission
+test.org.apache.pig.test.TestMultiQueryLocal
+test.org.apache.pig.test.TestPigRunner
+
+53 PIG-1861
+The pig script stored in the Hadoop History logs is stored as a concatenated string without whitespace this causes problems when attempting to extract and execute the script &lt p&gt a = load &apos $in&apos  using com.yahoo.grid.sath.JobHistoryLoader() as&lt br/&gt (job:map[],maps:bag{},reducers:bag{},other:bag{},conf:map[]) &lt /p&gt &lt p&gt The pig script stored in: conf#&apos pig.script&apos  has the whitespace removed, this makes it difficult to extract and run the&lt br/&gt script. In particular, statements that terminate in &quot  &quot  work correctly as&lt br/&gt &quot statement1 statement2 statement99&quot   but statements that do not end in &quot  &quot  result in&lt br/&gt &quot statement1statement2statement3&quot  and it&apos s difficult to parse the pig script and fix the concatenated string.&lt /p&gt &lt p&gt There&apos s also a problem with comments as in:&lt /p&gt &lt p&gt /&lt b&gt mycomment&lt /b&gt //&lt b&gt more comments&lt /b&gt / PIG_CODE //comment PIG_CODE&lt br/&gt On a side note, I also noticed that in many of the scripts the last statement is missing &quot  &quot &lt /p&gt
+2
+src.org.apache.pig.tools.pigstats.ScriptState
+test.org.apache.pig.test.TestPigStats
+
+54 PIG-1858
+UDF in nested plan results frontend exception &lt p&gt The below is my script :&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  register myanotherudf.jar  A = load &apos myinput&apos  using PigStorage() as ( date:chararray,bcookie:chararray,count:&lt span class=&quot code-object&quot &gt int&lt /span&gt ,avg:&lt span class=&quot code-object&quot &gt double&lt /span&gt ,pvs:&lt span class=&quot code-object&quot &gt int&lt /span&gt )  B = foreach A generate (&lt span class=&quot code-object&quot &gt int&lt /span&gt )(avg / 100.0) * 100   as avg, pvs  C = group B by ( avg )  D = foreach C {         Pvs = order B by pvs          Const = org.vivek.MyAnotherUDF(Pvs.pvs).(count,sum)          generate Const.sum as sum          }  store D into &apos out_D&apos   &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt The script is failing during compilation of the plan. The usage of the udf inside the foreach is causing the problem. The udf implements algebraic and the &lt br/&gt output schema is also defined.&lt br/&gt The below is the exception that I get :&lt /p&gt &lt p&gt ERROR 2042: Error in new logical plan. Try -Dpig.usenewlogicalplan=false.&lt /p&gt &lt p&gt org.apache.pig.impl.logicalLayer.FrontendException: ERROR 2042: Error in new logical plan. Try -Dpig.usenewlogicalplan=false.&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.compile(HExecutionEngine.java:309)&lt br/&gt         at org.apache.pig.PigServer.compilePp(PigServer.java:1364)&lt br/&gt         at org.apache.pig.PigServer.executeCompiledLogicalPlan(PigServer.java:1206)&lt br/&gt         at org.apache.pig.PigServer.execute(PigServer.java:1200)&lt br/&gt         at org.apache.pig.PigServer.access$100(PigServer.java:128)&lt br/&gt         at org.apache.pig.PigServer$Graph.execute(PigServer.java:1527)&lt br/&gt         at org.apache.pig.PigServer.executeBatchEx(PigServer.java:372)&lt br/&gt         at org.apache.pig.PigServer.executeBatch(PigServer.java:339)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.executeBatch(GruntParser.java:112)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:169)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:141)&lt br/&gt         at org.apache.pig.tools.grunt.Grunt.exec(Grunt.java:90)&lt br/&gt         at org.apache.pig.Main.run(Main.java:500)&lt br/&gt         at org.apache.pig.Main.main(Main.java:107)&lt br/&gt Caused by: java.lang.NullPointerException&lt br/&gt         at org.apache.pig.newplan.ReverseDependencyOrderWalker.walk(ReverseDependencyOrderWalker.java:70)&lt br/&gt         at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:50)&lt br/&gt         at org.apache.pig.newplan.logical.optimizer.SchemaResetter.visit(SchemaResetter.java:105)&lt br/&gt         at org.apache.pig.newplan.logical.relational.LOGenerate.accept(LOGenerate.java:229)&lt br/&gt         at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)&lt br/&gt         at org.apache.pig.newplan.logical.optimizer.SchemaResetter.visit(SchemaResetter.java:94)&lt br/&gt         at org.apache.pig.newplan.logical.relational.LOForEach.accept(LOForEach.java:71)&lt br/&gt         at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)&lt br/&gt         at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:50)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.compile(HExecutionEngine.java:261)&lt br/&gt         ... 13 more&lt /p&gt &lt p&gt When i trun off new logical plan the script executes successfully. The issue is observed in both 0.8 and 0.9&lt /p&gt
+1
+test.org.apache.pig.test.TestEvalPipeline2
+
+55 PIG-1856
+Custom jar is not packaged with the new job created by LimitAdjuster &lt p&gt The script:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  A = load &apos data&apos  as (s, m)  B = order A by s parallel 2  C = limit B 20  store C into &apos output&apos  using org.apache.pig.piggybank.storage.PigStorageSchema(&apos \t&apos ) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt where piggybank jar is in the classpath.&lt /p&gt &lt p&gt The script, however,  fails since the piggybank jar isn&apos t shipped to the backend with the additional job created by the LimitAdjuster.&lt /p&gt &lt p&gt The workaround is to explicitly register the piggybank jar in the script. &lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler
+test.org.apache.pig.test.TestMRCompiler
+
+56 PIG-1854
+Pig returns exit code 0 for the failed Pig script . &lt p&gt Pig returns exit code 0 for the some of the failed Pig scripts. Due to this workflow system like Oozie showing the &quot succeeded&quot  status instead of &quot killed&quot  status.&lt /p&gt &lt p&gt Illustrative example&lt br/&gt ---------------------&lt /p&gt &lt p&gt Suppose in Pig script we have following statement:&lt /p&gt &lt p&gt $ cat move.pig&lt br/&gt fs -mv /user/jerry/a.txt /user/tom/&lt /p&gt &lt p&gt On executing the pig script, script failed with following exception&lt /p&gt &lt p&gt &lt span class=&quot error&quot &gt &amp #91 tom@abc &amp #93 &lt /span&gt $ pig move.pig &lt br/&gt 2011-02-14 06:48:08,354 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.Main - Logging error messages to: /home/tom/pig_1297666088350.log&lt br/&gt 2011-02-14 06:48:08,652 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to hadoop file system at: hdfs://abc-nn:8020&lt br/&gt 2011-02-14 06:48:09,542 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to map-reduce job tracker at: abc-jt:50300&lt br/&gt mv: org.apache.hadoop.security.AccessControlException: Permission denied: user=tom, access=WRITE, inode=&quot jobs&quot :jerry:users:rwxr-xr-x&lt br/&gt &lt span class=&quot error&quot &gt &amp #91 tom@abc &amp #93 &lt /span&gt $&lt /p&gt &lt p&gt But when executed the similar Pig script through Oozie workflow, Pig script failed but Oozie show the &quot succeeded&quot  status message instead of &quot killed&quot  status as return exit code is 0.&lt /p&gt &lt p&gt From logs of workflow launcher job:&lt /p&gt &lt p&gt stdout logs&lt br/&gt -----------&lt br/&gt &amp gt &amp gt &amp gt  Invoking Pig command line now &amp gt &amp gt &amp gt &lt /p&gt &lt p&gt Apache Pig version 0.7.0.20.100.1.1007220309 (r966485) &lt br/&gt compiled Jul 22 2010, 03:09:21&lt /p&gt &lt p&gt 807  &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine  - Connecting to hadoop file system at: hdfs://abc-nn:8020/&lt br/&gt 853  &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine  - Connecting to map-reduce job tracker at: abc-jt:50300&lt /p&gt &lt p&gt &amp lt &amp lt &amp lt  Invocation of Pig command completed &amp lt &amp lt &amp lt &lt /p&gt &lt p&gt  Hadoop Job IDs executed by Pig: &lt /p&gt &lt p&gt &amp lt &amp lt &amp lt  Invocation of Main class completed &amp lt &amp lt &amp lt &lt /p&gt &lt p&gt Oozie Launcher, capturing output data:&lt br/&gt =======================&lt br/&gt #&lt br/&gt #Mon Feb 14 06:46:00 UTC 2011&lt br/&gt hadoopJobs=&lt /p&gt &lt p&gt =======================&lt /p&gt &lt p&gt Oozie Launcher ends&lt /p&gt &lt p&gt stderr logs&lt br/&gt -----------&lt br/&gt mv: org.apache.hadoop.security.AccessControlException: Permission denied: user=tom, access=WRITE, inode=&quot jobs&quot :jerry:users:rwxr-xr-x&lt /p&gt &lt p&gt One more scenario where Pig script failed but exit code is 0 and no exception occurred for this failure.&lt /p&gt &lt p&gt stdout logs&lt br/&gt -----------&lt br/&gt &amp gt &amp gt &amp gt  Invoking Pig command line now &amp gt &amp gt &amp gt &lt /p&gt &lt p&gt Apache Pig version 0.7.0.20.100.1.1007220309 (r966485) &lt br/&gt compiled Jul 22 2010, 03:09:21&lt br/&gt ...&lt br/&gt ...&lt br/&gt 48247 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher  - 100% complete&lt br/&gt 48248 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher  - 1 map reduce job(s) failed!&lt br/&gt 48306 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher  - Failed to produce result in: &quot hdfs://abc-nn/user/jerry/feature-keys&quot &lt br/&gt 48307 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher  - Failed!&lt /p&gt &lt p&gt &amp lt &amp lt &amp lt  Invocation of Pig command completed &amp lt &amp lt &amp lt &lt /p&gt &lt p&gt  Hadoop Job IDs executed by Pig: job_201102080811_28852&lt /p&gt &lt p&gt &amp lt &amp lt &amp lt  Invocation of Main class completed &amp lt &amp lt &amp lt &lt /p&gt &lt p&gt Oozie Launcher, capturing output data:&lt br/&gt =======================&lt br/&gt #&lt br/&gt #Sat Feb 12 04:13:53 UTC 2011&lt br/&gt hadoopJobs=job_201102080811_28852&lt /p&gt &lt p&gt =======================&lt /p&gt &lt p&gt Oozie Launcher ends&lt /p&gt &lt p&gt &amp #8212 &lt /p&gt
+3
+src.org.apache.pig.impl.util.LogUtils
+src.org.apache.pig.tools.grunt.GruntParser
+test.org.apache.pig.test.TestPigRunner
+
+57 PIG-1850
+Order by is failing with ClassCastException if schema is undefined for new logical plan in 0.8 &lt p&gt The below is the script :&lt /p&gt &lt p&gt A = load &apos input&apos   &lt br/&gt B = group A all &lt br/&gt C = foreach B generate SUM($1.$0) &lt br/&gt C1 = CROSS A,C &lt br/&gt D = foreach C1 generate ROUND($0*10000.0/$2)/100.0, $1 &lt br/&gt E = order D by $0 desc  &lt br/&gt store E  into &apos out1&apos  &lt /p&gt &lt p&gt input (tab separated fields)&lt br/&gt 26      AAAAA&lt br/&gt 1349595 BBBBB&lt br/&gt 235693  CCCCC&lt /p&gt &lt p&gt Exception&lt br/&gt java.lang.ClassCastException: org.apache.pig.impl.io.NullableDoubleWritable cannot be cast to org.apache.pig.impl.io.NullableBytesWritable&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigBytesRawComparator.compare(PigBytesRawComparator.java:94)&lt br/&gt  at java.util.Arrays.binarySearch0(Arrays.java:2105)&lt br/&gt  at java.util.Arrays.binarySearch(Arrays.java:2043)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.partitioners.WeightedRangePartitioner.getPartition(WeightedRangePartitioner.java:72)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.partitioners.WeightedRangePartitioner.getPartition(WeightedRangePartitioner.java:52)&lt br/&gt  at org.apache.hadoop.mapred.MapTask$NewOutputCollector.write(MapTask.java:602)&lt br/&gt  at org.apache.hadoop.mapreduce.TaskInputOutputContext.write(TaskInputOutputContext.java:80)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce$Map.collect(PigMapReduce.java:116)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.runPipeline(PigMapBase.java:238)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:231)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:53)&lt br/&gt  at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:144)&lt br/&gt  at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:676)&lt br/&gt  at org.apache.hadoop.mapred.MapTask.run(MapTask.java:336)&lt br/&gt  at org.apache.hadoop.mapred.Child$4.run(Child.java:242)&lt br/&gt  at java.security.AccessController.doPrivileged(Native Method)&lt br/&gt  at javax.security.auth.Subject.doAs(Subject.java:396)&lt br/&gt  at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1059)&lt br/&gt  at org.apache.hadoop.mapred.Child.main(Child.java:236)&lt /p&gt &lt p&gt The script is failing while doing order by in WeightedRangePartitioner since it considers the quantiles to be NullableBytesWritable but at run time this is NullableDoubleWritable . This is happening because there is no schema defined in the load statement.&lt br/&gt But the same works fine when the  multiquery is turned off.&lt /p&gt &lt p&gt One more issue worth noting is that if i have a filter statement after relation E, then the above exception is swallowed by Pig. This make debugging really hard. &lt /p&gt
+3
+src.org.apache.pig.newplan.logical.expression.ProjectExpression
+src.org.apache.pig.newplan.logical.relational.LOInnerLoad
+test.org.apache.pig.test.TestEvalPipeline2
+
+58 PIG-1843
+NPE in schema generation &lt p&gt Hit NPE in following script:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos table_testBagDereferenceInMiddle2&apos  as (a0:chararray)  b = foreach a generate MapGenerate(STRSPLIT(a0).$0))  &lt /pre&gt &lt /div&gt &lt /div&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  class MapGenerate &lt span class=&quot code-keyword&quot &gt extends&lt /span&gt  EvalFunc&amp lt Map&amp gt  {     @Override     &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  Map exec(Tuple input) &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException {         Map m = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  HashMap()          m.put(&lt span class=&quot code-quote&quot &gt &quot key&quot &lt /span&gt , &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  &lt span class=&quot code-object&quot &gt Integer&lt /span&gt (input.size()))          &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  m      }          @Override     &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  Schema outputSchema(Schema input) {         &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Schema(&lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Schema.FieldSchema(getSchemaName(&lt span class=&quot code-quote&quot &gt &quot parselong&quot &lt /span&gt , input), DataType.MAP))      } } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error message:&lt br/&gt Caused by: java.lang.NullPointerException&lt br/&gt         at org.apache.pig.EvalFunc.getSchemaName(EvalFunc.java:76)&lt br/&gt         at string.PARSELONG.outputSchema(PARSELONG.java:63)&lt br/&gt         at org.apache.pig.newplan.logical.expression.UserFuncExpression.getFieldSchema(UserFuncExpression.java:154)&lt br/&gt         at org.apache.pig.newplan.logical.optimizer.FieldSchemaResetter.execute(SchemaResetter.java:192)&lt br/&gt         at org.apache.pig.newplan.logical.expression.AllSameExpressionVisitor.visit(AllSameExpressionVisitor.java:143)&lt br/&gt         at org.apache.pig.newplan.logical.expression.UserFuncExpression.accept(UserFuncExpression.java:71)&lt br/&gt         at org.apache.pig.newplan.ReverseDependencyOrderWalker.walk(ReverseDependencyOrderWalker.java:70)&lt br/&gt         at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:50)&lt br/&gt         at org.apache.pig.newplan.logical.optimizer.SchemaResetter.visit(SchemaResetter.java:104)&lt br/&gt         at org.apache.pig.newplan.logical.relational.LOGenerate.accept(LOGenerate.java:240)&lt br/&gt         at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)&lt br/&gt         at org.apache.pig.newplan.logical.optimizer.SchemaResetter.visit(SchemaResetter.java:93)&lt br/&gt         at org.apache.pig.newplan.logical.relational.LOForEach.accept(LOForEach.java:73)&lt br/&gt         at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)&lt br/&gt         at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:50)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.compile(HExecutionEngine.java:279)&lt br/&gt         at org.apache.pig.PigServer.compilePp(PigServer.java:1480)&lt br/&gt         at org.apache.pig.PigServer.explain(PigServer.java:1042)&lt /p&gt
+2
+src.org.apache.pig.EvalFunc
+test.org.apache.pig.test.TestEvalPipeline2
+
+59 PIG-1842
+Improve Scalability of the XMLLoader for large datasets such as wikipedia &lt p&gt The current XMLLoader for Pig, does not work well for large datasets such as the wikipedia dataset. Each mapper reads in the entire XML file resulting in extermely slow run times.&lt /p&gt &lt p&gt Viraj&lt /p&gt
+3
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.storage.XMLLoader
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.storage.XMLLoader.XMLFileInputFormat
+contrib.piggybank.java.src.test.java.org.apache.pig.piggybank.test.storage.TestXMLLoader
+
+60 PIG-1841
+TupleSize implemented incorrectly &lt p&gt I sent this to the list:&lt /p&gt &lt p&gt I&apos m looking at Pig&apos s TupleSize implementation and wondering if it&apos s&lt br/&gt implemented correctly:&lt /p&gt &lt p&gt    @Override&lt br/&gt    public Long exec(Tuple input) throws IOException {&lt br/&gt        try&lt /p&gt {            if (input == null) return null             return Long.valueOf(input.size())         }&lt p&gt catch(Exception e)&lt /p&gt {            int errCode = 2106             String msg = &quot Error while computing size in &quot  + this.getClass().getSimpleName()             throw new ExecException(msg, errCode, PigException.BUG, e)         }&lt p&gt    }&lt /p&gt &lt p&gt I have a script that looks like&lt /p&gt &lt p&gt A = FOREACH A GENERATE STRSPLIT(value, &apos \u0001&apos ) AS values &lt br/&gt B = FOREACH B GENERATE values, SIZE(values) AS cnt &lt /p&gt &lt p&gt and cnt always ends up as 1.  From the code, it looks like TupleSize&lt br/&gt is intended to only return the number of arguments into the SIZE()&lt br/&gt UDF?  Is that really the intention and I&apos m using the SIZE() UDF wrong?&lt br/&gt  Or, is it just a bug and it&apos s supposed to be written as &quot return&lt br/&gt Long.valueOf(((Tuple) input.get(0)).size()))&quot ?&lt /p&gt &lt p&gt I got this response back:&lt /p&gt &lt p&gt This is definitely a bug. Can you open a Jira ticket?&lt /p&gt &lt p&gt Done!&lt /p&gt
+2
+src.org.apache.pig.builtin.TupleSize
+test.org.apache.pig.test.TestBuiltin
+
+61 PIG-1839
+piggybank: XMLLoader will always add an extra empty tuple even if no tags are matched &lt p&gt The XMLLoader in piggy bank always add an empty tuple. Everytime this has to be filtered out. Instead the same could be done by the loader itself.&lt br/&gt Consider the below script :&lt br/&gt a= load &apos a.xml&apos  using org.apache.pig.piggybank.storage.XMLLoader(&apos name&apos ) &lt br/&gt dump a &lt br/&gt b= filter a by $0  is not null &lt br/&gt dump b &lt /p&gt &lt p&gt The output of first dump is :&lt br/&gt (&amp lt name&amp gt  foobar &amp lt /name&amp gt )&lt br/&gt (&amp lt name&amp gt  foo &amp lt /name&amp gt )&lt br/&gt (&amp lt name&amp gt  justname &amp lt /name&amp gt )&lt br/&gt ()&lt /p&gt &lt p&gt The output of second dump is :&lt br/&gt (&amp lt name&amp gt  foobar &amp lt /name&amp gt )&lt br/&gt (&amp lt name&amp gt  foo &amp lt /name&amp gt )&lt br/&gt (&amp lt name&amp gt  justname &amp lt /name&amp gt )&lt /p&gt &lt p&gt Again another case is if I dont have a matching tag , still the loader will generate the empty tuple.&lt /p&gt
+2
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.storage.XMLLoader
+contrib.piggybank.java.src.test.java.org.apache.pig.piggybank.test.storage.TestXMLLoader
+
+62 PIG-1837
+Error while using IsEmpty function &lt p&gt I have the following 2 inputs:&lt /p&gt &lt p&gt data1: &lt br/&gt 1       11&lt br/&gt 2       15&lt /p&gt &lt p&gt data2:&lt br/&gt 1       10&lt br/&gt 4       11&lt br/&gt 5       10&lt /p&gt &lt p&gt And the following script to work on the data:&lt /p&gt &lt p&gt grunt&amp gt  A = load &apos data1&apos  as (x, y: int) &lt br/&gt grunt&amp gt  B = load &apos data2&apos  as (x, z: int) &lt br/&gt grunt&amp gt  C = cogroup A by x, B by x &lt br/&gt grunt&amp gt  D = foreach C generate group, SUM(((IsEmpty(A.y))? &lt /p&gt {(0)} : A.y)) + SUM (((IsEmpty(B.z))? {(0)}&lt p&gt  : B.z)) &lt br/&gt grunt&amp gt  dump D &lt /p&gt &lt p&gt After running for a while, I get the following error:&lt /p&gt &lt p&gt Backend error : org.apache.pig.builtin.IsEmpty cannot be cast to org.apache.pig.Accumulator&lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.AccumulatorOptimizer
+test.org.apache.pig.test.TestAccumulator
+
+63 PIG-1831
+Indeterministic behavior in local mode due to static variable PigMapReduce.sJobConf &lt p&gt The below script when run in local mode gives me a different output. It looks like in local mode I have to store a relation obtained through streaming in order to use it afterwards.&lt /p&gt &lt p&gt  For example consider the below script : &lt /p&gt &lt p&gt DEFINE MySTREAMUDF `test.sh` &lt br/&gt A  = LOAD &apos myinput&apos  USING PigStorage() AS (myId:chararray, data2, data3,data4 ) &lt br/&gt B = STREAM A THROUGH MySTREAMUDF AS (wId:chararray, num:int) &lt br/&gt --STORE B into &apos output.B&apos  &lt br/&gt C = JOIN B by wId LEFT OUTER, A by myId &lt br/&gt D = FOREACH C GENERATE B::wId,B::num,data4  &lt br/&gt D = STREAM D THROUGH MySTREAMUDF AS (f1:chararray,f2:int) &lt br/&gt --STORE D into &apos output.D&apos  &lt br/&gt E = foreach B GENERATE wId,num &lt br/&gt F = DISTINCT E &lt br/&gt G = GROUP F ALL &lt br/&gt H = FOREACH G GENERATE COUNT_STAR(F) as TotalCount &lt br/&gt I = CROSS D,H &lt br/&gt STORE I  into &apos output.I&apos  &lt /p&gt &lt p&gt test.sh&lt br/&gt ---------&lt br/&gt #/bin/bash&lt br/&gt cut -f1,3&lt /p&gt &lt p&gt And input is &lt br/&gt abcd    label1  11      feature1&lt br/&gt acbd    label2  22      feature2&lt br/&gt adbc    label3  33      feature3&lt /p&gt &lt p&gt Here if I store relation B and D then everytime i get the result  :&lt br/&gt acbd            3&lt br/&gt abcd            3&lt br/&gt adbc            3&lt /p&gt &lt p&gt But if i dont store relations B and D then I get an empty output.  Here again I have observed that this behaviour is random ie sometimes like 1out of 5 runs there will be output. &lt /p&gt
+25
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce.Map
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.partitioners.SkewedPartitioner
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCollectedGroup
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCombinerPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.PODistinct
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POJoinPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMergeCogroup
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMergeJoin
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPartitionRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSort
+src.org.apache.pig.backend.hadoop.executionengine.util.MapRedUtil
+src.org.apache.pig.backend.hadoop.streaming.HadoopExecutableManager
+src.org.apache.pig.builtin.Distinct
+src.org.apache.pig.data.InternalCachedBag
+src.org.apache.pig.data.InternalDistinctBag
+src.org.apache.pig.data.InternalSortedBag
+src.org.apache.pig.impl.builtin.DefaultIndexableLoader
+src.org.apache.pig.impl.io.FileLocalizer
+test.org.apache.pig.test.TestFRJoin
+test.org.apache.pig.test.TestFinish
+test.org.apache.pig.test.TestPruneColumn
+test.org.apache.pig.test.utils.FILTERFROMFILE
+
+64 PIG-1829
+&quot 0&quot  value seen in PigStat&apos s map/reduce runtime, even when the job is successful &lt p&gt Pig runtime calls JobClient.getMapTaskReports(jobId) and JobClient.getReduceTaskReports(jobId) to get statistics about numbers of maps/reducers, as well as max/min/avg time of these tasks. But from time to time, these calls return empty lists. When that happens pig is reports 0 values for the stats. &lt /p&gt &lt p&gt The jobtracker keeps the stats information only for a limited duration based on the configuration parameters  mapred.jobtracker.completeuserjobs.maximum and mapred.job.tracker.retiredjobs.cache.size. Since pig collects the stats after jobs have finished running, it is possible that the stats for the initial jobs are no longer available. To have better chances of getting the stats, it should be collected as soon as the job is over. &lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher
+src.org.apache.pig.tools.pigstats.PigStatsUtil
+
+65 PIG-1820
+New logical plan: FilterLogicExpressionSimplifier fail to deal with UDF &lt p&gt The following script fail:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0, a1)  b = filter a by (a0 is not &lt span class=&quot code-keyword&quot &gt null&lt /span&gt  or a1 is not &lt span class=&quot code-keyword&quot &gt null&lt /span&gt ) and IsEmpty(a0)  explain b  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error message:&lt br/&gt Caused by: java.lang.ClassCastException: org.apache.pig.newplan.logical.expression.UserFuncExpression cannot be cast to org.apache.pig.newplan.logical.expression.BinaryExpression&lt br/&gt         at org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier$LogicalExpressionSimplifierTransformer.handleBinary(LogicalExpressionSimplifier.java:561)&lt br/&gt         at org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier$LogicalExpressionSimplifierTransformer.handleAnd(LogicalExpressionSimplifier.java:429)&lt br/&gt         at org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier$LogicalExpressionSimplifierTransformer.inferRelationship(LogicalExpressionSimplifier.java:397)&lt br/&gt         at org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier$LogicalExpressionSimplifierTransformer.handleDNFOr(LogicalExpressionSimplifier.java:281)&lt br/&gt         at org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier$LogicalExpressionSimplifierTransformer.checkDNFLeaves(LogicalExpressionSimplifier.java:192)&lt br/&gt         at org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier$LogicalExpressionSimplifierTransformer.transform(LogicalExpressionSimplifier.java:108)&lt br/&gt         at org.apache.pig.newplan.optimizer.PlanOptimizer.optimize(PlanOptimizer.java:110)&lt /p&gt
+2
+src.org.apache.pig.newplan.logical.rules.LogicalExpressionSimplifier
+test.org.apache.pig.test.TestFilterSimplification
+
+66 PIG-1815
+pig task retains used instances of PhysicalPlan &lt p&gt map tasks of a pig query ran out of memory because there were too many (thousands)  instances of combiner PhysicalPlan in memory. Each physical plan (except the last?) was linked to older one as shown in the yourkit snapshot that I am attaching.&lt /p&gt &lt p&gt This problem was noticed with 0.8 because of the split combination feature, that resulted in each map having larger inputs. The query also had large physical plan because of multi-query, it had 17 MR jobs merged into one during the multi-query optimization phase.&lt /p&gt
+1
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigCombiner
+
+67 PIG-1813
+Pig 0.8 throws ERROR 1075 while trying to refer a map in the result of  eval udf.Works with 0.7 &lt p&gt register myudf.jar &lt br/&gt A = load &apos input&apos  MyZippedStorage(&apos \u0001&apos ) as ($inputSchema) &lt br/&gt B = foreach A generate id , value   &lt br/&gt C = foreach B generate id , org.myudf.ExplodeHashList( (chararray)value, &apos \u0002&apos , &apos \u0004&apos , &apos \u0003&apos ) as value &lt br/&gt D = FILTER C by value is not null &lt br/&gt E = foreach D generate id , flatten(org.myudf.GETFIRST(value)) as hop &lt br/&gt F = foreach E generate id , hop#&apos rmli&apos  as rmli:bytearray  &lt br/&gt store F into &apos output.bz2&apos  using PigStorage() &lt /p&gt &lt p&gt The above script fails when run with Pig 0.8 but runs fine with Pig 0.7 or if pig.usenewlogicalplan=false.&lt br/&gt The below is the exception thrown in 0.8 :&lt /p&gt &lt p&gt org.apache.pig.backend.executionengine.ExecException: ERROR 1075: Received a bytearray from the UDF. Cannot determine how to convert the bytearray to map.&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POCast.getNext(POCast.java:952)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POMapLookUp.processInput(POMapLookUp.java:87)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POMapLookUp.getNext(POMapLookUp.java:98)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POMapLookUp.getNext(POMapLookUp.java:117)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.processPlan(POForEach.java:346)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.getNext(POForEach.java:291)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.runPipeline(PigMapBase.java:236)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:231)&lt br/&gt  at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapBase.map(PigMapBase.java:53)&lt br/&gt  at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:144)&lt br/&gt  at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:638)&lt br/&gt  at org.apache.hadoop.mapred.MapTask.run(MapTask.java:314)&lt br/&gt  at org.apache.hadoop.mapred.Child$4.run(Child.java:217)&lt br/&gt  at java.security.AccessController.doPrivileged(Native Method)&lt br/&gt  at javax.security.auth.Subject.doAs(Subject.java:396)&lt br/&gt  at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1062)&lt br/&gt  at org.apache.hadoop.mapred.Child.main(Child.java:211)&lt /p&gt
+3
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POUserFunc
+src.org.apache.pig.newplan.logical.relational.LOGenerate
+test.org.apache.pig.test.TestEvalPipeline2
+
+68 PIG-1812
+Problem with DID_NOT_FIND_LOAD_ONLY_MAP_PLAN &lt p&gt Hi, &lt br/&gt I have the following input files:&lt /p&gt &lt p&gt pkg.txt&lt /p&gt &lt p&gt a       3       &lt /p&gt {(123,1.0),(236,2.0)}&lt p&gt a       3       &lt /p&gt {(236,1.0)}&lt p&gt model.txt&lt /p&gt &lt p&gt a       123     2       0.33&lt br/&gt a       236     2       0.5&lt /p&gt &lt p&gt My script is listed below:&lt /p&gt &lt p&gt A = load &apos pkg.txt&apos  using PigStorage(&apos \t&apos ) as (pkg:chararray, ts:int, cat_bag:&lt /p&gt {t:(id:chararray, wht:float)}&lt p&gt ) &lt /p&gt &lt p&gt M = load &apos model.txt&apos  using PigStorage(&apos \t&apos ) as (pkg:chararray, cat_id:chararray, ts:int, score:double) &lt /p&gt &lt p&gt B = foreach A generate ts, pkg, flatten(cat_bag.id) as (cat_id:chararray) &lt /p&gt &lt p&gt B = distinct B &lt /p&gt &lt p&gt H1 = cogroup M by (pkg, cat_id) inner, B by (pkg, cat_id) &lt /p&gt &lt p&gt H2 = foreach H1 &lt /p&gt {         I = order M by ts          J = order B by ts          generate flatten(group) as (pkg:chararray, cat_id:chararray), J.ts as tsorig, I.ts as tsmap  }&lt p&gt dump H2 &lt /p&gt &lt p&gt When running this script, I got a warning about &quot Encountered Warning DID_NOT_FIND_LOAD_ONLY_MAP_PLAN 1 time(s)&quot  and pig error log as below:&lt /p&gt &lt p&gt Pig Stack Trace&lt /p&gt &lt p&gt ---------------&lt /p&gt &lt p&gt ERROR 2043: Unexpected error during execution.&lt br/&gt org.apache.pig.impl.logicalLayer.FrontendException: ERROR 1066: Unable to open iterator for alias H2&lt br/&gt         at org.apache.pig.PigServer.openIterator(PigServer.java:764)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.processDump(GruntParser.java:612)&lt br/&gt         at org.apache.pig.tools.pigscript.parser.PigScriptParser.parse(PigScriptParser.java:303)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:165)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:141)&lt br/&gt         at org.apache.pig.tools.grunt.Grunt.exec(Grunt.java:90)&lt br/&gt         at org.apache.pig.Main.run(Main.java:500)&lt br/&gt         at org.apache.pig.Main.main(Main.java:107)&lt br/&gt Caused by: org.apache.pig.PigException: ERROR 1002: Unable to store alias H2&lt br/&gt         at org.apache.pig.PigServer.storeEx(PigServer.java:888)&lt br/&gt         at org.apache.pig.PigServer.store(PigServer.java:826)&lt br/&gt         at org.apache.pig.PigServer.openIterator(PigServer.java:738)&lt br/&gt         ... 7 more&lt br/&gt Caused by: org.apache.pig.backend.executionengine.ExecException: ERROR 2043: Unexpected error during execution.&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.execute(HExecutionEngine.java:403)&lt br/&gt         at org.apache.pig.PigServer.executeCompiledLogicalPlan(PigServer.java:1208)&lt br/&gt         at org.apache.pig.PigServer.storeEx(PigServer.java:884)&lt br/&gt         ... 9 more&lt br/&gt Caused by: java.lang.ClassCastException: org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLoad cannot be cast to org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLocalRearrange&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer.visitMROp(SecondaryKeyOptimizer.java:352)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceOper.visit(MapReduceOper.java:246)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceOper.visit(MapReduceOper.java:41)&lt br/&gt         at org.apache.pig.impl.plan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:69)&lt br/&gt         at org.apache.pig.impl.plan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:71)&lt br/&gt         at org.apache.pig.impl.plan.DepthFirstWalker.walk(DepthFirstWalker.java:52)&lt br/&gt         at org.apache.pig.impl.plan.PlanVisitor.visit(PlanVisitor.java:51)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher.compile(MapReduceLauncher.java:498)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher.launchPig(MapReduceLauncher.java:117)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.execute(HExecutionEngine.java:378)&lt br/&gt         ... 11 more&lt /p&gt &lt p&gt But, when I removed the DISTINCT statement before COGROUP, i.e. &quot B = distinct B &quot   this script can run smoothly. I have also tried other reducer side operations like ORDER, it seems that they will also trigger above error. This is really very confusing.&lt /p&gt
+6
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.KeyTypeDiscoveryVisitor
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler.RearrangeAdjuster
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler.RearrangeAdjuster.LimitAdjuster
+test.org.apache.pig.test.TestEvalPipeline2
+test.org.apache.pig.test.TestMRCompiler
+
+69 PIG-1809
+TOMAP builtin function &lt p&gt While doing some testing, I needed a function that generated a map. I created TOMAP that is similar to TOTUPLE and TOBAG and want to contribute it to builtin in case it is useful to others&lt /p&gt
+1
+test.org.apache.pig.test.TestBuiltin
+
+70 PIG-1808
+Error message in 0.8 not much helpful as compared to 0.7 &lt p&gt A = LOAD &apos i1&apos   &lt br/&gt B = LOAD &apos i2&apos   &lt br/&gt C = JOIN A by $92 left outer,B by $92   &lt br/&gt D =  filter C by $100 is null &lt br/&gt DUMP D &lt /p&gt &lt p&gt The below script fails both in 0.7 and 0.8 since A requires a valid schema to be defined. But the error message in 0.8 is not helpful.&lt /p&gt &lt p&gt Error message in 0.8 &lt br/&gt -----------------------------&lt br/&gt ERROR 2000: Error processing rule PushUpFilter. Try -t PushUpFilter&lt br/&gt org.apache.pig.impl.logicalLayer.FrontendException: ERROR 1066: Unable to open iterator for alias D&lt br/&gt         ....&lt br/&gt Caused by: org.apache.pig.impl.logicalLayer.FrontendException: ERROR 2042: Error in new logical plan. Try -Dpig.usenewlogicalplan=false.&lt br/&gt         ....&lt br/&gt Caused by: org.apache.pig.impl.logicalLayer.FrontendException: ERROR 2000: Error processing rule PushUpFilter. Try -t PushUpFilter&lt br/&gt         ....&lt br/&gt Caused by: java.lang.NullPointerException&lt br/&gt         at org.apache.pig.newplan.logical.rules.PushUpFilter$PushUpFilterTransformer.hasAll(PushUpFilter.java:308)&lt br/&gt         at org.apache.pig.newplan.logical.rules.PushUpFilter$PushUpFilterTransformer.check(PushUpFilter.java:141)&lt br/&gt         at org.apache.pig.newplan.optimizer.PlanOptimizer.optimize(PlanOptimizer.java:108)&lt br/&gt         ... 13 more&lt /p&gt &lt p&gt Error message in 0.7&lt br/&gt -----------------------------&lt br/&gt org.apache.pig.impl.logicalLayer.FrontendException: ERROR 1066: Unable to open iterator for alias D&lt br/&gt         ....&lt br/&gt         ....&lt br/&gt Caused by: org.apache.pig.backend.hadoop.executionengine.physicalLayer.LogicalToPhysicalTranslatorException: &lt br/&gt ERROR 1109: Input (B) on which outer join is desired should have a valid schema&lt /p&gt
+2
+src.org.apache.pig.newplan.logical.rules.PushUpFilter
+test.org.apache.pig.test.TestPushUpFilter
+
+75 PIG-1791
+System property mapred.output.compress, but pig-cluster-hadoop-site.xml doesn&apos t &lt p&gt In &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1714&quot  title=&quot Option mapred.output.compress doesn&amp #39 t work in Pig 0.8 but worked in 0.7&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1714&quot &gt &lt del&gt PIG-1714&lt /del&gt &lt /a&gt , we allow user to set system property mapred.output.compress. It also works in pig.properties. However, the same entry in pig-cluster-hadoop-site.xml is ignored.&lt /p&gt
+2
+src.org.apache.pig.Main
+src.org.apache.pig.PigServer
+
+77 PIG-1787
+Error in logical plan generated &lt p&gt Here is a sample pig script:&lt /p&gt &lt p&gt set default_parallel 2&lt br/&gt ALLDATA = load &apos sample.txt&apos  using PigStorage() as (id, spaceid, type, pcid) &lt br/&gt C1 = filter ALLDATA by (type == &apos p&apos  and&lt br/&gt                    (spaceid == &apos 1196250013&apos &lt br/&gt                     or spaceid == &apos 1196250024&apos &lt br/&gt                     or spaceid == &apos 1196250011&apos )) &lt br/&gt C2 = group C1 by pcid &lt br/&gt C3 = foreach C2 generate flatten(group) as (pc_id), COUNT(C1) as tot &lt br/&gt C4 = order C3 by tot desc &lt br/&gt C5 = limit C4 3 &lt br/&gt C6 = join C5 by pc_id, C1 by pcid &lt br/&gt dump C6 &lt /p&gt &lt p&gt sample.txt:&lt br/&gt 1       1196250013      p       1234&lt br/&gt 2       1196250024      p       2314&lt br/&gt 3       1196250011      t       1111&lt br/&gt 4       1111111111      p       1231&lt br/&gt 5       1196250013      p       1254&lt br/&gt 6       1196250024      p       9007&lt /p&gt &lt p&gt This fails with the error &lt br/&gt java.io.IOException: Type mismatch in key from map: expected org.apache.pig.impl.io.NullableLongWritable, recieved&lt br/&gt org.apache.pig.impl.io.NullableBytesWritable&lt br/&gt when both pc_id and pcid are of type bytearray.&lt /p&gt &lt p&gt The script seems to work when &lt br/&gt  a) replicated join is substituted in the place of the regular join &lt br/&gt  b) pcid is cast to long in the loader &lt br/&gt  c) doing a dump of any statement before C6&lt br/&gt  d) setting default_parallel to 1 or removing it.&lt /p&gt &lt p&gt One possible cause seems to be with the logical plan generation during the projection operation in C4 as can be observed from the describe statement. &lt /p&gt
+3
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.plans.POPackageAnnotator
+test.org.apache.pig.test.TestEvalPipeline2
+
+78 PIG-1785
+New logical plan: uid conflict in flattened fields &lt p&gt The following script produce wrong result:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0:bag{t:tuple(i0:&lt span class=&quot code-object&quot &gt int&lt /span&gt , i1:&lt span class=&quot code-object&quot &gt int&lt /span&gt )})  b = foreach a generate flatten(a0) as (b0, b1), flatten(a0) as (b2, b3)  c = filter b by b0&amp gt b2  dump c  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt 1.txt:&lt /p&gt {(1,2),(2,3)}&lt p&gt Expected result:&lt br/&gt (2,3,1,2)&lt /p&gt &lt p&gt We get nothing.&lt /p&gt
+5
+src.org.apache.pig.newplan.logical.rules.DuplicateForEachColumnRewrite
+src.org.apache.pig.newplan.logical.rules.ImplicitSplitInserter
+src.org.apache.pig.newplan.optimizer.PlanOptimizer
+src.org.apache.pig.newplan.optimizer.Rule
+test.org.apache.pig.test.TestEvalPipeline2
+
+79 PIG-1782
+Add ability to load data by column family in HBaseStorage &lt p&gt It would be nice to load all columns in the column family by using short hand syntax like:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt CpuMetrics = load &apos hbase://SystemMetrics&apos  USING org.apache.pig.backend.hadoop.hbase.HBaseStorage(&apos cpu:&apos ,&apos -loadKey&apos )  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Assuming there are columns cpu: sys.0, cpu:sys.1, cpu:user.0, cpu:user.1,  in cpu column family.&lt /p&gt &lt p&gt CpuMetrics would contain something like:&lt /p&gt &lt div class=&quot preformatted panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot preformattedContent panelContent&quot &gt &lt pre&gt (rowKey, cpu:sys.0, cpu:sys.1, cpu:user.0, cpu:user.1) &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+src.org.apache.pig.backend.hadoop.hbase.HBaseStorage
+src.org.apache.pig.backend.hadoop.hbase.HBaseTableInputFormat
+
+80 PIG-1779
+Worng stats shown when there are multiple loads but same file names &lt p&gt In Pig 0.8 , the stats is showing wrong information when ever I have multiple loads and the the file names are similar .&lt /p&gt &lt p&gt a) Problem 1&lt br/&gt Sample Script : &lt br/&gt A = LOAD &apos myfolder/tryme&apos  AS (f1) &lt br/&gt B = LOAD &apos myfolder/anotherfolder/tryme&apos  AS (f2) &lt br/&gt C = JOIN A BY f1, B BY f2 &lt br/&gt DUMP C &lt /p&gt &lt p&gt Here I have 10 records for A and 3 records for B , but pig says &lt br/&gt Successfully read 6 records from: &quot &amp lt nn&amp gt /myfolder/anotherfolder/tryme&quot &lt br/&gt Successfully read 6 records from: &quot &amp lt nn&amp gt myfolder/tryme&quot &lt /p&gt &lt p&gt b) Problem 2&lt br/&gt A = LOAD &apos myfolder/tryme&apos  AS (f1) &lt br/&gt B = LOAD &apos myfolder/an1111otherfolder/tryme&apos  AS (f2) &lt br/&gt C = JOIN A BY f1, B BY f2 &lt br/&gt DUMP C &lt /p&gt &lt p&gt Here there is no folder named an1111otherfolder while &quot myfolder/tryme&quot  exists . But pig says&lt br/&gt Failed to read data from &quot &amp lt nn&amp gt /myfolder/an1111otherfolder/tryme&quot &lt br/&gt Failed to read data from &quot &amp lt nn&amp gt /myfolder/tryme&quot &lt /p&gt
+4
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigRecordReader
+src.org.apache.pig.tools.pigstats.JobStats
+src.org.apache.pig.tools.pigstats.PigStatsUtil
+test.org.apache.pig.test.TestPigRunner
+
+81 PIG-1776
+changing statement corresponding to alias after explain , then doing dump gives incorrect result &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  grunt&amp gt  a = load &apos /tmp/t2.txt&apos  as (str:chararray, num1:&lt span class=&quot code-object&quot &gt int&lt /span&gt , alph : chararray)  grunt&amp gt  dump a  (ABC,1,a) (ABC,1,b) (ABC,1,a) (ABC,2,b) (DEF,1,d) (XYZ,1,x)  grunt&amp gt  c = foreach b  generate group.str, group.$1, COUNT(a.alph)             grunt&amp gt  dump c  -- gives correct results (ABC,1,3) (ABC,2,1) (DEF,1,1) (XYZ,1,1)  /* but dumping c after following steps gives incorrect results */  grunt&amp gt  c = foreach b  generate group.$0 , (CHARARRAY)group.$1                                                                                   grunt&amp gt  explain c  ... ... grunt&amp gt  c = foreach b  generate group.str, group.$1, COUNT(a.alph)   grunt&amp gt  dump c               (ABC,1,0) (ABC,2,0) (DEF,1,0) (XYZ,1,0)  &lt /pre&gt &lt /div&gt &lt /div&gt
+3
+src.org.apache.pig.PigServer
+src.org.apache.pig.newplan.logical.relational.LOLoad
+test.org.apache.pig.test.TestUDFContext
+
+82 PIG-1771
+New logical plan: Merge schema fail if LoadFunc.getSchema return different schema with &quot Load...AS&quot &lt p&gt The following script fail:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0:chararray, a1:chararray, a3, a4:map[])  store a into &apos 1.bin&apos  using BinStorage()   auxData = LOAD &apos 1.bin&apos  USING BinStorage(&apos Utf8StorageConverter&apos ) AS (cookieId:chararray, type:chararray, record:tuple(), state:map[])  dump auxData  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error message:&lt br/&gt Caused by: org.apache.pig.impl.logicalLayer.FrontendException: ERROR 2246: Error merging schema record#-1:tuple{} and null#-1:bytearray&lt br/&gt         at org.apache.pig.newplan.logical.relational.LogicalSchema.merge(LogicalSchema.java:337)&lt br/&gt         at org.apache.pig.newplan.logical.relational.LOLoad.getSchema(LOLoad.java:103)&lt br/&gt         at org.apache.pig.newplan.logical.optimizer.SchemaResetter.visit(SchemaResetter.java:59)&lt br/&gt         at org.apache.pig.newplan.logical.relational.LOLoad.accept(LOLoad.java:159)&lt br/&gt         at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)&lt br/&gt         at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:50)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.compile(HExecutionEngine.java:261)&lt br/&gt         ... 12 more&lt /p&gt
+2
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestEvalPipeline2
+
+83 PIG-1770
+matches clause problem with chars that have special meaning in dk.brics - #, @ .. &lt p&gt When special chars #, @ , and the &apos optional&apos  patterns described here - &lt a href=&quot http://www.brics.dk/automaton/doc/dk/brics/automaton/RegExp.html#RegExp%28java.lang.String%29&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://www.brics.dk/automaton/doc/dk/brics/automaton/RegExp.html#RegExp%28java.lang.String%29&lt /a&gt  are used , the regex match fails to work. &lt /p&gt &lt p&gt This is related to  &lt a href=&quot https://issues.apache.org/jira/browse/PIG-965&quot  title=&quot PERFORMANCE: optimize common case in matches (PORegex)&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-965&quot &gt &lt del&gt PIG-965&lt /del&gt &lt /a&gt .&lt /p&gt &lt p&gt Example and workaround are as follows -&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  grunt&amp gt  cat t.txt                            asd#asdf zxcasdf 2#asdf  grunt&amp gt  l = load &apos t.txt&apos  as (a : chararray)  grunt&amp gt  f = filter l by (a matches &apos .*#.*&apos )  grunt&amp gt  dump f   -- No output, though two rows are expected.  --As a workaround, add a \ to escape the # . This regex is valid even in 0.7 , and it will be even after &lt span class=&quot code-keyword&quot &gt this&lt /span&gt  bug is fixed (its valid java regex, which has same meaning as above regex). grunt&amp gt  f = filter l by (a matches &apos .*\\#.*&apos )  grunt&amp gt  dump f   asd#asdf 2#asdf &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.regex.CompiledAutomaton
+test.org.apache.pig.test.TestPORegexp
+
+84 PIG-1769
+Consistency for HBaseStorage &lt p&gt In our load statement we are allowed to prefix the table name with &quot hbase://&quot  but when we call&lt br/&gt store it throws an exception unless we remove hbase:// from the table&lt br/&gt name:&lt /p&gt &lt p&gt this works:&lt br/&gt store raw into &apos piggytest2&apos  USING&lt br/&gt org.apache.pig.backend.hadoop.hbase.HBaseStorage(&apos content2:field1&lt br/&gt anchor2:field1a anchor2:field2a&apos ) &lt /p&gt &lt p&gt this won&apos t&lt br/&gt store raw into &apos hbase://piggytest2&apos &lt /p&gt &lt p&gt Exception:&lt br/&gt Caused by: java.lang.IllegalArgumentException:&lt br/&gt java.net.URISyntaxException: Relative path in absolute URI:&lt br/&gt hbase://piggytest2_logs&lt /p&gt &lt p&gt Would be nice to be able to prefix the store with hbase:// so it&apos s consistent with the load syntax&lt /p&gt
+3
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.JobControlCompiler
+src.org.apache.pig.backend.hadoop.hbase.HBaseStorage
+test.org.apache.pig.test.TestHBaseStorage
+
+85 PIG-1755
+Clean up duplicated code in Physical Operators &lt p&gt A lot of the getNext() implementations in PhysicalOperators is copy-pasted, with only the method signatures and casts changing. &lt br/&gt Shorter code leads to less bugs and is easier to read.&lt /p&gt
+25
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.PhysicalOperator
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.Add
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.ConstantExpression
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.Divide
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.EqualToExpr
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.ExpressionOperator
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.GTOrEqualToExpr
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.GreaterThanExpr
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.LTOrEqualToExpr
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.LessThanExpr
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.Mod
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.Multiply
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.NotEqualToExpr
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POBinCond
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POIsNull
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POUserFunc
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.Subtract
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCollectedGroup
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLocalRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPartitionRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPreCombinerLocalRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSort
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSort.SortComparator.UDFSortComparator
+src.org.apache.pig.data.DataType
+
+86 PIG-1749
+Update Pig parser so that function arguments can contain newline characters &lt p&gt We want to add this feature so that users can put long function argument strings in multiple lines. &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1748&quot  title=&quot Add load/store function AvroStorage for avro data&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1748&quot &gt &lt del&gt PIG-1748&lt /del&gt &lt /a&gt  depends on this. &lt /p&gt
+1
+test.org.apache.pig.test.TestParamSubPreproc
+
+87 PIG-1717
+pig needs to call setPartitionFilter if schema is null but getPartitionKeys is not &lt p&gt I&apos m writing a loader that works with hive style partitioning e.g. /logs/type1/daydate=2010-11-01&lt br/&gt The loader does not know the schema upfront and this is something that the user adds in the script using the AS clause.&lt /p&gt &lt p&gt The problem is that this user defined schema is not available to the loader, so the loader cannot return any schema, the Loader does know what the partition keys are and pig needs in some way to know about these partition keys. &lt /p&gt &lt p&gt Currently if the schema is null pig never calls the LoadMetaData:getPartitionKeys method or the setPartitionFilter method.&lt /p&gt
+3
+src.org.apache.pig.impl.logicalLayer.LOLoad
+src.org.apache.pig.impl.util.Utils
+src.org.apache.pig.newplan.logical.relational.LOLoad
+
+88 PIG-1712
+Pig Illustrate rework &lt p&gt PigPen has been found to be a usable feature. The underlying PIG functionality, ILLUSTRATE, however, has not been stable and complete. It also has unique access paths that  are not shared by the mainstream PIG call paths, which makes it hard if not impossible to maintain as the PIG evolves along.&lt /p&gt &lt p&gt The purpose of this work is to use the common access paths yet still follow the performance-sensitive criteria for ILLUSTRATE, complete support for as many logical operators as theoretically possible,&lt br/&gt plus algorithm polishes and bug fixes as necessary. Details can be found in &lt a href=&quot http://wiki.apache.org/pig/PigIllustrate&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://wiki.apache.org/pig/PigIllustrate&lt /a&gt &lt /p&gt &lt p&gt Pig-366 has been for the PigPen in general, and was used for the previous ILLUSTRATE work too. With this JIRA, the work on ILLUSTRATE will be separated.&lt /p&gt &lt p&gt This JIRA also serves as an umbrella for existing issues in ILLUSTRATE. Specifically, &lt a href=&quot https://issues.apache.org/jira/browse/PIG-502&quot  title=&quot Limit and Illustrate do not work together&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-502&quot &gt &lt del&gt PIG-502&lt /del&gt &lt /a&gt , &lt a href=&quot https://issues.apache.org/jira/browse/PIG-903&quot  title=&quot ILLUSTRATE fails on &amp #39 Distinct&amp #39  operator&quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-903&quot &gt &lt del&gt PIG-903&lt /del&gt &lt /a&gt , &lt a href=&quot https://issues.apache.org/jira/browse/PIG-1066&quot  title=&quot ILLUSTRATE called after DESCRIBE results in &amp quot Grunt: ERROR 2999: Unexpected internal error. null&amp quot &quot  class=&quot issue-link&quot  data-issue-key=&quot PIG-1066&quot &gt &lt del&gt PIG-1066&lt /del&gt &lt /a&gt  should all fold into this issue.&lt /p&gt
+16
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PhyPlanSetter
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.plans.PhyPlanVisitor
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCollectedGroup
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMergeCogroup
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMergeJoin
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.PORead
+src.org.apache.pig.newplan.logical.relational.LOJoin
+src.org.apache.pig.pen.AugmentBaseDataVisitor
+src.org.apache.pig.pen.util.DependencyOrderLimitedWalker
+src.org.apache.pig.pen.util.FunctionalLogicalOptimizer
+test.org.apache.pig.test.TestFilter
+test.org.apache.pig.test.TestGrunt
+test.org.apache.pig.test.TestPODistinct
+test.org.apache.pig.test.TestPOSort
+test.org.apache.pig.test.TestPOUserFunc
+test.org.apache.pig.test.utils.GenPhyOp
+
+89 PIG-1697
+NullPointerException if log4j.properties is Used &lt p&gt If I use a &lt tt&gt log4j.properties&lt /tt&gt  &lt em&gt without&lt /em&gt  the magical line:&lt /p&gt &lt blockquote&gt &lt p&gt log4j.logger.org.apache.pig=WARN, MyAppender&lt /p&gt &lt /blockquote&gt &lt p&gt Pig 0.8.0 crashes on me and I get:&lt /p&gt &lt blockquote&gt &lt p&gt Details at logfile: /home/ranjit/src/Pig/stage/pig-0.8.0-SNAPSHOT/pig_1288005234464.log&lt /p&gt &lt /blockquote&gt &lt p&gt This file contains:&lt /p&gt &lt blockquote&gt &lt p&gt Error before Pig is launched&lt br/&gt ----------------------------&lt br/&gt ERROR 2999: Unexpected internal error. null&lt /p&gt &lt p&gt java.lang.NullPointerException&lt br/&gt  at org.apache.pig.Main.configureLog4J(Main.java:605)&lt br/&gt  at org.apache.pig.Main.run(Main.java:337)&lt br/&gt  at org.apache.pig.Main.main(Main.java:107)&lt br/&gt ================================================================================&lt /p&gt &lt /blockquote&gt &lt p&gt Line #605 in &lt tt&gt Main.java&lt /tt&gt  is:&lt /p&gt &lt blockquote&gt &lt p&gt backendProps.setProperty(&quot log4j.logger.org.apache.pig.level&quot , logLevel.toString()) &lt /p&gt &lt /blockquote&gt &lt p&gt and it turns out that &lt tt&gt logLevel&lt /tt&gt  is NULL in this case. That in turn is because line #603 contains:&lt /p&gt &lt blockquote&gt &lt p&gt logLevel = Logger.getLogger(&quot org.apache.pig&quot ).getLevel() &lt /p&gt &lt /blockquote&gt &lt p&gt I believe we should use &lt tt&gt Logger.getEffectiveLevel()&lt /tt&gt  instead.&lt /p&gt
+1
+src.org.apache.pig.Main
+
+90 PIG-1693
+support project-range expression. (was: There needs to be a way in foreach to indicate &quot and all the rest of the fields&quot  ) &lt p&gt A common use case we see in Pig is people have many columns in their data and they only want to operate on a few of them.  Consider for example if before storing data with ten columns, the user wants to perform a cast on one column:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  ... Z = foreach Y generate (&lt span class=&quot code-object&quot &gt int&lt /span&gt )firstcol, secondcol, thridcol, forthcol, fifthcol, sixthcol, seventhcol, eigthcol, ninethcol, tenthcol  store Z into &apos output&apos   &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Obviously this only gets worse as the user has more columns.  Ideally the above could be transformed to something like:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  ... Z = foreach Y generate (&lt span class=&quot code-object&quot &gt int&lt /span&gt )firstcol, &lt span class=&quot code-quote&quot &gt &quot and all the &lt span class=&quot code-keyword&quot &gt rest&lt /span&gt &quot &lt /span&gt   store Z into &apos output&apos  &lt /pre&gt &lt /div&gt &lt /div&gt
+21
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.ColumnChainInfo
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.ColumnInfo
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.SecondaryKeyOptimizer
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.LogToPhyTranslationVisitor
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.PORelationToExprProject
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POLocalRearrange
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POSort
+src.org.apache.pig.newplan.logical.expression.ExpToPhyTranslationVisitor
+src.org.apache.pig.newplan.logical.expression.ProjectExpression
+src.org.apache.pig.newplan.logical.relational.LOInnerLoad
+src.org.apache.pig.newplan.logical.relational.LOSort
+src.org.apache.pig.newplan.logical.relational.LogToPhyTranslationVisitor
+src.org.apache.pig.newplan.logical.rules.ColumnPruneHelper
+src.org.apache.pig.newplan.logical.rules.FilterAboveForeach
+src.org.apache.pig.newplan.logical.rules.MergeForEach
+test.org.apache.pig.test.Util
+
+91 PIG-1680
+Pig 0.8 HBaseStorage may not against HBase 0.89 &lt p&gt HBaseStorage is currently coded against the hbase 0.20.6 API. The hbase 0.89 API deprecates some methods and outright removes some others which causes HBaseStorage to no longer compile.&lt /p&gt &lt p&gt It is unclear whether one can run an HBase 0.20.6 client against a running 0.89 hbase instance. In my experience, it does not work. Therefore, HBaseStorage has to be compiled against 0.89. &lt /p&gt &lt p&gt Attached is a proposed patch to make 0.8.0 trunk compatible with hbase 0.89 as well as a script to help automate the upgrade.&lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.hbase.HBaseStorage
+src.org.apache.pig.backend.hadoop.hbase.HBaseTableInputFormat
+
+92 PIG-1675
+Suggest to allow PigServer can register pig script from InputStream &lt p&gt Currently, Pig only allow users to register script from file. Although it satisfy most people&apos s requirements, sometimes people hope to build pig script dynamically using code, then they need to create temp file for the script they build. So here I suggest to allow PigServer be able to register pig script from InputStream.&lt br/&gt InputStream is a more general type than File, pig script can been from file (FileInputStream)&lt br/&gt or from in-memory (ByteArrayInputStream) even it can been from remote machines (SocketInputStream)&lt br/&gt Here&apos s a blog which explains why using InputStream is better than using File in interface &lt a href=&quot http://java.dzone.com/articles/using-files-your-interfaces-0&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://java.dzone.com/articles/using-files-your-interfaces-0&lt /a&gt &lt /p&gt &lt p&gt So I suggest to add the following 4 methods in PigServer:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  void registerScript(InputStream in) &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  void registerScript(InputStream in, Map&amp lt &lt span class=&quot code-object&quot &gt String&lt /span&gt ,&lt span class=&quot code-object&quot &gt String&lt /span&gt &amp gt  params) &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  void registerScript(InputStream in, List&amp lt &lt span class=&quot code-object&quot &gt String&lt /span&gt &amp gt  paramsFiles) &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  void registerScript(InputStream in, Map&amp lt &lt span class=&quot code-object&quot &gt String&lt /span&gt ,&lt span class=&quot code-object&quot &gt String&lt /span&gt &amp gt  params,List&amp lt &lt span class=&quot code-object&quot &gt String&lt /span&gt &amp gt  paramsFiles) &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException  &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+src.org.apache.pig.PigServer
+test.org.apache.pig.test.TestPigServer
+
+93 PIG-1618
+Switch to new parser generator technology &lt p&gt There are many bugs in Pig related to the parser, particularly to bad error messages.  After review of Java CC we feel these will be difficult to address using that tool.  Also, the .jjt files used by JavaCC are hard to understand and maintain.  &lt /p&gt &lt p&gt ANTLR is being reviewed as the most likely choice to move to, but other parsers will be reviewed as well.&lt /p&gt &lt p&gt This JIRA will act as an umbrella issue for other parser issues.&lt /p&gt
+30
+src.org.apache.pig.PigServer
+src.org.apache.pig.backend.hadoop.executionengine.HExecutionEngine
+src.org.apache.pig.backend.hadoop.executionengine.HExecutionEngine.SortInfoSetter
+src.org.apache.pig.impl.PigContext
+src.org.apache.pig.newplan.logical.LogicalExpPlanMigrationVistor
+src.org.apache.pig.newplan.logical.LogicalPlanMigrationVistor
+src.org.apache.pig.newplan.logical.Util
+src.org.apache.pig.newplan.logical.expression.BinCondExpression
+src.org.apache.pig.newplan.logical.expression.ConstantExpression
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.expression.ExpToPhyTranslationVisitor
+src.org.apache.pig.newplan.logical.expression.LogicalExpressionPlan
+src.org.apache.pig.newplan.logical.expression.LogicalExpressionVisitor
+src.org.apache.pig.newplan.logical.expression.ProjectExpression
+src.org.apache.pig.newplan.logical.expression.UserFuncExpression
+src.org.apache.pig.newplan.logical.relational.LOCogroup
+src.org.apache.pig.newplan.logical.relational.LOGenerate
+src.org.apache.pig.newplan.logical.relational.LOInnerLoad
+src.org.apache.pig.newplan.logical.relational.LOJoin
+src.org.apache.pig.newplan.logical.relational.LOSort
+src.org.apache.pig.newplan.logical.relational.LOUnion
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestBestFitCast
+test.org.apache.pig.test.TestDataBagAccess
+test.org.apache.pig.test.TestEvalPipeline2
+test.org.apache.pig.test.TestLogToPhyCompiler
+test.org.apache.pig.test.TestMergeJoin
+test.org.apache.pig.test.TestMultiQueryLocal
+test.org.apache.pig.test.TestScalarAliases
+test.org.apache.pig.test.TestSchema
+
+94 PIG-1612
+error reporting: PigException needs to have a way to indicate that its message is appropriate for user &lt p&gt The error message printed to the user by pig is the message from the exception that is the &apos root cause&apos  from the chain of getCause() of exception that has been thrown. But often the &apos root cause&apos  exception does not have enough context that would make for a better error message. It should be possible for a PigException to indicate to the code that determines the error message that its getMessage() string should be used instead of that of the &apos cause&apos  exception.&lt /p&gt &lt p&gt The following code in LogUtils.java is used to determine the exception that is the &apos root cause&apos  -&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt      &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  &lt span class=&quot code-keyword&quot &gt static&lt /span&gt  PigException getPigException(Throwable top) {         Throwable current = top          Throwable pigException = top           &lt span class=&quot code-keyword&quot &gt while&lt /span&gt  (current != &lt span class=&quot code-keyword&quot &gt null&lt /span&gt  &amp amp &amp amp  current.getCause() != &lt span class=&quot code-keyword&quot &gt null&lt /span&gt ){             current = current.getCause()              &lt span class=&quot code-keyword&quot &gt if&lt /span&gt ((current &lt span class=&quot code-keyword&quot &gt instanceof&lt /span&gt  PigException) &amp amp &amp amp  (((PigException)current).getErrorCode() != 0)) {                 pigException = current              }         }         &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  (pigException &lt span class=&quot code-keyword&quot &gt instanceof&lt /span&gt  PigException? (PigException)pigException : &lt span class=&quot code-keyword&quot &gt null&lt /span&gt )               } &lt /pre&gt &lt /div&gt &lt /div&gt
+3
+src.org.apache.pig.PigException
+src.org.apache.pig.impl.logicalLayer.schema.Schema
+src.org.apache.pig.impl.util.LogUtils
+
+95 PIG-1566
+Support globbing for registering jars in pig script. &lt p&gt Currently user can not register pig jars with globing.&lt /p&gt &lt p&gt For example following register script will fail.&lt /p&gt &lt blockquote&gt &lt p&gt register /etc/jars/*.jar  &lt /p&gt &lt /blockquote&gt &lt p&gt It will be great if we can support such globing for registering jars.&lt /p&gt &lt p&gt Release notes:&lt br/&gt We allow globbing in register statement. User can use &quot *&quot  to denote a globbing, eg:&lt br/&gt register key*.jar&lt br/&gt register /home/jarpath/key*.jar&lt br/&gt register jars/key*.jar&lt /p&gt &lt p&gt The path can be absolute path or relative path start with working directory. &lt /p&gt &lt p&gt Note globbing does not further search in classpath as non-globbing case does, eg: &lt br/&gt &quot register key1234.jar&quot  works if key1234.jar in classpath, but not in working directory, however,&lt br/&gt &quot register key*.jar&quot  will not locate key1234.jar in this case.&lt /p&gt
+2
+src.org.apache.pig.PigServer
+test.org.apache.pig.test.TestPigServer
+
+96 PIG-1561
+XMLLoader in Piggybank does not support bz2 or gzip compressed XML files &lt p&gt I have a simple Pig script which uses the XMLLoader after the Piggybank is built.&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  register piggybank.jar  A = load &apos /user/viraj/capacity-scheduler.xml.gz&apos  using org.apache.pig.piggybank.storage.XMLLoader(&apos property&apos ) as (docs:chararray)  B = limit A 1  dump B  --store B into &apos /user/viraj/handlegz&apos  using PigStorage()  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt returns empty tuple&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  () &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt If you supply the uncompressed XML file, you get&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  (&amp lt property&amp gt      &amp lt name&amp gt mapred.capacity-scheduler.queue.my.capacity&amp lt /name&amp gt      &amp lt value&amp gt 10&amp lt /value&amp gt      &amp lt description&amp gt Percentage of the number of slots in the cluster that are       guaranteed to be available &lt span class=&quot code-keyword&quot &gt for&lt /span&gt  jobs in &lt span class=&quot code-keyword&quot &gt this&lt /span&gt  queue.     &amp lt /description&amp gt        &amp lt /property&amp gt ) &lt /pre&gt &lt /div&gt &lt /div&gt
+2
+contrib.piggybank.java.src.main.java.org.apache.pig.piggybank.storage.XMLLoader
+contrib.piggybank.java.src.test.java.org.apache.pig.piggybank.test.storage.TestXMLLoader
+
+97 PIG-1536
+use same logic for merging inner schemas in &quot default union&quot  and &quot union onschema&quot &lt p&gt We should consider using logic for merging inner schema in case of the two different types of union. &lt /p&gt &lt p&gt In case of &apos default union&apos , it merges the two inner schema of bags/tuples by position if the number of fields are same and the corresponding types are compatible. &lt /p&gt &lt p&gt In case of &apos union onschema&apos , it considers tuple/bag with different innerschema to be incompatible types.&lt /p&gt
+7
+src.org.apache.pig.data.DataType
+src.org.apache.pig.newplan.logical.relational.LOGenerate
+src.org.apache.pig.newplan.logical.relational.LOLoad
+src.org.apache.pig.newplan.logical.relational.LOUnion
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestEvalPipeline2
+test.org.apache.pig.test.TestSchema
+
+98 PIG-1479
+Embed Pig in scripting languages &lt p&gt It should be possible to embed Pig calls in a scripting language and let functions defined in the same script available as UDFs.&lt br/&gt This is a spin off of &lt a href=&quot https://issues.apache.org/jira/browse/PIG-928&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt https://issues.apache.org/jira/browse/PIG-928&lt /a&gt  which lets users define UDFs in scripting languages.&lt /p&gt
+7
+src.org.apache.pig.Main
+src.org.apache.pig.scripting.ScriptEngine
+src.org.apache.pig.scripting.jython.JythonFunction
+src.org.apache.pig.scripting.jython.JythonScriptEngine
+src.org.apache.pig.tools.pigstats.OutputStats
+src.org.apache.pig.tools.pigstats.PigStats
+src.org.apache.pig.tools.pigstats.ScriptState
+
+99 PIG-1304
+Fail underlying M/R jobs when concatenated gzip and bz2 files are provided as input &lt p&gt I have the following txt files which are bzipped: \t =&amp lt TAB&amp gt  &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  $ bzcat A.txt.bz2  1\ta 2\taa  $bzcat B.txt.bz2 1\tb 2\tbb  $cat *.bz2 &amp gt  test/mymerge.bz2 $bzcat test/mymerge.bz2  1\ta 2\taa 1\tb 2\tbb  $hadoop fs -put test/mymerge.bz2 /user/viraj  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt I now write a Pig script to print values of bz2.&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  A = load &apos /user/viraj/bzipgetmerge/mymerge.bz2&apos  using PigStorage()  dump A  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt I get the records for the first bz2 file which I concatenated.&lt /p&gt &lt p&gt (1,a)&lt br/&gt (2,aa)&lt /p&gt &lt p&gt My M/R jobs do not fail or throw any warning about this, just that it drops records. Is there a way we can throw a warning or fail the underlying Map job, can it be done in Bzip2TextInputFormat class in Pig ?&lt /p&gt
+2
+lib-src.bzip2.org.apache.tools.bzip2r.CBZip2InputStream
+test.org.apache.pig.test.TestBZip
+
+101 PIG-1277
+Pig should give error message when cogroup on tuple keys of different inner type &lt p&gt When we cogroup on a tuple, if the inner type of tuple does not match, we treat them as different keys. This is confusing. It is desirable to give error/warnings when it happens.&lt /p&gt &lt p&gt Here is one example:&lt br/&gt UDF:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  class MapGenerate &lt span class=&quot code-keyword&quot &gt extends&lt /span&gt  EvalFunc&amp lt Map&amp gt  {     @Override     &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  Map exec(Tuple input) &lt span class=&quot code-keyword&quot &gt throws&lt /span&gt  IOException {         &lt span class=&quot code-comment&quot &gt // TODO Auto-generated method stub &lt /span&gt         Map m = &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  HashMap()          m.put(&lt span class=&quot code-quote&quot &gt &quot key&quot &lt /span&gt , &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  &lt span class=&quot code-object&quot &gt Integer&lt /span&gt (input.size()))          &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  m      }          @Override     &lt span class=&quot code-keyword&quot &gt public&lt /span&gt  Schema outputSchema(Schema input) {         &lt span class=&quot code-keyword&quot &gt return&lt /span&gt  &lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Schema(&lt span class=&quot code-keyword&quot &gt new&lt /span&gt  Schema.FieldSchema(&lt span class=&quot code-keyword&quot &gt null&lt /span&gt , DataType.MAP))      } } &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Pig script: &lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0)  b = foreach a generate a0, MapGenerate(*) as m:map[]  c = foreach b generate a0, m#&apos key&apos  as key  d = load &apos 2.txt&apos  as (c0, c1)  e = cogroup c by (a0, key), d by (c0, c1)  dump e  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt 1.txt&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  1 &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt 2.txt&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  1 1 &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt User expected result (which is not right):&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  ((1,1),{(1,1)},{(1,1)}) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Real result:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  ((1,1),{(1,1)},{}) ((1,1),{},{(1,1)}) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt We shall give user the message that we can not merge the key due to the type mismatch.&lt /p&gt
+9
+src.org.apache.pig.backend.hadoop.HDataType
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigBytesRawComparator
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POMultiQueryPackage
+src.org.apache.pig.impl.io.NullableBytesWritable
+src.org.apache.pig.newplan.logical.relational.LOUnion
+test.org.apache.pig.test.TestEvalPipeline2
+test.org.apache.pig.test.TestPackage
+test.org.apache.pig.test.TestSecondarySort
+
+102 PIG-1188
+Padding nulls to the input tuple according to input schema &lt p&gt Currently, the number of fields in the input tuple is determined by the data. When we have schema, we should generate input data according to the schema, and padding nulls if necessary. Here is one example:&lt /p&gt &lt p&gt Pig script:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos 1.txt&apos  as (a0, a1)  dump a  &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Input file:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  1       2 1       2       3 1 &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Current result:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  (1,2) (1,2,3) (1) &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Desired result:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  (1,2) (1,2) (1, &lt span class=&quot code-keyword&quot &gt null&lt /span&gt ) &lt /pre&gt &lt /div&gt &lt /div&gt
+9
+src.org.apache.pig.newplan.logical.rules.TypeCastInserter
+test.org.apache.pig.test.TestEvalPipeline2
+test.org.apache.pig.test.TestMergeForEachOptimization
+test.org.apache.pig.test.TestMultiQueryCompiler
+test.org.apache.pig.test.TestNewPlanFilterAboveForeach
+test.org.apache.pig.test.TestNewPlanFilterRule
+test.org.apache.pig.test.TestNewPlanLogicalOptimizer
+test.org.apache.pig.test.TestNewPlanPushDownForeachFlatten
+test.org.apache.pig.test.TestPartitionFilterPushDown
+
+104 PIG-946
+Combiner optimizer does not optimize when limit follow group, foreach &lt p&gt The following script is combinable but is not optimized:&lt br/&gt a = load &apos /user/pig/tests/data/singlefile/studenttab10k&apos  &lt br/&gt b = group a by $1 &lt br/&gt c = foreach b generate group, AVG(a.$2) &lt br/&gt d = limit c 10 &lt br/&gt dump d &lt /p&gt
+2
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer
+test.org.apache.pig.test.TestCombiner
+
+105 PIG-847
+Setting twoLevelAccessRequired field in a bag schema should not be required to access fields in the tuples of the bag &lt p&gt Currently Pig interprets the result type of a relation as a bag. However the schema of the relation directly contains the schema describing the fields in the tuples for the relation. However when a udf wants to return a bag or if there is a bag in input data or if the user creates a bag constant, the schema of the bag has one field schema which is that of the tuple. The Tuple&apos s schema has the types of the fields. To be able to access the fields from the bag directly in such a case by using something like &amp lt bagname&amp gt .&amp lt fieldname&amp gt  or &amp lt bag&amp gt .&amp lt fieldposition&amp gt , the schema of the bag should have the twoLevelAccess set to true so that pig&apos s type system can get traverse the tuple schema and get to the field in question. This is confusing - we should try and see if we can avoid needing this extra flag. A possible solution is to treat bags the same way - whether they represent relations or real bags. Another way is to introduce a special &quot relation&quot  datatype for the result type of a relation and bag type would be used only for true bags. In this case, we would always need bag schema to have a tuple schema which would describe the fields. &lt /p&gt
+18
+src.org.apache.pig.ResourceSchema
+src.org.apache.pig.builtin.TOKENIZE
+src.org.apache.pig.data.DataType
+src.org.apache.pig.impl.logicalLayer.LOForEach
+src.org.apache.pig.impl.logicalLayer.LOProject
+src.org.apache.pig.impl.logicalLayer.schema.Schema
+src.org.apache.pig.newplan.logical.Util
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.expression.ExpToPhyTranslationVisitor
+src.org.apache.pig.newplan.logical.expression.ProjectExpression
+src.org.apache.pig.newplan.logical.relational.LOCogroup
+src.org.apache.pig.newplan.logical.relational.LOGenerate
+src.org.apache.pig.newplan.logical.relational.LOInnerLoad
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+src.org.apache.pig.newplan.logical.rules.DuplicateForEachColumnRewrite
+src.org.apache.pig.newplan.logical.rules.InputOutputFileValidator
+test.org.apache.pig.test.TestLogicalPlanMigrationVisitor
+test.org.apache.pig.test.TestSchema
+
+106 PIG-767
+Schema reported from DESCRIBE and actual schema of inner bags are different. &lt p&gt The following script:&lt /p&gt &lt p&gt urlContents = LOAD &apos inputdir&apos  USING BinStorage() AS (url:bytearray, pg:bytearray) &lt br/&gt &amp #8211  describe and dump are in-sync&lt br/&gt DESCRIBE urlContents &lt br/&gt DUMP urlContents &lt /p&gt &lt p&gt urlContentsG = GROUP urlContents BY url &lt br/&gt DESCRIBE urlContentsG &lt /p&gt &lt p&gt urlContentsF = FOREACH urlContentsG GENERATE group,urlContents.pg &lt /p&gt &lt p&gt DESCRIBE urlContentsF &lt br/&gt DUMP urlContentsF &lt /p&gt &lt p&gt Prints for the DESCRIBE commands:&lt /p&gt &lt p&gt urlContents: &lt /p&gt {url: chararray,pg: chararray}&lt p&gt urlContentsG: {group: chararray,urlContents: {url: chararray,pg: chararray}}&lt br/&gt urlContentsF: {group: chararray,pg: {pg: chararray}}&lt /p&gt &lt p&gt The reported schemas for urlContentsG and urlContentsF are wrong. They are also against the section &quot Schemas for Complex Data Types&quot  in &lt a href=&quot http://wiki.apache.org/pig-data/attachments/FrontPage/attachments/plrm.htm#_Schemas&quot  class=&quot external-link&quot  rel=&quot nofollow&quot &gt http://wiki.apache.org/pig-data/attachments/FrontPage/attachments/plrm.htm#_Schemas&lt /a&gt .&lt /p&gt &lt p&gt As expected, actual data observed from DUMP urlContentsG and DUMP urlContentsF do contain the tuple inside the inner bags.&lt /p&gt &lt p&gt The correct schema for urlContentsG is:  {group: chararray,urlContents: {t1:(url: chararray,pg: chararray)}}&lt /p&gt &lt p&gt This may sound like a technicality, but it isn&apos t. For instance, a UDF that assumes an inner bag of &lt /p&gt {chararray}&lt p&gt  will not work with &lt /p&gt {(chararray)}&lt p&gt . &lt /p&gt
+8
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.relational.LOCogroup
+src.org.apache.pig.newplan.logical.relational.LOGenerate
+src.org.apache.pig.newplan.logical.relational.LOInnerLoad
+src.org.apache.pig.newplan.logical.rules.DuplicateForEachColumnRewrite
+test.org.apache.pig.test.TestLogicalPlanMigrationVisitor
+test.org.apache.pig.test.TestNewPlanLogToPhyTranslationVisitor
+test.org.apache.pig.test.TestSchema
+
+107 PIG-750
+Use combiner when algebraic UDFs are used in expressions &lt p&gt Currently Pig uses combiner when all a,b, c,... are algebraic (e.g. SUM, AVG etc.) in foreach:&lt /p&gt &lt p&gt foreach X generate a,b,c,... &lt /p&gt &lt p&gt  It&apos s a performance improvement if it uses combiner when a mix of algebraic and non-algebraic functions are used as well.&lt /p&gt
+8
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer.CheckCombinableUserFunc
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer.CheckCombinableUserFunc.AlgebraicPlanChecker
+src.org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.CombinerOptimizer.CheckCombinableUserFunc.AlgebraicPlanChecker.DistinctPatcher
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POCombinerPackage
+src.org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POPackage
+test.org.apache.pig.test.TestCombiner
+test.org.apache.pig.test.TestMultiQueryCompiler
+
+108 PIG-730
+problem combining schema from a union of several LOAD expressions, with a nested bag inside the schema. &lt p&gt grunt&amp gt  a = load &apos foo&apos  using BinStorage as (url:chararray,outlinks:&lt /p&gt {t:(target:chararray,text:chararray)}&lt p&gt ) &lt br/&gt grunt&amp gt  b = union (load &apos foo&apos  using BinStorage as (url:chararray,outlinks:&lt /p&gt {t:(target:chararray,text:chararray)}&lt p&gt )), (load &apos bar&apos  using BinStorage as (url:chararray,outlinks:&lt /p&gt {t:(target:chararray,text:chararray)}&lt p&gt )) &lt br/&gt grunt&amp gt  c = foreach a generate flatten(outlinks.target) &lt br/&gt grunt&amp gt  d = foreach b generate flatten(outlinks.target) &lt /p&gt &lt p&gt ---&amp gt  Would expect both C and D to work, but only C works. D gives the error shown below.&lt br/&gt ---&amp gt  Turns out using outlinks.t.target (instead of outlinks.target) works for D but not for C.&lt br/&gt ---&amp gt  I don&apos t care which one, but the same syntax should work for both!&lt /p&gt &lt p&gt 2009-03-24 13:15:05,376 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.tools.grunt.Grunt - ERROR 1000: Error during parsing. Invalid alias: target in &lt /p&gt {t: (target: chararray,text: chararray)}&lt p&gt Details at logfile: /echo/olston/data/pig_1237925683748.log&lt br/&gt grunt&amp gt  quit&lt /p&gt &lt p&gt $ cat pig_1237925683748.log &lt br/&gt ERROR 1000: Error during parsing. Invalid alias: target in &lt /p&gt {t: (target: chararray,text: chararray)}&lt p&gt org.apache.pig.impl.logicalLayer.FrontendException: ERROR 1000: Error during parsing. Invalid alias: target in &lt /p&gt {t: (target: chararray,text: chararray)}&lt p&gt         at org.apache.pig.PigServer.parseQuery(PigServer.java:317)&lt br/&gt         at org.apache.pig.PigServer.registerQuery(PigServer.java:276)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.processPig(GruntParser.java:529)&lt br/&gt         at org.apache.pig.tools.pigscript.parser.PigScriptParser.parse(PigScriptParser.java:280)&lt br/&gt         at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:99)&lt br/&gt         at org.apache.pig.tools.grunt.Grunt.run(Grunt.java:69)&lt br/&gt         at org.apache.pig.Main.main(Main.java:321)&lt br/&gt Caused by: org.apache.pig.impl.logicalLayer.parser.ParseException: Invalid alias: target in &lt /p&gt {t: (target: chararray,text: chararray)}&lt p&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.AliasFieldOrSpec(QueryParser.java:6042)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.ColOrSpec(QueryParser.java:5898)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.BracketedSimpleProj(QueryParser.java:5423)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.BaseEvalSpec(QueryParser.java:4100)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.UnaryExpr(QueryParser.java:3967)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.CastExpr(QueryParser.java:3920)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.MultiplicativeExpr(QueryParser.java:3829)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.AdditiveExpr(QueryParser.java:3755)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.InfixExpr(QueryParser.java:3721)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.FlattenedGenerateItem(QueryParser.java:3617)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.FlattenedGenerateItemList(QueryParser.java:3557)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.GenerateStatement(QueryParser.java:3514)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.NestedBlock(QueryParser.java:2985)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.ForEachClause(QueryParser.java:2395)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.BaseExpr(QueryParser.java:1028)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.Expr(QueryParser.java:804)&lt br/&gt         at org.apache.pig.impl.logicalLayer.parser.QueryParser.Parse(QueryParser.java:595)&lt br/&gt         at org.apache.pig.impl.logicalLayer.LogicalPlanBuilder.parse(LogicalPlanBuilder.java:60)&lt br/&gt         at org.apache.pig.PigServer.parseQuery(PigServer.java:310)&lt br/&gt         ... 6 more&lt /p&gt
+4
+src.org.apache.pig.impl.logicalLayer.schema.Schema
+src.org.apache.pig.newplan.logical.expression.DereferenceExpression
+src.org.apache.pig.newplan.logical.relational.LogicalSchema
+test.org.apache.pig.test.TestSchema
+
+110 PIG-671
+typechecker does not throw an error when multiple arguments are passed to COUNT &lt p&gt In this example, the agggregate function COUNT is passed multiple arguments and does not throw an error.&lt /p&gt &lt p&gt TEST: Aggregate_184&lt /p&gt &lt p&gt  A =LOAD &apos /user/pig/tests/data/types/DataAll&apos  USING PigStorage() AS ( Fint:int, Flong:long, Fdouble:double, Ffloat:float, Fchar:chararray, Fchararray:chararray, Fbytearray:bytearray, Fmap:map[], Fbag:BAG&lt /p&gt { t:tuple( name, age, avg ) }&lt p&gt , Ftuple&lt img class=&quot emoticon&quot  src=&quot https://issues.apache.org/jira/images/icons/emoticons/sad.gif&quot  height=&quot 16&quot  width=&quot 16&quot  align=&quot absmiddle&quot  alt=&quot &quot  border=&quot 0&quot /&gt  name:chararray, age:int, avg:float) ) &lt br/&gt B =GROUP A ALL  &lt br/&gt X =FOREACH B GENERATE COUNT ( A.$0, A.$0 )  &lt br/&gt STORE X INTO &apos /user/pig/tests/results/araceli.1234381533/AggregateFunc_184.out&apos  USING PigStorage() &lt /p&gt
+2
+src.org.apache.pig.builtin.COUNT
+test.org.apache.pig.test.TestBuiltin
+
+111 PIG-534
+Illustrate can&apos t handle Map&apos s or NULLs &lt p&gt when I &apos illustrate&apos  a record that contains a map, or has a NULL it crashes with a NPE.&lt /p&gt
+1
+DisplayExamples
+
+112 PIG-496
+project of bags from complex data causes failures &lt p&gt A = load &apos complex data&apos  as (x: bag{}) &lt br/&gt B = foreach A generate x.($1, $2) &lt /p&gt &lt p&gt produces stack trace:&lt /p&gt &lt p&gt 2008-10-14 15:11:07,639 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.Launcher - Error message from task (reduce) task_200809241441_9923_r_000000java.lang.NullPointerException&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.expressionOperators.POProject.getNext(POProject.java:183)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.processPlan(POForEach.java:215)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.physicalLayer.relationalOperators.POForEach.getNext(POForEach.java:166)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce$Reduce.runPipeline(PigMapReduce.java:252)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce$Reduce.reduce(PigMapReduce.java:222)&lt br/&gt         at org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapReduce$Reduce.reduce(PigMapReduce.java:134)&lt br/&gt         at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:318)&lt br/&gt         at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2207)&lt /p&gt &lt p&gt Pradeep suspects that the problem is in src/org/apache/pig/backend/hadoop/executionengine/physicalLayer/expressionOperators/POProject.java  line 374&lt /p&gt
+2
+src.org.apache.pig.builtin.Utf8StorageConverter
+test.org.apache.pig.test.TestConversions
+
+113 PIG-313
+Error handling aggregate of a computation &lt p&gt Query which fails:&lt /p&gt &lt div class=&quot code panel&quot  style=&quot border-width: 1px &quot &gt &lt div class=&quot codeContent panelContent&quot &gt &lt pre class=&quot code-java&quot &gt  a = load &apos :INPATH:/singlefile/studenttab10k&apos  as (name:chararray, age:&lt span class=&quot code-object&quot &gt int&lt /span&gt , gpa:&lt span class=&quot code-object&quot &gt double&lt /span&gt )  b = group a by name  c = foreach b generate group, SUM(a.age*a.gpa)                              store c into &apos :OUTPATH:&apos  \, &lt /pre&gt &lt /div&gt &lt /div&gt &lt p&gt Error output:&lt /p&gt &lt blockquote&gt &lt p&gt 2008-07-14 16:34:08,684 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to hadoop file system at: testhost.com:8020&lt br/&gt 2008-07-14 16:34:08,741 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  WARN  org.apache.hadoop.fs.FileSystem - &quot testhost.com:8020&quot  is a deprecated filesystem name. Use &quot hdfs://testhost:8020/&quot  instead.&lt br/&gt 2008-07-14 16:34:08,995 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  INFO  org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to map-reduce job tracker at: testhost.com:50020&lt br/&gt 2008-07-14 16:34:09,251 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  WARN  org.apache.hadoop.fs.FileSystem - &quot testhost.com:8020&quot  is a deprecated filesystem name. Use &quot hdfs://testhost:8020/&quot  instead.&lt br/&gt 2008-07-14 16:34:09,559 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.PigServer - Cannot evaluate output type of Mul/Div Operator&lt br/&gt 2008-07-14 16:34:09,559 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.PigServer - Problem resolving LOForEach schema&lt br/&gt 2008-07-14 16:34:09,559 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.PigServer - Severe problem found during validation org.apache.pig.impl.plan.PlanValidationException: An unexpected exception caused the validation to stop &lt br/&gt 2008-07-14 16:34:09,560 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.tools.grunt.Grunt - java.io.IOException: Unable to store for alias: c&lt br/&gt 2008-07-14 16:34:09,560 &lt span class=&quot error&quot &gt &amp #91 main&amp #93 &lt /span&gt  ERROR org.apache.pig.Main - java.io.IOException: Unable to store for alias: c&lt /p&gt &lt /blockquote&gt
+1
+test.org.apache.pig.test.TestEvalPipeline2
+

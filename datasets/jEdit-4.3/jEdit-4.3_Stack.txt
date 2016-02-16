@@ -1,0 +1,807 @@
+950961
+fold handl newlin start close fold here exampl text fold fold fold test text fold line text place caret after last brace press get follow result text enter text editor fold showen unfold text fold displai displai content fold close fold open displai expect text text enter fold test text error appear exist fold plugin fold explict fold place caret brace make up start fold whilst fold press caus fold lost space up fold edit jedit fold longer displai text three wai get fold back delet line whitespac enter return fold close posit add brace complet fold marker add fold open posit origen text displai close reopen fold correct first bug reopen file keeper soul keeperofthesoul ex dynafu com
+0
+
+981012
+editor text area properli recogn indic input editor text area properli recogn unicod indic sanskrit input window 2000 window 2000 im sanskrit devanagari inscript input devanagari sanskrit letter attach screenshot word sanskritam type window notepad edit jedit notepad displai word properli edit jedit displai properli jdk1 jedit
+0
+
+1193683
+fold bug text black hole fold text fold close test aaaa bbbb cccc close ll get test line delet on ll test text fold anymor danger isn weird thing text complet lost type undo fold reappear magic text here hidden edit jedit text area
+0
+
+1292706
+size file open save dialog incorrect dual displai size open save dialog incorrectli calcul restor dialog displai second displai dual displai window xp basic dialog open secondari displai previou size posit lost here test perform explor behaviour dialog appear primari displai width correctli calcul restor from previou set adjust made dialog primari displai correctli restor next open dialog behaviour expect dialog appear secondari displai previou size posit set lost width dialog determin minimum width tree compon dialog attach resiz dialog dialog secondari displai lost next time open abnorm behaviour dialog open secondari displai resiz drag primari displai size posit set restor next open
+0
+
+1382388
+incorrect python code indent hello found littl bug process indent line command ctrl python code caus wrong ident select text exampl befor row self grid get number row getnumberrow self tabl data append obj self grid append row appendrow self grid set cell valu setcellvalu row file name filenam self tabl data append obj self grid size column autosizecolumn after row self grid get number row getnumberrow self tabl data append obj self grid append row appendrow self grid set cell valu setcellvalu row file name filenam self tabl data append obj self grid size column autosizecolumn
+0
+
+1500938
+search express hello bug wish pre1 3pre1 after search ctrl search ctrl previou search express present search dialog anymor help user adjust search express regex edit jedit peter
+0
+
+1520769
+autosav turn untitl document issu untitl document get left disk issu app close improperli option save untitl document nice featur solv issu
+0
+
+1520774
+enter vf file chooser vfsfilechoos file field mac osx 10 intel edit jedit pre type enter file browser get file list attatch screen shot from activ log debug work thread workthread run work thread id 16 run org gjt sp jedit browser browser io request browseriorequest type list directori list_directori vf org gjt sp jedit io file vf filevf c40 ee 8c40ee path1 opt develop evt conf ibati path2 debug vf file name field vfsfilenamefield complet docomplet root debug work thread workthread run work thread id 19 run org gjt sp jedit browser browser io request browseriorequest type list directori list_directori vf org gjt sp jedit io file root vf filerootsvf d74138 path1 root path2 type root directori
+0
+
+1533473
+caret displai posit multipl view open version pre5 3pre5 window free bsd freebsd jdk1 view open file activ foo txt line 20 view line 50 view differ buffer on view view bar txt view switch back foo txt caret displai placement view befor switch bar txt caret line 20 line 50 view locat
+0
+
+1536064
+focu filesystembrows filenamefield updat pre6 3pre6 messag log java version 07 0_07 messag log java vm version 07 0_07 b03 messag log java runtim version 07 0_07 b03 messag log java vendor sun microsystem messag log java compil messag log os name window xp messag log os version messag log os arch x86 notic edit jedit edit jedit version pre6 3pre6 open file ctrl focu filesystembrows command menu filenam field afaict gui util guiutil request focu requestfocu method job patch method rev 5386 http svn sourceforg net viewvc jedit edit jedit trunk org gjt sp jedit gui util guiutil java r1 5372 r2 5386 prompt bug report 1275607 http sourceforg net tracker index php func detail aid 1275607 group id group_id 588 atid 300588 bug trigger find dialog messag bug report patch need bug resolut problem possibl resolv simpli revert patch time here don idea reason bug confirm cheer stefan
+0
+
+1538051
+memori us report inconsist click memori gaug bottom right gc run dialog appear report number number bottom right edit jedit pre6 3pre6 jdk1 beta2 6beta2 linux 15 26 686
+0
+
+1538702
+plugin manag pluginmanag depend plugin activ manag tab activ plugin non option depend get activ automat avail unload dupe bug post lazi check dupe current os window xp java version sun java 06 0_06 b05 edit jedit version svn revis 6684
+0
+
+1538743
+edit tool bar toolbar categori rememb edit tool bar toolbar categori action rememb ad action toolbar dupe bug post lazi check dupe current os window xp java version sun java 06 0_06 b05 edit jedit version svn revis 6684
+0
+
+1541009
+pre6 3pre6 regexp find hang huge memori wast find find replac replac regular express match end line pre6 3pre6 hang memori usag meter thing bottom right hand side statu bar show memori usag increas exponenti search perform select current buffer buffer directori reproduc bug make buffer content foo bar baz select text open search replac dialog type follow regexp search field enabl regular express check box press find find replac replac button observ edit jedit hang memori usag rapidli increas memori usag stat bottom right hand corner statu bar expect result edit jedit hang search perform correctli attent
+0
+
+1541372
+move caret collaps fold caret fold get collaps caret place first line fold remain visibl line reexpand fold direct kei press dupe bug post lazi check dupe current os window xp java version sun java 06 0_06 b05 edit jedit version svn revis 6684
+0
+
+1542026
+keyboard navig menubar insert buffer keyboard charact space checkbox checkbox work correctli navig menubar insert press charact liter current buffer choic sub menu action even press charact choosabl alt dupe bug post lazi check dupe current os window xp java version sun java 06 0_06 b05 edit jedit version svn revis 6684 pre7 3pre7
+0
+
+1546200
+add filter recent file menu add filter recent file menu patch help find item recent file menu type first letter filenam textfield recent file menu file match enabl menu add org gjt sp jedit menu recent file provid recentfilesprovid java joerg
+0
+
+1548902
+pre6 3pre6 format paragraph string index bound except stringindexoutofboundsexcept caret insid paragraph buffer empti action format paragraph occur string index bound except stringindexoutofboundsexcept java lang string index bound except stringindexoutofboundsexcept string index rang java lang string charat unknown sourc org gjt sp jedit text util textutil ignor whitespac index ignoringwhitespaceindex text util textutil java 667 org gjt sp jedit textarea edit text area jedittextarea format paragraph formatparagraph edit text area jedittextarea java 4107 sun reflect method accessor impl nativemethodaccessorimpl invoke0 method sun reflect method accessor impl nativemethodaccessorimpl invok unknown sourc sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok unknown sourc java lang reflect method invok unknown sourc bsh reflect invok method invokemethod reflect java 134 bsh reflect invok object method invokeobjectmethod reflect java 80 bsh name invok method invokemethod name java 858 bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 bsh bsh block bshblock eval bsh block bshblock java 80 bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 bsh bsh method bshmethod invok bsh method bshmethod java 258 bsh bsh method bshmethod invok bsh method bshmethod java 186 org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 509 org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 76 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 229 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 195 org gjt sp jedit gui input handler defaultinputhandl handl kei handlekei input handler defaultinputhandl java 362 org gjt sp jedit view process kei event processkeyev view java 617 org gjt sp jedit textarea edit text area jedittextarea process kei event processkeyev edit text area jedittextarea java 4582 java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc similar problem http sourceforg net tracker index php func detail aid 1173630 group id group_id 588 atid 100588
+24
+bsh.BSHBlock
+bsh.BSHMethodInvocation
+bsh.BSHPrimaryExpression
+bsh.BshMethod
+bsh.Name
+bsh.Reflect
+java.awt.Component
+java.awt.Container
+java.awt.DefaultKeyboardFocusManager
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.KeyboardFocusManager
+java.awt.Window
+java.lang.String
+java.lang.reflect.Method
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.TextUtilities
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.gui.DefaultInputHandler
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.textarea.JEditTextArea
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.NativeMethodAccessorImpl
+
+1549282
+save file flag edit jedit doesn interpret button correctli cancel file save procedur file edit jedit pre6 3pre6
+0
+
+1560006
+search dialog doesn get focu search dialog get focu open search text editor buffer us edit jedit pre6 3pre6 sun jdk 06 0_06 red hat redhat run gnome
+0
+
+1560584
+perform action add fold except found littl bug perform action add fold last select line last line end file caus except java lang arrai index bound except arrayindexoutofboundsexcept arrai index rang 20 org gjt sp jedit buffer edit buffer jeditbuff get line start offset getlinestartoffset edit buffer jeditbuff java 323 org gjt sp jedit textarea edit text area jedittextarea add fold addexplicitfold edit text area jedittextarea java 5941 org gjt sp jedit textarea edit text area jedittextarea add fold addexplicitfold edit text area jedittextarea java 3916 sun reflect method accessor impl nativemethodaccessorimpl invoke0 method sun reflect method accessor impl nativemethodaccessorimpl invok method accessor impl nativemethodaccessorimpl java 39 sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok deleg method accessor impl delegatingmethodaccessorimpl java 25 java lang reflect method invok method java 585 edit jedit pre7
+5
+java.lang.reflect.Method
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.textarea.JEditTextArea
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.NativeMethodAccessorImpl
+
+1565447
+hyper search hypersearch report incorrect occurr count hyper search hypersearch report number line contain on more instanc string number occurr string file enter two more ident string singl line select on string hyper search hypersearch occurr count show actual number string file edit jedit 2final window 2000 sp4 jre updat
+0
+
+1569735
+import import fail get resolv partli hash issu test syntax test_syntax xml mode file xml version doctyp mode xmode dtd mode rule seq type keyword1 on seq deleg deleg delegate_1 rule rule set deleg delegate_1 seq type keyword2 two 2two seq deleg deleg delegate_2 rule rule set deleg delegate_2 seq type keyword4 three seq seq type keyword4 three 3three seq rule mode file handl test edit jedit syntax mode on two2 two two2two three 3three problem three three 3three get highlight recogn add rule deleg delegate_1 set start number chang two 2two 32 two 32two highlight three 3three from deleg delegate_2 ve call parser rule set parserruleset resolv import resolveimport recurs begin ruleset process caus infinit loop import infinit depth wouldn support make sens rule exist hash index char get appli bug us us php xml mode file list regular express function definit rule set regular keyword defin keyword get highlight suppos regular express on hash recogn overrid highlight keyword
+0
+
+1570554
+file open dialog handl full pathnam type path fsb path type file name box jedit cv version jdk 08 0_08 us work previou jedit version jiger
+0
+
+1571629
+file browser filter work current svn version pre8 3pre8 filter effect glob ad histori press enter don influenc file shown filter current buffer extens option set file filter filter glob shown good abl set unset option directli dialog
+0
+
+1571752
+add fold php mode wrong comment edit jedit version pre7 3pre7 java version beta2 befor add fold content buffer mean select boundari php xfunction foo fold after php function foo fold php function empti line work
+0
+
+1574587
+undo past file save option allow undo back last time file save disk user user write disk chang undo track reset save autosav count
+0
+
+1575505
+bug enter text solid solid color gl color rect dim origin get select word solid press expect behavior solid solid color gl color rect dim origin get actual
+0
+
+1576535
+fix invalid select newli open buffer reproduct recip problem open arbitrari buffer select text creat file edit jedit path file edit jedit histori open file edit jedit after step select newli open buffer clear remain offset step file longer offset select select appear buffer access select offset result arrai index bound except arrayindexoutofboundsexcept found problem test recent chang column ruler columnrul plugin except thrown paint method column ruler columnrul edit jedit up remain paint oper small patch fix problem
+0
+
+1578785
+provid reload chang buffer prompt warn buffer bee reload wise gener rule file edit chang typic exampl log file report unit test buffer bee reload bee prompt trivial ideal solut add th 4th option autmat reload confirm save global option better solut provid buffer option don prompt reload least turn prompt macro option avail bean shell
+0
+
+1584436
+soft wrap cut pointer except edit larger text soft wrap turn cut text fragment larger text view move back begin text buffer cursor kei page up ctrl home get pointer except nullpointerexcept step reproduc load http www jedit org user guid start html set buffer line wrap soft wrap 80 charact cut line 45 press ctrl home result bean shell beanshel error dialog begin text buffer miss displai attach log except confirm error edit jedit pre7 3pre7 pre6 3pre6 pre3 3pre3 work fine pre2 3pre2 test pre1 3pre1 bug involv soft wrap
+0
+
+1589360
+rectangular select drag cut past from slava jedit devel found reproduc obscur rectangular select bug ve recent creat buffer set wrap margin 64 enabl soft wrap past two line mail client won doc get on word elt prev elt unit test doc get on word elt prev elt unit test posit cursor after second drag on column vertic select select charact right even drag straight down feel take slava
+0
+
+1593359
+edit text area jedittextarea process keyboard input edit text area jedittextarea process keyboard input meant focu activ log dockabl java insight dockabl press del kei delet charact from buffer dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593375
+filter activ log viewer activ log viewer option filter output error debug notic even better provid text field enter regex line match shown dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593389
+fsb delet action directori work fsb delet action invok directori recurs delet file folder contain state delet file dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593464
+icon file fsb miss option us icon file fsb project viewer ha dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593523
+toggl tree view broken toggl tree view hyper search hypersearch result window context menu doesn properli mean switch back show path filenam on line path miss dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593526
+automat hide hyper search hypersearch result node remov from hyper search hypersearch result manual clear button dockabl hide benefit from anymor search bring up automat dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593543
+save editmod recent file open build properti sampl chang editmod properti close file reopen chang editmod manual done automat least file recent file list dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593576
+autoind copi exact whitespac autoind copi indent last line indent done copi from current soft tab enabl space insert even previou line indent liter tab tab space mix whitespac simpli copi from line indent from dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1593735
+embedd optionspan scroll pane jscrollpan optionspan gener plugin embed scroll pane jscrollpan dialog stai size user chosen doesn resiz set pane shown more space set pane huge complet dialog doesn fit screen anymor dupe bug post lazi check dupe current os window xp java version sun java 09 0_09 b03 edit jedit version pre8 3pre8
+0
+
+1594234
+increment search string found increment search textbox search string found firefox copi put red background help add edit jedit
+0
+
+1594910
+indent javascript embed html broken code indent work javascript code script block html mode indent work js file javascript mode ad html javascript fileglob js html forc html javascript mode indent work html highlight indent correctli environ window xp home sp2 java version 08 0_08 java tm runtim environ standard edit build 08 0_08 b03 java hot spot hotspot tm client vm build 08 0_08 b03 mix mode edit jedit pre8 3pre8
+0
+
+1599024
+action reload buffer differ encod open attach textfil creat edit jedit pre8 3pre8 ll squar slovak charact encod cp 1250 us creat file expect edit jedit recogn open file isn set buffer encod manual cp 1250 charact displai wrong encod statu bar tell encod cp 1250 activ us bug gener nice menu entri show open file differ encod menu view charact encod firefox
+0
+
+1599709
+npe edit buffer jeditbuff indent indent refactor introduc pointer except nullpointerexcept ve catch on r8096 state commit messag error up r8096 revert problem ctx rule get mode name getmodenam return main rule name reproduc save empti buffer test php type php foo enter press enter after follow except get thrown java lang pointer except nullpointerexcept org gjt sp jedit buffer edit buffer jeditbuff get ideal indent line getidealindentforlin edit buffer jeditbuff java 991 org gjt sp jedit buffer edit buffer jeditbuff indent line indentlin edit buffer jeditbuff java 907 org gjt sp jedit textarea text area textarea insert enter indent insertenterandind text area textarea java 4327 sun reflect gener method accessor23 generatedmethodaccessor23 invok unknown sourc sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok unknown sourc java lang reflect method invok unknown sourc bsh reflect invok method invokemethod reflect java 134 bsh reflect invok object method invokeobjectmethod reflect java 80 bsh name invok method invokemethod name java 858 bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 bsh bsh block bshblock eval bsh block bshblock java 80 bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 bsh bsh method bshmethod invok bsh method bshmethod java 258 bsh bsh method bshmethod invok bsh method bshmethod java 186 org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 509 org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 76 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 415 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 381 org gjt sp jedit gui input handler defaultinputhandl handl kei handlekei input handler defaultinputhandl java 373 org gjt sp jedit input abstract input handler abstractinputhandl process kei event kei stroke handl processkeyeventkeystrokehandl abstract input handler abstractinputhandl java 116 org gjt sp jedit gui input handler inputhandl process kei event processkeyev input handler inputhandl java 184 org gjt sp jedit textarea text area textarea process kei event processkeyev text area textarea java 4572 java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc
+23
+bsh.BSHBlock
+bsh.BSHMethodInvocation
+bsh.BSHPrimaryExpression
+bsh.BshMethod
+bsh.Name
+bsh.Reflect
+java.awt.Component
+java.awt.Container
+java.awt.DefaultKeyboardFocusManager
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.KeyboardFocusManager
+java.awt.Window
+java.lang.reflect.Method
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.gui.DefaultInputHandler
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.input.AbstractInputHandler
+org.gjt.sp.jedit.textarea.TextArea
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.GeneratedMethodAccessor23
+
+1600401
+string index bound except stringindexoutofboundsexcept token marker tokenmark after press enter line php file follow except line appear wrong highlight first place want split resolv highlight issu after buffer window usabl anymor enter get repaint error buffer except send buffer event org gjt sp jedit textarea buffer handler bufferhandl 1484 a8a 1484a8a error buffer java lang string index bound except stringindexoutofboundsexcept string index rang 103 error buffer java lang string init unknown sourc error buffer org gjt sp jedit syntax token marker tokenmark handl rule handlerul token marker tokenmark java 343 error buffer org gjt sp jedit syntax token marker tokenmark mark token marktoken token marker tokenmark java 155 error buffer org gjt sp jedit buffer edit buffer jeditbuff mark token marktoken edit buffer jeditbuff java 1234 error buffer org gjt sp jedit textarea chunk cach chunkcach line chunk list linetochunklist chunk cach chunkcach java 771 error buffer org gjt sp jedit textarea chunk cach chunkcach get line subregion count getlinesubregioncount chunk cach chunkcach java 266 error buffer org gjt sp jedit textarea displai manag displaymanag updat screen line count updatescreenlinecount displai manag displaymanag java 661 error buffer org gjt sp jedit textarea buffer handler bufferhandl delai updat dodelayedupd buffer handler bufferhandl java 327 error buffer org gjt sp jedit textarea buffer handler bufferhandl transact complet transactioncomplet buffer handler bufferhandl java 287 error buffer org gjt sp jedit buffer edit buffer jeditbuff fire transact complet firetransactioncomplet edit buffer jeditbuff java 2173 error buffer org gjt sp jedit buffer edit buffer jeditbuff end compound edit endcompoundedit edit buffer jeditbuff java 1966 error buffer org gjt sp jedit textarea text area textarea insert enter indent insertenterandind text area textarea java 4331 error buffer sun reflect method accessor impl nativemethodaccessorimpl invoke0 method error buffer sun reflect method accessor impl nativemethodaccessorimpl invok unknown sourc error buffer sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok unknown sourc error buffer java lang reflect method invok unknown sourc error buffer bsh reflect invok method invokemethod reflect java 134 error buffer bsh reflect invok object method invokeobjectmethod reflect java 80 error buffer bsh name invok method invokemethod name java 858 error buffer bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 error buffer bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 error buffer bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 error buffer bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 error buffer bsh bsh block bshblock eval bsh block bshblock java 80 error buffer bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 error buffer bsh bsh method bshmethod invok bsh method bshmethod java 258 error buffer bsh bsh method bshmethod invok bsh method bshmethod java 186 error buffer org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 509 error buffer org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 76 error buffer org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 415 error buffer org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 381 error buffer org gjt sp jedit gui input handler defaultinputhandl handl kei handlekei input handler defaultinputhandl java 373 error buffer org gjt sp jedit input abstract input handler abstractinputhandl process kei event kei stroke handl processkeyeventkeystrokehandl abstract input handler abstractinputhandl java 116 error buffer org gjt sp jedit gui input handler inputhandl process kei event processkeyev input handler inputhandl java 184 error buffer org gjt sp jedit textarea text area textarea process kei event processkeyev text area textarea java 4572 error buffer java awt compon process event processev unknown sourc error buffer java awt contain process event processev unknown sourc error buffer java awt compon dispatch event impl dispatcheventimpl unknown sourc error buffer java awt contain dispatch event impl dispatcheventimpl unknown sourc error buffer java awt compon dispatch event dispatchev unknown sourc error buffer java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev unknown sourc error buffer java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev unknown sourc error buffer java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev unknown sourc error buffer java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert unknown sourc error buffer java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev unknown sourc error buffer java awt compon dispatch event impl dispatcheventimpl unknown sourc error buffer java awt contain dispatch event impl dispatcheventimpl unknown sourc error buffer java awt window dispatch event impl dispatcheventimpl unknown sourc error buffer java awt compon dispatch event dispatchev unknown sourc error buffer java awt event queue eventqueu dispatch event dispatchev unknown sourc error buffer java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc error buffer java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc error buffer java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc error buffer java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error buffer java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error buffer java awt event dispatch thread eventdispatchthread run unknown sourc error extens manag extensionmanag error repaint line rang 12 39 error extens manag extensionmanag java lang string index bound except stringindexoutofboundsexcept string index rang 103 error extens manag extensionmanag java lang string init unknown sourc error extens manag extensionmanag org gjt sp jedit syntax token marker tokenmark handl rule handlerul token marker tokenmark java 343 error extens manag extensionmanag org gjt sp jedit syntax token marker tokenmark mark token marktoken token marker tokenmark java 155 error extens manag extensionmanag org gjt sp jedit buffer edit buffer jeditbuff mark token marktoken edit buffer jeditbuff java 1234 error extens manag extensionmanag org gjt sp jedit textarea chunk cach chunkcach line chunk list linetochunklist chunk cach chunkcach java 771 error extens manag extensionmanag org gjt sp jedit textarea chunk cach chunkcach updat chunk up updatechunksupto chunk cach chunkcach java 646 error extens manag extensionmanag org gjt sp jedit textarea chunk cach chunkcach get line info getlineinfo chunk cach chunkcach java 255 error extens manag extensionmanag org gjt sp jedit textarea extens manag extensionmanag paint screen line rang paintscreenlinerang extens manag extensionmanag java 102 error extens manag extensionmanag org gjt sp jedit textarea text area painter textareapaint paint text area painter textareapaint java 726 error extens manag extensionmanag javax swing compon jcompon paint offscreen painttooffscreen unknown sourc error extens manag extensionmanag javax swing buffer strategi paint manag bufferstrategypaintmanag paint unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag paint unknown sourc error extens manag extensionmanag javax swing compon jcompon paint immedi _paintimmedi unknown sourc error extens manag extensionmanag javax swing compon jcompon paint immedi paintimmedi unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag seq paint dirti region seqpaintdirtyregion unknown sourc error extens manag extensionmanag javax swing event queue util systemeventqueueutil compon work request componentworkrequest run unknown sourc error extens manag extensionmanag java awt event invoc event invocationev dispatch unknown sourc error extens manag extensionmanag java awt event queue eventqueu dispatch event dispatchev unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread run unknown sourc error extens manag extensionmanag error repaint line rang 12 39 error extens manag extensionmanag java lang string index bound except stringindexoutofboundsexcept string index rang 103 error extens manag extensionmanag java lang string init unknown sourc error extens manag extensionmanag org gjt sp jedit syntax token marker tokenmark handl rule handlerul token marker tokenmark java 343 error extens manag extensionmanag org gjt sp jedit syntax token marker tokenmark mark token marktoken token marker tokenmark java 155 error extens manag extensionmanag org gjt sp jedit buffer edit buffer jeditbuff mark token marktoken edit buffer jeditbuff java 1234 error extens manag extensionmanag org gjt sp jedit textarea chunk cach chunkcach line chunk list linetochunklist chunk cach chunkcach java 771 error extens manag extensionmanag org gjt sp jedit textarea chunk cach chunkcach updat chunk up updatechunksupto chunk cach chunkcach java 646 error extens manag extensionmanag org gjt sp jedit textarea chunk cach chunkcach get line info getlineinfo chunk cach chunkcach java 255 error extens manag extensionmanag org gjt sp jedit textarea extens manag extensionmanag paint screen line rang paintscreenlinerang extens manag extensionmanag java 102 error extens manag extensionmanag org gjt sp jedit textarea gutter paint compon paintcompon gutter java 131 error extens manag extensionmanag javax swing compon jcompon paint unknown sourc error extens manag extensionmanag javax swing compon jcompon paint offscreen painttooffscreen unknown sourc error extens manag extensionmanag javax swing buffer strategi paint manag bufferstrategypaintmanag paint unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag paint unknown sourc error extens manag extensionmanag javax swing compon jcompon paint immedi _paintimmedi unknown sourc error extens manag extensionmanag javax swing compon jcompon paint immedi paintimmedi unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc error extens manag extensionmanag javax swing repaint manag repaintmanag seq paint dirti region seqpaintdirtyregion unknown sourc error extens manag extensionmanag javax swing event queue util systemeventqueueutil compon work request componentworkrequest run unknown sourc error extens manag extensionmanag java awt event invoc event invocationev dispatch unknown sourc error extens manag extensionmanag java awt event queue eventqueu dispatch event dispatchev unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error extens manag extensionmanag java awt event dispatch thread eventdispatchthread run unknown sourc error awt event queue eventqueu except thread awt event queue eventqueu error awt event queue eventqueu java lang string index bound except stringindexoutofboundsexcept string index rang 103 error awt event queue eventqueu java lang string init unknown sourc error awt event queue eventqueu org gjt sp jedit syntax token marker tokenmark handl rule handlerul token marker tokenmark java 343 error awt event queue eventqueu org gjt sp jedit syntax token marker tokenmark mark token marktoken token marker tokenmark java 155 error awt event queue eventqueu org gjt sp jedit buffer edit buffer jeditbuff mark token marktoken edit buffer jeditbuff java 1234 error awt event queue eventqueu org gjt sp jedit textarea chunk cach chunkcach line chunk list linetochunklist chunk cach chunkcach java 771 error awt event queue eventqueu org gjt sp jedit textarea chunk cach chunkcach updat chunk up updatechunksupto chunk cach chunkcach java 646 error awt event queue eventqueu org gjt sp jedit textarea chunk cach chunkcach get line info getlineinfo chunk cach chunkcach java 255 error awt event queue eventqueu org gjt sp jedit textarea gutter paint line paintlin gutter java 544 error awt event queue eventqueu org gjt sp jedit textarea gutter paint compon paintcompon gutter java 137 error awt event queue eventqueu javax swing compon jcompon paint unknown sourc error awt event queue eventqueu javax swing compon jcompon paint offscreen painttooffscreen unknown sourc error awt event queue eventqueu javax swing buffer strategi paint manag bufferstrategypaintmanag paint unknown sourc error awt event queue eventqueu javax swing repaint manag repaintmanag paint unknown sourc error awt event queue eventqueu javax swing compon jcompon paint immedi _paintimmedi unknown sourc error awt event queue eventqueu javax swing compon jcompon paint immedi paintimmedi unknown sourc error awt event queue eventqueu javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc error awt event queue eventqueu javax swing repaint manag repaintmanag paint dirti region paintdirtyregion unknown sourc error awt event queue eventqueu javax swing repaint manag repaintmanag seq paint dirti region seqpaintdirtyregion unknown sourc error awt event queue eventqueu javax swing event queue util systemeventqueueutil compon work request componentworkrequest run unknown sourc error awt event queue eventqueu java awt event invoc event invocationev dispatch unknown sourc error awt event queue eventqueu java awt event queue eventqueu dispatch event dispatchev unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread run unknown sourc error awt event queue eventqueu except thread awt event queue eventqueu error awt event queue eventqueu java lang string index bound except stringindexoutofboundsexcept string index rang 103 error awt event queue eventqueu java lang string init unknown sourc error awt event queue eventqueu org gjt sp jedit syntax token marker tokenmark handl rule handlerul token marker tokenmark java 343 error awt event queue eventqueu org gjt sp jedit syntax token marker tokenmark mark token marktoken token marker tokenmark java 155 error awt event queue eventqueu org gjt sp jedit buffer edit buffer jeditbuff mark token marktoken edit buffer jeditbuff java 1234 error awt event queue eventqueu org gjt sp jedit textarea chunk cach chunkcach line chunk list linetochunklist chunk cach chunkcach java 771 error awt event queue eventqueu org gjt sp jedit textarea chunk cach chunkcach updat chunk up updatechunksupto chunk cach chunkcach java 646 error awt event queue eventqueu org gjt sp jedit textarea chunk cach chunkcach get line info getlineinfo chunk cach chunkcach java 255 error awt event queue eventqueu org gjt sp jedit textarea text area textarea invalid line invalidatelin text area textarea java 1145 error awt event queue eventqueu org gjt sp jedit textarea text area textarea blink caret blinkcaret text area textarea java 2118 error awt event queue eventqueu org gjt sp jedit textarea text area textarea caret blinker caretblink action perform actionperform text area textarea java 5907 error awt event queue eventqueu javax swing timer fire action perform fireactionperform unknown sourc error awt event queue eventqueu javax swing timer post event dopostev run unknown sourc error awt event queue eventqueu java awt event invoc event invocationev dispatch unknown sourc error awt event queue eventqueu java awt event queue eventqueu dispatch event dispatchev unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc error awt event queue eventqueu java awt event dispatch thread eventdispatchthread run unknown sourc debug php side kick parser phpsidekickpars request sidekick complet debug work thread workthread run work thread id 265 run org gjt sp jedit bufferio buffer autosav request bufferautosaverequest php debug dockabl window manag dockablewindowmanag load dockabl from jeditresourc error list errorlist jar dockabl xml debug edit bu editbu dockabl window updat dockablewindowupd activ dockabl error list sourc org gjt sp jedit gui dockabl window manag dockablewindowmanag 1600 x1081 1600x1081 invalid layout org gjt sp jedit gui dockabl layout dockablelayout alignmentx alignmenti border flag maximum size maximums minimum size minimums prefer size preferreds
+39
+bsh.BSHBlock
+bsh.BSHMethodInvocation
+bsh.BSHPrimaryExpression
+bsh.BshMethod
+bsh.Name
+bsh.Reflect
+java.awt.Component
+java.awt.Container
+java.awt.DefaultKeyboardFocusManager
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.KeyboardFocusManager
+java.awt.Window
+java.awt.event.InvocationEvent
+java.lang.String
+java.lang.reflect.Method
+javax.swing.BufferStrategyPaintManager
+javax.swing.JComponent
+javax.swing.RepaintManager
+javax.swing.SystemEventQueueUtilities.ComponentWorkRequest
+javax.swing.Timer
+javax.swing.Timer.DoPostEvent
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.gui.DefaultInputHandler
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.input.AbstractInputHandler
+org.gjt.sp.jedit.syntax.TokenMarker
+org.gjt.sp.jedit.textarea.BufferHandler
+org.gjt.sp.jedit.textarea.ChunkCache
+org.gjt.sp.jedit.textarea.DisplayManager
+org.gjt.sp.jedit.textarea.ExtensionManager
+org.gjt.sp.jedit.textarea.Gutter
+org.gjt.sp.jedit.textarea.TextArea
+org.gjt.sp.jedit.textarea.TextArea.CaretBlinker
+org.gjt.sp.jedit.textarea.TextAreaPainter
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.NativeMethodAccessorImpl
+
+1601718
+edit jedit freez regexpr set search check regular express click replac version edit jedit pre8 3pre8
+0
+
+1608486
+support thick caret ve attach patch configur option thick caret global option text area select caus caret paint slightli wider current person make caret easier better us from editor cours devel mail list btw unabl subscrib send mail
+0
+
+1608948
+filter box lose focu bug fix submit patch creat diff didn sync edit jedit cv server abl creat on websit post here bug file browser us open save file filer textbox doesn deselect after lose focu replic run edit jedit select file open click filter textbox click differ box file name text box text filter textbox select caret blink ha keyboard focu fix function process focu event processfocusev focu event focusev histori combo box editor historycomboboxeditor problem histori combo box editor historycomboboxeditor subclass org gjt sp jedit browser vf browser vfsbrowser java correct code process focu event processfocusev focu event focusev awt call set item setitem editor lose focu caus weird unwant thing happen ignor lost focu event get id getid focu event focusev focu lost focus_lost process focu event processfocusev code ad jai set caret posit setcaretposit get caret getcaret set visibl setvis end code restor behavior focu lost hope help
+0
+
+1611766
+avoid npe from get indent rule getindentrul edit jedit trunk r8210 npe from get indent ruls getindentruls reproduc record temporari macro stop record attach patch fix problem patch work fine don line mgr linemgr get line context getlinecontext line return oper made patch least chang avoid actual problem function reli unclear non assumpt token marker tokenmark get main rule set getmainruleset get main rule set getmainruleset get mode name getmodenam edit jedit get mode getmod mode name modenam get mode getmod mode name modenam get indent rule getindentrul problem patch revis
+0
+
+1617509
+filter bug file browser file browser don work filter interest filter css work filter zak don work
+0
+
+1620694
+background plugin scroll mous wheel mousewheel issu edit jedit pre8 3pre8 linux jdk1 10 0_10 prex 3prex background plugin scroll background pictur scroll mousewheel us scrollbar work fine pictur fix us pageup pagedown kei ap hanger apehang
+0
+
+1628053
+text pane textpan buffer combobox hovertip show full path buffer switcher displai full path file edit twould nice hovertip show full path
+0
+
+1630805
+escap quot mess up pre9 hello attach file showcas bug php syntax highlight syntax highlight mess up first escap quot javascript embed php echo statement line stai mess up close parenthesi line 25 svn revis 8320 recreat full instal dist mac 10 intel core duo kevin
+0
+
+1638642
+edit jedit us split pane jsplitpan continu layout edit jedit us continu layout split pane jsplitpan cours properti chang fly matthieu
+0
+
+1641997
+automat reload buffer option autoreload notif avail buffer option gener option pane apropri list ha item last item empti select jedit pre9 3pre9 win xp winxp sp2 sun jre 10 0_10
+0
+
+1642574
+chang number visibl row buffer switcher gui patch make chang number visibl row buffer switcher global option svn revis 8724
+0
+
+1645528
+perspect saver option ignor remot vf file file open from sql vf even sftp vf nice perspect saver ignor file rememb local file checkbox let behavior restor sftp sql file perspect
+0
+
+1646058
+improv keyboard interact hyper search hypersearch result patch improv keyboard interact hyper search hypersearch result tree two flavor space enter open node press space open select node chang focu focu remain hyper search hypersearch result tree press enter open select node set focu text area textarea patch requir stroke enter ctrl ctrl enabl delet kei remov node patch remov node done mous context menu implement adjust select remov repeat remov behav natur found two flavor open buffer macro file buffer switcher buffer_switch bsh tree list buffer edit jedit error list errorlist project viewer projectview sidekick mind patch ll implement plugin
+0
+
+1649033
+correct focu after choos directori search after choos directori search choos button search replac dialog view focus search replac dialog inact find set focu back keyboard forc us mous keyboard shortcut action find bring search replac dialog up set reset patch solv problem work us mous don
+0
+
+1654543
+pre10 3pre10 svn break ftp connect secur ftp server dlg ftp plugin longer show textfield usernam pw kei locat connect secur ftp server dialog save password checkbox revert back pre9 3pre9 work broke
+0
+
+1658252
+mode incorrect bracket match multi line defin defin defin multi line defin long_multi_line_defin code more code even more code bracket don match
+0
+
+1659666
+perl xml patch quot oper patch perl xml handl quot oper document http perldoc perl org perlop html section quot quot oper http perldoc perl org perlop html quot quot oper 2c quot 2c quot qq qx qw qr tr 22 22 22 2f 2f 60 60 60 3c 3c escap sequenc escap patch quot oper accept curli bracket round bracket slash pipe delimit problem deal eval sub time gmtime time print debug time debug quot end edit jedit see end fix move syntax mode code
+0
+
+1663617
+space url path bug xml errorlist xml file folder contain space name error xml displai error list errorlist click error list errorlist open buffer reason replac path url replac space 20
+0
+
+1664900
+indent break previou line singl line indent damn hate small summari field hate insert word wrap text field btw rant dupe indent bug time on good idea haven look fix problem piec code exampl mode java foo bar hit line indent level bar wrong edit buffer jeditbuff java get ideal indent line getidealindentforlin old indent oldind initi indent size last non empti line wrong last non empti line differ indent level current indent line code check indent level next line after last non empti line indent level
+0
+
+1668893
+wrong convers utf 16 bom recent mention chang encod utf 16 save file reopen bom appear end line ff fe befor strang behavior appear pre9 3pre9
+0
+
+1671312
+pre15 3pre15 reg ex regex us find zero width match hello wonder programm word processor edit jedit pre2 3pre2 quickli add comma end line press ctrl check regular express enter search enter replac press alt match end line add comma end edit jedit pre9 3pre9 happen match charact end line match empti line search replac ha desir affect second line search replac match last line buffer edit jedit pre2 3pre2 match end line befor desir effect best carlo
+0
+
+1676041
+camel hump camelhump word attach small patch add option chang behaviour caret jump next previou word enabl edit jedit treat camel hump camelhump part word word move caret affect select word click shortcut option found edit option pane hope bye horst
+0
+
+1687264
+fix except delet empti hyper search result hypersearchresult followup patch 1646058 enabl remov node hyper search result hypersearchresult delet kei delet kei press empti hyper search result hypersearchresult except shown activ log effect log patch fix problem
+0
+
+1694133
+file browser back arrow filenam textbox file browser save cursor stand file filenam end move cursor exampl left arrow left most posit directori begin chang move level up nice save file exampl home eclips workspac fraktal doc suddendli stand
+0
+
+1708876
+file browser pre wrong file type pars wrong file name pars file browser sort file type done most left dot done most right dot let file name file my_fil test txt commont file type txt edit jedit take test txt
+0
+
+1708881
+file browser pre reset column width resort critic issu pre9 file browser pane chang column width time after sort file mean click column header name type size last modifi column width reset valu import file browser dock
+0
+
+1723506
+context menu kei function window edit jedit pre9 3pre9 java 01 0_01 window xp pro context menu kei ha effect mous right click edit jedit ha effect
+0
+
+1724940
+type multipl select highlight multipl select text text area begin type first charact type insert select area cursor end up after make select exampl text bodi text bodi highlight tag type div end up bodi text div bodi ve attach screenshot
+0
+
+1730845
+select line from gutter conveni abl select entir line text includ charact simpli click gutter even better select multipl line click drag gutter lesser editor featur chanc ad
+0
+
+1739675
+error jedit svn revis 9820 after compil updat jedit pre10 revis 9820 erro us python file attach file error
+0
+
+1744674
+bad eb messag ebmessag from hyper search hypersearch result edit jedit develop version svn rev 9867 click item hyper search hypersearch result window file open buffer buffer updat bufferupd load messag sent buffer ha load view actual view open view caus side kick sidekick plugin ignor messag doesn updat side kick sidekick tree buffer activ buffer
+0
+
+1747300
+enabl custom fold present nice fold drawn gutter customiz on custom made user select icon show start end fold enabl fold mode provid fold handler side kick sidekick select icon fold
+0
+
+1748509
+persist plugin instal list from manag panel managepanel button save pop up file save dialog let save list current instal plugin xml file save xml instal panel installpanel load automat displai select plugin candid instal instal instal panel installpanel button load pop up file load dialog place let load xml file load plugin instal list get checkbox instal menu
+0
+
+1749475
+shortcut option pane shortcutoptionpan global tabl increment search filter addit abl select action set actionset shortcut option shortcutopt combobox user show action on tabl scroll filter increment search filter textbox tabl
+0
+
+1768638
+patch configur file statu check attach patch fix follow problem step reproduc mount remot filesystem internet open file from locat edit jedit move focu applic edit jedit move focu back edit jedit actual behavior edit jedit freez multipl second app check file statu buffer expect behavior buffer edit immedi patch add combo box global option pane globaloptionpan control edit jedit check file statu option read prompt check file chang valu applic focu applic focu visit buffer save buffer visit buffer save buffer visit save buffer save buffer state configur option store integ properti name check file statu checkfilestatu patch behavior curiou here descript us satisfi option make applic focu option avoid introduc overhead retain behavior plugin expect option drop goal aren import applic focu visit option environ multipl user edit file simultan visit buffer save buffer option defer notif file chang user natur paus point workflow visit save buffer option deal file check file attribut ha high latenc sshf attach filesystem scenario motiv patch save buffer option disabl check file attribut save exit help network attach filesystem intermitt unavail unrespons us sshf compress enabl http fuse sourceforg net sshf html
+0
+
+1781853
+add sortabl releas date column plugin manag releas plugin plugin manag wrote patch add releas date column instal updat tabl column tabl sortabl screen shot upload patch
+0
+
+1788847
+syntax highlight easi configur syntax style current syntax style token type set us syntax highlight edit jedit configur syntax highlight option pane global option dialog user friendli user token type mean specif mode exampl configur style variabl match style variabl buffer token type option pane multipl token type style on click appli check affect color buffer find token type correspond variabl follow make easier user custom style provid action find token type caret open syntax style dialog token type user doesn even token type simpli put caret variabl invok action configur style variabl mechan extend provid mode specif color overrid global set edit option pane style dialog check box specifi set global mode specif style token type edit jedit overrid global set mode specif mode chang featur request
+0
+
+1789707
+fix get xml encod getxmlencod hello attach patch org gjt sp jedit io xml encod detector xmlencodingdetector java revis 10456 function charset support issupport unsupport encod illeg charset name except illegalcharsetnameexcept open file wrong unsupport encod us hypersearch directori contain file bug reproduc creat file follow line xml version encod charset part file from wotlab burn board fix catch except add messag log return greet andr
+0
+
+1818140
+edit histori text patch edit entri histori text historytext click previous enter string simpl tabl appear histori entri chang click move pg up pgup pg down pgdown edit click insert delet list model editor listmodeleditor limit histori text historytext us edit list model defaultlistmodel
+0
+
+1825720
+autosav bug pre11 untitl file open parent directori exist autosav pop up file found error 30 second annoi
+0
+
+1834620
+regex captur group access captur group access edit jedit 2final exampl input text 123456789 abc 123456789abc search regex replac regex 10 11 12 expect output 123456789 abc 123456789abc actual output 123456789101112 lexer read first digit follow dollar sign treat second digit plain text
+0
+
+1854542
+vf browser show previou path press escap bug 1519924 basic ad anonym kei adapt keyadapt respond escap kei set text field text back current path browser done vf browser vfsbrowser constructor done mode equal browser escap kei set close dialog window
+0
+
+1866836
+after complet column cursor kept type column cursor after complet popup better cursor column cursor
+0
+
+1869978
+untitl buffer close view edit jedit ha on buffer open name untitl empti dirti close automat buffer open fine work more on open view jedit pre9 3pre9 pre12 3pre12 win xp winxp sp2 sun jre 03 0_03
+0
+
+1883809
+view scroll center caret screen action scroll up down caret middl text area textarea current move caret middl textarea action total useless moment
+0
+
+1887293
+increment search bar disappear press escap search bar focus disappear search bar set visibl global option
+0
+
+1894235
+1887293 increment search bar disappear first patch submiss apolog follow standard custom abl replic behavior mac os leopard chang show search bar checkbox global option after startup state search bar searchbar object previous store member temp wasn updat after press appli from global option dialog state checkbox follow startup here chang ve submit patch renam search bar searchbar temp remov isremov better describ suppos store move code previous search bar searchbar properti chang propertieschang method search bar searchbar set close button visibl setclosebuttonvis search bar searchbar constructor call properti chang propertieschang properti chang view move invoc search bar searchbar properti chang propertieschang call show search bar check previou version updat search bar state check box check
+0
+
+1906288
+bug scroll line scrolllin calcul soft wrap line first suppos follow two exampl reproduc effect bug enabl soft wrap edit4 jedit4 pre13 3pre13 jre jre_1 04 0_04 window machin st 1st exampl open edit jedit clean buffer let text area textarea ha visibl line write empti line write on line span least screenlin write empti line last line scrollbar shown right side delet line on span line scrollbar get smaller time delet line on nd 2nd exampl relat bug except occur scroll down after delet softwrap line open edit jedit clean buffer let text area textarea ha visibl line last line partial visibl write first line span two screenlin write line 10 physic line total more visibl select first line select from begin first screenlin begin third screenlin remov ctrl reason scrollbar disappear scroll down arrai down kei last line buffer get follow except java lang pointer except nullpointerexcept org gjt sp jedit textarea text area textarea scroll scrollto text area textarea java 1009 org gjt sp jedit textarea text area textarea scroll caret scrolltocaret text area textarea java 873 org gjt sp jedit textarea text area textarea finish caret updat _finishcaretupd text area textarea java 5101 org gjt sp jedit textarea text area textarea finish caret updat finishcaretupd text area textarea java 5260 org gjt sp jedit textarea text area textarea move caret posit movecaretposit text area textarea java 2365 org gjt sp jedit textarea text area textarea move caret posit movecaretposit text area textarea java 2331 org gjt sp jedit textarea text area textarea move caret posit movecaretposit text area textarea java 2320 org gjt sp jedit textarea text area textarea chang line _changelin text area textarea java 5375 org gjt sp jedit textarea text area textarea next line gotonextlin text area textarea java 2589 sun reflect method accessor impl nativemethodaccessorimpl invoke0 method sun reflect method accessor impl nativemethodaccessorimpl invok unknown sourc sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok unknown sourc java lang reflect method invok unknown sourc org gjt sp jedit bsh reflect invok method invokemethod reflect java 134 org gjt sp jedit bsh reflect invok object method invokeobjectmethod reflect java 80 org gjt sp jedit bsh name invok method invokemethod name java 855 org gjt sp jedit bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 org gjt sp jedit bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 org gjt sp jedit bsh bsh block bshblock eval bsh block bshblock java 80 org gjt sp jedit bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 258 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 186 org gjt sp jedit bean shell facad beanshellfacad run cach block runcachedblock bean shell facad beanshellfacad java 224 org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 443 org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 76 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 383 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 349 org gjt sp jedit gui input handler defaultinputhandl handl kei handlekei input handler defaultinputhandl java 197 org gjt sp jedit input abstract input handler abstractinputhandl process kei event kei stroke handl processkeyeventkeystrokehandl abstract input handler abstractinputhandl java 364 org gjt sp jedit gui input handler inputhandl process kei event processkeyev input handler inputhandl java 152 org gjt sp jedit textarea text area textarea process kei event processkeyev text area textarea java 4731 java awt compon process event processev unknown sourc java awt contain process event processev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert unknown sourc java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev unknown sourc java awt compon dispatch event impl dispatcheventimpl unknown sourc java awt contain dispatch event impl dispatcheventimpl unknown sourc java awt window dispatch event impl dispatcheventimpl unknown sourc java awt compon dispatch event dispatchev unknown sourc java awt event queue eventqueu dispatch event dispatchev unknown sourc java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt unknown sourc java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt unknown sourc java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread pump event pumpev unknown sourc java awt event dispatch thread eventdispatchthread run unknown sourc figur org gjt sp jedit textarea anchor pre content remov precontentremov scroll line scrolllin count updat reflect correct valu after remov oper next step org gjt sp jedit textarea buffer handler bufferhandl delai updat dodelayedupd call call turn org gjt sp jedit textarea displai manag displaymanag updat screen line count updatescreenlinecount line remov content start method call displai manag displaymanag updat screen line count updatescreenlinecount line valu invalid befor recalcul recalcul displai manger displaymang set screen line count setscreenlinecount scroll line count scrolllinecount scroll line scrolllin updat differ previou screen line count screenlinecount line liketo fix bug don side effect updat scroll line scrolllin set screen line count setscreenlinecount respons bug result npe occur scroll zonii
+23
+java.awt.Component
+java.awt.Container
+java.awt.DefaultKeyboardFocusManager
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.KeyboardFocusManager
+java.awt.Window
+java.lang.reflect.Method
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.BeanShellFacade
+org.gjt.sp.jedit.bsh.BSHBlock
+org.gjt.sp.jedit.bsh.BSHMethodInvocation
+org.gjt.sp.jedit.bsh.BSHPrimaryExpression
+org.gjt.sp.jedit.bsh.BshMethod
+org.gjt.sp.jedit.bsh.Name
+org.gjt.sp.jedit.bsh.Reflect
+org.gjt.sp.jedit.gui.DefaultInputHandler
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.input.AbstractInputHandler
+org.gjt.sp.jedit.textarea.TextArea
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.NativeMethodAccessorImpl
+
+1910061
+pre13 3pre13 r11659 center caret screen action revis 11659 chang behaviour center caret screen action center caret screen scroll document caret doesn chang 1883809 ezust purpos scroll current line action center caret screen action suppos chang caret posit
+0
+
+1912735
+select text counter statu bar select text main editor number char string call word count function easier counter directli statu bar
+0
+
+1913979
+histori text field historytextfield arrai bound histori brand jedit pre13 3pre13 instal virgin properti previou histori valu properti search get java lang arrai index bound except arrayindexoutofboundsexcept java util vector element elementat vector java 427 javax swing list model defaultlistmodel element elementat list model defaultlistmodel java 247 org gjt sp jedit gui histori model historymodel get item getitem histori model historymodel java 86 org gjt sp jedit search search dialog searchdialog set search string setsearchstr search dialog searchdialog java 151 org gjt sp jedit search search dialog searchdialog show search dialog showsearchdialog search dialog searchdialog java 109 sun reflect method accessor impl nativemethodaccessorimpl invoke0 method sun reflect method accessor impl nativemethodaccessorimpl invok method accessor impl nativemethodaccessorimpl java 39 sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok deleg method accessor impl delegatingmethodaccessorimpl java 25 java lang reflect method invok method java 597 org gjt sp jedit bsh reflect invok method invokemethod reflect java 134 org gjt sp jedit bsh reflect invok method invokestaticmethod reflect java 98 org gjt sp jedit bsh name invok method invokemethod name java 871 org gjt sp jedit bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 org gjt sp jedit bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 org gjt sp jedit bsh bsh block bshblock eval bsh block bshblock java 80 org gjt sp jedit bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 258 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 186 org gjt sp jedit bean shell facad beanshellfacad run cach block runcachedblock bean shell facad beanshellfacad java 224 org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 443 org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 76 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 383 org gjt sp jedit edit jedit invok action invokeact edit jedit java 3000 org gjt sp jedit edit jedit invok action invokeact edit jedit java 2984 org gjt sp jedit edit action editact wrapper action perform actionperform edit action editact java 220 javax swing abstract button abstractbutton fire action perform fireactionperform abstract button abstractbutton java 1995 javax swing abstract button abstractbutton handler action perform actionperform abstract button abstractbutton java 2318 javax swing button model defaultbuttonmodel fire action perform fireactionperform button model defaultbuttonmodel java 387 javax swing button model defaultbuttonmodel set press setpress button model defaultbuttonmodel java 242 javax swing abstract button abstractbutton click doclick abstract button abstractbutton java 357 javax swing plaf basic basic menu item ui basicmenuitemui click doclick basic menu item ui basicmenuitemui java 1170 javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas basic menu item ui basicmenuitemui java 1211 java awt awt event multicast awteventmulticast mous releas mousereleas awt event multicast awteventmulticast java 272 java awt compon process mous event processmouseev compon java 6038 javax swing compon jcompon process mous event processmouseev compon jcompon java 3260 java awt compon process event processev compon java 5803 java awt contain process event processev contain java 2058 java awt compon dispatch event impl dispatcheventimpl compon java 4410 java awt contain dispatch event impl dispatcheventimpl contain java 2116 java awt compon dispatch event dispatchev compon java 4240 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4322 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3986 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3916 java awt contain dispatch event impl dispatcheventimpl contain java 2102 java awt window dispatch event impl dispatcheventimpl window java 2429 java awt compon dispatch event dispatchev compon java 4240 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 599 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 273 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 183 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 173 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 168 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 160 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 121
+32
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+java.lang.reflect.Method
+java.util.Vector
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.DefaultListModel
+javax.swing.JComponent
+javax.swing.plaf.basic.BasicMenuItemUI
+javax.swing.plaf.basic.BasicMenuItemUI.Handler
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.BeanShellFacade
+org.gjt.sp.jedit.EditAction.Wrapper
+org.gjt.sp.jedit.bsh.BSHBlock
+org.gjt.sp.jedit.bsh.BSHMethodInvocation
+org.gjt.sp.jedit.bsh.BSHPrimaryExpression
+org.gjt.sp.jedit.bsh.BshMethod
+org.gjt.sp.jedit.bsh.Name
+org.gjt.sp.jedit.bsh.Reflect
+org.gjt.sp.jedit.gui.HistoryModel
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.jEdit
+org.gjt.sp.jedit.search.SearchDialog
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.NativeMethodAccessorImpl
+
+1923613
+revers regex search implement support revers search regular express work search forward direct accept last match prior current match function small moder size buffer effici larg buffer most folk edit jedit sourc edit grep massiv log file hope accept tradeoff
+0
+
+1931333
+pre13 3pre13 append number text autocomplet select complet autocomplet popup number number appen text reproduc creat buffer type foo foobar type fo hit ctrl autocomplet autocomplet popup displai two altern foo foobar type select second altern fo complet foobar2 foo
+0
+
+1936518
+file directori properti dialog add properti context menu file browser show file directori properti select item date size path
+0
+
+1938174
+fix activ log filter caus edit jedit freez occasion type rapidli filter text box activ log caus edit jedit freez 100 cpu activ problem caus rapid chang filter text happen awt event dispatch thread patch simpli wrap content filter list model filteredlistmodel set filter setfilt method runnabl call swing util swingutil invok invokelat patch appli org gjt sp jedit gui filter list model filteredlistmodel java patch creat revis 12387
+0
+
+1942313
+expand fold twice move caret unexpectedli pre13 3pre13 debian test java 04 0_04 ubuntu feisti java 11 0_11 get result machin creat follow file save test cpp bcd efg hij chang fold mode necessari indent move caret hij line press alt backspac contract fold work press alt enter expand fold work press alt enter second time caret move unexpectedli bcd line bug caret stai edit jedit print error messag
+0
+
+1947676
+show search string hyper search hypersearch result dockabl search string hyper search hypersearch result dockabl possibl part label result found current search specifi search file current search search specifi done found search string part label possibl truncat logic width
+0
+
+1961989
+custom tool bar context menu reset button tool bar context menu edit pane contain reset button get rid custom caus custom tool bar context menu overrid menu tool bar definit edit jedit updat old person set us chang deliv context menu tool bar invis custom remov from properti file addit icon assign custom action tool bar save properti file remov
+0
+
+1965114
+kei file browser press file browser dockabl open file list focus open file annoi make keyboard complet useless open file press featur ad familiar edit jedit featur complet filenam type
+0
+
+1984000
+untitl buffer lost after edit untitl buffer call file edit buffer lost from buffer list edit jedit svn revis 12783
+0
+
+1984974
+plain view includ option statu bar plain view littl plain imho abl line mode buffer exampl nice option enabl statu bar plain view
+0
+
+1999448
+more effici gener fix black hole bug found join line slow fold mode set reproduct recip warn caus vari hang up open doc chang txt edit jedit sourc tree expand fold bug select join line patch speed up situat minim call buffer get fold level getfoldlevel patch expand care black hole bug support multi line edit includ fold line more fold mode modif middl fold rang approv from matthieu made current fix bug
+0
+
+2015210
+illeg argument except illegalargumentexcept edit jedit utilit global option appear input neg number histori text field entri rememb result thrown illeg argument except illegalargumentexcept similarli utilit global option autosav backup input neg number autosav frequenc sec result thrown illeg argument except illegalargumentexcept xyuan umd xyuanumd
+0
+
+2017514
+context menu select exact bug http sourceforg net tracker index php func detail aid 1325352 group id group_id 588 atid 100588 context menu select open bug on automat close year ago summari select ctrl right click select copi cut on time lose select ubuntu hardi up date 13 jul 2008 jedit svn info path url http jedit svn sourceforg net svnroot jedit edit jedit trunk repositori root http jedit svn sourceforg net svnroot jedit repositori uuid b1 eeb88 6b1eeb88 9816 0410 afa2 b43733 a0 f04e b43733a0f04 revis 13044 node kind directori schedul normal last chang author ezust last chang rev 13032 last chang date 2008 07 08 12 47 25 0400 tue 08 jul 2008
+0
+
+2060078
+buffer set bufferset exclus buffer sibl bufferset non global scope bufferset nice option remov buffer from on bufferset ad
+0
+
+2068307
+file save alert close untitl buffer creat buffer immedi close add text delet close buffer edit jedit ask save empti buffer ve us editor befor notepad exampl doesn ask save buffer empti save empti buffer requir initi save command frequent creat buffer past text modifi cut clipboard buffer temporari space manipul text scenario feel benefici suppress alert
+0
+
+2069249
+revers regex search match start posit revers regex search enabl r13400 problem ha found test patch http sourceforg net support tracker php aid 1923613 repeat find previou stop charact stop end non empti line contrast repeat find next stop start non empti line match start posit revers regex search
+0
+
+2077326
+md5 sum md5sum buffer file file save warn check close dirti buffer reload dirti buffer pop up dialog ask confirm chang save comparison md5 sum md5sum buffer disk match don show dialog
+0
+
+2089713
+dirti chang dirty_chang sent after empti untitl buffer r13466 buffer tab buffertab show wrong icon untitl buffer dirti happen r13446 relat chang reproduct recip open buffer type buffer dirti dirti chang dirty_chang sent edit bu editbu type bs buffer dirti dirti chang dirty_chang sent type buffer dirti dirti chang dirty_chang sent icon buffer tab buffertab remain show close buffer prompt up buffer dirti isdirti
+0
+
+2091052
+buffer set bufferset loos dirti buffer view bufferset get on dirti buffer creat view contain buffer remov dirti buffer from first view close second view dirti buffer memori visibl edit pane
+0
+
+2122926
+add right click menu error statu bar widget nice error statu bar widget right click menu item clear error right click simpli clear error menu
+0
+
+2129419
+npe edit pane editpan set buffer setbuff quit edit jedit quit edit jedit get follow pointer except relat file chang delet cv up background previous quit edit jedit file chang reload dialog fail close option work npe java lang pointer except nullpointerexcept org gjt sp jedit edit pane editpan set buffer setbuff edit pane editpan java 136 org gjt sp jedit view set buffer setbuff view java 1009 org gjt sp jedit view show buffer showbuff view java 1484 org gjt sp jedit view show buffer showbuff view java 1042 org gjt sp jedit gui close dialog closedialog list handler listhandl valu chang valuechang close dialog closedialog java 233 javax swing list jlist fire select valu chang fireselectionvaluechang list jlist java 1765 javax swing list jlist list select handler listselectionhandl valu chang valuechang list jlist java 1779 javax swing list select model defaultlistselectionmodel fire valu chang firevaluechang list select model defaultlistselectionmodel java 167 javax swing list select model defaultlistselectionmodel fire valu chang firevaluechang list select model defaultlistselectionmodel java 147 javax swing list select model defaultlistselectionmodel fire valu chang firevaluechang list select model defaultlistselectionmodel java 194 javax swing list select model defaultlistselectionmodel chang select changeselect list select model defaultlistselectionmodel java 388 javax swing list select model defaultlistselectionmodel chang select changeselect list select model defaultlistselectionmodel java 398 javax swing list select model defaultlistselectionmodel set select interv setselectioninterv list select model defaultlistselectionmodel java 442 javax swing list jlist set select index setselectedindex list jlist java 2179 org gjt sp jedit gui close dialog closedialog init close dialog closedialog java 96 org gjt sp jedit edit jedit close buffer closeallbuff edit jedit java 1871 org gjt sp jedit edit jedit exit edit jedit java 2621 sun reflect method accessor impl nativemethodaccessorimpl invoke0 method sun reflect method accessor impl nativemethodaccessorimpl invok method accessor impl nativemethodaccessorimpl java 39 sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok deleg method accessor impl delegatingmethodaccessorimpl java 25 java lang reflect method invok method java 597 org gjt sp jedit bsh reflect invok method invokemethod reflect java 134 org gjt sp jedit bsh reflect invok method invokestaticmethod reflect java 98 org gjt sp jedit bsh name invok method invokemethod name java 871 org gjt sp jedit bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 org gjt sp jedit bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 org gjt sp jedit bsh bsh block bshblock eval bsh block bshblock java 80 org gjt sp jedit bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 258 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 186 org gjt sp jedit bean shell facad beanshellfacad run cach block runcachedblock bean shell facad beanshellfacad java 225 org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 441 org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 73 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 352 org gjt sp jedit edit jedit invok action invokeact edit jedit java 3080 org gjt sp jedit edit jedit invok action invokeact edit jedit java 3062 org gjt sp jedit edit action editact wrapper action perform actionperform edit action editact java 220 javax swing abstract button abstractbutton fire action perform fireactionperform abstract button abstractbutton java 1995 javax swing abstract button abstractbutton handler action perform actionperform abstract button abstractbutton java 2318 javax swing button model defaultbuttonmodel fire action perform fireactionperform button model defaultbuttonmodel java 387 javax swing button model defaultbuttonmodel set press setpress button model defaultbuttonmodel java 242 javax swing abstract button abstractbutton click doclick abstract button abstractbutton java 357 javax swing plaf basic basic menu item ui basicmenuitemui click doclick basic menu item ui basicmenuitemui java 1220 javax swing plaf basic basic menu item ui basicmenuitemui handler mous releas mousereleas basic menu item ui basicmenuitemui java 1261 java awt awt event multicast awteventmulticast mous releas mousereleas awt event multicast awteventmulticast java 272 java awt compon process mous event processmouseev compon java 6041 javax swing compon jcompon process mous event processmouseev compon jcompon java 3265 java awt compon process event processev compon java 5806 java awt contain process event processev contain java 2058 java awt compon dispatch event impl dispatcheventimpl compon java 4413 java awt contain dispatch event impl dispatcheventimpl contain java 2116 java awt compon dispatch event dispatchev compon java 4243 java awt lightweight dispatch lightweightdispatch retarget mous event retargetmouseev contain java 4322 java awt lightweight dispatch lightweightdispatch process mous event processmouseev contain java 3986 java awt lightweight dispatch lightweightdispatch dispatch event dispatchev contain java 3916 java awt contain dispatch event impl dispatcheventimpl contain java 2102 java awt window dispatch event impl dispatcheventimpl window java 2440 java awt compon dispatch event dispatchev compon java 4243 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 599 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 273 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 183 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 173 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 168 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 160 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 121
+35
+java.awt.AWTEventMulticaster
+java.awt.Component
+java.awt.Container
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.LightweightDispatcher
+java.awt.Window
+java.lang.reflect.Method
+javax.swing.AbstractButton
+javax.swing.AbstractButton.Handler
+javax.swing.DefaultButtonModel
+javax.swing.DefaultListSelectionModel
+javax.swing.JComponent
+javax.swing.JList
+javax.swing.JList.ListSelectionHandler
+javax.swing.plaf.basic.BasicMenuItemUI
+javax.swing.plaf.basic.BasicMenuItemUI.Handler
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.BeanShellFacade
+org.gjt.sp.jedit.EditAction.Wrapper
+org.gjt.sp.jedit.EditPane
+org.gjt.sp.jedit.View
+org.gjt.sp.jedit.bsh.BSHBlock
+org.gjt.sp.jedit.bsh.BSHMethodInvocation
+org.gjt.sp.jedit.bsh.BSHPrimaryExpression
+org.gjt.sp.jedit.bsh.BshMethod
+org.gjt.sp.jedit.bsh.Name
+org.gjt.sp.jedit.bsh.Reflect
+org.gjt.sp.jedit.gui.CloseDialog
+org.gjt.sp.jedit.gui.CloseDialog.ListHandler
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.jEdit
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.NativeMethodAccessorImpl
+
+2169354
+pre15 3pre15 replac empti insert replac empti incorrectli insert insert exampl follow buffer start select name code address from employe code 111 end search regular express bit replac emp expect result start select emp name emp code emp address from employe emp code 111 end actual result start select emp name emp code emp address from employe empnul code 111 end
+0
+
+2173091
+pre16 3pre16 regex hypersearch match first line make buffer 15 line empti matter regex switch hypersearch switch search match first line match 15 line
+0
+
+2173112
+pre16 3pre16 regex match last line select buffer make 10 empti line note don empti select five line text select search hypersearch select regular express turn match first line fifth match search replac fifth line match place first line note work fine demonstr behaviour line empti reproduc non empti line mixtur empti non empti line
+0
+
+2183929
+pre16 3pre16 file buffer switcher order test edit jedit pre16 3pre16 r13908 order filenam buffer switcher order file open reproduc us touch creat two file directori foo txt bar txt set sort buffer set set sort buffer set filenam pathnam open foo txt edit jedit open bar txt edit jedit check buffer switcher foo txt shown bar txt current view view view view creat close edit jedit open switcher order correctli bar txt foo txt
+0
+
+2199003
+dock option pane configur dockabl plugin plugin instal dockabl avail dock option pane global option dialog show entir list dockabl order titl two issu dockabl from differ plugin titl tag list exist tag ctag ctagsinterfac sourc navig imposs dockabl configur on from tag on from ctag ctagsinterfac list dockabl make conveni configur desir dockabl solv issu dock option pane combo box choos set dockabl present tabl similar combo box shortcut option pane user choos configur dockabl specif plugin core desir
+0
+
+2218621
+file browser filebrows directori current buffer type minu file browser filebrows path dropdown press enter minu append path chang path current buffer choos directori current buffer from command menu work option work fine small inconsist search replac dialog current buffer point empti dropdown minu file browser filebrows minu empti field point current directori
+0
+
+2220025
+make offset line column rel displai configur edit jedit pre15 3pre15 earlier displai line column rel posit text area left side statu bar edit jedit pre16 3pre16 show offset from begin file find offset distract nice displai configur offset line number column number rel posit turn user desir
+0
+
+2220033
+rel posit statu bar inaccur edit jedit pre16 3pre16 from svn rel posit displai statu bar broke bug open file larger visibl down arrow kei scroll down file notic rel posit displai bot befor bottom file scroll complet bottom file up arrow kei scroll up file notic rel posit continu bot up from bottom file
+0
+
+2446121
+highlight term hyper search hypersearch result window color type big increas usabl term search highlight line displai hypersearch result window line color type comment comment color lot result term part line difficult find relev exampl search term interest case appear comment part method name doit checker booleancheck val boolval appear multi line comment boolean excus html code font style color blue font doit font style color blue font checker val boolval font style color green appear multi line comment font style color blue font font
+0
+
+2555956
+show presenc jedit server edit jedit provid gui user check edit jedit current server special interest run background mode part help show edit jedit version java version
+0
+
+2569381
+add option search open buffer complet word add option search open buffer build complet list guess text area textarea option pane most logic place option open suggest
+0
+
+2596087
+scroll fail visibl line soft wrap here fun bug resiz textarea on visibl line fact line max partial second line creat buffer aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa softwrap 80 col first line more on line put caret first line press arrow down caret move textarea scroll abl press arrow down necessari second line textarea move second exampl put caret line press arrow up caret last line first line texarea show first line line
+0
+
+2646484
+patch smarter smart end smartend fulfil featur request http sourceforg net tracker2 index php func detail aid 1903596 group id group_id 588 atid 350588 smart end smartend consum kei press end code end_of_cod end whitespac end_of_whitespac end line end_of_lin end visibl line end_of_visible_lin
+0
+
+2668434
+fullscreen mode fullscreen mode edit jedit nice netbook limit screen size get rid titlebar window border
+0
+
+2688862
+redo hyper search hypersearch us titl last search hyper search hypersearch from context menu hyper search hypersearch result entri titl last search get us node us correct titl cours reproduc enabl multipl result hyper search hypersearch result widget dock search hyper search hypersearch search differ hs right click first result select redo hyper search hypersearch renam svn result titl second search get us first on
+0
+
+2696564
+text block select gutter right click first request here http commun jedit org node view 4151 request context menu popup user right click gutter better facilit select text block gui ehtyar
+0
+
+2744708
+buffer tab buffertab delet file doesn show dirti buffer unchang delet file appear dirti buffer previous step reproduc creat file save delet file normal os method back edit jedit get file chang disk dialog click close notic buffer mark dirti behav non exist filesystem save file point bring up file dialog chose save locat buffer mark dirti previou version
+0
+
+2759434
+indent relat bug svn rev 14922 python mode enter carret enter except occur java lang string index bound except stringindexoutofboundsexcept string index rang java lang string charat string java 687 org gjt sp util standard util standardutil get indent string getindentstr standard util standardutil java 104 org gjt sp jedit buffer edit buffer jeditbuff indent line indentlin edit buffer jeditbuff java 991 org gjt sp jedit textarea text area textarea insert enter indent insertenterandind text area textarea java 4292 sun reflect gener method accessor17 generatedmethodaccessor17 invok unknown sourc sun reflect deleg method accessor impl delegatingmethodaccessorimpl invok deleg method accessor impl delegatingmethodaccessorimpl java 25 java lang reflect method invok method java 597 org gjt sp jedit bsh reflect invok method invokemethod reflect java 134 org gjt sp jedit bsh reflect invok object method invokeobjectmethod reflect java 80 org gjt sp jedit bsh name invok method invokemethod name java 855 org gjt sp jedit bsh bsh method invoc bshmethodinvoc eval bsh method invoc bshmethodinvoc java 75 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 102 org gjt sp jedit bsh bsh primari express bshprimaryexpress eval bsh primari express bshprimaryexpress java 47 org gjt sp jedit bsh bsh block bshblock eval block evalblock bsh block bshblock java 130 org gjt sp jedit bsh bsh block bshblock eval bsh block bshblock java 80 org gjt sp jedit bsh bsh method bshmethod invok impl invokeimpl bsh method bshmethod java 362 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 258 org gjt sp jedit bsh bsh method bshmethod invok bsh method bshmethod java 186 org gjt sp jedit bean shell facad beanshellfacad run cach block runcachedblock bean shell facad beanshellfacad java 225 org gjt sp jedit bean shell beanshel run cach block runcachedblock bean shell beanshel java 423 org gjt sp jedit bean shell action beanshellact invok bean shell action beanshellact java 73 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 352 org gjt sp jedit gui input handler inputhandl invok action invokeact input handler inputhandl java 317 org gjt sp jedit gui input handler defaultinputhandl handl kei handlekei input handler defaultinputhandl java 197 org gjt sp jedit input abstract input handler abstractinputhandl process kei event kei stroke handl processkeyeventkeystrokehandl abstract input handler abstractinputhandl java 405 org gjt sp jedit gui input handler inputhandl process kei event processkeyev input handler inputhandl java 151 org gjt sp jedit textarea text area textarea process kei event processkeyev text area textarea java 4525 java awt compon process event processev compon java 5911 java awt contain process event processev contain java 2023 java awt compon dispatch event impl dispatcheventimpl compon java 4501 java awt contain dispatch event impl dispatcheventimpl contain java 2081 java awt compon dispatch event dispatchev compon java 4331 java awt keyboard focu manag keyboardfocusmanag redispatch event redispatchev keyboard focu manag keyboardfocusmanag java 1848 java awt keyboard focu manag defaultkeyboardfocusmanag dispatch kei event dispatchkeyev keyboard focu manag defaultkeyboardfocusmanag java 704 java awt keyboard focu manag defaultkeyboardfocusmanag pre dispatch kei event predispatchkeyev keyboard focu manag defaultkeyboardfocusmanag java 969 java awt keyboard focu manag defaultkeyboardfocusmanag type ahead assert typeaheadassert keyboard focu manag defaultkeyboardfocusmanag java 841 java awt keyboard focu manag defaultkeyboardfocusmanag dispatch event dispatchev keyboard focu manag defaultkeyboardfocusmanag java 668 java awt compon dispatch event impl dispatcheventimpl compon java 4373 java awt contain dispatch event impl dispatcheventimpl contain java 2081 java awt window dispatch event impl dispatcheventimpl window java 2458 java awt compon dispatch event dispatchev compon java 4331 java awt event queue eventqueu dispatch event dispatchev event queue eventqueu java 599 java awt event dispatch thread eventdispatchthread pump on event filter pumponeeventforfilt event dispatch thread eventdispatchthread java 269 java awt event dispatch thread eventdispatchthread pump event filter pumpeventsforfilt event dispatch thread eventdispatchthread java 184 java awt event dispatch thread eventdispatchthread pump event hierarchi pumpeventsforhierarchi event dispatch thread eventdispatchthread java 174 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 169 java awt event dispatch thread eventdispatchthread pump event pumpev event dispatch thread eventdispatchthread java 161 java awt event dispatch thread eventdispatchthread run event dispatch thread eventdispatchthread java 122
+26
+java.awt.Component
+java.awt.Container
+java.awt.DefaultKeyboardFocusManager
+java.awt.EventDispatchThread
+java.awt.EventQueue
+java.awt.KeyboardFocusManager
+java.awt.Window
+java.lang.String
+java.lang.reflect.Method
+org.gjt.sp.jedit.BeanShell
+org.gjt.sp.jedit.BeanShellAction
+org.gjt.sp.jedit.BeanShellFacade
+org.gjt.sp.jedit.bsh.BSHBlock
+org.gjt.sp.jedit.bsh.BSHMethodInvocation
+org.gjt.sp.jedit.bsh.BSHPrimaryExpression
+org.gjt.sp.jedit.bsh.BshMethod
+org.gjt.sp.jedit.bsh.Name
+org.gjt.sp.jedit.bsh.Reflect
+org.gjt.sp.jedit.buffer.JEditBuffer
+org.gjt.sp.jedit.gui.DefaultInputHandler
+org.gjt.sp.jedit.gui.InputHandler
+org.gjt.sp.jedit.input.AbstractInputHandler
+org.gjt.sp.jedit.textarea.TextArea
+org.gjt.sp.util.StandardUtilities
+sun.reflect.DelegatingMethodAccessorImpl
+sun.reflect.GeneratedMethodAccessor17
+
+2762745
+plugin manag pluginmanag save pluginset plugin manag pluginmanag save pluginset reproduc open plugin manag pluginmanag click manag tab click save current check plugin set icon choos filenam from save dialog save file open file empti
+0
+
+2777073
+fix gutter width line number line number displai gutter digit width reserv even buffer ha 20 line more 200 000 line buffer 20 line redund space reserv line number buffer 200 000 line line number written fold marker buffer 000 000 line first digit cut gutter boundari complet visibl
+0
+
+2781716
+line number hypersearch result wrongli highlight reproduct recip put empti buffer hypersearch result line number text highlight line number shouldn highlight reproduc edit jedit trunk r14991 jre u13 6u13 window xp
+0
+
+2814857
+stop caret timer text area dispos patch call caret timer carettim stop remov notifi removenotifi text area textarea swing shutdown event queue parent frame dispos
+0
+
+2823909
+action bar visibl full screen mode version edit jedit pre17 3pre17 os jdk java java multipl os step reproduc util action bar action bar shown bottom text area close action bar view toggl full screen mode util action bar action bar shown
+0
+
+2824045
+toggl full screen fullscreen mode window end up toggl fullscreen mode edit jedit window appear window desktop panel direct switch toggl jedit window befor fulli even ha focu java version 13 0_13 java tm se runtim environ build 13 0_13 b03 java hot spot hotspot tm 64 bit server vm build 11 b02 mix mode linux 26 amd64 smp sun jun 21 04 47 08 utc 2009 x86 64 x86_64 gnu linux
+0
+
+2842444
+manual stop hyper search hypersearch oper request maximum result option prompt stop hyper search hypersearch nice manual stop button purpos patch stop button ad set icon hyper search hypersearch pane next highlight clear multi result button disabl search current activ enabl stop basic mimick max result mechan us temporari properti stop button click best handl work fine
+0
+
+2844750
+line height correct disappear underscor attach patch svn r16059 solv problem underscor disappear cursor move up down line text area textarea deja vu dejavu san mono 15 pt 15pt edit jedit from svn trunk r16059 openjdk6 i686 root caus underscor font descend line height lineheight appear first pixel next line next line drawn underscor current line paint disappear solut us patch draw on extra line first line repaint underscor extra line preserv repaint consider
+0
+
+2846169
+indent fold handler indentfoldhandl allow blank line after start fold patch consid blank line after start fold part fold major annoy year glad fix attach two screencast demonstr befor after appli patch consider
+0
+
+2882702
+multipl monitor right click context menu issu oper multipl monitor right click context menu displai left arrow secondari monitor appear jedit window second monitor right jedit believ approach right most margin observ area push menu left keep visibl even area visibl occur edit jedit pre17 3pre17 window linux
+0
+
+2887515
+navig dialog aboutdialog name rg spieler year dialog aboutdialog name list slow edit jedit littl patch navig dialog aboutdialog arrow kei
+0
+
+2887516
+copi hyper search result clipboard patch add pop up menu copi clipboard hyper search result node
+0
+
+2896464
+plain text copi from hyper search hypersearch result hyper search hypersearch result us get copi plaint text version befor pre17 3pre17 us process html copi process result interf
+0
+
+2911122
+unabl print bug introduc revis 16499 prevent user from print comment from commit commit patch 2876132 get plugin resourc from anonym jar loader jarclassload step reproduc file print dialog appear print servic found ha confirm mac os 10 java ubuntu java
+0
+

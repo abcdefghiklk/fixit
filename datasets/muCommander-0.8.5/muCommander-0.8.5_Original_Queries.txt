@@ -1,0 +1,683 @@
+1
+SFTP transfers cause memory leaks under Mac OS X 10.4 and Java 1.5  "Under Mac OS X 10.4(Tiger), transferring files from and/or to an SFTP server causes the JVM to leak memory fast, leaking approximately the same amount of memory as the data transferred. This memory is never recovered, even if the garbage collector is called explicitly(System.gc()).  Steps to reproduce: - Launch muCommander under Mac OS X 10.4 with Java 1.5 - Copy a file from an SFTP server to a local volume(or vice-versa) - Using top or Activity Viewer.app, watch the memory usage grow and never go down as the transfer progresses  Additional information: - this happens with Java 1.5 and Java 1.6 DP but not with Java 1.4 - this bug cannot be reproduced under the newer Mac OS X 10.5(Leopard) - this bug cannot be reproduced under Windows XP - transfers with protocols other than SFTP(FTP, SMB, ...) do not cause this problem"
+1
+com.mucommander.file.impl.http.HTTPProtocolProvider
+
+7
+Corrupt listing of UNC paths  "Steps to reproduce: Enter a valid UNC path in the location bar. The path must point to a existing, non-empty directory.  Expected behaviour: The content of the specified directory should be properly listed.  Observed behaviour: - All files are displayed as symlinks. - All directories are displayed as files and as symlinks. - Some files don't have icons at all. The only example of that was the muCommander 0.8.2 Windows setup file."
+1
+com.mucommander.file.impl.local.LocalFile
+
+10
+Passwords cannot be changed  "Steps to reproduce: - Create a bookmark on an authenticated file system(was reproduced on FTP and SFTP). - Save working credentials for that bookmark. - Update the remote account with a different password. - restart muCommander and try to access the bookmark. - enter the new password and try to connect.  Expected behaviour: The new credentials are used and the connection suceeds.  Observed behaviour: The old credentials are used and the connection fails."
+1
+com.mucommander.ui.dialog.auth.AuthDialog
+
+11
+Zeroconf servers open in the wrong folder panel  "Steps to reproduce: - Set the focus in the left folder panel - Open the right Drive Button(default: alt-f2) - Select a Zeroconf server  Expected behaviour: The server is opened in the right folder panel.  Observed behaviour: The server is opened in the left folder panel."
+3
+com.mucommander.ui.main.DrivePopupButton
+com.mucommander.ui.main.DrivePopupButton.CustomOpenLocationAction
+com.mucommander.ui.main.menu.MainMenuBar
+
+13
+Main menu mnemonics not working properly  "Steps to reproduce: - Press any of the main menu mnemonics(alt-f to open the File menu if muCommander is configured to use English, for example)  Expected behaviour: The correct menu opens  Observed behaviour: The keypress is used as a quicksearch item rather than a menu mnemonic. Note that pressing alt, releasing it and then pressing the F key will open the File menu. It's only using both keys at the same time that dispatches the event to the wrong component."
+1
+com.mucommander.ui.main.table.FileTable.QuickSearch
+
+16
+Owner/group columns display nothing under local filesystems  When selecting View, Show/Hide columns, and Owner and/or Group, the column(s) appear(s) but there is nothing at all in them.  The columns are somewhat narrow when added and as far as I can tell there is no easy way to widen them, but even so, they are completely blank.
+14
+com.mucommander.bonjour.BonjourDirectory
+com.mucommander.bonjour.BonjourService
+com.mucommander.ui.action.impl.ToggleColumnAction
+com.mucommander.ui.action.impl.ToggleShowFoldersFirstAction
+com.mucommander.ui.main.MainFrame
+com.mucommander.ui.main.menu.MainMenuBar
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.table.FileTable.FolderChangeThread
+com.mucommander.ui.main.table.FileTableColumnModel
+com.mucommander.ui.main.table.FileTableConfiguration
+com.mucommander.ui.main.table.FileTableHeader
+com.mucommander.ui.main.table.FileTableHeaderRenderer
+com.mucommander.ui.main.table.FileTableModel
+com.mucommander.ui.main.table.SortInfo
+
+20
+viewer freezes indefinitely at 100% cpu for many files  "The internal viewer freezes up and consumes 100% cpu time for many types of file. For example, a 450KB .exe file(on windows XP). The same behavior is seen on Linux(Ubuntu 7.10).  I waited for 5 mins before I killed the application. Freezing for such extended periods of time for comparatively small files(450KB) is not an acceptable user experience.  Tycho"
+9
+com.mucommander.file.impl.http.HTTPFile
+com.mucommander.ui.main.FolderPanel.ChangeFolderThread
+com.mucommander.ui.main.LocationHistory
+com.mucommander.ui.viewer.EditorFrame
+com.mucommander.ui.viewer.EditorRegistrar
+com.mucommander.ui.viewer.ViewerFrame
+com.mucommander.ui.viewer.ViewerRegistrar
+com.mucommander.ui.viewer.WarnUserException
+com.mucommander.ui.viewer.text.TextFactory
+
+21
+"0.8.1(and current nightly) has two issues with the 'Swap folders' functionality. The first one is the most critical one as it can cause the renaming of unwanted files. Here are the steps to reproduce both issues :  1)  - On the right panel, swap the order of the Name and Extension columns, making the Name column appear before the Extension one - Swap folders - Rename a file in the right panel by clicking on the name cell, changing its name and validating by pressing enter  Expected result : the file selected in the RIGHT panel is renamed with the new name entered Actual result : a file in the LEFT panel-�is renamed with the new name entered  2) - On the right panel, hide all columns so that only the Name column remains - Swap folders  Expected result : folders are swapped Actual result : muCommander crashes, leaving the main window unpainted(cf attached screenshot)  Note that these 2 issues have been grouped into a single bug because the underlying cause is the same."
+2
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.toolbar.ToolBar.HistoryPopupButton
+
+24
+Symlinks can't be viewed/edited  "Steps to reproduce : - In one of the panels, select a symlink which links to a regular file(i.e. not a directory) that exists and can be read by the current user - try to View(F3) or Edit(F4) the symlink  Expected result : The symlink's target is opened in a viewer/editor window.  Actual result : Nothing happens."
+3
+com.mucommander.ui.action.impl.AbstractViewerAction
+com.mucommander.ui.viewer.image.ImageFactory
+com.mucommander.ui.viewer.text.TextFactory
+
+30
+Overwriting a Zip file can sometimes result in a corrupted archive  "Steps to reproduce: - create a Zip file , say '~/test.zip', that contains a somewhat large file. - mark a somewhat small file and pack it('File' -> 'Pack files...' menu item) into the same Zip file, i.e. '~/test.zip'. - when the file collision dialog appears, warning that the file already exists in the destination, choose 'Overwrite'.  Expected result : => the new Zip file contains the 'somewhat small file', and the archive file is smaller than the previous one.  Actual result : => when entered with muCommander, the new Zip file still contains the old 'somewhat large' file and has the same size as the previous one. Futhermore, the new Zip is corrupted: running 'unzip -vt' will reveal errors in the Zip file.  Note: if the new Zip file is larger than the existing one, everything is fine(no bug)."
+3
+com.mucommander.file.FileFactory
+com.mucommander.file.FileURL
+com.mucommander.file.archiver.Archiver
+
+31
+unable to use the history selector  "configuration : 2 panes left is local, right is ftp on the left side(local) after 7hours of intense ftp-ing, selecting a parent link in the history selector doesn't work anymore. The path doesn't change and the pane color is dimmed. I change manually the path of this pane and it works but no  selection with the mouse is possible.  another bug on the go : new window button and ctrl+n don't work anymore since the few last nightly build version"
+1
+com.mucommander.auth.Credentials
+
+37
+MacOS: Window menu is missing 'Minimize' and 'Zoom'  MacOS: Window menu is missing 'Minimize' and 'Zoom' menu options in order to mimic a standard MacOS application.
+3
+com.mucommander.ui.action.impl.MaximizeWindowAction
+com.mucommander.ui.action.impl.MinimizeWindowAction
+com.mucommander.ui.main.menu.MainMenuBar
+
+39
+IllegalArgumentException at ShellComboBox  "Hey,  When there are no elements at the combobox(after ""clear history"" action, for example), openning the popup of the combobox throws the following exception: java.lang.IllegalArgumentException: setSelectedIndex: 0 out of bounds  You should probably add the check ""if(getItemCount() > 0)"" before the ""setSelectedIndex(0)"" is made at the ""popupMenuWillBecomeVisible"" function.  Arik"
+28
+com.mucommander.auth.CredentialsWriter
+com.mucommander.auth.MappedCredentials
+com.mucommander.bonjour.BonjourService
+com.mucommander.bookmark.BookmarkParser
+com.mucommander.file.AbstractArchiveFile
+com.mucommander.file.AbstractFile
+com.mucommander.file.ArchiveEntry
+com.mucommander.file.FileFactory
+com.mucommander.file.FileURL
+com.mucommander.file.URLFactory
+com.mucommander.file.impl.ftp.FTPFile
+com.mucommander.file.impl.ftp.FTPFile.FTPConnectionHandler
+com.mucommander.file.impl.http.HTTPFile
+com.mucommander.file.impl.local.LocalFile
+com.mucommander.file.impl.local.LocalFile.FSRandomAccessInputStream
+com.mucommander.file.impl.sftp.SFTPFile
+com.mucommander.file.impl.smb.SMBFile
+com.mucommander.file.impl.zip.ZipArchiveFile
+com.mucommander.file.util.FileToolkit
+com.mucommander.job.ArchiveJob
+com.mucommander.ui.FolderHistory
+com.mucommander.ui.LocationComboBox
+com.mucommander.ui.ShowServerConnectionsDialog
+com.mucommander.ui.StatusBar
+com.mucommander.ui.WindowManager
+com.mucommander.ui.action.CommandAction
+com.mucommander.ui.action.OpenAction
+com.mucommander.ui.action.OpenLocationAction
+
+43
+Files get corrupt when changing the case of their names  "This is a Windows only bug, it cannot be reproduced under OS X.  Steps to reproduce: - create a file whose name contains precisely one upper case character, the first one. For example, Test.txt. - rename that file to full lower-case(test.txt) The file will suddenly be detected as shortcut by muCommander. - rename that file again, any name seems to work. The file will disapear(deleted? Moved somewhere?)"
+2
+com.mucommander.file.impl.local.LocalFile
+com.mucommander.file.impl.local.LocalFileTest
+
+45
+Drag and drop from muCommander to GNOME doesn't work  "If you drag a file from GNOME(e.g. from Nautilus) to muCommander, it works perfectly: muCommander copies/moves the file to the directory where the file was dropped. But the reverse doesn't work.  Steps: 1) Open a directory in Nautilus(the ""explorer"" in GNOME) 2) Drag a file(e.g. ""foo.txt"" in directory ""/path/to/foo"") from muCommander and drop it in Nautilus with the CTRL key pressed  Expected: In Nautilus, a file ""foo.txt"" is created, with the same size, name and content as the original one.  Real: In Nautilus, a file called ""new file"" is created. Its content is ""/path/to/foo/foo.txt""."
+1
+com.mucommander.ui.main.FolderPanel
+
+48
+No Action on Double Click  "I have a problem with the lastest build(dated 2008/05/05). Double click(with mouse) does not seem to be working as what I will expect(i.e., change directory if I clicked on directory name; launch the program if I clicked on an executable; ... etc).  Additional information: 1. Double-click sometimes(not always) triggered the ""Rename selected File"" function(similar to Shift+F6). 2. I can change folder or launch applications by Right-click + Open. But I cannot do this by double-click on selected folder/file.  p.s. The same problem happened on previous builds as well.  ------------------- Version information  muCommander Version: 0.8.3 Build date: 2008/05/05  Java VM Name: Java HotSpot(TM) Client VM Version: 10.0-b19 Vendor: Sun Microsystems Inc.  OS Name: Linux Version: 2.4.22-1.2115.nptl Architecture: i386  Locale Language: en Country: US Encoding: UTF-8"
+2
+com.mucommander.file.FileFactory
+com.mucommander.file.FileURL
+
+52
+File copy sometimes changes file kind  "Steps to reproduce: 1. I have only seen this with 'Adobe Illustrator Documents'(CS3 version). All files have .ai extensions. It does not happen all the time, but 90% of the cases. 2. I copy the file(s) to some other folder. 3. The Finder's get info dialog shows the file kind has changed to 'Image'. The file doesn't open in Illustrator on native open, and the file icon changes.  Expected behaviour: The file kind to stay the same.  PS: thank you for this great application!"
+2
+com.mucommander.job.SendMailJob
+com.mucommander.job.TransferFileJob
+
+59
+Main menu: move 'Check for updates' item from File to Help menu  "Main menu: move 'Check for updates' item from File to Help menu. It's very unusual to see that item there.  The better place for that is Help menu like this is done in firefox or ultraedit. My proposal for updated Help menu is the next: ... Make a donation ---------------- Check for updates ---------------- About muCommander"
+1
+com.mucommander.ui.main.menu.MainMenuBar
+
+60
+UI preferences: 'Apply' button must be disabled if no changes have been made  In the preferences dialog Apply button must be enabled only if some changes of an existing configuration have been done. If configuration was not changed - Apply button must remain disabled. Default state of the button must be disabled instead of enabled.
+17
+com.mucommander.ui.dialog.pref.PreferencesDialog
+com.mucommander.ui.dialog.pref.component.PrefCheckBox
+com.mucommander.ui.dialog.pref.component.PrefComboBox
+com.mucommander.ui.dialog.pref.component.PrefFilePathField
+com.mucommander.ui.dialog.pref.component.PrefRadioButton
+com.mucommander.ui.dialog.pref.component.PrefSaneComboBox
+com.mucommander.ui.dialog.pref.component.PrefTextField
+com.mucommander.ui.dialog.pref.general.AppearancePanel
+com.mucommander.ui.dialog.pref.general.FoldersPanel
+com.mucommander.ui.dialog.pref.general.GeneralPanel
+com.mucommander.ui.dialog.pref.general.GeneralPreferencesDialog
+com.mucommander.ui.dialog.pref.general.MailPanel
+com.mucommander.ui.dialog.pref.general.MiscPanel
+com.mucommander.ui.dialog.pref.theme.ColorButton
+com.mucommander.ui.dialog.pref.theme.ThemeEditorDialog
+com.mucommander.ui.dialog.pref.theme.ThemeEditorPanel
+com.mucommander.ui.dialog.pref.theme.ThemeEditorPanel.ThemeFontChooserListener
+
+66
+--no-splash should be a checkbox in the Preferences dialogue  "Hi.  I have nothing agaist the design of the splash screen. It's neat. But splash screens annoy me in general: they hover on top of the window you want to work in just to show that, yes, the program whose symbol you just clicked, does indeed start up. And I have found that often the splash screens slow down start-up. With muCommander my impression is that start-up is almost twice as fast without splash, even on a dual-core AMD(2 GHz) with 2 Gigs of RAM. Now, I found the forum post that told me to add the --no-splash as a start-up parameter. On Linux, you have to be root to do that(considering muCommander has been installed systemwide by root; the startup script is in /usr/share/mucommander/). Hmmm. Also, for Windows, I will have to check on Monday and edit the respective setting. Not really userfriendly towards the average GUI user. If possible, it would be great if you could add a ""[ ] show splash screen at start-up"" checkbox somewhere in the Preferences dialogue(by the way: German translation may be: ""[ ] zeige Startbild"" -- even better(and simpler) would be a check box ON the start-up screen ""[ ] don't show this again"" ...  Best regards  Andreas"
+2
+com.mucommander.Launcher
+com.mucommander.ui.dialog.pref.general.MiscPanel
+
+67
+scenario in which muCommander gets into a deadlock  "Hey,  Maxence, I have already informed you about this bug. I sent a QUIT signal as you wrote and discovered that there is a deadlock.  The scenario: 1. muCommander starts at folder ""/home/arik"" 2. enter folder ""/home/arik/workspace/mucommanderPopup/bin/status_bar/"" 3. from the locationComboBox, enter parent folder ""/home/arik"" 4. return to ""/home/arik/workspace/mucommanderPopup/bin/status_bar/"" by the ""back"" action 5. from the locationComboBox, enter parent folder ""/home"" 6. then the program get stuck.  os: ubuntu 8.04. sdk: sun-1.6.0 mucmmander: Version: 0.8.3 Build date: 2008/07/26"
+2
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.FolderPanel.ChangeFolderThread
+
+77
+"outcome of entering ""broken"" bookmark at LocationTextFields"  "Hey Maxence,  When we type in the LocationTextField a non existed(but not malformed) path, we get an error dialog and then the text in the text-field is selected and the text-field gets the focus. When we type in the LocationTextField name of bookmark with non existed(but not malformed) location, there is a different outcome - after the error dialog appears, the text in the text-field is not selected and the focus is at the file-table. It seems that the outcome of the 2 cases above should be the same - In both cases a non existed location(again, not malformed) was entered in the LocationTextField, and the first outcome is the desired one."
+1
+com.mucommander.ui.main.LocationTextField
+
+78
+LocationTextField's Malformed URL handling  "Hey Maxence,  When entering malformed path or name of a bookmark which points to malformed location in the LocationTextField - an error dialog appears and after closing it, an OpenAction is performed on the selected file at the file table."
+1
+com.mucommander.ui.main.LocationTextField
+
+85
+Tree view sometimes causes a deadlock on startup  "Steps to reproduce : - Enable the tree view on the left panel - Quit muCommander(the tree view setting is persisted in the preference file) - Start muCommander  Expected behavior : - muCommander starts normally  Actual behavior : - the application fails to start properly: the left panel is not painted and UI is totally unresponsive  Additional information: - both startup folders are local folders, which means that the error is not caused by a stalled network filesystem. - this bug has been reproduced with the current SVN trunk running on Mac OS X 10.5 with Java 1.6.  I have generated a full stack trace that confirms the presence of a deadlock and shows where it occurs, I'm attaching it to this bug.  This deadlock does not happen all the time but to give you an idea of the frequency, out of 10 launches the deadlock occurred twice. So I'm able to reproduce it relatively quickly and deterministically, which should help to validate the fix."
+1
+com.mucommander.Launcher
+
+86
+Tree view: folder icons spinning endlessly  "Abstract : Folder icons may spin endlessly in the tree view if they cannot be fetched because of an I/O error.  Steps to reproduce : - Enable the Tree view on one of the panels - From the panel with the Tree view enabled, change the location to ftp://ibiblio.org/pub/docs/books/gutenberg  - When asked for credentials, choose 'Anonymous' user  Expected behavior : - The Tree view is updated with the new location and all its parent folders(tree nodes) are expanded.  Actual behavior : - One of the parent folders(usually /pub) cannot be expanded - the spinning dial icon spins endlessly(see attached screenshot).  Additional information: - The debug output indicates that the folder failed to be listed(exception in FTPFile.ls()) because of the following FTP server error ""530 Sorry, the maximum number of clients(3) from your host are already connected."". This means that 3 concurrent threads were already accessing the FTP server(each with its own connection) when the ls() attempt was made. - The bug can be reproduced most of the time but not always. It shouldn't take more than 2 or 3 attempts to reproduce it. - This was reproduced under Mac OS X 10.5 with Java 1.6 but I don't think this is relevant.  I see two separate issues that would need to be addressed:  1) The folder listing should fail gracefully, whatever the reason of the failure is. The folder icon should probably be changed to one that symbolizes the failure: CustomFileIconProvider.NOT_ACCESSIBLE_FILE might be a good fit.  2) It seems that the tree spawns 4 threads(or more). We should reduce the number of concurrent threads and serialize some of the I/O operations made by the tree to play nice with protocols such as FTP."
+5
+com.mucommander.ShutdownHook
+com.mucommander.ui.main.tree.AbstractIOThreadManager
+com.mucommander.ui.main.tree.CachedDirectory
+com.mucommander.ui.main.tree.IOThread
+com.mucommander.ui.main.tree.TreeIOThreadManager
+
+87
+Auto-completion of archive files  "Steps to reproduce: - In the location field, enter the path to an archive file supported by muCommander. In my case, the path is /Users/maxence/test.zip - Wait for a couple seconds  Expected behavior: - Nothing happens, no auto-completion suggestion(the path is already complete)  Actual behavior: - The auto-completion suggestion popup appears, suggesting 'test.zip'. When selected, the location field's contents and the same suggestion('test.zip') appears again.  Additional information: - This happens only with archives, folders are fine. - If the archive path ends with a trailing separator(/Users/maxence/test.zip), the behavior is OK: the auto-completion popup suggests folders located inside the archive."
+4
+com.mucommander.ui.autocomplete.completers.ComboboxOptionsCompleter
+com.mucommander.ui.autocomplete.completers.Completer
+com.mucommander.ui.autocomplete.completers.LocationCompleter
+com.mucommander.ui.autocomplete.completers.PathCompleter
+
+89
+Main menu activates during Alt-Tab  "When you press Alt-Tab like this: press Alt, press Tab, release Alt, release Tab,---muCommander's main menu is activated before windows are switched. Therefore when you return to muCommander and try to operate file panes you find yourself browsing main menu instead.  This prevents smooth workflow so I really hope this can be fixed.  Also tried to install jre6 update 10(VM version 11.0-b15)---the problem stays there."
+1
+com.mucommander.ui.main.WindowManager
+
+91
+Icon size option change detected incorrectly  "In Preferences > Appearance > Icon size, if Command bar or File types setting is different from Toolbar setting and you change them to the same value as the Toolbar setting, the Apply and Ok buttons stay greyed out.  Example:  Initial state:  Toolbar: 125% Command bar: 150% File types: 125%  Change Command bar to 125%, the Apply and Ok stay greyed out."
+1
+com.mucommander.ui.dialog.pref.general.AppearancePanel
+
+94
+Path checking is too restrictive  "The path checking in Ctrl+G(and some other places) is too restrictive.  It accepts only paths of the form c:\some\dir.  While, in Windows, c:/some/dir is a valid path as well.  Also valid paths are ""\some\dir""(relative to the root of the current drive), ""../some/dir""(relative to the current directory).  I'd expect all these variants to work with Ctrl+G and in Shell window."
+2
+com.mucommander.file.DefaultSchemeParser
+com.mucommander.file.impl.local.LocalFileURLTest
+
+98
+muCommander doesn't recognise folder structure in certain zip files  "I have a zip file of a game(TWTPB), which muCommander opens OK, but muCommander displays all files in the archive as being in the root of the archive. There are, in fact, two directories within the archive which are not being picked up. As a result, unpacking with muCommander causes the game to abort operation before really even starting up.  Using another archive utility(jZip), the folders are recognised and unpackage correctly. muCommander doesn't *normally* do this -- I have other zip files which work OK.  If you can't get a copy of the problematic archive from the TWTPB project page(http://www.spellofplay.com/games/twtpb/download), please let me know -- I can email a copy to anyone interested(it's an 8meg archive)."
+1
+com.mucommander.file.impl.zip.provider.ZipFile
+
+102
+Wrong image zoom title  Open JPG image in viewer/editor with default zoom, e.g. 50%. The viewer/editor window title says 50%. Use zoom in or zoom out commands to change the displayed image size. The title says permanently 50% no matter of currently used zoom.
+1
+com.mucommander.ui.viewer.image.ImageViewer
+
+103
+Excludable Mountpoints  "I have some mountpoints on my system(/boot /usr/portage /var/tmp/ccache) which appear all in the drive button list(even if i never need them in the list).   With the attached patch you can create a new configuration entry like     <excludeMountPoints>/usr/portage,/boot,/var/tmp/ccache</excludeMountPoints> and the mount points are not populated to the drive list."
+3
+com.mucommander.ui.main.DrivePopupButton
+com.mucommander.ui.main.DrivePopupButton.CustomOpenLocationAction
+com.mucommander.ui.main.DrivePopupButton.ServerConnectAction
+
+107
+Modify date of files in archive is not shown correctly  When an archive is stored in another archive(like in ear files), the modify date of all files in the inner archive are not shown correctly. I fixed this localy in my source in the ZipEntry?.java I have modified the constructor like this: public ZipEntry?(java.util.zip.ZipEntry? entry) throws ZipException? { super(entry); byte[] extra = entry.getExtra(); if(extra != null) { setExtraFields(ExtraFieldUtils?.parse(extra)); } else { // initializes extra data to an empty byte array setExtra(); } // fix bui: for java util ZipEntries? the timestamp is sometimes not set if(getTime()==-1) { setTime(entry.getTime()); }  } In this case the extra byte array is always null.
+1
+com.mucommander.file.impl.zip.provider.ZipEntry
+
+108
+accessing sftp host on command line fails  "If I start up mucommander like this:  mucommand.sh sftp://my.host  ... first, the title screen covers up the login box.  If I move to the login box and enter a username and password, the login fails even though I'm using the correct username and password.  If I start it up, and go to the same sftp host, my username and password works.  Thanks for a great tool."
+1
+com.mucommander.ui.main.WindowManager
+
+110
+muC creates duplicate entries in associations.xml  "I created a file associations.xml as described in the forum. After the first launch of muC 0.8.3(wasn't available in the Bugzilla list) everything worked fine.  Then I checked back the file associations.xml and found some autogenerated content:     <association command=""openEXE"">         <filename value=""[^.]+""/>     </association>  After some more launches I had several identical blocks like the above at the beginning of my associations.xml. To me that looks like a small bug."
+2
+com.mucommander.command.Command
+com.mucommander.command.CommandManager
+
+111
+Can't extract from multipart rar archives  "If I try to copy a file from a multipart rar file(either the old .r01, .r02... style, or the new part01, part02 style) I get an error saying ""cannot read file XXX"" where XXX is the name of the file I'm trying to extract from the archive."
+1
+com.mucommander.file.impl.rar.provider.de.innosystec.unrar.Archive
+
+116
+Jump up/down in file list  I always find myself pressing Control+UP or Control+DOWN when I want to move the focus 5 entries up/down in the file list. Please add this feature, because sometimes this is much faster than a quick search(although that feature is very nice too!).
+46
+com.mucommander.ui.action.ActionManager
+com.mucommander.ui.action.impl.MarkBackwardAction
+com.mucommander.ui.action.impl.MarkForwardAction
+com.mucommander.ui.action.impl.MarkNextBlockAction
+com.mucommander.ui.action.impl.MarkNextBlockAction.Descriptor
+com.mucommander.ui.action.impl.MarkNextBlockAction.Factory
+com.mucommander.ui.action.impl.MarkNextPageAction
+com.mucommander.ui.action.impl.MarkNextPageAction.Factory
+com.mucommander.ui.action.impl.MarkNextRowAction
+com.mucommander.ui.action.impl.MarkNextRowAction.Descriptor
+com.mucommander.ui.action.impl.MarkNextRowAction.Factory
+com.mucommander.ui.action.impl.MarkPreviousBlockAction
+com.mucommander.ui.action.impl.MarkPreviousBlockAction.Descriptor
+com.mucommander.ui.action.impl.MarkPreviousBlockAction.Factory
+com.mucommander.ui.action.impl.MarkPreviousPageAction
+com.mucommander.ui.action.impl.MarkPreviousPageAction.Factory
+com.mucommander.ui.action.impl.MarkPreviousRowAction
+com.mucommander.ui.action.impl.MarkPreviousRowAction.Descriptor
+com.mucommander.ui.action.impl.MarkPreviousRowAction.Factory
+com.mucommander.ui.action.impl.MarkToFirstRowAction
+com.mucommander.ui.action.impl.MarkToFirstRowAction.Factory
+com.mucommander.ui.action.impl.MarkToLastRowAction
+com.mucommander.ui.action.impl.MarkToLastRowAction.Factory
+com.mucommander.ui.action.impl.SelectBackwardAction
+com.mucommander.ui.action.impl.SelectForwardAction
+com.mucommander.ui.action.impl.SelectNextBlockAction
+com.mucommander.ui.action.impl.SelectNextBlockAction.Descriptor
+com.mucommander.ui.action.impl.SelectNextBlockAction.Factory
+com.mucommander.ui.action.impl.SelectNextPageAction
+com.mucommander.ui.action.impl.SelectNextPageAction.Descriptor
+com.mucommander.ui.action.impl.SelectNextPageAction.Factory
+com.mucommander.ui.action.impl.SelectNextRowAction
+com.mucommander.ui.action.impl.SelectNextRowAction.Descriptor
+com.mucommander.ui.action.impl.SelectNextRowAction.Factory
+com.mucommander.ui.action.impl.SelectPreviousBlockAction
+com.mucommander.ui.action.impl.SelectPreviousBlockAction.Descriptor
+com.mucommander.ui.action.impl.SelectPreviousBlockAction.Factory
+com.mucommander.ui.action.impl.SelectPreviousPageAction
+com.mucommander.ui.action.impl.SelectPreviousPageAction.Descriptor
+com.mucommander.ui.action.impl.SelectPreviousPageAction.Factory
+com.mucommander.ui.action.impl.SelectPreviousRowAction
+com.mucommander.ui.action.impl.SelectPreviousRowAction.Descriptor
+com.mucommander.ui.action.impl.SelectPreviousRowAction.Factory
+com.mucommander.ui.action.impl.UnpackAction.Descriptor
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.table.FileTable
+
+117
+"""hidden"" directories are always shown in tree view"  "No matter whether I see hidden files in a file listing or not, in the(directory) tree view the hidden dirs(starting with a dot) are always shown. Please don't show these directories when the ""hidden"" files are hidden in the corresponding file listing. There should be one shortcut for switching both preferences at the same time."
+2
+com.mucommander.file.filter.FileFilterHelper
+com.mucommander.ui.main.tree.FoldersTreePanel
+
+137
+SFTP connection fails when password contains a '/'  "Hello. We use an internal(linux) server for file transfers. I can sftp there by using WinScp and without giving any directory/path option, I arrive to my home folder(/home/project). Unfortunately muCommander enters in any case a ""/"" sign, so I land in the root directory, where I don't have permission to list the content(permission for ""others"": --x). Even if I enter the correct path(where I'm allowed to go through, I just don't have the permission to list the content, until I arrive in my home directory), muCommander don't succed and reports ""URL contains an invalid port"". Most probably as it tries to list the content.  The same problem is present under OSX, so it's not a windows problem, but I don't know how far JAVA runtime libraries are the same. My Windows library is version is 6 Update 11, those of my mac is Java for Mac OSX 10.5 Update 3.  The situation is the same with v0.8.3.  I hope that you can easily find the bug. I enjoy this cross-platform file manager, I hope so much that I don't have to use different browsers for local and sftp folders.  Thank you for your efforts and best regards, Ferenc"
+1
+com.mucommander.file.util.PathUtils
+
+138
+Duplicates in DrivePopupButton  "If the /etc/fstab contains multiple mountpoints with the same directory name, the DrivePopupButton contains multiple entries with the same name(but different shortcuts).  For example: i have a mountpoint ""/data/"" and ""/storage/data/"". The list contains ""data"" twice, one with ""d"" as shortcut, and one with ""a"".  Maybe the full path should be added to the list if the name is not unique."
+1
+com.mucommander.ui.main.DrivePopupButton
+
+139
+Swap mountpoints should be excluded  "The destination 'swap' should be excluded to. Otherwise the log contains a message about the caught exception:  [java] FileFactory.getFile,341 : Caught exception: java.net.MalformedURLException: Path not absolute or malformed: swap [java] FileFactory.getFile,341 : Caught exception: java.net.MalformedURLException: Path not absolute or malformed: swap"
+10
+com.mucommander.file.AbstractArchiveEntryFile
+com.mucommander.file.AbstractFile
+com.mucommander.file.AbstractFileTestCase
+com.mucommander.file.impl.ProxyFile
+com.mucommander.file.impl.local.LocalFile
+com.mucommander.file.impl.local.LocalFileTest
+com.mucommander.ui.autocomplete.completers.services.RootFoldersService
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.LocationTextField
+com.mucommander.ui.main.menu.MainMenuBar
+
+140
+alt-<something> hotkeys broken for nightly build  "I use alt-1 for left drive selection and alt-2 for right-drive selection. It's worked for ages but doesn't work in the latest nightly build I downloaded about 15 minutes ago.  I've also noticed that action_keymap.xml now has the word ""pressed"" in all of the hotkeys? Does this make a difference?(Removing and re-adding didn't seem to change how my left/right drive selectors don't work)"
+2
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.RecordingKeyStrokeField
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.ShortcutsTableCellRenderer
+
+142
+NPE in RefreshDriveNamesAndIcons  When opening the DrivePopupButton?: [java] Exception in thread "RefreshDriveNamesAndIcons?" java.lang.NullPointerException? [java] at java.util.Hashtable.put(Hashtable.java:394) [java] at com.mucommander.ui.main.DrivePopupButton?$RefreshDriveNamesAndIcons?.run(DrivePopupButton?.java:390)
+2
+com.mucommander.ui.main.DrivePopupButton
+com.mucommander.ui.main.DrivePopupButton.RefreshDriveNamesAndIcons
+
+145
+Can't import L&F  "Created an attachment(id=53) ugly ClassFinder patch  I recently moved to nightly build and since then I can't import L&F libraries. L&F works if I copy the library to ~/.mucommander/export, but the import dialog doesn't work.  The first error is that the ClassFinder can't find classes inside a jar file using the relative path as a package name. I fix that using this ugly patch:          if(browsable instanceof ZipArchiveFile) {             return find("""", browsable);         } else {             return find(relativePath.replace(browsable.getSeparator(), "".""), browsable);         }   But after that new errors appear, mostly: ArrayIndexOutOfBoundsException I think they are related to the JComboBox's index issue, but I haven't had the time to take a closer look."
+2
+com.mucommander.extension.ClassFinder
+com.mucommander.ui.dialog.pref.general.AppearancePanel
+
+147
+"""open natively"" for the remote directory downloads and run all files"  """open natively"" for local directories opens the directory in the file manager.  But, for remote directories: samba, ftp, ""open natively"" downloads all directory content to Temporary and than passes each file to the OS to be open by associated program. I believe this behavior is wrong."
+4
+com.mucommander.job.CopyJob
+com.mucommander.job.TempCopyJob
+com.mucommander.job.TempExecJob
+com.mucommander.job.TempOpenWithJob
+
+151
+Marking files with numeric * leaves first file unmarked  "Created an attachment(id=57) Screenshot of bugs behaviour  When using the numeric *(toggle marking) all files but the topmost in the list will be marked/unmarked. The topmost file keeps its marking or stays unmarked.  Steps to reproduce: enter * on numeric keypad result: see all files marked but the top most expected result: _all_ files markings will be toggled"
+5
+com.mucommander.ui.action.impl.InvertSelectionAction
+com.mucommander.ui.action.impl.MarkAllAction
+com.mucommander.ui.action.impl.MarkExtensionAction
+com.mucommander.ui.action.impl.OpenInBothPanelsAction
+com.mucommander.ui.main.table.FileTableModel
+
+153
+muCommander.app ignores command line arguments  "There is currently no way to specify a starting location when starting MuCommander from a CLI interface, Applescript, or other shell command.  Adding this would enable drag and drop functions, contextual menu functions and automated control from the command line"
+2
+com.mucommander.Launcher
+com.mucommander.ui.macosx.EAWTHandler
+
+163
+Folder panels separator gets messed up on resize  "Steps to reproduce: - Resize the main window to make its width as small as possible. - Increase the main window's width again.  Expected behaviour: - the folder panel's separator should stay in the position it was initially(usually 50% of the main window)  Observed behaviour: - the folder panel's separator gets pushed to the far right of the window  I fixed an issue very similar to that one ages ago which had to do with the way resize events were handled - the position of the separator was calculated at the ""wrong"" time and was sometimes set to 0. Maybe it's another symptom of this issue and I didn't fix it as well as I thought I had. "
+1
+com.mucommander.ui.layout.ProportionalSplitPane
+
+164
+IllegalStateException while copying text  Hey, When I copy source code and mucommander is running on the background an IllegalStateException? is thrown: Exception in thread "AWT-EventQueue?-0" java.lang.IllegalStateException?: cannot open system clipboard at sun.awt.windows.WClipboard.openClipboard(Native Method) at sun.awt.datatransfer.SunClipboard?.getClipboardFormatsOpenClose(SunClipboard?.java:315) at sun.awt.datatransfer.SunClipboard?.isDataFlavorAvailable(SunClipboard?.java:175) at com.mucommander.ui.dnd.ClipboardNotifier?.toggleActionState(ClipboardNotifier?.java:59) at com.mucommander.ui.dnd.ClipboardNotifier?.flavorsChanged(ClipboardNotifier?.java:67) at sun.awt.datatransfer.SunClipboard?$1SunFlavorChangeNotifier.run(SunClipboard?.java:427) at java.awt.event.InvocationEvent?.dispatch(InvocationEvent?.java:209) at java.awt.EventQueue?.dispatchEvent(EventQueue?.java:597) at java.awt.EventDispatchThread?.pumpOneEventForFilters(EventDispatchThread?.java:273) at java.awt.EventDispatchThread?.pumpEventsForFilter(EventDispatchThread?.java:183) at java.awt.EventDispatchThread?.pumpEventsForHierarchy(EventDispatchThread?.java:173) at java.awt.EventDispatchThread?.pumpEvents(EventDispatchThread?.java:168) at java.awt.EventDispatchThread?.pumpEvents(EventDispatchThread?.java:160) at java.awt.EventDispatchThread?.run(EventDispatchThread?.java:121)
+1
+com.mucommander.ui.dnd.ClipboardNotifier
+
+165
+Toolbar elements get hidden when the window is too small  "When the main window isn't large enough, elements of the toolbar aren't displayed.  This isn't terribly important, but is somewhat incoherent with the command bar behaviour which resizes its components to fit the window.  A clever solution would be to ""wrap"" the toolbar on more than one line if one isn't sufficient to display it."
+2
+com.mucommander.ui.button.ToolbarMoreButton
+com.mucommander.ui.main.MainFrame
+
+166
+Toolbar dispays a separator as its last item  "By default, the toolbar displays a separator as its last item. This uses space and is somewhat misleading as it seems to hint that there are elements after it.  We should not add a separator as the toolbar's last item. "
+4
+com.mucommander.ui.button.ToolbarMoreButton
+com.mucommander.ui.main.toolbar.ToolBarAttributes
+com.mucommander.ui.main.toolbar.ToolBarIO
+com.mucommander.ui.main.toolbar.ToolBarReader
+
+167
+Odd default selection when renaming folders whose name contain a period  "Steps to reproduce: - Create a folder whose name contains a period(e.g. ""test.dir""). - Trigger the rename functionality(F6)  Expected behaviour: - the whole name is selected.  Observed behaviour: - the selection stops at the period  While this behaviour is perfect for files, it makes little sense for directories.  Note that we might want to keep this behaviour for special folders, such as muCommander.app(folder, but should be considered as a file). See #158 for a semi-related issue."
+14
+com.mucommander.job.AbstractCopyJob
+com.mucommander.ui.action.impl.PackAction
+com.mucommander.ui.action.impl.UnpackAction
+com.mucommander.ui.dialog.file.AbstractCopyDialog
+com.mucommander.ui.dialog.file.CombineFilesDialog
+com.mucommander.ui.dialog.file.DownloadDialog
+com.mucommander.ui.dialog.file.FileCollisionRenameDialog
+com.mucommander.ui.dialog.file.LocalCopyDialog
+com.mucommander.ui.dialog.file.PackDialog
+com.mucommander.ui.dialog.file.PathFieldContent
+com.mucommander.ui.dialog.file.TransferDestinationDialog
+com.mucommander.ui.dialog.file.TransferDestinationDialog.InitialPathRetriever
+com.mucommander.ui.dialog.file.UnpackDialog
+com.mucommander.ui.main.table.FileTable.FilenameEditor
+
+173
+Credentials not always stored properly when changed  "Steps to reproduce: - Store new, valid credentials for a remote account - Change the password of the account you're using - Try to connect again using muCommander, making sure to change the password and to leave ""Store login & password"" checked.  Expected behaviour: - The connection should be successful, and after restarting muCommander it should remember the new credentials  Observed behaviour: - muCommander will sometime connect, but forget to overwrite its expired credentials  A proper scenario to trigger the bug 100% is yet to be identified."
+2
+com.mucommander.auth.CredentialsManager
+com.mucommander.ui.dialog.auth.AuthDialog
+
+176
+Middle-click selection sometimes exhibits an odd behaviour  Sometimes, using middle-click selection will select many more files than expected. This has been reproduced consistently when the panel contains a large number of directories.
+1
+com.mucommander.ui.main.table.FileTable
+
+177
+"action_keymap.xml seems polluted with ""pressed"""  "The action_keymap.xml suddendly contains the ""pressed"" keyword for every single shortcut. We need to investigate why that is and, if it's not necessary, get rid of the keyword."
+2
+com.mucommander.ui.action.ActionKeymapWriter.Writer
+com.mucommander.ui.text.KeyStrokeUtils
+
+178
+Custom color picker is broken in the theme editor  "The color picker used in the theme editor contains a Preview panel which should reflect color changes as they are performed. This isn't happening anymore and the preview panel is never updated."
+1
+com.mucommander.ui.chooser.PreviewLabel
+
+179
+Default colors for QuickLists are hard to read  "The default colors used in a quicklist's header are hard to read: the white font doesn't stand out in the gradiant(white to black, apparently).  It's probably not a good idea to use a gradiant in the default colors. It might be better to default to the same values as the folder panels, as both items display the same kind of information. "
+2
+com.mucommander.ui.theme.ThemeData
+com.mucommander.ui.theme.ThemeData.DefaultValuesListener
+
+212
+RunDialog crashes when frantically pressing Enter  "=== Steps to reproduce ===  This bug can be reproduced with 0.8.3 and the current nightly build.   * Invoke the 'Run command' dialog  * Enter a command, e.g. `pwd`  * Press Enter repeatedly and very quickly, 'shmup style'  => after a while, the spinning dial will keep spinning endlessly.  === Stack trace ===  Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException 	at com.mucommander.ui.autocomplete.EditableComboboxCompletion$1.keyPressed(EditableComboboxCompletion.java:86) 	at java.awt.Component.processKeyEvent(Component.java:6084) 	at javax.swing.JComponent.processKeyEvent(JComponent.java:2799) 	at java.awt.Component.processEvent(Component.java:5903) 	at java.awt.Container.processEvent(Container.java:2102) 	at java.awt.Component.dispatchEventImpl(Component.java:4497) 	at java.awt.Container.dispatchEventImpl(Container.java:2160) 	at java.awt.Component.dispatchEvent(Component.java:4327) 	at java.awt.KeyboardFocusManager.redispatchEvent(KeyboardFocusManager.java:1848) 	at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(DefaultKeyboardFocusManager.java:697) 	at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(DefaultKeyboardFocusManager.java:962) 	at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(DefaultKeyboardFocusManager.java:834) 	at java.awt.DefaultKeyboardFocusManager.dispatchEvent(DefaultKeyboardFocusManager.java:661) 	at java.awt.Component.dispatchEventImpl(Component.java:4369) 	at java.awt.Container.dispatchEventImpl(Container.java:2160) 	at java.awt.Window.dispatchEventImpl(Window.java:2440) 	at java.awt.Component.dispatchEvent(Component.java:4327) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:599) 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:300) 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:210) 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:204) 	at java.awt.Dialog$1.run(Dialog.java:1045) 	at java.awt.Dialog$3.run(Dialog.java:1097) 	at java.security.AccessController.doPrivileged(Native Method) 	at java.awt.Dialog.show(Dialog.java:1095) 	at java.awt.Component.show(Component.java:1422) 	at java.awt.Component.setVisible(Component.java:1375) 	at java.awt.Window.setVisible(Window.java:806) 	at java.awt.Dialog.setVisible(Dialog.java:985) 	at com.mucommander.ui.dialog.FocusDialog.showDialog(FocusDialog.java:189) 	at com.mucommander.ui.action.RunCommandAction.performAction(RunCommandAction.java:38) 	at com.mucommander.ui.action.MuAction.actionPerformed(MuAction.java:589) 	at javax.swing.SwingUtilities.notifyAction(SwingUtilities.java:1641) 	at javax.swing.JComponent.processKeyBinding(JComponent.java:2849) 	at javax.swing.JTable.processKeyBinding(JTable.java:5197) 	at com.mucommander.ui.main.table.FileTable.processKeyBinding(FileTable.java:1069) 	at javax.swing.JComponent.processKeyBindings(JComponent.java:2884) 	at javax.swing.JComponent.processKeyEvent(JComponent.java:2812) 	at java.awt.Component.processEvent(Component.java:5903) 	at java.awt.Container.processEvent(Container.java:2102) 	at java.awt.Component.dispatchEventImpl(Component.java:4497) 	at java.awt.Container.dispatchEventImpl(Container.java:2160) 	at java.awt.Component.dispatchEvent(Component.java:4327) 	at java.awt.KeyboardFocusManager.redispatchEvent(KeyboardFocusManager.java:1848) 	at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(DefaultKeyboardFocusManager.java:697) 	at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(DefaultKeyboardFocusManager.java:962) 	at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(DefaultKeyboardFocusManager.java:834) 	at java.awt.DefaultKeyboardFocusManager.dispatchEvent(DefaultKeyboardFocusManager.java:661) 	at java.awt.Component.dispatchEventImpl(Component.java:4369) 	at java.awt.Container.dispatchEventImpl(Container.java:2160) 	at java.awt.Window.dispatchEventImpl(Window.java:2440) 	at java.awt.Component.dispatchEvent(Component.java:4327) 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:599) 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:300) 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:210) 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:200) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:195) 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:187) 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)
+1
+com.mucommander.ui.dialog.shell.RunDialog
+
+213
+Online Documentation Action icon too large  "The icon used for online documentation on OS X(`help_mac.png`) is 19x20, as opposed to all other icons which are 16x16.  This in itself is not a big issue, but causes some visual bugs depending on where they are used.  For example: === Steps to reproduce ===  * Assuming `SHIFT` is used as the command bar's ""modifier key"", add an online documentation that's only displayed on `SHIFT`.  * Press `SHIFT`  === Expected behaviour === The Online Documentation button appears without changing the command bar's layout.  === Observed behaviour === Both the command bar and the status bar shift up by a couple of pixels, as `help_mac.png` doesn't fit in the default button height."
+1
+com.mucommander.ui.action.impl.GoToDocumentationAction
+
+214
+Default themes no longer accessible  The default themes(striped, classic...) are no longer available in the appearance preference panel or the Window / Theme menu.
+1
+com.mucommander.ui.theme.ThemeManager
+
+217
+Packing files in an archive stalls forever  "=== Steps to reproduce ===  * create an archive(eg `test.zip`).  * open `test.zip` in the right panel, any other folder containing plain files in the left panel  * pack(create a new archive, not copy) a file from the left panel into the right panel  === Expected behaviour === A new archive is correctly created.  === Observed behaviour === The ""Packing file"" dialog stalls forever.  However, once this dialog is manually closed, the new archive was properly created."
+1
+com.mucommander.job.ArchiveJob
+
+221
+Double click for Linux in FileTable  This is a duplicate of issue #48. Since I am not allowed to reopen this ticket, I make a new one, cause I have done a permanent fix, which can be used for all platforms and considers the platform-settings.
+1
+com.mucommander.ui.main.table.FileTable
+
+225
+Fileicons are not displayed when set to all but displayed when application  "In the user.home\nethood\target.lnk resp. .ini the icon is displayed, when set to custom, but not when set to system. This is due to a NPE.  Patch is in the FileIcons which retrievs the icons from the customerprovide, when the system return null."
+2
+com.mucommander.ui.dialog.about.AboutDialog
+com.mucommander.ui.icon.FileIcons
+
+226
+Contextual menu in the FileTable's header  "The current FileTable header's contextual menu only contains one item, ""Hide column"".  This could be improved on by replacing this with a menu containing ""Auto-size columns"" as well as toggles for all columns' visibility.  "
+3
+com.mucommander.ui.main.menu.MainMenuBar
+com.mucommander.ui.main.table.Columns
+com.mucommander.ui.main.table.FileTableHeader
+
+227
+Dynamic drives in Drive Popup menu  "Dear all,  I suggest to use /proc/mounts instead of /etc/fstab when discovering drives for Drive Popup Menu in Unix like distros. This will cause all ad-hoc drives(USB drives, CD-ROMs etc.) will show in this menu immediately after plugged in.  Also I add patch which will do it right now."
+1
+com.mucommander.file.impl.local.LocalFile
+
+231
+"""Skip all"" for errors that occur during a file transfer operation"  "As suggested in the [http://www.mucommander.com/forums/viewtopic.php?f=2&t=938 forums]: adding a ""Skip all"" button when an error occurs in a multiple file move / copy operation would be a nice feature to have."
+8
+com.mucommander.job.FileJob
+com.mucommander.job.TransferFileJob
+com.mucommander.ui.dialog.file.CombineFilesDialog
+com.mucommander.ui.dialog.file.CopyDialog
+com.mucommander.ui.dialog.file.DownloadDialog
+com.mucommander.ui.dialog.file.MoveDialog
+com.mucommander.ui.dialog.file.TransferDestinationDialog
+com.mucommander.ui.dialog.file.UnpackDialog
+
+233
+Possibility to disable auto-refresh  "As requested in the [http://www.mucommander.com/forums/viewtopic.php?f=4&t=939&p=3152 forums]: it would be nice to let users disable the auto-refresh mechanism.  This can probably easily be achieved by accepting a ""-1"" value in prefs.auto_refresh.check_period."
+1
+com.mucommander.ui.main.table.FolderChangeMonitor
+
+235
+Internal text viewer opens UNICODE encoded file as binary  It seems like the internal viewer is not recognizing UNICODE files as such(treats them as binary).
+1
+com.mucommander.io.BinaryDetector
+
+237
+Shortcuts editor: use a different color for shortcuts that have been customized  "Using a different color for the shortcuts that have been changed from the default values in the shortcuts editor would allow to immediately spot all the actions that have been edited.  My feeling is that most people only edit a few shortcuts, and want to easily find the ones they have changed. It will become particularly useful when we have a 'Restore default' button that restores the default shortcuts for the currently selected action.  The current theme's 'symbolic link'(or alternatively 'marked file') foreground color could be used as the font color for customized actions."
+4
+com.mucommander.ui.action.ActionKeymap
+com.mucommander.ui.dialog.pref.general.ShortcutsTable
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.KeymapTableModel
+com.mucommander.ui.dialog.pref.general.ShortcutsTable.ShortcutsTableCellRenderer
+
+238
+Tool Bar messed up when hidden  "=== Steps to reproduce ===  * Toggle toolbar visibility off(View / Hide Toolbar)  * Restart muCommander  === Expected behaviour === The toolbar shouldn't be displayed  === Observed behaviour === The toolbar is replaced with a `>>` button that displays all toolbar actions in a menu.  === Notes === This bug only occur on startup. Toggling the toolbar on & off again will fix the issue for the current session."
+2
+com.mucommander.ui.action.impl.ToggleToolBarAction
+com.mucommander.ui.main.MainFrame
+
+243
+Viewer/editor menus don't appear since Java for Mac OS X 10.5 Update 4  "Since Java for Mac OS X 10.5 Update 4, viewer/editor menus don't appear, except for the 'File' one.  Steps to reproduce:  - View(F3) or Edit(F4) a text file(also applies to images).  Expected behavior:  - File and Edit menus appear in the menu bar.  Actual behavior:  - Only the File menu appears, Edit menu doesn't.  Additional notes:  - Cmd+Tab to another application and back to muCommander refreshes the menu bar and causes the Edit menu to appear.  - This bug is caused by JMenuBar not refreshing the menu after it has first been displayed. This is a regression introduced by Java for Mac OS X 10.5 Update 4(also in Update 5 Developer Preview).  - The bug is reproducible in muCommander 0.8.4 nightly and 0.8.3, and probably in earlier versions as well. "
+8
+com.mucommander.ui.viewer.EditorFrame
+com.mucommander.ui.viewer.FileEditor
+com.mucommander.ui.viewer.FileViewer
+com.mucommander.ui.viewer.ViewerFrame
+com.mucommander.ui.viewer.image.ImageViewer
+com.mucommander.ui.viewer.text.TextEditor
+com.mucommander.ui.viewer.text.TextEditorImpl
+com.mucommander.ui.viewer.text.TextViewer
+
+244
+Encoding detection not working as it should in text viewer/editor  "Just noticed by looking at the `TextEditorImpl` code that the super-duper encoding detection used in the text viewer/editor was simply ignored, because of a bogus `if` statement.   No matter what the detected encoding was, files were always opened as UTF-8. "
+1
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+245
+Text editor should not consider Unicode BOMs as an editable character  "Currently, the Unicode byte-order mark(BOM) receives no special treatment and is thus considered as an editable character by the text editor.   Therefore, files encoded in UTF-8/16/32 with a leading byte-order mark(BOM) will start with an invisible character in the editor, as evidenced by the caret(the right-arrow needs to be pressed twice to move past the first real character).  To prevent this artifact from occurring, the Unicode BOM should not be considered as an editable character."
+1
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+247
+Keystroke conflicts not managed properly in action_keymap.xml  "=== Steps to reproduce ===  * Have an `action_keymap.xml` file containing the following line: {{{ #!xml <action class=""com.mucommander.ui.action.impl.PermanentDeleteAction"" keystroke=""F8"" alt_keystroke=""DELETE""/> }}}  * start muCommander as a .app(OS X)  * try to delete a file using `F8`  === Expected behaviour === The `PermanentDeleteAction` is triggered.  === Observed behaviour === The `DeleteAction` is triggered.  === Additional Notes ===  * looking in the keyboard shortcut editor, I can see that both actions are mapped to `F8` and `BACKSPACE`.  * starting muCommander from the command line(`java -jar`) yields the expected behaviour, but the keyboard shortcut editor still contains the `F8` / `BACKSPACE` conflict."
+6
+com.mucommander.ui.action.AcceleratorMap
+com.mucommander.ui.action.AcceleratorMap.ActionIdAndAcceleratorType
+com.mucommander.ui.action.ActionKeymap
+com.mucommander.ui.action.ActionProperties
+com.mucommander.ui.main.commandbar.CommandBarReader
+com.mucommander.ui.main.toolbar.ToolBarReader
+
+248
+End of Line Separators  When using the internal editor to edit a Windows file, the file is saved using Unix line separators rather than retaining the windows style separators.
+2
+com.mucommander.ui.viewer.text.TextEditor
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+250
+Erratic current file selection when 'Refresh' is called repeatedly  "=== Steps to reproduce ===  * Select(highlight) a file that is not the first one in the current folder.  * Let the refresh action's key(F9 by default) pressed.  === Expected behavior === The currently selected file remains the same while the folder is being refreshed.  === Actual behavior === After a while, the currently selected file changes, 'jumping' from one file to the other.  This issue can be reproduced in 0.8.3 and current nightly."
+3
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.table.FileTable.FolderChangeThread
+
+251
+Internal text editor does not preserve Unicode BOMs  "=== Steps to reproduce ===  * Create an UTF-16 file  * Edit it using the internal text editor, modify it and save  * Try to re-open it  === Expected behaviour === The content of the file is displayed correctly.  === Observed behaviour === muCommander prints a ""appear to be binary"" warning.  === Suggested Fix === Implement a BOMWriter and use it to save UTF-X encoded files."
+1
+com.mucommander.ui.viewer.text.TextEditorImpl
+
+254
+Nightly build fails to start  "The nightly build fails to start without configuration:  johann@linux-cud9:~/Documents/muCommander-0_8_4> ./mucommander.sh Could not load configuration: /home/johann/.mucommander/preferences.xml(No such file or directory). Using default values. Could not load custom commands: /home/johann/.mucommander/commands.xml(No such file or directory). Using default values. Could not load custom associations: /home/johann/.mucommander/associations.xml(No such file or directory). Using default values. Could not load bookmarks: /home/johann/.mucommander/bookmarks.xml(No such file or directory). Using default values. Could not load shell history: /home/johann/.mucommander/shell_history.xml(No such file or directory). Using default values. Exception in thread ""main"" java.lang.ExceptionInInitializerError         at com.mucommander.ui.main.MainFrame.<init>(MainFrame.java:280)         at com.mucommander.ui.main.WindowManager.createNewMainFrame(WindowManager.java:345)         at com.mucommander.ui.main.WindowManager.createNewMainFrame(WindowManager.java:312)         at com.mucommander.Launcher.main(Launcher.java:553) Caused by: java.lang.NullPointerException         at com.mucommander.ui.action.ActionProperties.getActionLabel(ActionProperties.java:92)         at com.mucommander.ui.main.quicklist.RecentLocationsQL.<init>(RecentLocationsQL.java:43)         at com.mucommander.ui.main.FolderPanel.<clinit>(FolderPanel.java:129)         ... 4 more  (no, this is NOT a layer8 error :) )"
+2
+com.mucommander.Launcher
+com.mucommander.ui.action.ActionManager
+
+258
+Auto-refresh not picking changes made to a file that was edited  "Originally reported on the [http://www.mucommander.com/forums/viewtopic.php?f=3&t=1019&p=3337#p3337 forums].  === Steps to reproduce ===   - Choose a file to edit, paying attention to the current file's size and date.  - Edit the file(change something in it) and save changes.  - Close the editor to go back to the folder that contains the file that was edited.  === Expected behavior ===  The file's size and date are updated to reflect the changes that were made to it.  === Actual behavior ===  The file's size and date are not updated."
+1
+com.mucommander.ui.viewer.text.TextEditor
+
+261
+0.8.3 -> 0.8.4 migration issues  "=== Steps to reproduce ===   * Delete muCommander preferences folder(make a backup copy of it first:)  * Start muCommander 0.8.3 and quit  * Start muCommander 0.8.4(current nightly)  === Issues ===  1) 101 log warnings are displayed on startup(one for each action it seems), here are the first ten: {{{      [2009-08-21 16:51:50.924] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: alt 1 canceling mapping to ShowParentFoldersQL      [2009-08-21 16:51:50.925] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: alt 2 canceling mapping to ShowRecentLocationsQL      [2009-08-21 16:51:50.926] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: alt 3 canceling mapping to ShowRecentExecutedFil$      [2009-08-21 16:51:50.927] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: alt 4 canceling mapping to ShowBookmarksQL      [2009-08-21 16:51:50.927] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: control B canceling mapping to AddBookmark      [2009-08-21 16:51:50.927] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: control G canceling mapping to ChangeLocation      [2009-08-21 16:51:50.929] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: F10 canceling mapping to CloseWindow      [2009-08-21 16:51:50.929] WARNING ActionKeymapReader#processKeystrokeAttribute,117 action keymap file contains multiple associations for keystroke: meta W canceling mapping to CloseWindow      [2009-08-21 16:51:50.929] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: control M canceling mapping to CompareFolders      [2009-08-21 16:51:50.930] WARNING ActionKeymapReader#processKeystrokeAttribute,105 action keymap file contains multiple associations for keystroke: control K canceling mapping to ConnectToServer }}}  2) If you quit 0.8.4 and take a look at the `action_keymap.xml`, you'll notice there is one action there(!OpenInOtherPanel), even though no action was ever customized: {{{ <?xml version=""1.0"" encoding=""UTF-8""?> <!-- See http://trac.mucommander.com/wiki/ActionKeyMap for information on how to customize this file --> <keymap version=""0.8.4"">     <action id=""OpenInOtherPanel"" keystroke=""ctrl ENTER""/> </keymap> }}}  3) If you take a look at `command_bar.xml`(again after quitting 0.8.4), you'll notice actions are still referenced using the action class path and not the action Id : {{{ <?xml version=""1.0"" encoding=""UTF-8""?> <command_bar modifier=""SHIFT"">     <button action=""com.mucommander.ui.action.ViewAction""/>     <button action=""com.mucommander.ui.action.EditAction""/>     <button action=""com.mucommander.ui.action.CopyAction"" alt_action=""com.mucommander.ui.action.LocalCopyAction""/>     <button action=""com.mucommander.ui.action.MoveAction"" alt_action=""com.mucommander.ui.action.RenameAction""/>     <button action=""com.mucommander.ui.action.MkdirAction"" alt_action=""com.mucommander.ui.action.MkfileAction""/>     <button action=""com.mucommander.ui.action.DeleteAction"" alt_action=""com.mucommander.ui.action.PermanentDeleteAction""/>     <button action=""com.mucommander.ui.action.RefreshAction""/>     <button action=""com.mucommander.ui.action.CloseWindowAction""/> </command_bar> }}}  => I guess the file would have been updated to the new 0.8.4 format if changes were made to the command bar using the command bar editor. I suggest we toggle the 'dirty' flag after the import, so the file is written to the new 0.8.4 format upon application exit.   4) Same for `toolbar.xml`. "
+14
+com.mucommander.ShutdownHook
+com.mucommander.ui.action.ActionKeymapIO
+com.mucommander.ui.action.ActionKeymapReader
+com.mucommander.ui.dialog.customization.CommandBarDialog
+com.mucommander.ui.main.commandbar.CommandBarAttributes
+com.mucommander.ui.main.commandbar.CommandBarIO
+com.mucommander.ui.main.commandbar.CommandBarReader
+com.mucommander.ui.main.commandbar.CommandBarWriter
+com.mucommander.ui.main.commandbar.CommandBarWriter.Writer
+com.mucommander.ui.main.toolbar.ToolBarAttributes
+com.mucommander.ui.main.toolbar.ToolBarIO
+com.mucommander.ui.main.toolbar.ToolBarReader
+com.mucommander.ui.main.toolbar.ToolBarWriter
+com.mucommander.ui.main.toolbar.ToolBarWriter.Writer
+
+274
+Java version number in About dialog  "The Java version number displayed in the About dialog is using the `java.vm.version` property rather than `java.version`.  While most VMs have a meaningful version number(e.g. 1.5.07b), the latest Apple 1.6 VM has 14.1, which is confusing.  We should either use `java.version` instead of `java.vm.version`, or use both."
+1
+com.mucommander.ui.dialog.about.AboutDialog
+
+277
+"Can't ""walk"" on the shortcuts editor table with the keyboard arrows"  "Hey,  It seems like the new selection\mark actions affect the shortcuts editor table.  please check this.  Arik"
+3
+com.mucommander.ui.layout.ProportionalSplitPane
+com.mucommander.ui.main.FolderPanel
+com.mucommander.ui.main.table.FileTable
+
+309
+Search as you type behaviour changed  "* The space bar does not select files anymore, but muCommander searches for files with a space in the name. * After typing a few letters, the cursor jumps to the correct file, but hitting enter does not open the file / folder until a few seconds have elapsed, and the 'search as you type' mode is switched back off.  Before, space selected files, and I could hit enter right after a search which made it possible to browse the file system very quickly."
+3
+com.mucommander.ui.action.MuAction
+com.mucommander.ui.main.table.FileTable
+com.mucommander.ui.main.table.FileTable.QuickSearch
+
+311
+Should the free space indicator be flipped around?  "I just came to think about how the free space indicator looks, and I think that it is turned around compared to what's normal.  Normally I would think of the bar being the amount of space used on the drive, since it would then ""fill up"" the bar when you fill up the drive. Is this just me?  Also, it would be cool if the bar gradually changed color, when more space was used on the drive, so it would have an orange color at, say, 90% used, and a red color when it's more than 95% used."
+1
+com.mucommander.ui.main.StatusBar.VolumeSpaceLabel
+
+313
+'Network shares' in drive button is not localized  The 'Network shares' label used in the drive popup button should be localized.
+1
+com.mucommander.ui.main.DrivePopupButton
+
+317
+Missing text string for pack_dialog.pack  In the Pack dialog there is a bug which causes the submit button to be named '''pack_dialog.pack'''. This is specified in source:trunk/source/com/mucommander/ui/dialog/file/PackDialog.java@#L153
+1
+com.mucommander.ui.dialog.file.PackDialog
+
+321
+Single click treated as double click  "If the user clicks on file ‘A’ in the file table, and then clicks on file ‘B’ soon enough, the second click will be treated as a double click on file ‘B’, which launches / opens ‘B’.  Expected: to move the selection bar to file ‘B’ without opening it.  Similarly, if the ‘..’ item is double clicked, in the parent folder a single click on the ‘..’ item will be treated as a double click and will take the user to the parent folder. This leads to unwanted folder changes.  Consider: two double clicks on ‘..’ should take the user up two levels. Instead, it takes them up three levels."
+1
+com.mucommander.ui.main.table.FileTable
+
+327
+Move error: Cannot read file  "When moving or renaming files on a local drive, an error dialog pops up with the above title.  If the user chooses ‘Skip’ or ‘Skip all’, the move or rename operation finishes successfully. If the user chooses ‘Retry’, the same dialog pops up again."
+1
+com.mucommander.file.impl.local.LocalFile
+
+328
+"""Round displayed file sizes"" does sometimes not toggle correctly"  "Toggling the ""'''Round displayed file sizes'''"" checkbox in the ""'''Folder'''"" section of the preferences does sometimes not behave correctly, that is, even if the checkbox is marked, the file sizes are not displayed as rounded values and vice versa. Sometimes it works correctly, sometimes not. Just play around toggling the checkbox and watch the folder view. The behaviour is reproducable!"
+1
+com.mucommander.ui.main.table.FileTable
+
+330
+batch rename resulting in wrong names  "given the following directories with the files:  ./01/a.txt ./02/b.txt ./03/c.txt  using the following:   pattern [C] start at 2 format 01  it will result in:  ./04/a.txt ./04/b.txt ./04/c.txt  however the expected result is   ./02/a.txt ./03/b.txt ./04/c.txt"
+1
+com.mucommander.ui.dialog.file.BatchRenameDialog
+
+331
+batch rename pattern replacing is some part of the pattern is selected  "after selecting a part of a pattern, and hitting one of the pattern buttons ie.: [C] the text ""[C]"" is entered at the cursor position, however it should replace the selected text.  steps:  * select [E] from the default text [N].[E] * hit the [C] button * result [N].[C][E] * expected [N].[C]"
+2
+com.mucommander.ui.dialog.file.BatchRenameDialog
+com.mucommander.ui.dialog.file.BatchRenameDialog.AbstractToken
+
+334
+Impossible to delete 7z file.  "After open 7zip file(I explore it), it's impossible to delete it ""One or more files could not be moved to the trash."". I use an unlocker program and It seems that it's muCommander which lock this file. "
+1
+com.mucommander.file.impl.sevenzip.SevenZipArchiveFile
+
